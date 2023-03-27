@@ -7,62 +7,195 @@ html, body {
   /* Estilos para los contenedores */
   .contenedor {
     position: absolute;
-    border: 2px solid rgb(248, 0, 0);
     box-sizing: border-box;
     overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 0;
+    margin: 0;
   }
 
-  #navbar{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4.5%;
-    background-color: #333;
-    border: #333;
-  }
+ 
 
   #pie-pagina {
     background-color: #333;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 89.5%;
     height: 4.8%;
     border: #333;
   }
 
   /* Estilos para el primer contenedor */
   #contenedor1 {
-    top: 5%;
+    top: 6%;
     left: 0.5%;
-    width: 30.2%;
-    height: 29.5%;
+    width: 24.2%;
+    height: 19.5%;
+    background-color: red;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
   }
+  
+  .datos-cliente h5 {
+    color: white;
+    margin-left: 20px;
+  }
+  
 
   /* Estilos para el segundo contenedor */
   #contenedor2 {
-    top: 5%;
-    right: 0.5%;
-    width: 68.5%;
-    height: 29.5%;
-    background-color: rgb(211, 45, 45);
+    top: 6%;
+    left: 25%;
+    width: 64.5%;
+    height: 19.5%;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+   }
+ 
+   .datos-articulo{
+    padding-top: 20px;
+    left: 0%;
+    top: 20%;
+    width: 70%;
+    height: 50%;
+    display: inline-block;
+
+   }
+
+  .h5-separado {
+     display: inline-block;
+    width: 45%; /* ajusta el valor de acuerdo a tus necesidades */
+    margin: 10px; /* ajusta el valor de acuerdo a tus necesidades */
+    padding-left: 20px;
+    box-sizing: border-box; /* incluye el padding y border en el ancho del elemento */
   }
+  
+  .datos-articulo::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .datos-articulo, .botones-contenedor2, .boton-visualizador {
+    display: inline-block;
+    vertical-align: top; /* para alinearlos verticalmente en la parte superior */
+  }
+
+
+  .botones-contenedor2 button{
+    margin-top: 10px;
+    display: block;
+     background-color: red;
+     width: 150px;
+     height: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+      border: 4px solid white;
+  }
+   
+  .boton-visualizador{
+    width: 45px;
+    height: 39px;
+    position: absolute;
+    top: 35%;
+    right: 6%;
+    border: none;
+     
+  }
+
+  .btn-page{
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    top: 15%;
+    right: 17%;
+   border: none;
+  }
+
 
   /* Estilos para el tercer contenedor */
   #contenedor3 {
     bottom: 5%;
     left: 0.5%;
-    width: 30.2%;
-    height: 60%;
+    width: 24.2%;
+    height: 69%;
+    background-color: red;
+    border-radius: 10px 10px 10px 10px;
+    padding: 0;
+  }
+  
+  #contenedor3 {
+    bottom: 5%;
+    left: 0.5%;
+    width: 24.2%;
+    height: 69%;
+    background-color: red;
+    border-radius: 10px 10px 10px 10px;
+    padding: 0;
+  }
+  
+  #cesta {
+    margin: 10px;
+    background-color: white;
+    width: 95%;
+    top: 3%;
+    height: 70%;
+    padding: 0;
+    position: relative;
+  }
+  
+  .titulo-cesta {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: -25px;
+    width: 100%;
+    font-weight: bold;
     background-color: red;
   }
 
-  #cesta{
-    margin: 10px;
-    border: 5px solid rgb(15, 15, 15);
-    background-color: white;
-    width: 96%;
-    height: 94%;
+  .Objeto-cesta{
+    display: flex;
+    justify-content: space-between; 
+
   }
+
+  
+  .titulo-cesta p {
+    margin: 0;
+    color: white;
+    background-color: red;
+  }
+  
+  .botones-contenedor3 {
+    display: flex;
+    flex-wrap: wrap; /* Envuelve los elementos en varias líneas */
+    justify-content: space-between; /* Distribuye los elementos en el espacio restante de manera uniforme */
+    width: 90%; /* Ajusta el ancho de los elementos */
+    margin: 0 auto; /* Centra los elementos horizontalmente */
+    padding-top: 25px;
+  }
+  
+  
+  .botones-contenedor3 button {
+    width: 48%; /* Ajusta el ancho de los botones para que quepan dos por fila */
+    height: 30px; /* Establece la altura deseada */
+    margin-bottom: 10px; /* Agrega un espacio entre los botones */
+    border: 3px solid rgb(255, 255, 255); /* Establece el borde externo */
+    border-radius: 3px; /* Ajusta el borde redondeado */
+    background-color: red; /* Establece el color de fondo */
+    color: white; /* Establece el color del texto */
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    padding: 5px; /* Ajusta el relleno */
+    font-weight: bold;
+  }
+  
+   
+  
 
   p{
     padding: 10px;
@@ -72,39 +205,153 @@ html, body {
   /* Estilos para el cuarto contenedor */
   #contenedor4 {
     bottom: 5%;
-    right: 0.5%;
-    width: 68.5%;
-    height: 60%;
+    left: 25%;
+    width: 64.5%;
+    height: 69%;
+    background-color: white;
+    border: 5px solid#f70000;
+    border-radius: 10px 10px 10px 10px;
+
   }
+
+  .fondo-tabla{
+    background-color: white;
+    padding-top: 15px;
+    width: 97%;
+    height: 94%;
+    margin: 12px; 
+    overflow: auto;
+
+  }
+
+
+  #contenedor5 {
+    top: 6%;
+    bottom: 0%;
+    right: 0.5%;
+    width: 9.5%;
+    height: 94%; 
+    overflow: hidden;
+    border: none;
+  }
+
+  #contenedor5 button{
+    width: 100%;
+    height: 7.8%;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    font-weight: bold;
+    overflow: hidden;
+    margin-bottom: 5px;
+    font-size: larger;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+  }
+  
+  .negro {
+    background-color: black;
+  }
+  .azul {
+    background-color: rgb(13, 17, 255);
+  }
+
+  .rojo {
+    background-color: rgb(250, 0, 0);
+  }
+  .morado {
+    background-color: rgb(171, 0, 250);
+  }
+  .gris {
+    background-color: rgb(95, 95, 95);
+  }
+  .amarillo {
+    background-color: rgb(250, 225, 0);
+  }
+  .verde {
+    background-color: rgb(112, 250, 0);
+  }
+
+  #contenedor6 {
+    top:0%;
+    right: 0%;
+    width: 10%;
+    height: 5%;
+    border: 5px solid red;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #contenedor6 button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    border: none;
+  }
+
 
 header {
 	background-color: #333;
 	padding: 10px 20px;
 }
 
-nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
+.navbar {
+  left: 0.5%;
+  width: 88.3%;
+  background-color: #ff0000;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 0px 0px 10px 00px;
 }
 
-nav ul {
-	list-style: none;
-	display: flex;
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul li a {
-	color: #fff;
-	text-decoration: none;
-	padding: 10px;
-	border-radius: 5px;
-	transition: all 0.3s ease-in-out;
+.navbar-nav li {
+  margin: 0 0px;
 }
 
-nav ul li a:hover {
-	background-color: #fff;
-	color: #333;
+.nav-item {
+  display: inline-block;
 }
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+
+.textNavBtn{
+  padding: 10px 20px;
+  background-color: #3b3b3b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  text-align: center;
+  font-size: small;
+}
+
+a:not(.textNavBtn) {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+}
+
 
 main {
 	display: flex;
@@ -113,20 +360,22 @@ main {
 	height: calc(100vh - 70px);
 }
 
- 
+
  
 
 input[type="text"] {
-    padding: 10px;
-    margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  margin-left: 20px;
+  width: 80%;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-size: 1em;
 	color: #333;
 	background-color: #fff;
-    box-shadow: 5px 5px 15px gray;
 	transition: all 0.3s ease-in-out;
-       border: 5px #333;
+  border: 5px #333;
+  position: relative;
 }
 
 input[type="text"]:focus {
@@ -135,22 +384,19 @@ input[type="text"]:focus {
 	box-shadow: 0 0 3px rgba(122, 122, 255, 0.5);
 }
 
-.box-input input[type="submit"] {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+
+
+  input[type="number"]{
+    width: 40px;
   }
   
   table {
     border-collapse: collapse;
-    width: 800%;
+    width: 90%;
+    height: 90%;
     margin: 20px;
     font-family: Arial, sans-serif;
-    margin-right: 50px;
+    margin-right: 20px;
   }
   
   th {
@@ -159,24 +405,53 @@ input[type="text"]:focus {
     font-weight: bold;
     text-align: left;
     padding: 8px;
-    margin-right: 50px;
-
   }
   
   td {
-    padding: 8px;
+    padding: 4px;
     border-bottom: 1px solid #ddd;
-    margin-right: 50px;
   }
   
   tr:nth-child(even) {
     background-color: #f2f2f2;
-    margin-right: 50px;
   }
   
   tr:hover {
     background-color: #ddd;
-    margin-right: 50px;
-
   }
   
+  .btn-lupa {
+    background-color: rgb(255, 255, 255);
+    width: 45px;
+    height: 38px;
+    border-radius: 0px 0px 0px 0px;
+    position: absolute;
+    top: 10.1%;
+    right: 18%;
+    border: none;
+
+  }
+
+  .btn-lupa-c1 {
+    background-color: rgb(255, 255, 255);
+    width: 45px;
+    height: 37px;
+    border-radius: 0px 0px 0px 0px;
+    position: absolute;
+    top: 10.2%;
+    right: 14%;
+    border: none;
+
+  }
+
+  .btn-lupa-externa{
+    background-color: transparent;
+    color: white;
+    font-size: x-large;
+  width: 45px;
+  height: 39px;
+  position: absolute;
+  top: 9.5%;
+  right: 7%;
+  border: none;
+  }
