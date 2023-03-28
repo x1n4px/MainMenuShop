@@ -1,0 +1,283 @@
+table.center {
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  margin: 0 auto;
+  }
+
+  table {
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px #e1e5ee;
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+  }
+
+  th {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+  }
+
+  td {
+  padding: 1rem 2rem;
+  }
+
+  thead {
+  box-shadow: 0 5px 10px #e1e5ee;
+  }
+
+  .h2-naranja {
+  color: orange;
+  }
+
+  .h3-gris {
+  color: grey;
+  }
+
+  body {
+  font-family: Mukta, sans-serif;
+  height: 100vh;
+  color: #4f546c;
+  font-size: 0.9rem;
+  margin: 0;
+  margin: 20px;
+  }
+
+  form {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 50px;
+  }
+
+  label {
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  }
+
+  a {
+    display: inline-block;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
+    color: #fff;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 1em;
+  }
+
+  a:hover {
+    background-color: #2e6da4;
+  }
+
+  a:active {
+    background-color: #286090;
+    border-color: #204d74;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 50px;
+  }
+
+  .titulo {
+    font-size: xxx-large;
+    font-weight: bold;
+  }
+
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F5F5F5;
+    padding: 10px 20px;
+    box-shadow: 0 5px 10px #e1e5ee;
+
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .navbar-right {
+    display: flex;
+  }
+
+
+  .css-button-3d--blue {
+    min-width: 130px;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #337ab7;
+    box-shadow: 0 5px #2c0b8e;
+  }
+  .css-button-3d--blue:hover {
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+  }
+  .css-button-3d--blue:active {
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+  }
+
+  .css-button-3d--gray {
+    min-width: 100px;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #cf3333;
+    box-shadow: 0 5px #2c0b8e;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  .css-button-3d--gray:hover {
+    transform: scale(1);
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+    z-index: 1;
+  }
+
+
+  .css-button-3d--gray:active {
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+  }
+
+
+  .confirmacion-eliminacion {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .confirmacion-eliminacion p {
+    margin-bottom: 10px;
+  }
+  
+  .css-button-3d--red {
+    background: #cf3333;
+    box-shadow: 0 5px #2c0b8e;
+  }
+  
+  .css-button-3d--red:hover {
+    transform: scale(1);
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+    z-index: 1;
+  }
+  
+  .css-button-3d--red:active {
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+  }
+  
+
+  
+
+
+  .css-button-3d--blue2 {
+    min-width: 300px;
+    position: center;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #337ab7;
+    box-shadow: 0 5px #2c0b8e;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .css-button-3d--blue2:hover {
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+  }
+  .css-button-3d--blue2:active {
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+  }
+
+
+ .titulo-tabla{
+  font-size: large;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 20px;
+ }
+
+
+
+ .css-button-3d--blue--ocultar {
+  min-width: 130px;
+  height: 30px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #337ab7;
+  box-shadow: 0 5px #2c0b8e;
+  margin: 10px;
+}
+.css-button-3d--blue--ocultar:hover {
+  box-shadow: 0 3px #2c0b8e;
+  top: 1px;
+}
+.css-button-3d--blue--ocultar:active {
+  box-shadow: 0 0 #2c0b8e;
+  top: 5px;
+}
+
+hr{
+  box-shadow: 0 5px 10px #ccd0da;
+  
+
+}
