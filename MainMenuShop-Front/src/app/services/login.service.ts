@@ -5,6 +5,8 @@ import baserUrl from './helper';
 import { map } from 'rxjs';
 import { User } from '../User';
 import { Observable } from 'rxjs';
+import { Productos } from '../Productos';
+import { Cliente } from '../Cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +54,15 @@ export class LoginService {
     return this.http.put(`${this.gUURL}/${id}`, usuario);
   }
 
+  public obtenerTodosLosProductos(){
+    return this.http.get<Productos[]>(`http://localhost:8080/producto/todos`);
 
+  }
+
+  public obtenerTodosLosClientes(){
+    return this.http.get<Cliente[]>(`http://localhost:8080/cliente/todos`);
+
+  }
 
 
   //iniciamos sesión y establecemos el token en el localStorage

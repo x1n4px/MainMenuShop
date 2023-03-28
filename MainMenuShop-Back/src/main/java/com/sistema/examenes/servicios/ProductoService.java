@@ -1,0 +1,26 @@
+package com.sistema.examenes.servicios;
+
+import com.sistema.examenes.modelo.Productos;
+import com.sistema.examenes.modelo.Usuario;
+import com.sistema.examenes.repositorios.ProductoRepository;
+import com.sistema.examenes.repositorios.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+
+public class ProductoService {
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    public List<Productos> obtenerProductos(){
+        return productoRepository.findAll();
+    }
+
+    public Optional<Productos> obtenerProductoPorId(Long id){
+        return productoRepository.findById(id);
+    }
+}
