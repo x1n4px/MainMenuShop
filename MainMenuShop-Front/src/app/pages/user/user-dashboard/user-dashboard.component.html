@@ -29,7 +29,6 @@
        <a href="#" class="fas fa-briefcase"> </a>
     </li>
   </ul>
-  <h1>precio {{total}}</h1>
 </nav>
 
 
@@ -93,7 +92,7 @@
         <table>
           <tbody>
             <tr *ngFor="let producto of cesta">
-              <td>{{producto.referencia}}</td>
+              <td>{{producto.nombre}}</td>
               <td>{{producto.precio}}</td>
             </tr>
           </tbody>
@@ -102,7 +101,7 @@
         </div>
       </div>
       <div class="botones-contenedor3">
-        <button>Finalizar venta</button>
+        <button (click)="mostrarPanelCobro()" (click)="totalCesta()">Finalizar venta</button>
         <button>Aparcar venta</button>
         <button>Hacer encargo</button>
         <button (click)="vaciarCestaCompleta()">Cancelar</button>
@@ -158,6 +157,33 @@
     <div id="pie-pagina" class="contenedor">
     </div>
 
+    <div class="formulario-panel-cobro" [hidden]="!formularioPanelCobro">
+      <div class="formulario-panel-cobro-parte-alta">
+        <div class="pequenio">
+          <button (click)="ocultarPanelCobro()">X</button>
+
+          <h1>Total:
+          </h1>
+          <div class="valor">
+            <h1 class="precio-final">{{total}}€</h1>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="formulario-panel-cobro-parte-baja">
+
+         <div class="formulario-panel-cobro-parte-baja-izquierda">
+          <button class="btn-lateral">Efectivo (F2)</button>
+          <button class="btn-lateral">Tarjeta (F3)</button>
+          <button class="btn-lateral">?</button>
+          <button class="btn-lateral">?</button>
+        </div>
+        <div class="formulario-panel-cobro-parte-baja-derecha">
+         </div>
+      </div>
+
+    </div>
 
     <div class="formulario-mostrar-Ticket" [hidden]="!formularioConsultarTicket">
       <div class="marco-interior">

@@ -31,7 +31,7 @@ html, body {
   left: 0.5%;
   width: 24.2%;
   height: 19.5%;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
   overflow: hidden;
 }
@@ -48,7 +48,7 @@ html, body {
   left: 25%;
   width: 64.5%;
   height: 19.5%;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(148, 14, 14);
   color: white;
   font-weight: bold;
   border-radius: 10px 10px 10px 10px;
@@ -96,7 +96,7 @@ html, body {
 .botones-contenedor2 button{
   margin-top: 10px;
   display: block;
-   background-color: red;
+   background-color: rgb(148, 14, 14);
    width: 150px;
    height: 30px;
   color: white;
@@ -131,7 +131,7 @@ html, body {
   left: 0.5%;
   width: 24.2%;
   height: 69%;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
   padding: 0;
 }
@@ -141,7 +141,7 @@ html, body {
   left: 0.5%;
   width: 24.2%;
   height: 69%;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
   padding: 0;
 }
@@ -163,7 +163,7 @@ html, body {
   top: -25px;
   width: 100%;
   font-weight: bold;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
 }
 
 .Objeto-cesta{
@@ -176,7 +176,7 @@ html, body {
 .titulo-cesta p {
   margin: 0;
   color: white;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
 }
 
 .botones-contenedor3 {
@@ -195,7 +195,7 @@ html, body {
   margin-bottom: 10px; /* Agrega un espacio entre los botones */
   border: 3px solid rgb(255, 255, 255); /* Establece el borde externo */
   border-radius: 3px; /* Ajusta el borde redondeado */
-  background-color: red; /* Establece el color de fondo */
+  background-color: rgb(148, 14, 14); /* Establece el color de fondo */
   color: white; /* Establece el color del texto */
   font-size: 16px; /* Ajusta el tamaño del texto */
   padding: 5px; /* Ajusta el relleno */
@@ -217,7 +217,7 @@ p{
   width: 64.5%;
   height: 69%;
   background-color: white;
-  border: 5px solid#f70000;
+  border: 5px solid rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
 
 }
@@ -268,7 +268,7 @@ p{
 }
 
 .rojo {
-  background-color: rgb(250, 0, 0);
+  background-color: rgb(148, 14, 14);
 }
 
 .btn-borrarArt {
@@ -302,7 +302,7 @@ p{
   right: 0%;
   width: 10%;
   height: 5%;
-  border: 5px solid red;
+  border: 5px solid rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -310,7 +310,7 @@ p{
   display: block;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   color: white;
   font-size: large;
   font-weight: bold;
@@ -327,7 +327,7 @@ padding: 10px 20px;
 .navbar {
 left: 0.5%;
 width: 89.3%;
-background-color: #ff0000;
+background-color: rgb(148, 14, 14);
 display: flex;
 justify-content: space-between;
 padding: 10px;
@@ -400,7 +400,7 @@ position: relative;
 
 input[type="text"]:focus {
 outline: none;
-border-color: #ff0000;
+border-color: rgb(148, 14, 14);
 box-shadow: 0 0 3px rgba(122, 122, 255, 0.5);
 }
 
@@ -454,7 +454,7 @@ border: none;
 
 
 .formulario-mostrar-Ticket {
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   position: fixed;
     top: 45%;
     left: 50%;
@@ -469,8 +469,110 @@ border: none;
 
 }
 
+.formulario-panel-cobro {
+  background-color: #f58484;
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    border:5px solid #940e0e;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+.formulario-panel-cobro-parte-alta{
+  background-color: rgba(0, 0, 255, 0);
+  width: 95%;
+  height: 15%;
+  margin: 10px;
+  position: relative;
+}
+
+.precio-final{
+  font: bold;
+  font-size: large;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.valor{
+  background-color: white;
+  border: 2px solid black;
+  position: absolute;
+  width: 80px;
+  height: 50px;
+  bottom: 0;
+  right: 0;
+  transform: translate(10px, -10px);
+
+}
+.formulario-panel-cobro-parte-baja{
+  background-color: #940e0e;
+  border: 5px solid #5e0808;
+  border-radius: 10px;
+  margin: 10px;
+  top: 45%;
+  left: 50%;
+  width: 95%;
+  height: 78%;
+  display: flex;
+}
+
+.formulario-panel-cobro-parte-baja-izquierda{
+   margin: 10px;
+  top: 45%;
+  left: 50%;
+  width: 95%;
+  height: 78%;
+}
+
+.formulario-panel-cobro-parte-baja-derecha{
+  background-color: rgba(255, 255, 255, 0.904);
+  border: 5px solid #5e0808;
+  border-radius: 10px;
+  margin: 10px;
+  top: 45%;
+  left: 50%;
+  width: 95%;
+  height: 50%;
+
+}
+
+.btn-lateral {
+  background-color: rgb(148, 14, 14);
+  width: 80%;
+  height: 15%;
+  margin-top: 7%;
+  margin-left: 20px;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+  border: 5px solid white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+  box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+}
+.cajero{
+  background-color: white;
+  border: #333 2px solid;
+  width: 100%;
+  height: 60%;
+  margin-top: 50px;
+}
+.marco-interior{
+  width: 100%;
+  height: 100%;
+}
+
+
 .formulario-Datos-Articulo {
-  background-color: red;
+  background-color: rgb(148, 14, 14);
   position: fixed;
     top: 45%;
     left: 50%;
@@ -489,13 +591,13 @@ border: none;
   width: 100%;
   height: 100%;
   padding: 15px;
- border: 2px solid rgb(141, 0, 0);
- background-color: red;
+ border: 2px solid rgb(148, 14, 14) ;
+ background-color: rgb(148, 14, 14);
 }
 
 .espacio-interior {
   background-color: #ffffff;
-  border: 2px solid rgb(141,0,0);
+  border: 2px solid rgb(148, 14, 14);
   margin-top: 20px;
   width: 100%;
   height: 90%;
@@ -524,7 +626,7 @@ border: none;
   height: 100%;
   padding: 15px;
  border: 2px solid rgb(125, 4, 150);
- background-color: rgb(212, 0, 255);
+ background-color: #d400ff;
 }
 
 

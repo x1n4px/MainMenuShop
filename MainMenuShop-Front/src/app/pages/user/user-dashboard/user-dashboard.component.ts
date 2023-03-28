@@ -19,6 +19,7 @@ export class UserDashboardComponent implements OnInit {
   formularioRecuperarTicket = false;
   formularioCierreCaja = false;
   formularioDatosArticulo = false;
+  formularioPanelCobro = false;
 
 
   productos: Productos[] = [];
@@ -147,44 +148,18 @@ export class UserDashboardComponent implements OnInit {
     this.route.navigate(['']);
   }
 
-  mostrarConsultarTicket(){
-    this.formularioConsultarTicket = true;
-  }
-
-  ocultarConsultarTicket(){
-    this.formularioConsultarTicket = false;
-  }
-
-  mostrarDevolverTicket(){
-    this.formularioDevolverTicket = true;
-  }
-
-  ocultarDevolverTicket(){
-    this.formularioDevolverTicket = false;
-  }
-
-
-  mostrarRecuperarTicket(){
-    this.formularioRecuperarTicket = true;
-  }
-
-  ocultarRecuperarTicket(){
-    this.formularioRecuperarTicket = false;
-  }
-
-  mostrarCierreCaja(){
-    this.formularioCierreCaja = true;
-  }
+  mostrarConsultarTicket(){ this.formularioConsultarTicket = true;}
+  ocultarConsultarTicket(){this.formularioConsultarTicket = false; }
+  mostrarDevolverTicket(){this.formularioDevolverTicket = true;}
+  ocultarDevolverTicket(){this.formularioDevolverTicket = false;}
+  mostrarRecuperarTicket(){this.formularioRecuperarTicket = true; }
+  ocultarRecuperarTicket(){this.formularioRecuperarTicket = false;}
+  mostrarCierreCaja(){this.formularioCierreCaja = true;}
   ocultarCierreCaja(){this.formularioCierreCaja=false;}
-
-  mostrarDatosArticulo(){
-    this.formularioDatosArticulo = true;
-  }
-
-  ocultarDatosArticulo(){
-    this.formularioDatosArticulo = false;
-
-  }
+  mostrarDatosArticulo(){this.formularioDatosArticulo = true;}
+  ocultarDatosArticulo(){this.formularioDatosArticulo = false;}
+  mostrarPanelCobro(){this.formularioPanelCobro = true;}
+  ocultarPanelCobro(){this.formularioPanelCobro = false;}
 
   total!:number;
 
