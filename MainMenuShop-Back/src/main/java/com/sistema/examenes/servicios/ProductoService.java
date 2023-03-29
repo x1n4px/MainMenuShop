@@ -4,6 +4,8 @@ import com.sistema.examenes.modelo.Productos;
 import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.repositorios.ProductoRepository;
 import com.sistema.examenes.repositorios.UsuarioRepository;
+import com.sistema.examenes.servicios.exceptions.EntidadNoEncontradaException;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,9 @@ public class ProductoService {
 
     public Optional<Productos> obtenerProductoPorId(Long id){
         return productoRepository.findById(id);
+    }
+
+    public List<Productos> buscarProducto(String busqueda) {
+        return productoRepository.findByReferenciaContainingOrNombreContaining(busqueda, busqueda);
     }
 }

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Cliente } from 'src/app/Cliente';
 import { Productos } from 'src/app/Productos';
 import { LoginService } from 'src/app/services/login.service';
+import { debounceTime } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-user-dashboard',
@@ -20,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
   formularioCierreCaja = false;
   formularioDatosArticulo = false;
   formularioPanelCobro = false;
+  formularioDevolucionDineroEfectivo = false;
 
 
   productos: Productos[] = [];
@@ -46,7 +49,7 @@ export class UserDashboardComponent implements OnInit {
     this.loginService.getCurrentUser().subscribe(data => {
       this.usuarioActual = data;
     });
-     this.obtenerProductos();
+      this.obtenerProductos();
      this.obtenerClientes();
   }
 
@@ -81,6 +84,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   buscar() {
+
     if (this.terminoBusqueda && this.terminoBusqueda.trim()) {
       const termino = this.terminoBusqueda.toLowerCase();
       this.resultados = this.productos.filter(producto => {
@@ -91,6 +95,14 @@ export class UserDashboardComponent implements OnInit {
     } else {
       this.resultados = [];
     }
+    /*
+    this.loginService.buscarProducto(this.terminoBusqueda)
+    .pipe(debounceTime(500)) // espera 500 ms antes de enviar la solicitud
+    .subscribe(productos => {
+      this.productos = productos;
+    }, error => {
+      console.error(error);
+    });*/
   }
 
   buscarCliente(){
@@ -137,7 +149,7 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusqueda = '';
     this.borrarCliente();
   }
- 
+
   recuperarTicket(cesta: any) {
     this.clienteActual = cesta[0];
     this.cesta = cesta.slice(1);
@@ -147,17 +159,34 @@ export class UserDashboardComponent implements OnInit {
       this.conjuntoDeCestas.splice(index, 1);
     }
   }
-  
-  
+
+
 
   vaciarCestaCompleta(){
     this.cesta = [];
     this.clienteActual = [];
     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-
+    this.formularioPanelCobro = false;
   }
 
+  terminarCompraTarjeta(){
+    this.cesta = [];
+    this.clienteActual = [];
+    this.terminoBusqueda = '';
+    this.terminoBusquedaCliente = '';
+    this.formularioPanelCobro = false;
+  }
+
+  terminarCompraEfectivo(){
+    this.formularioDevolucionDineroEfectivo = true;
+    this.formularioPanelCobro = false;
+    this.devolucionEfectivo();
+    this.cesta = [];
+    this.clienteActual = [];
+    this.terminoBusqueda = '';
+    this.terminoBusquedaCliente = '';
+  }
 
   borrarArticulo(){
     this.productoActual = null;
@@ -190,14 +219,23 @@ export class UserDashboardComponent implements OnInit {
   ocultarDatosArticulo(){this.formularioDatosArticulo = false;}
   mostrarPanelCobro(){this.formularioPanelCobro = true;}
   ocultarPanelCobro(){this.formularioPanelCobro = false;}
+  mostrarDevolucionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = true;}
+  ocultarDevolcionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = false;}
 
   total!:number;
-
+  dineroEfectivo!:number;
   totalCesta(){
     let sumaPrecios = 0;
     for(let i = 0; i < this.cesta.length; i++){
       sumaPrecios += this.cesta[i].precio;
     }
     this.total = parseFloat(sumaPrecios.toFixed(2));
+  }
+
+  DineroDevolver!:number;
+  devolucionEfectivo(){
+    let diferencia = 0;
+    diferencia =  this.dineroEfectivo - this.total;
+    this.DineroDevolver = parseFloat(diferencia.toFixed(2));
   }
 }

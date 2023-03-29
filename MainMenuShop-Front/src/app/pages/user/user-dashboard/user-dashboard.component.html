@@ -104,7 +104,7 @@
           <tbody>
             <tr *ngFor="let producto of cesta" >
               <td>{{producto.nombre}}</td>
-              <td>{{producto.precio}}</td>
+              <td>{{producto.precio}}€</td>
             </tr>
           </tbody>
         </table>
@@ -178,15 +178,18 @@
           <div class="valor">
             <h1 class="precio-final">{{total}}€</h1>
           </div>
+          <div class="valor2">
+            <input type="text" [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder="Introduzca articulo...">
 
+          </div>
         </div>
 
       </div>
       <div class="formulario-panel-cobro-parte-baja">
 
          <div class="formulario-panel-cobro-parte-baja-izquierda">
-          <button class="btn-lateral">Efectivo (F2)</button>
-          <button class="btn-lateral">Tarjeta (F3)</button>
+          <button (click)="terminarCompraEfectivo()" class="btn-lateral">Efectivo (F2)</button>
+          <button (click)="terminarCompraTarjeta()" class="btn-lateral">Tarjeta (F3)</button>
           <button class="btn-lateral">?</button>
           <button class="btn-lateral">?</button>
         </div>
@@ -195,6 +198,16 @@
       </div>
 
     </div>
+
+    <div (click)="formularioDevolucionDineroEfectivo=false" class="formulario-Devolucion-Efectivo" [hidden]="!formularioDevolucionDineroEfectivo">
+        <h1>Efectivo a devolver:</h1>
+
+          {{DineroDevolver}} €
+
+    </div>
+
+
+
 
     <div class="formulario-mostrar-Ticket" [hidden]="!formularioConsultarTicket">
       <div class="marco-interior">
@@ -228,8 +241,8 @@
               </tr>
             </tbody>
           </table>
-          
-          
+
+
         </div>
       </div>
     </div>
@@ -315,5 +328,4 @@
 
   </body>
 </html>
-
 

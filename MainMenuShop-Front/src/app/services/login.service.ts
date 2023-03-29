@@ -115,4 +115,11 @@ export class LoginService {
     return this.http.get("http://localhost:8080/profile");
   }
 
+  buscarProducto(busqueda: string) {
+    const url = `http://localhost:8080/producto/buscar?q=${busqueda}`;
+    console.log('URL de búsqueda:', url);
+
+    return this.http.get<Productos[]>(url);
+  }
+
 }

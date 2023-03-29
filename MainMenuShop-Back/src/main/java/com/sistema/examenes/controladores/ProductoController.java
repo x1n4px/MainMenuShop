@@ -2,17 +2,14 @@ package com.sistema.examenes.controladores;
 
 import com.sistema.examenes.modelo.Clientes;
 import com.sistema.examenes.modelo.Productos;
-import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.repositorios.ClientesRepository;
 import com.sistema.examenes.repositorios.ProductoRepository;
 import com.sistema.examenes.servicios.ClientesService;
 import com.sistema.examenes.servicios.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,4 +50,23 @@ public class ProductoController {
         return clientesService.obtenerClientes();
 
     }
+
+    @GetMapping("/producto/buscar/{busqueda}")
+    public ResponseEntity<List<Productos>> buscarProductoPorNombreOReferencia(@PathVariable("busqueda") String busqueda) {
+        try {
+            List<Productos> productos = productoService.buscarProducto(busqueda);
+            if (productos.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            return ResponseEntity.ok().headers(headers).body(productos);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+
+
 }
