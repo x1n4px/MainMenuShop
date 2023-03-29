@@ -25,9 +25,11 @@ export class UserDashboardComponent implements OnInit {
   productos: Productos[] = [];
   clientes: Cliente[] = [];
   cesta: any[] = [];
+  conjuntoDeCestas: any[][] = [];
 
   terminoBusqueda!: string;
   terminoBusquedaCliente!: string;
+  cantidadUnidades: any = 1;
 
   resultados!: any[];
   resultadosCliente!: any[];
@@ -116,11 +118,37 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusquedaCliente = '';
   }
 
-  aniadircesta(resultado:any){
-    this.cesta.push(resultado);
+  aniadircesta(resultado: any) {
+    for (let i = 0; i < this.cantidadUnidades; i++) {
+      this.cesta.push(resultado);
+    }
     this.resultados = [];
-
+    this.productoActual = null;
   }
+
+
+  aparcarCesta() {
+     const nombreCesta = this.clienteActual !== null ? (this.clienteActual.nombre+' '+this.clienteActual.apellido1+' '+this.clienteActual.apellido2) : 'tienda';
+    const cestaConNombre = [nombreCesta, ...this.cesta];
+    this.conjuntoDeCestas.push(cestaConNombre);
+    this.cesta = [];
+    this.clienteActual = [];
+    this.terminoBusquedaCliente = '';
+    this.terminoBusqueda = '';
+    this.borrarCliente();
+  }
+ 
+  recuperarTicket(cesta: any) {
+    this.clienteActual = cesta[0];
+    this.cesta = cesta.slice(1);
+    this.formularioRecuperarTicket = false;
+    const index = this.conjuntoDeCestas.indexOf(cesta);
+    if (index > -1) {
+      this.conjuntoDeCestas.splice(index, 1);
+    }
+  }
+  
+  
 
   vaciarCestaCompleta(){
     this.cesta = [];
@@ -134,6 +162,8 @@ export class UserDashboardComponent implements OnInit {
   borrarArticulo(){
     this.productoActual = null;
   }
+
+  borrarCliente(){this.clienteActual = null;}
 
 
   funcionParaAdmin(){
@@ -168,6 +198,6 @@ export class UserDashboardComponent implements OnInit {
     for(let i = 0; i < this.cesta.length; i++){
       sumaPrecios += this.cesta[i].precio;
     }
-    this.total = sumaPrecios;
+    this.total = parseFloat(sumaPrecios.toFixed(2));
   }
 }

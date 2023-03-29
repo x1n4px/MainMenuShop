@@ -167,11 +167,21 @@ html, body {
 }
 
 .Objeto-cesta{
-  display: flex;
-  justify-content: space-between;
+   justify-content: space-between;
+  height: 95%;
+  width: 100%;
+  overflow: auto;
+ }
 
+
+ .input-productoActual{
+  font: bold;
+ }  
+
+ ::placeholder {
+  color: black;
+  font-size: 1.5em;
 }
-
 
 .titulo-cesta p {
   margin: 0;

@@ -11,4 +11,5 @@ export class Productos {
   precio_promocion!:number;
   referencia!:string;
   variedad!:number;
+  estado!:string;
 }

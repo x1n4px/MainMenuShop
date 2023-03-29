@@ -3,6 +3,8 @@ package com.sistema.examenes.modelo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,4 +32,12 @@ public class Productos {
 
     private double precio; //Precio del producto
     private double peso; //Peso del producto
+
+    private String estado; //Encargable o no encargable
+
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private Set<Ticket_Producto> ticketProductos;
+
+
 }

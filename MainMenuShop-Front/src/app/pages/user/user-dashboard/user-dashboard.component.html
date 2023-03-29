@@ -35,34 +35,45 @@
 
 
     <div id="contenedor1" class="contenedor">
-      <form (ngSubmit)="buscarCliente()">
+      <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
+        <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
        <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
+      </form>
+      <form *ngIf="clienteActual != null">
+        <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
+        <input type="text" placeholder="{{clienteActual.nombre}}&nbsp;{{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}">
       </form>
        <button class="btn-lupa-c1"><i class="fa fa-search"></i></button>
 
       <div class="datos-cliente" *ngIf="clienteActual != null">
-        <h5 class="h5-c1">Nombre:  {{clienteActual.nombre}}</h5>
-        <h5 class="h5-c1">Apellidos:  {{clienteActual.Apellido1}} {{clienteActual.apellido2}}</h5>
+        <h5 class="h5-c1">DNI:  {{clienteActual.dni}}</h5>
+        <h5 class="h5-c1">Telefono:  {{clienteActual.numeroTelefono}}</h5>
         <h5 class="h5-c1">Email: {{clienteActual.email}}</h5>
       </div>
       <div class="datos-cliente" *ngIf="clienteActual == null">
-        <h5 class="h5-c1">Nombre:  </h5>
-        <h5 class="h5-c1">Apellidos:  </h5>
-        <h5 class="h5-c1">Correo electrónico: </h5>
+        <h5 class="h5-c1">DNI:   </h5>
+        <h5 class="h5-c1">Telefono:   </h5>
+        <h5 class="h5-c1">Email: </h5>
       </div>
     </div>
     <div id="contenedor2" class="contenedor">
-      <form (ngSubmit)="buscar()">
+      <form (ngSubmit)="buscar()" *ngIf="productoActual == null">
         <button class="btn-borrarArt"  (click)="borrarArticulo()">X</button>
       <input type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="Introduzca articulo...">
     </form>
+      <form *ngIf="productoActual != null">
+        <button class="btn-borrarArt"  (click)="borrarArticulo()">X</button>
+
+        <input  type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="{{productoActual.nombre}}">
+
+      </form>
       <button class="btn-lupa"><i class="fa fa-search"></i></button>
       <button class="btn-lupa-externa"><i class="fa fa-search"></i></button>
       <div class="datos-articulo" *ngIf="productoActual != null">
         <h5  class="h5-separado">Precio: {{productoActual.precio}} </h5>
         <h5  class="h5-separado">Lote:  {{productoActual.Lote}}</h5>
         <h5  class="h5-separado">Familia:  {{productoActual.familia}}</h5>
-        <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
+        <h5  class="h5-separado">Unidades <input class="unidades-articulo" [(ngModel)]="cantidadUnidades" type="number" min="1" max="99" value="1">
         </h5>
        </div>
       <div class="datos-articulo" *ngIf="productoActual == null">
@@ -91,7 +102,7 @@
         <div class="Objeto-cesta"  >
         <table>
           <tbody>
-            <tr *ngFor="let producto of cesta">
+            <tr *ngFor="let producto of cesta" >
               <td>{{producto.nombre}}</td>
               <td>{{producto.precio}}</td>
             </tr>
@@ -102,7 +113,7 @@
       </div>
       <div class="botones-contenedor3">
         <button (click)="mostrarPanelCobro()" (click)="totalCesta()">Finalizar venta</button>
-        <button>Aparcar venta</button>
+        <button (click)="aparcarCesta()">Aparcar venta</button>
         <button>Hacer encargo</button>
         <button (click)="vaciarCestaCompleta()">Cancelar</button>
         <button>Hacer algo</button>
@@ -119,7 +130,7 @@
           <tbody>
           <tr *ngFor="let resultado of resultados" (dblclick)="aniadircesta(resultado)" (click)="seleccionarProducto(resultado)">
             <td><strong>{{resultado.nombre}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{resultado.precio}}€<br>
-            <small>{{resultado.referencia}} · familia · tipo · utilidad</small></td>
+            <small>{{resultado.referencia}} · familia · tipo · utilidad · {{resultado.estado}}</small></td>
           </tr>
 
       </tbody>
@@ -199,8 +210,26 @@
       <div class="marco-interior">
         <button (click)="ocultarRecuperarTicket()">X</button>
         <div class="espacio-interior">
-          <h3>Ticket 1</h3>
-          <h3>Ticket 2</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Cesta</th>
+                <th>Contenido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cesta of conjuntoDeCestas" (dblclick)="recuperarTicket(cesta)">
+                <td>{{ cesta[0] }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let elemento of cesta.slice(1)">{{ elemento.nombre }}</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          
         </div>
       </div>
     </div>

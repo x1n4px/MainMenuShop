@@ -7,7 +7,6 @@ export class Cliente {
   dni!:string;
   email!:string;
   localidad!:string;
-
-  numero_movil!:string;
-  numero_telefono!:string;
+  numeroMovil!:string;
+  numeroTelefono!:string;
  }
