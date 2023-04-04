@@ -1,9 +1,9 @@
 body {
-    background-color: red;
+    background-color: #940e0e;
 }
 
 .borde-externo{
-    background-color: rgb(255, 0, 0);
+    background-color: #940e0e(255, 0, 0);
     border: 10px solid white;
     position: fixed;
     top: 55%;
@@ -21,7 +21,7 @@ body {
 }
 
 .titulo{
-    font-size: 60px;    
+    font-size: 60px;
 }
 
 .botones-contenedor {
@@ -39,7 +39,7 @@ body {
     margin-bottom: 10px; /* Agrega un espacio entre los botones */
     border: 5px solid rgb(255, 255, 255); /* Establece el borde externo */
     border-radius: 5px; /* Ajusta el borde redondeado */
-    background-color: red; /* Establece el color de fondo */
+    background-color: #940e0e; /* Establece el color de fondo */
     color: white; /* Establece el color del texto */
     font-size: 30px; /* Ajusta el tamaño del texto */
     padding: 10px; /* Ajusta el relleno */

@@ -1,9 +1,12 @@
 package com.sistema.examenes.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -13,6 +16,7 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 @Entity
+@Table(name = "productos")
 public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,9 +39,6 @@ public class Productos {
 
     private String estado; //Encargable o no encargable
 
-
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-    private Set<Ticket_Producto> ticketProductos;
 
 
 }

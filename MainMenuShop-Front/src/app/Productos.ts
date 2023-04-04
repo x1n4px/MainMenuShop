@@ -8,8 +8,8 @@ export class Productos {
   nombre!:string;
   peso!:number;
   precio!:number
-  precio_promocion!:number;
   referencia!:string;
   variedad!:number;
   estado!:string;
+
 }

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
@@ -26,7 +25,5 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
-    public List<Productos> buscarProducto(String busqueda) {
-        return productoRepository.findByReferenciaContainingOrNombreContaining(busqueda, busqueda);
-    }
+
 }

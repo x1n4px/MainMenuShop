@@ -1,3 +1,5 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 html, body {
   height: 100%;
   margin: 0;
@@ -23,30 +25,55 @@ html, body {
   width: 89.5%;
   height: 4.8%;
   border: #333;
+  overflow: hidden;
 }
 
 /* Estilos para el primer contenedor */
 #contenedor1 {
   top: 6%;
   left: 0.5%;
-  width: 24.2%;
+  width: 34.2%;
   height: 19.5%;
   background-color: rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
   overflow: hidden;
 }
 
+.contenedor1-barra-busqueda{
+   width: 100%;
+  height: 30%;
+  margin-bottom: 2%;
+}
+
+.contenedor1-lateral-izquierdo{
+   width: 70%;
+  height: 70%;
+  float: left;
+}
+
+
+
+.contenedor1-lateral-derecho{
+   width: 30%;
+  height: 70%;
+  float: right;
+  padding: 20px;
+}
+
+
+
 .datos-cliente h5 {
   color: white;
   margin-left: 20px;
+
 }
 
 
 /* Estilos para el segundo contenedor */
 #contenedor2 {
   top: 6%;
-  left: 25%;
-  width: 64.5%;
+  left: 35%;
+  width: 54.5%;
   height: 19.5%;
   background-color: rgb(148, 14, 14);
   color: white;
@@ -139,11 +166,17 @@ html, body {
 #contenedor3 {
   bottom: 5%;
   left: 0.5%;
-  width: 24.2%;
+  width: 34.2%;
   height: 69%;
   background-color: rgb(148, 14, 14);
   border-radius: 10px 10px 10px 10px;
   padding: 0;
+}
+
+contenedor-interior-crear-cliente{
+  background-color: black;
+  width: 100%;
+  height: 100%;
 }
 
 #cesta {
@@ -166,13 +199,22 @@ html, body {
   background-color: rgb(148, 14, 14);
 }
 
+
+
 .Objeto-cesta{
    justify-content: space-between;
   height: 95%;
   width: 100%;
   overflow: auto;
+  padding-top: 20px;
  }
-
+ .Objeto-cesta-c{
+  justify-content: space-between;
+ height: 95%;
+ width: 100%;
+ overflow: auto;
+ padding-top: 20px;
+}
 
  .input-productoActual{
   font: bold;
@@ -199,6 +241,10 @@ html, body {
 }
 
 
+.botones-contenedor3-estilo:hover{
+  background-color: #4b0a0a;
+}
+
 .botones-contenedor3 button {
   width: 48%; /* Ajusta el ancho de los botones para que quepan dos por fila */
   height: 30px; /* Establece la altura deseada */
@@ -212,7 +258,9 @@ html, body {
   font-weight: bold;
 }
 
-
+.botones-contenedor3 button:hover{
+  background-color: #5e0808;
+}
 
 
 p{
@@ -223,8 +271,8 @@ p{
 /* Estilos para el cuarto contenedor */
 #contenedor4 {
   bottom: 5%;
-  left: 25%;
-  width: 64.5%;
+  left: 35%;
+  width: 54.5%;
   height: 69%;
   background-color: white;
   border: 5px solid rgb(148, 14, 14);
@@ -239,7 +287,6 @@ p{
   height: 94%;
   margin: 12px;
   overflow: auto;
-
 }
 
 
@@ -257,8 +304,7 @@ p{
   width: 100%;
   height: 7.8%;
   color: #fff;
-  border: none;
-  border-radius: 5px;
+   border-radius: 5px;
   padding: 10px;
   margin-right: 10px;
   flex-grow: 1;
@@ -266,9 +312,7 @@ p{
   overflow: hidden;
   margin-bottom: 5px;
   font-size: larger;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  border: none;
-}
+ }
 
 .negro {
   background-color: black;
@@ -284,16 +328,18 @@ p{
 .btn-borrarArt {
   position: relative;
   background-color: rgba(141, 141, 141, 0);
-   width: 7%;
-   height: 37px;
-   margin-left: 20px;
+
+    margin-left: 20px;
   font-size: 20px;
   font-weight: bold;
   color: white;
   border: 3px rgb(255, 255, 255) solid;
   border-radius: 10px;
+  padding:10px;
  }
-
+.btn-borrarArt:hover{
+  background-color: #4b0a0a;
+}
 .morado {
   background-color: rgb(171, 0, 250);
 }
@@ -309,11 +355,11 @@ p{
 
 #contenedor6 {
   top:0%;
-  right: 0%;
-  width: 10%;
+  right: 0.5%;
+  width: 9.7%;
   height: 5%;
   border: 5px solid rgb(148, 14, 14);
-  border-radius: 10px 10px 10px 10px;
+  border-radius:  0px  0px  10px  10px;
 }
 
 #contenedor6 button {
@@ -484,8 +530,8 @@ border: none;
   position: fixed;
     top: 45%;
     left: 50%;
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 70%;
     transform: translate(-50%, -50%);
     border:5px solid #940e0e;
     border-radius: 5px;
@@ -495,38 +541,175 @@ border: none;
 }
 
 .formulario-Devolucion-Efectivo{
-  background-color: #f58484;
+  background-color:  #940e0e;
   position: fixed;
     top: 45%;
     left: 50%;
-    width: 20%;
-    height: 20%;
+    width: 30%;
+    height: 30%;
     transform: translate(-50%, -50%);
-    border:5px solid #940e0e;
+    border:5px solid  #4b0a0a;
     border-radius: 5px;
-    padding: 5px;
-    z-index: 1000;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px 10px 10px 10px;
+     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-devolucion-efectivo-centro{
+  border: #4b0a0a solid 5px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+   text-align: center;
+   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario-devolucion-efectivo-centro p{
+  font-size: xx-large;
+  font-weight: bold;
+  font-family:  'Times New Roman', Times, serif;
+  line-height: 50px;
+  margin-top: 10px;
+}
+
+
+.formulario-Devolucion-Tarjeta{
+  background-color:  #940e0e;
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    border:5px solid  #4b0a0a;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-devolucion-tarjeta-centro{
+  border: #4b0a0a solid 5px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+   text-align: center;
+   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario-devolucion-tarjeta-centro p{
+  font-size: xx-large;
+  font-weight: bold;
+  font-family:  'Times New Roman', Times, serif;
+  line-height: 30px;
 }
 
 
 .formulario-panel-cobro-parte-alta{
-  background-color: rgba(0, 0, 255, 0);
+  background-color: #940e0e;
+  border: #5e0808 5px solid;
+  border-radius: 10px;
   width: 95%;
-  height: 15%;
+  height: 25%;
   margin: 10px;
   position: relative;
+  display: flex;
 }
 
-.precio-final{
-  font: bold;
-  font-size: large;
-  margin-left: 20px;
-  margin-top: 10px;
+.formulario-panel-cobro-parte-alta-division1 {
+  width: 10%;
+  height: 40%;
+  display: flex;
+  margin-left: 10px;
+  margin-top: 5px;
+
+}
+.btn-cerraPanelCobro{
+  width: 90%;
+height: 90%;
+background-color: #4b0a0a00;
+color: white;
+font-size: large;
+border: #5e0808 5px solid;
+border-radius: 10px;
+transition-duration: 0.4s;
+
 }
 
-.pequenio{
+.btn-cerraPanelCobro:hover  {
   background-color: #5e0808;
+  border-color: #4b0a0a00;
+  color: white;
+  border: #5e0808 5px solid;
+
+}
+
+.formulario-panel-cobro-parte-alta-division2{
+    width: 60%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  gap:30px;
+  margin-right: 30px;
+  text-align: right;
+  padding-left: 50%;
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.formulario-panel-cobro-parte-alta-division3{
+   width: 30%;
+height: 100%;
+display: flex;
+flex-direction: column;
+ }
+
+.formulario-panel-cobro-parte-alta-division3-a{
+   width: 70%;
+  height: 60%;
+  }
+
+ .formulario-panel-cobro-parte-alta-division3-a-h3{
+  background-color: white;
+  border: #5e0808 solid 3px;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+  height: 70%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  margin-left: 15%;
+  margin-top: 5%;
+}
+
+.formulario-panel-cobro-parte-alta-division3-b{
+
+  width: 70%;
+  height: 60%;
+ }
+
+
+.formulario-panel-cobro-parte-alta-division3-b-input {
+  background-color: white;
+  border: #5e0808 solid 3px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 15px;
+   margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+ }
+
+
+.borde-alto-panel-cobre{
+  border: #5e0808 5px solid;
 }
 
 .valor{
@@ -542,14 +725,17 @@ border: none;
 }
 
 .valor2{
-  background-color: rgb(255, 255, 255);
-  border: 2px solid black;
-  position: absolute;
-  width: 80px;
+   position: absolute;
+  width: 100px;
   height: 40px;
   bottom: -20%;
   right: 0;
   transform: translate(10px, -10px);
+
+}
+
+.input-dinero-efectivo{
+  transform: translate(20px, -10px);
 
 }
 
@@ -563,8 +749,42 @@ border: none;
   top: 45%;
   left: 50%;
   width: 95%;
-  height: 78%;
+  height: 50%;
   display: flex;
+}
+
+.formulario-panel-cobro-parte-botones{
+  background-color: #940e0e;
+  border: 5px solid #5e0808;
+  border-radius: 10px;
+  margin: 10px;
+  top: 45%;
+  left: 50%;
+  width: 95%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.formulario-panel-cobro-parte-botones-btn{
+  background-color: rgb(148, 14, 14);
+  width: 30%;
+ height: 50%;
+ margin-top: 20px;
+ margin-left: 20px;
+  font-size: x-large;
+ font-weight: bold;
+ color: white;
+ border: 5px solid white;
+ border-radius: 10px;
+ -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+ -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+ box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+ text-align: center;
+}
+
+.formulario-panel-cobro-parte-botones-btn:hover{
+  background-color: #5e0808;
 }
 
 .formulario-panel-cobro-parte-baja-izquierda{
@@ -576,24 +796,24 @@ border: none;
 }
 
 .formulario-panel-cobro-parte-baja-derecha{
-  background-color: rgba(255, 255, 255, 0.904);
+  background-color:#635c5c;
   border: 5px solid #5e0808;
   border-radius: 10px;
   margin: 10px;
   top: 45%;
   left: 50%;
   width: 95%;
-  height: 50%;
+  height: 90%;
 
 }
 
 .btn-lateral {
   background-color: rgb(148, 14, 14);
-  width: 80%;
-  height: 15%;
-  margin-top: 7%;
+   width: 80%;
+  height: 30%;
+  margin-top: 20px;
   margin-left: 20px;
-  font-size: large;
+   font-size: x-large;
   font-weight: bold;
   color: white;
   border: 5px solid white;
@@ -601,7 +821,34 @@ border: none;
   -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
   -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
   box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+  text-align: center;
 }
+
+.btn-lateral:hover{
+  background-color: #5e0808;
+}
+
+.btn-lateral-oscuro {
+  background-color: rgb(63, 6, 6);
+  width: 80%;
+  height: 30%;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: x-large;
+  font-weight: bold;
+  color: rgb(134, 132, 132);
+  border: 5px solid  rgb(134, 132, 132);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+  box-shadow: 0px 0px 25px -7px rgba(0,0,0,1);
+}
+
+.btn-lateral-oscuro{
+  background-color: rgb(43, 4, 4);
+}
+
+
 .cajero{
   background-color: white;
   border: #333 2px solid;
@@ -631,6 +878,58 @@ border: none;
 
 }
 
+.formulario-Datos-Cliente {
+  background-color: rgb(148, 14, 14);
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 60%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+}
+.marco-interior-DCliente{
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+ border: 2px solid rgb(148, 14, 14) ;
+ background-color: rgb(148, 14, 14);
+}
+
+.espacio-interior-DCliente {
+  background-color: #ffffff;
+  border: 2px solid rgb(148, 14, 14);
+   width: 100%;
+  height: 90%;
+   overflow: auto;
+}
+.espacio-interior-DCliente p:nth-of-type(2),
+.espacio-interior-DCliente p:nth-of-type(3) {
+  display: inline-block;
+ }
+
+
+.espacio-interior-DCliente p:nth-of-type(7),
+.espacio-interior-DCliente p:nth-of-type(8) {
+  display: inline-block;
+ }
+.marco-interior-crear-cliente{
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+ border: 2px solid rgb(148, 14, 14) ;
+ background-color: rgb(148, 14, 14);
+}
+.espacio-interior-crear-cliente{
+background-color: white;
+width: 100%;
+height: 90%;
+}
 .marco-interior{
   width: 100%;
   height: 100%;
@@ -638,6 +937,10 @@ border: none;
  border: 2px solid rgb(148, 14, 14) ;
  background-color: rgb(148, 14, 14);
 }
+.espacio-interior-crear-cliente p:nth-of-type(2),
+.espacio-interior-crear-cliente p:nth-of-type(3) {
+  display: inline-block;
+ }
 
 .espacio-interior {
   background-color: #ffffff;
@@ -646,6 +949,7 @@ border: none;
   width: 100%;
   height: 90%;
   padding: 20px;
+  overflow: auto;
 }
 
 
@@ -794,4 +1098,19 @@ tr:hover {
 
 .even-row {
   background-color: white;
+}
+
+.producto-gris {
+  background-color:rgb(148, 14, 14);
+}
+
+
+#pie-pagina h3 {
+  color: rgb(255, 255, 255);
+  font-size: 27px;
+  padding: 10px;
+   text-align: center;
+  overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 5px;
 }

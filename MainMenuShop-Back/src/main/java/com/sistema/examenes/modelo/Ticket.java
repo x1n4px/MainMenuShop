@@ -1,11 +1,15 @@
 package com.sistema.examenes.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -16,25 +20,32 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 @Entity
+@Table(name = "tickets")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private String referencia; //Número de referencia del ticket
+    private String referencia;
+   // private LocalDateTime fecha;
 
-    private String nombreVendedor; //Nombre del vendedor
+  //  private LocalDateTime hora;
 
-    private LocalDateTime fechaCompra;
-
+    private String vendedor;
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario vendedor;
+    @JoinColumn(name = "cliente_id")
+    private Clientes cliente;
 
-    private double costeFinal;
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+     @JsonManagedReference
+    private List<TicketProducto> productos;
 
 
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
-    private Set<Ticket_Producto> ticketProductos;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha")
+    private Date fecha;
+
+
+    private LocalTime hora;
+
 }

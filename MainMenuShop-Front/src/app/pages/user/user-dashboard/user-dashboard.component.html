@@ -14,6 +14,7 @@
     <li class="nav-item">
       <a href="#" class="nav-link"> {{usuarioActual.nombre}}</a>
     </li>
+
   </ul>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
@@ -31,31 +32,46 @@
   </ul>
 </nav>
 
+<!--
 
+-->
 
 
     <div id="contenedor1" class="contenedor">
-      <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
-        <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
-       <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
-      </form>
-      <form *ngIf="clienteActual != null">
-        <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
-        <input type="text" placeholder="{{clienteActual.nombre}}&nbsp;{{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}">
-      </form>
-       <button class="btn-lupa-c1"><i class="fa fa-search"></i></button>
+      <div class="contenedor1-barra-busqueda">
+        <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
+          <button class="btn-borrarArt"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
+         <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
+        </form>
+        <form *ngIf="clienteActual != null">
+          <button class="btn-borrarArt"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
+          <input type="text" placeholder="{{clienteActual.nombre}}&nbsp;{{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}">
+        </form>
+       </div>
+      <div class="contenedor1-lateral-izquierdo">
+        <div class="datos-cliente" *ngIf="clienteActual != null">
+          <h5 class="h5-c1">DNI:  <small>{{clienteActual.dni}}</small></h5>
+          <h5 class="h5-c1">Telefono:  <small>{{clienteActual.numeroTelefono}}</small></h5>
+          <h5 class="h5-c1">Email: <small>{{clienteActual.email}}</small></h5>
+        </div>
+        <div class="datos-cliente" *ngIf="clienteActual == null">
+          <h5 class="h5-c1">DNI:   </h5>
+          <h5 class="h5-c1">Telefono:   </h5>
+          <h5 class="h5-c1">Email: </h5>
+        </div>
+      </div>
+      <div class="contenedor1-lateral-derecho">
+        <button (click)="mostrarDatosCliente()" class="btn-page"><i class="fa fa-file"></i></button>
+        <button (click)="mostrarCrearCliente()" class="btn-page"><i class="fa fa-plus"></i></button>
+        <button (click)="mostrarModificarCliente()" class="btn-page"><i class="fa-solid fa-pen-to-square"></i></button>
+      </div>
 
-      <div class="datos-cliente" *ngIf="clienteActual != null">
-        <h5 class="h5-c1">DNI:  {{clienteActual.dni}}</h5>
-        <h5 class="h5-c1">Telefono:  {{clienteActual.numeroTelefono}}</h5>
-        <h5 class="h5-c1">Email: {{clienteActual.email}}</h5>
-      </div>
-      <div class="datos-cliente" *ngIf="clienteActual == null">
-        <h5 class="h5-c1">DNI:   </h5>
-        <h5 class="h5-c1">Telefono:   </h5>
-        <h5 class="h5-c1">Email: </h5>
-      </div>
+
     </div>
+
+
+
+
     <div id="contenedor2" class="contenedor">
       <form (ngSubmit)="buscar()" *ngIf="productoActual == null">
         <button class="btn-borrarArt"  (click)="borrarArticulo()">X</button>
@@ -67,9 +83,7 @@
         <input  type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="{{productoActual.nombre}}">
 
       </form>
-      <button class="btn-lupa"><i class="fa fa-search"></i></button>
-      <button class="btn-lupa-externa"><i class="fa fa-search"></i></button>
-      <div class="datos-articulo" *ngIf="productoActual != null">
+       <div class="datos-articulo" *ngIf="productoActual != null">
         <h5  class="h5-separado">Precio: {{productoActual.precio}} </h5>
         <h5  class="h5-separado">Lote:  {{productoActual.Lote}}</h5>
         <h5  class="h5-separado">Familia:  {{productoActual.familia}}</h5>
@@ -92,32 +106,41 @@
         <button (click)="mostrarDatosArticulo()" class="btn-page"><i class="fa fa-file"></i></button>
       </div>
     </div>
+
     <div id="contenedor3" class="contenedor">
       <div id="cesta" class="contenedor-interior">
         <div class="titulo-cesta">
           <p>Artículo</p>
           <p>Precio</p>
         </div>
-        <br>
         <div class="Objeto-cesta"  >
-        <table>
+        <table class="center">
           <tbody>
-            <tr *ngFor="let producto of cesta" >
-              <td>{{producto.nombre}}</td>
-              <td>{{producto.precio}}€</td>
+            <tr *ngFor="let resultadoCliente of resultadosCliente" (dblclick)="seleccionarCliente(resultadoCliente)">
+              <td><strong>{{resultadoCliente.nombre}} {{resultadoCliente.apellido1}} {{resultadoCliente.apellido2}} | {{resultadoCliente.dni}} || {{resultadoCliente.numeroMovil}} || {{resultadoCliente.localidad}}</strong>
             </tr>
           </tbody>
         </table>
 
+        <table>
+          <tbody>
+            <tr *ngFor="let producto of cesta" (dblclick)="eliminarDeCesta(producto)">
+              <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
+              <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</span>
+                  <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</span>
+            </tr>
+          </tbody>
+        </table>
         </div>
       </div>
-      <div class="botones-contenedor3">
-        <button (click)="mostrarPanelCobro()" (click)="totalCesta()">Finalizar venta</button>
-        <button (click)="aparcarCesta()">Aparcar venta</button>
-        <button>Hacer encargo</button>
-        <button (click)="vaciarCestaCompleta()">Cancelar</button>
-        <button>Hacer algo</button>
-        <button>Hacer algo</button>
+
+       <div class="botones-contenedor3">
+        <button class="botones-contenedor3-estilo" (click)="mostrarPanelCobro()" (click)="totalCesta()">Finalizar venta</button>
+        <button class="botones-contenedor3-estilo" (click)="aparcarCesta()">Aparcar venta</button>
+        <button class="botones-contenedor3-estilo">Hacer encargo</button>
+        <button class="botones-contenedor3-estilo" (click)="vaciarCestaCompleta()">Cancelar</button>
+        <button class="botones-contenedor3-estilo" >Hacer algo</button>
+        <button class="botones-contenedor3-estilo">Hacer algo</button>
 
       </div>
     </div>
@@ -126,24 +149,25 @@
     <div id="contenedor4" class="contenedor">
       <div  id = "fondo-tabla" class="fondo-tabla">
 
-      <table class="center">
+        <table class="center">
           <tbody>
-          <tr *ngFor="let resultado of resultados" (dblclick)="aniadircesta(resultado)" (click)="seleccionarProducto(resultado)">
-            <td><strong>{{resultado.nombre}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{resultado.precio}}€<br>
-            <small>{{resultado.referencia}} · familia · tipo · utilidad · {{resultado.estado}}</small></td>
-          </tr>
+            <ng-container *ngFor="let resultado of resultados">
+              <tr [ngClass]="{'producto-gris': resultado.estado === 'no encargable'}" (dblclick)="aniadircesta(resultado)" (click)="seleccionarProducto(resultado)">
+                <td>
+                  <strong>{{resultado.nombre}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(resultado.precio * 0.8).toFixed(2)}}€</span>
+                  <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{resultado.precio}}€</span>
+                  <br>
+                  <small>{{resultado.referencia}} · {{resultado.familia}} · {{resultado.tipo}} · {{resultado.marca}} · {{resultado.estado}}</small>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
 
-      </tbody>
-      </table>
-      <table class="center">
-        <tbody>
-          <tr *ngFor="let resultadoCliente of resultadosCliente" (dblclick)="seleccionarCliente(resultadoCliente)">
-            <td><strong>{{resultadoCliente.nombre}} {{resultadoCliente.apellido1}} {{resultadoCliente.apellido2}}</strong>
 
-        </tr>
 
-    </tbody>
-    </table>
+
     </div>
     </div>
     <div id="contenedor5" class="contenedor">
@@ -159,54 +183,101 @@
       <button onclick="window.open('/almacen', '_blank')" class="rojo">Almacén</button>
 
       <button class="gris">Sincro manual</button>
-      <button class="amarillo" onclick="self.close()">Salir</button>
+      <button class="amarillo"  (click) = "logout()">Salir</button>
 
     </div>
     <div id="contenedor6" class="contenedor">
       <button >Minimizar</button>
     </div>
     <div id="pie-pagina" class="contenedor">
+      <h3>Cupones y Promociones</h3>
     </div>
+<!--
+   <button (click)="ocultarPanelCobro()">X</button>
+  <h1 class="precio-final">{{total}}€</h1>
+              <input type="text" [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder="Introduzca articulo...">
 
+-->
     <div class="formulario-panel-cobro" [hidden]="!formularioPanelCobro">
       <div class="formulario-panel-cobro-parte-alta">
-        <div class="pequenio">
-          <button (click)="ocultarPanelCobro()">X</button>
+        <div class="formulario-panel-cobro-parte-alta-division1">
+          <button class="btn-cerraPanelCobro" (click)="ocultarPanelCobro()">X</button>
+        </div>
+        <div class="formulario-panel-cobro-parte-alta-division2">
+          <h2>Total: </h2>
+          <h2>Entregado:</h2>
+        </div>
+        <div class="formulario-panel-cobro-parte-alta-division3">
+          <div class="formulario-panel-cobro-parte-alta-division3-a">
+            <h3 *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'" class="formulario-panel-cobro-parte-alta-division3-a-h3">{{(total)}}€</h3>
+            <h3 *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'" class="formulario-panel-cobro-parte-alta-division3-a-h3">{{(total*0.8).toFixed(2)}}€</h3>
 
-          <h1>Total:
-          </h1>
-          <div class="valor">
-            <h1 class="precio-final">{{total}}€</h1>
+
           </div>
-          <div class="valor2">
-            <input type="text" [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder="Introduzca articulo...">
+          <div *ngIf="compraTarjeta == false" class="formulario-panel-cobro-parte-alta-division3-b">
+            <input  class="formulario-panel-cobro-parte-alta-division3-b-input" type="text"  [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder=" ">
+
+          </div>
+          <div *ngIf="compraTarjeta == true" class="formulario-panel-cobro-parte-alta-division3-b">
+            <h3 class="formulario-panel-cobro-parte-alta-division3-a-h3">{{total}}€</h3>
 
           </div>
         </div>
-
       </div>
       <div class="formulario-panel-cobro-parte-baja">
 
-         <div class="formulario-panel-cobro-parte-baja-izquierda">
+         <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraEfectiva == false && compraTarjeta == false">
+          <button (click)="compraEfectiva = true" class="btn-lateral">Efectivo (F2)</button>
+          <button (click)="compraTarjeta = true" class="btn-lateral">Tarjeta (F3)</button>
+          <button class="btn-lateral">?</button>
+         </div>
+        <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraEfectiva == true">
           <button (click)="terminarCompraEfectivo()" class="btn-lateral">Efectivo (F2)</button>
+          <button   class="btn-lateral-oscuro">Tarjeta (F3)</button>
+          <button class="btn-lateral-oscuro">?</button>
+         </div>
+
+        <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraTarjeta == true">
+          <button   class="btn-lateral-oscuro">Efectivo (F2)</button>
           <button (click)="terminarCompraTarjeta()" class="btn-lateral">Tarjeta (F3)</button>
-          <button class="btn-lateral">?</button>
-          <button class="btn-lateral">?</button>
-        </div>
+          <button class="btn-lateral-oscuro">?</button>
+         </div>
         <div class="formulario-panel-cobro-parte-baja-derecha">
          </div>
       </div>
-
+      <div *ngIf="compraEfectiva==false && compraTarjeta==false" class="formulario-panel-cobro-parte-botones">
+        <button class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
+        <button class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
+        <button class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
+      </div>
+      <div *ngIf="compraEfectiva==true && compraTarjeta==false" class="formulario-panel-cobro-parte-botones">
+        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
+        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
+        <button (click)="ocultarPanelCobro()" class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
+      </div>
+      <div *ngIf="compraEfectiva==false && compraTarjeta==true" class="formulario-panel-cobro-parte-botones">
+        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
+        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
+        <button (click)="ocultarPanelCobro()" class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
+      </div>
     </div>
 
     <div (click)="formularioDevolucionDineroEfectivo=false" class="formulario-Devolucion-Efectivo" [hidden]="!formularioDevolucionDineroEfectivo">
-        <h1>Efectivo a devolver:</h1>
+      <div class="formulario-devolucion-efectivo-centro">
+        <p>Efectivo a devolver: <br>
 
-          {{DineroDevolver}} €
+          {{DineroDevolver}} €</p>
+       </div>
+
 
     </div>
 
+    <div (click)="formularioDevolucionDineroTarjeta=false" class="formulario-Devolucion-Tarjeta" [hidden]="!formularioDevolucionDineroTarjeta">
+      <div class="formulario-devolucion-tarjeta-centro">
 
+        <p >Recuerda no dar dinero en efectivo</p>
+      </div>
+  </div>
 
 
     <div class="formulario-mostrar-Ticket" [hidden]="!formularioConsultarTicket">
@@ -214,8 +285,29 @@
         <button (click)="ocultarConsultarTicket()">X</button>
         <input type="text" placeholder="Introduzca número de ticket a consultar...">
         <div class="espacio-interior">
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam facilis minima laboriosam repellendus corrupti corporis excepturi libero, vel dolorem sunt.</p>
-        </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>Cliente</th>
+                <th>Vendedor</th>
+                </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let ticket of ticketBD">
+                <tr>
+                  <td>{{ticket.referencia}}</td>
+                  <td>{{ ticket.cliente.nombre }} {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</td>
+                  <td>{{ticket.vendedor}}</td>
+                </tr>
+
+              </ng-container>
+
+            </tbody>
+          </table>
+
+         </div>
       </div>
     </div>
 
@@ -257,6 +349,65 @@
           <p>Referencia: {{productoActual.referencia}}</p>
           <p>Precio: {{productoActual.precio}}</p>
         </div>
+      </div>
+    </div>
+
+    <div class="formulario-Datos-Cliente" [hidden]="!formularioDatosCliente">
+      <div class="marco-interior-DCliente">
+        <button (click)="ocultarDatosCliente()">X</button>
+        <div class="espacio-interior-DCliente"  *ngIf="clienteActual != null">
+          <p>Nombre: {{clienteActual.nombre}}</p>
+          <p>Apellido1: {{clienteActual.apellido1}}</p>
+          <p>Apellido2: {{clienteActual.apellido2}}</p>
+          <p>DNI: {{clienteActual.dni}}</p>
+           <p>Código postal: {{clienteActual.codigo_postal}}</p>
+          <p>Localidad: {{clienteActual.localidad}}</p>
+          <p>Número de Telefono: {{clienteActual.numeroTelefono}}</p>
+          <p>Número de móvil: {{clienteActual.numeroMovil}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="formulario-Datos-Cliente" [hidden]="!formularioCrearcliente">
+      <div class="marco-interior-crear-cliente">
+        <button (click)="ocultarCrearCliente()">X</button>
+        <div class="espacio-interior-crear-cliente"   >
+          <input type="text" placeholder="Nombre">
+          <input type="text" placeholder="Apellido 1">
+          <input type="text" placeholder="Apellido 2">
+          <input type="text" placeholder="DNI">
+          <input type="text" placeholder="Dirección">
+          <input type="text" placeholder="Código postal">
+          <input type="text" placeholder="Localidad">
+          <input type="text" placeholder="Telefono">
+          <input type="text" placeholder="Correo Electrónico">
+
+         </div>
+         <button>Guardar</button>
+          <button>Cancelar</button>
+      </div>
+    </div>
+
+    <div class="formulario-Datos-Cliente" [hidden]="!formularioModificarcliente">
+      <div class="marco-interior-DCliente">
+        <button (click)="ocultarModificarCliente()">X</button>
+        <div class="espacio-interior-modificar-cliente" *ngIf="clienteActual != null" >
+          <form (ngSubmit)="guardarModificacionCliente()">
+           <input type="text" placeholder="Nombre" id="clienteNombre" name="clienteNombre"  [(ngModel)]="clienteActual.nombre">
+          <input type="text" placeholder="Apellido 1" id="apellido1" name="apellido1"  [(ngModel)]="clienteActual.apellido1">
+          <input type="text" placeholder="Apellido 2" id="apellido2" name="apellido2"  [(ngModel)]="clienteActual.apellido2">
+          <input type="text" placeholder="DNI" id="dni" name="dni"  [(ngModel)]="clienteActual.dni">
+          <input type="text" placeholder="Dirección" id="direccion" name="direccion"  [(ngModel)]="clienteActual.direccion">
+          <input type="text" placeholder="Código postal" id="codigoPostal" name="codigoPostal"  [(ngModel)]="clienteActual.codigoPostal">
+          <input type="text" placeholder="Localidad" id="localidad" name="localidad"  [(ngModel)]="clienteActual.localidad">
+          <input type="text" placeholder="Telefono" id="telefono" name="telefono"  [(ngModel)]="clienteActual.numeroTelefono">
+          <input type="text" placeholder="Móvil" id="movil" name="movil"  [(ngModel)]="clienteActual.numeroMovil">
+          <input type="text" placeholder="Correo Electrónico" id="email" name="email"  [(ngModel)]="clienteActual.email">
+          <button type="submit">Guardar</button>
+          <button>Cancelar</button>
+        </form>
+         </div>
+
       </div>
     </div>
 

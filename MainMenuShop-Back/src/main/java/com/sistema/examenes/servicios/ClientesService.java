@@ -2,6 +2,7 @@ package com.sistema.examenes.servicios;
 
 import com.sistema.examenes.modelo.Clientes;
 import com.sistema.examenes.modelo.Productos;
+import com.sistema.examenes.modelo.Usuario;
 import com.sistema.examenes.repositorios.ClientesRepository;
 import com.sistema.examenes.repositorios.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class ClientesService {
 
     public Optional<Clientes> obtenerClientePorId(Long id){
         return clientesRepository.findById(id);
+    }
+
+    public void modificarCliente(Clientes clientes){
+        if(clientesRepository.existsById(clientes.getId())){
+            clientesRepository.save(clientes);
+        }else{
+            throw new RuntimeException();
+        }
     }
 }

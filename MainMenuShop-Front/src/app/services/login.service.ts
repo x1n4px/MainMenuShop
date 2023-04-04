@@ -7,6 +7,7 @@ import { User } from '../User';
 import { Observable } from 'rxjs';
 import { Productos } from '../Productos';
 import { Cliente } from '../Cliente';
+import { Ticket } from '../Ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,11 @@ export class LoginService {
   }
 
 
+  public obtenerTodosLosTicket(){
+    return this.http.get<Ticket[]>(`http://localhost:8080/ticket/todos`);
+
+  }
+
   //iniciamos sesión y establecemos el token en el localStorage
   public loginUser(token:any){
     localStorage.setItem('token',token);
@@ -122,4 +128,14 @@ export class LoginService {
     return this.http.get<Productos[]>(url);
   }
 
+
+
+
+  enviarTicket(ticket: any): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/ticket', ticket);
+  }
+
+  actualizarCliente(id:number, cliente:any):Observable<Object>{
+    return this.http.put(`http://localhost:8080/cliente/${id}`, cliente);
+  }
 }

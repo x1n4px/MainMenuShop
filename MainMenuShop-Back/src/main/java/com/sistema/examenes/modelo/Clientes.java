@@ -25,7 +25,7 @@ public class Clientes {
     private String numeroTelefono;
     private String numeroMovil;
     private String email;
-
-
+    private String direccion;
+    private String rol;
 
 }
