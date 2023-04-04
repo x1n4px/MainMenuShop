@@ -365,10 +365,48 @@ export class UserDashboardComponent implements OnInit {
     return parseFloat(total.toFixed(2));
   }
 
-  guardarModificacionCliente(){
-
-     console.log(this.clienteActual.id, this.clienteActual);
-    this.loginService.actualizarCliente(this.clienteActual.id, this.clienteActual);
+  guardarModificacionCliente() {
+    const cliente: Cliente = {
+      id: this.clienteActual.id,
+      nombre: this.clienteActual.nombre,
+      apellido1: this.clienteActual.apellido1,
+      apellido2: this.clienteActual.apellido2,
+      codigoPostal: this.clienteActual.codigoPostal,
+      dni: this.clienteActual.dni,
+      email: this.clienteActual.email,
+      localidad: this.clienteActual.localidad,
+      numeroMovil: this.clienteActual.numeroMovil,
+      numeroTelefono: this.clienteActual.numeroTelefono,
+      rol: this.clienteActual.rol,
+      direccion: this.clienteActual.direccion,
+    };
+  
+    console.log(cliente.id, cliente);
+    this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
+      (response) => {
+        console.log(response);
+        this.formularioModificarcliente = false;
+      },
+      (error) => {
+        console.log(error);
+        // hacer algo en caso de error
+      }
+    );
+  }
+  
+  nuevoCliente:Cliente = new Cliente;
+  crearCliente() {
+    console.log(this.nuevoCliente);
+    this.loginService.crearCliente(this.nuevoCliente).subscribe(
+      data => {
+        console.log(data);
+        alert('Cliente creado correctamente');
+        this.formularioCrearcliente = false;
+      },
+      error => {
+        console.log(error);
+        alert('Ha ocurrido un error al crear el cliente');
+      });
   }
 
 

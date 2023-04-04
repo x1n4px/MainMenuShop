@@ -360,7 +360,7 @@
           <p>Apellido1: {{clienteActual.apellido1}}</p>
           <p>Apellido2: {{clienteActual.apellido2}}</p>
           <p>DNI: {{clienteActual.dni}}</p>
-           <p>Código postal: {{clienteActual.codigo_postal}}</p>
+           <p>Código postal: {{clienteActual.codigoPostal}}</p>
           <p>Localidad: {{clienteActual.localidad}}</p>
           <p>Número de Telefono: {{clienteActual.numeroTelefono}}</p>
           <p>Número de móvil: {{clienteActual.numeroMovil}}</p>
@@ -372,16 +372,41 @@
       <div class="marco-interior-crear-cliente">
         <button (click)="ocultarCrearCliente()">X</button>
         <div class="espacio-interior-crear-cliente"   >
-          <input type="text" placeholder="Nombre">
-          <input type="text" placeholder="Apellido 1">
-          <input type="text" placeholder="Apellido 2">
-          <input type="text" placeholder="DNI">
-          <input type="text" placeholder="Dirección">
-          <input type="text" placeholder="Código postal">
-          <input type="text" placeholder="Localidad">
-          <input type="text" placeholder="Telefono">
-          <input type="text" placeholder="Correo Electrónico">
-
+          <form (submit)="crearCliente()">
+            <label>Nombre:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
+            
+            <label>Primer apellido:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
+            
+            <label>Segundo apellido:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
+            
+            <label>Código postal:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
+            
+            <label>DNI:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
+            
+            <label>Email:</label>
+            <input type="email" [(ngModel)]="nuevoCliente.email" name="email" required>
+            
+            <label>Localidad:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
+            
+            <label>Número de móvil:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
+            
+            <label>Número de teléfono:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
+             
+            
+            <label>Dirección:</label>
+            <textarea [(ngModel)]="nuevoCliente.direccion" name="direccion" required></textarea>
+            
+            <button type="submit">Crear cliente</button>
+          </form>
+          
          </div>
          <button>Guardar</button>
           <button>Cancelar</button>

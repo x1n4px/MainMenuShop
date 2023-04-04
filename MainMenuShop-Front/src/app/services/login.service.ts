@@ -135,7 +135,11 @@ export class LoginService {
     return this.http.post<any>('http://localhost:8080/ticket', ticket);
   }
 
-  actualizarCliente(id:number, cliente:any):Observable<Object>{
+  actualizarCliente(id:number, cliente:Cliente):Observable<Object>{
     return this.http.put(`http://localhost:8080/cliente/${id}`, cliente);
+  }
+
+  crearCliente(cliente: Cliente): Observable<any> {
+    return this.http.post(`http://localhost:8080/cliente/`, cliente);
   }
 }
