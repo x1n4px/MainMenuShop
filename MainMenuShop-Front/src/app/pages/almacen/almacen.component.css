@@ -1,9 +1,9 @@
 body {
-    background-color: #940e0e;
+    background-color: #73C2FB;
 }
 
 .borde-externo{
-    background-color: #940e0e(255, 0, 0);
+    background-color: #73C2FB;
     border: 10px solid white;
     position: fixed;
     top: 55%;
@@ -39,10 +39,15 @@ body {
     margin-bottom: 10px; /* Agrega un espacio entre los botones */
     border: 5px solid rgb(255, 255, 255); /* Establece el borde externo */
     border-radius: 5px; /* Ajusta el borde redondeado */
-    background-color: #940e0e; /* Establece el color de fondo */
+    background-color: #002244; /* Establece el color de fondo */
     color: white; /* Establece el color del texto */
     font-size: 30px; /* Ajusta el tamaño del texto */
     padding: 10px; /* Ajusta el relleno */
     font-weight: bold;
     margin-top: 2%;
+  }
+
+  .botones-contenedor button:hover {
+    background-color: #73C2FB;
+
   }

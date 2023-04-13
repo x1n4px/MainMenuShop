@@ -5,7 +5,7 @@ import baserUrl from './helper';
 import { map } from 'rxjs';
 import { User } from '../User';
 import { Observable } from 'rxjs';
-import { Productos } from '../Productos';
+import { Producto } from '../Producto';
 import { Cliente } from '../Cliente';
 import { Ticket } from '../Ticket';
 
@@ -56,7 +56,7 @@ export class LoginService {
   }
 
   public obtenerTodosLosProductos(){
-    return this.http.get<Productos[]>(`http://localhost:8080/producto/todos`);
+    return this.http.get<Producto[]>(`http://localhost:8080/producto/todos`);
 
   }
 
@@ -125,7 +125,7 @@ export class LoginService {
     const url = `http://localhost:8080/producto/buscar?q=${busqueda}`;
     console.log('URL de búsqueda:', url);
 
-    return this.http.get<Productos[]>(url);
+    return this.http.get<Producto[]>(url);
   }
 
 

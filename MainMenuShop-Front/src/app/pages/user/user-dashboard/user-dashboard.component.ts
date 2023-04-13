@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cliente } from 'src/app/Cliente';
-import { Productos } from 'src/app/Productos';
+import { Productos } from 'src/app/ Productos';
+ import { Cliente } from 'src/app/Cliente';
+import {   Producto } from 'src/app/Producto';
 import { LoginService } from 'src/app/services/login.service';
-import { debounceTime } from 'rxjs/operators';
-import { Ticket } from 'src/app/Ticket';
-import { tick } from '@angular/core/testing';
+ import { Ticket } from 'src/app/Ticket';
 
 
 @Component({
@@ -32,11 +31,12 @@ export class UserDashboardComponent implements OnInit {
   pagoEfectivo = false;
   compraEfectiva = false;
   compraTarjeta = false;
+  datosTicket = false;
 
-  productos: Productos[] = [];
+  productos: Producto[] = [];
   clientes: Cliente[] = [];
   ticketBD: Ticket[] = [];
-  cesta: Productos[] = [];
+  cesta: Producto[] = [];
   conjuntoDeCestas: any[][] = [];
 
   tickets: any[] = [];
@@ -50,6 +50,7 @@ export class UserDashboardComponent implements OnInit {
 
   productoActual: any;
   clienteActual: any ;
+  ticketActual: Ticket = new Ticket();
 
   inputCliente!:any;
   fechaActual!: Date;
@@ -79,7 +80,7 @@ export class UserDashboardComponent implements OnInit {
 
   private obtenerProductos(){
     this.loginService.obtenerTodosLosProductos().subscribe(
-      (productos: Productos[]) => {
+      (productos: Producto[]) => {
         console.log(productos);
         this.productos = productos;
       },
@@ -170,6 +171,21 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusquedaCliente = '';
   }
 
+  nombreTicketSeleccionado!:string;
+  productosTicketSeleccionado!:Productos;
+  productoProductos!:Producto[];
+
+  seleccionarTicket(ticketX:any){
+    this.ticketActual = ticketX;
+
+    this.nombreTicketSeleccionado = ticketX.cliente.nombre + ' ' + ticketX.cliente.apellido1 + ' ' + ticketX.cliente.apellido2;
+    this.productosTicketSeleccionado = ticketX.productos;
+
+     this.mostrarDatosTicket();
+  }
+
+
+
   aniadircesta(resultado: any) {
     for (let i = 0; i < this.cantidadUnidades; i++) {
       this.cesta.push(resultado);
@@ -178,7 +194,7 @@ export class UserDashboardComponent implements OnInit {
     this.productoActual = null;
   }
 
-  eliminarDeCesta(producto: Productos) {
+  eliminarDeCesta(producto: Producto) {
     const indice = this.cesta.indexOf(producto);
     this.cesta.splice(indice, 1);
   }
@@ -280,6 +296,8 @@ export class UserDashboardComponent implements OnInit {
   ocultarDevolcionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = false;}
   mostrarCrearCliente(){this.formularioCrearcliente = true;}
   ocultarCrearCliente(){this.formularioCrearcliente = false;}
+  mostrarDatosTicket(){this.datosTicket = true;}
+  ocultarDatosTicket(){this.datosTicket = false;}
 
   total!:number;
   dineroEfectivo!:number;
@@ -380,7 +398,7 @@ export class UserDashboardComponent implements OnInit {
       rol: this.clienteActual.rol,
       direccion: this.clienteActual.direccion,
     };
-  
+
     console.log(cliente.id, cliente);
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
@@ -393,7 +411,7 @@ export class UserDashboardComponent implements OnInit {
       }
     );
   }
-  
+
   nuevoCliente:Cliente = new Cliente;
   crearCliente() {
     console.log(this.nuevoCliente);

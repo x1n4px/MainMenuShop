@@ -284,31 +284,47 @@
       <div class="marco-interior">
         <button (click)="ocultarConsultarTicket()">X</button>
         <input type="text" placeholder="Introduzca número de ticket a consultar...">
-        <div class="espacio-interior">
-
+        <div class="espacio-interior" >
           <table>
             <thead>
-              <tr>
+              <tr [hidden]="datosTicket">
                 <th>Referencia</th>
                 <th>Cliente</th>
                 <th>Vendedor</th>
+
                 </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let ticket of ticketBD">
-                <tr>
+              <ng-container *ngFor="let ticket of ticketBD" >
+                <tr (dblclick)="seleccionarTicket(ticket)" [hidden]="datosTicket">
                   <td>{{ticket.referencia}}</td>
                   <td>{{ ticket.cliente.nombre }} {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</td>
                   <td>{{ticket.vendedor}}</td>
-                </tr>
 
+                 </tr>
               </ng-container>
-
             </tbody>
           </table>
+          <div class="espacio-interior" [hidden]="!datosTicket">
+            <button (click)="ocultarDatosTicket()">X</button>
+            <p>Referencia: {{ticketActual.referencia}}</p>
+            <p>Vendedor: {{ticketActual.vendedor}}</p>
+            <p>Fecha: {{ticketActual.fecha}}</p>
+            <p>Hora: {{ticketActual.hora}}</p>
+            <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
+             <ul>
+              <li *ngFor="let prS of ticketActual.productos">
+                <p>{{prS.producto | json}}</p>
 
-         </div>
+              </li>
+            </ul>
+          </div>
+
+
+
+        </div>
       </div>
+
     </div>
 
     <div class="formulario-mostrar-Ticket" [hidden]="!formularioRecuperarTicket">
@@ -336,6 +352,7 @@
 
 
         </div>
+
       </div>
     </div>
 
@@ -375,38 +392,38 @@
           <form (submit)="crearCliente()">
             <label>Nombre:</label>
             <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
-            
+
             <label>Primer apellido:</label>
             <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
-            
+
             <label>Segundo apellido:</label>
             <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
-            
+
             <label>Código postal:</label>
             <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
-            
+
             <label>DNI:</label>
             <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
-            
+
             <label>Email:</label>
             <input type="email" [(ngModel)]="nuevoCliente.email" name="email" required>
-            
+
             <label>Localidad:</label>
             <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
-            
+
             <label>Número de móvil:</label>
             <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
-            
+
             <label>Número de teléfono:</label>
             <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
-             
-            
+
+
             <label>Dirección:</label>
             <textarea [(ngModel)]="nuevoCliente.direccion" name="direccion" required></textarea>
-            
+
             <button type="submit">Crear cliente</button>
           </form>
-          
+
          </div>
          <button>Guardar</button>
           <button>Cancelar</button>

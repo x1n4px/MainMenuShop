@@ -1,4 +1,4 @@
-export class Productos {
+export class Producto {
   id!:number;
   familia!:string;
   tipo!:string;
