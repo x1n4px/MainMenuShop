@@ -97,13 +97,10 @@
         <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
         </h5>
        </div>
-      <div class="botones-contenedor2">
-        <button>Tarifas(F3)</button>
-        <button>Descto (F4)</button>
-        <button>Venta (F5)</button>
-      </div>
+       
       <div class="boton-visualizador">
         <button (click)="mostrarDatosArticulo()" class="btn-page"><i class="fa fa-file"></i></button>
+        <button class="btn-page"><i class="fa fa-house" style="color: #ffffff;"></i></button>
       </div>
     </div>
 
@@ -172,8 +169,7 @@
     </div>
     <div id="contenedor5" class="contenedor">
       <button  (click) = "logout()" class="negro">Cambiar de usuario</button>
-      <button class="azul">algo</button>
-      <button (click)="mostrarRecuperarTicket()" class="rojo">Recuperar Ticket</button>
+       <button (click)="mostrarRecuperarTicket()" class="rojo">Recuperar Ticket</button>
       <button (click)="mostrarDevolverTicket()" class="morado">Devolver ticket</button>
       <button (click)="mostrarConsultarTicket()" class="rojo">Consultar Ticket</button>
       <button class="azul">Retirada efectivo</button>
@@ -183,12 +179,9 @@
       <button onclick="window.open('/almacen', '_blank')" class="rojo">Almacén</button>
 
       <button class="gris">Sincro manual</button>
-      <button class="amarillo"  (click) = "logout()">Salir</button>
-
+ 
     </div>
-    <div id="contenedor6" class="contenedor">
-      <button >Minimizar</button>
-    </div>
+     
     <div id="pie-pagina" class="contenedor">
       <h3>Cupones y Promociones</h3>
     </div>
@@ -291,7 +284,7 @@
                 <th>Referencia</th>
                 <th>Cliente</th>
                 <th>Vendedor</th>
-
+               
                 </tr>
             </thead>
             <tbody>
@@ -312,12 +305,25 @@
             <p>Fecha: {{ticketActual.fecha}}</p>
             <p>Hora: {{ticketActual.hora}}</p>
             <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
-             <ul>
-              <li *ngFor="let prS of ticketActual.productos">
-                <p>{{prS.producto | json}}</p>
-
-              </li>
-            </ul>
+            <p>Productos:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Referencia</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prS of ticketActual.productos">
+                  <td>{{ prS.producto.referencia }}</td>
+                  <td>{{ prS.producto.nombre }}</td>
+                  <td>{{ prS.producto.precio }} €</td>
+                </tr>
+              </tbody>
+            </table>
+            
+             
           </div>
 
 
@@ -360,11 +366,31 @@
       <div class="marco-interior">
         <button (click)="ocultarDatosArticulo()">X</button>
         <div class="espacio-interior"  *ngIf="productoActual != null">
-          <p>Nombre: {{productoActual.nombre}}</p>
-          <p>Marca: {{productoActual.marca}}</p>
-          <p>Módulo: {{productoActual.modulo}}</p>
-          <p>Referencia: {{productoActual.referencia}}</p>
-          <p>Precio: {{productoActual.precio}}</p>
+          <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" readonly [value]="productoActual.nombre">
+          </div>
+          <div class="form-group">
+           <label>Marca:</label>
+          <input type="text" readonly [value]="productoActual.marca">
+          </div>
+
+          <div class="form-group">
+           <label>Modulo:</label>
+           <input type="text" readonly [value]="productoActual.modulo">
+
+           </div>
+
+           <div class="form-group">
+
+          <label>Referencia:</label>
+          <input type="text" readonly [value]="productoActual.referencia">
+          </div>
+          <div class="form-group">
+
+           <label>Precio:</label>
+          <input type="text" readonly [value]="productoActual.precio">
+          </div>
         </div>
       </div>
     </div>
@@ -372,61 +398,97 @@
     <div class="formulario-Datos-Cliente" [hidden]="!formularioDatosCliente">
       <div class="marco-interior-DCliente">
         <button (click)="ocultarDatosCliente()">X</button>
-        <div class="espacio-interior-DCliente"  *ngIf="clienteActual != null">
-          <p>Nombre: {{clienteActual.nombre}}</p>
-          <p>Apellido1: {{clienteActual.apellido1}}</p>
-          <p>Apellido2: {{clienteActual.apellido2}}</p>
-          <p>DNI: {{clienteActual.dni}}</p>
-           <p>Código postal: {{clienteActual.codigoPostal}}</p>
-          <p>Localidad: {{clienteActual.localidad}}</p>
-          <p>Número de Telefono: {{clienteActual.numeroTelefono}}</p>
-          <p>Número de móvil: {{clienteActual.numeroMovil}}</p>
+        <div class="espacio-interior-DCliente" *ngIf="clienteActual != null">
+          <form class="datos-clientes-interno">
+            <label>
+              Nombre:
+              <input type="text" readonly [value]="clienteActual.nombre">
+            </label><br>
+            <label>
+              Apellido1:
+              <input type="text" readonly [value]="clienteActual.apellido1">
+            </label><br>
+            <label>
+              Apellido2:
+              <input type="text" readonly [value]="clienteActual.apellido2">
+            </label><br>
+            <label>
+              DNI:
+              <input type="text" readonly [value]="clienteActual.dni">
+            </label><br>
+            <label>
+              Código postal:
+              <input type="text" readonly [value]="clienteActual.codigoPostal">
+            </label><br>
+            <label>
+              Localidad:
+              <input type="text" readonly [value]="clienteActual.localidad">
+            </label><br>
+            <label>
+              Número de Telefono:
+              <input type="text" readonly [value]="clienteActual.numeroTelefono">
+            </label><br>
+            <label>
+              Número de móvil:
+              <input type="text" readonly [value]="clienteActual.numeroMovil">
+            </label>
+          </form>
         </div>
+        
       </div>
     </div>
 
     <div class="formulario-Datos-Cliente" [hidden]="!formularioCrearcliente">
       <div class="marco-interior-crear-cliente">
         <button (click)="ocultarCrearCliente()">X</button>
-        <div class="espacio-interior-crear-cliente"   >
-          <form (submit)="crearCliente()">
-            <label>Nombre:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
-
-            <label>Primer apellido:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
-
-            <label>Segundo apellido:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
-
-            <label>Código postal:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
-
-            <label>DNI:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
-
-            <label>Email:</label>
-            <input type="email" [(ngModel)]="nuevoCliente.email" name="email" required>
-
-            <label>Localidad:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
-
-            <label>Número de móvil:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
-
-            <label>Número de teléfono:</label>
-            <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
-
-
-            <label>Dirección:</label>
-            <textarea [(ngModel)]="nuevoCliente.direccion" name="direccion" required></textarea>
-
-            <button type="submit">Crear cliente</button>
+        <div class="espacio-interior-DCliente">
+          <form (submit)="crearCliente()" class="datos-clientes-interno">
+            <div class="form-group">
+              <label>Nombre:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label>Primer apellido:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
+            </div>
+            <div class="form-group">
+              <label>Segundo apellido:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
+            </div>
+            <div class="form-group">
+              <label>Código postal:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
+            </div>
+            <div class="form-group">
+              <label>DNI:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label>Localidad:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
+            </div>
+            <div class="form-group">
+              <label>Número de móvil:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
+            </div>
+            <div class="form-group">
+              <label>Número de teléfono:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
+            </div>
+            <div class="form-group">
+              <label>Dirección:</label>
+              <input type="text" [(ngModel)]="nuevoCliente.direccion" name="direccion" required>
+            </div>
+            <button type="submit" class="btn-crear-cliente">Crear cliente</button>
           </form>
+          
 
          </div>
-         <button>Guardar</button>
-          <button>Cancelar</button>
+          
       </div>
     </div>
 
@@ -434,7 +496,7 @@
       <div class="marco-interior-DCliente">
         <button (click)="ocultarModificarCliente()">X</button>
         <div class="espacio-interior-modificar-cliente" *ngIf="clienteActual != null" >
-          <form (ngSubmit)="guardarModificacionCliente()">
+          <form (ngSubmit)="guardarModificacionCliente()" class="datos-clientes-interno">
            <input type="text" placeholder="Nombre" id="clienteNombre" name="clienteNombre"  [(ngModel)]="clienteActual.nombre">
           <input type="text" placeholder="Apellido 1" id="apellido1" name="apellido1"  [(ngModel)]="clienteActual.apellido1">
           <input type="text" placeholder="Apellido 2" id="apellido2" name="apellido2"  [(ngModel)]="clienteActual.apellido2">

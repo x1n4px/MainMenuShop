@@ -51,11 +51,10 @@ public class AuthenticationController {
         if (usuario == null) {
             return ResponseEntity.badRequest().body("Usuario no encontrado");
         }
-/*
+
         if (!encoder2.matches(jwtRequest.getPassword(), usuario.getPassword())) {
             return ResponseEntity.badRequest().body("Credenciales inválidas");
         }
-        */
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), usuario.getPassword()));

@@ -120,6 +120,7 @@ html, body {
 .datos-articulo, .botones-contenedor2, .boton-visualizador {
   display: inline-block;
   vertical-align: top; /* para alinearlos verticalmente en la parte superior */
+  
 }
 
 
@@ -300,21 +301,21 @@ p{
   width: 9.5%;
   height: 94%;
   overflow: hidden;
-  border: none;
-}
+  background-color: white;
+ }
 
 #contenedor5 button{
   width: 100%;
   height: 7.8%;
   color: #fff;
-   border-radius: 5px;
+   border-radius: 10px;
   padding: 10px;
   margin-right: 10px;
   flex-grow: 1;
-  font-weight: bold;
-  overflow: hidden;
+  font-weight: 600;
+  letter-spacing: 2px;
   margin-bottom: 5px;
-  font-size: larger;
+  font-size: 18px;
  }
 
 .negro {
@@ -385,12 +386,11 @@ padding: 10px 20px;
 
 .navbar {
 left: 0.5%;
-width: 89.3%;
+width: 100;
 background-color: #0077c0;
 display: flex;
 justify-content: space-between;
 padding: 10px;
-border-radius: 0px 0px 10px 00px;
 }
 
 .navbar-nav {
@@ -885,10 +885,10 @@ flex-direction: column;
 .formulario-Datos-Cliente {
   background-color: #0077c0;
   position: fixed;
-    top: 45%;
+    top: 49%;
     left: 50%;
     width: 60%;
-    height: 70%;
+    height: 90%;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 1);
     border-radius: 5px;
@@ -897,6 +897,54 @@ flex-direction: column;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 
 }
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  width: 200px;
+  margin-left: 20px; 
+  letter-spacing: 3px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.form-group input {
+  letter-spacing: 2px;
+  font-size: large;
+  font-weight: 400;
+}
+
+.form-group input {
+  flex: 1;
+  margin-left: 20px;
+}
+
+ 
+
+.btn-crear-cliente{
+  width: 60%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #0077c0;
+  border: #002244 3px solid;
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  letter-spacing: 3px;
+  animation: 0.3s delay;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-crear-cliente:hover{
+  background-color: #002244;
+  color: white;
+}
+
 .marco-interior-DCliente{
   width: 100%;
   height: 100%;
@@ -909,9 +957,19 @@ flex-direction: column;
   background-color: #ffffff;
   border: 2px solid #002244;
    width: 100%;
-  height: 90%;
+  height: 97%;
    overflow: auto;
 }
+
+.datos-clientes-interno{
+  margin: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  overflow: auto;
+  background-color: white;
+}
+
 .espacio-interior-DCliente p:nth-of-type(2),
 .espacio-interior-DCliente p:nth-of-type(3) {
   display: inline-block;

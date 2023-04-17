@@ -202,7 +202,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   aparcarCesta() {
-     const nombreCesta = this.clienteActual !== null ? (this.clienteActual.nombre+' '+this.clienteActual.apellido1+' '+this.clienteActual.apellido2) : 'tienda';
+    const nombreCesta = this.clienteActual ;
     const cestaConNombre = [nombreCesta, ...this.cesta];
     this.conjuntoDeCestas.push(cestaConNombre);
     this.cesta = [];
@@ -213,6 +213,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   recuperarTicket(cesta: any) {
+    console.log(cesta);
     this.clienteActual = cesta[0];
     this.cesta = cesta.slice(1);
     this.formularioRecuperarTicket = false;

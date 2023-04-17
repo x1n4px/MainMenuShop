@@ -9,10 +9,13 @@ import com.sistema.examenes.servicios.ClientesService;
 import com.sistema.examenes.servicios.ProductoService;
 import com.sistema.examenes.servicios.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Cacheable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +61,9 @@ public class ProductoController {
    private ProductoRepository productoRepository;
 
 
+    /*
     @GetMapping("/producto/buscar/{busqueda}")
+    @CrossOrigin // para permitir solicitudes de orígenes cruzados
     public ResponseEntity<List<Productos>> buscarProductoPorNombreOReferencia(@PathVariable("busqueda") String busqueda) {
         try {
             List<Productos> productos = productoRepository.findByNombreContaining(busqueda);
@@ -66,16 +71,21 @@ public class ProductoController {
                 return ResponseEntity.notFound().build();
             }
             HttpHeaders headers = new HttpHeaders();
-            ResponseEntity.ok().headers(headers).body(productos);
-            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 
             return ResponseEntity.ok().headers(headers).body(productos);
-
-
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+      }
+
+*/
+
+    @GetMapping("buscar")
+    public List<Productos> buscarPorNombre(@RequestParam("nombre") String nombre) {
+        return productoRepository.findByNombreContaining(nombre);
     }
+
 
     @Autowired
     private TicketRepository ticketRepository;
