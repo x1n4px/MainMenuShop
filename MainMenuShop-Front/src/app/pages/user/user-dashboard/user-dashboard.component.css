@@ -35,23 +35,29 @@ html, body {
 #contenedor1 {
   top: 6%;
   left: 0.5%;
-  width: 34.2%;
-  height: 19.5%;
-  background-color:#0077c0;
-  border-radius: 10px 10px 10px 10px;
+  width: 35%;
+  height: 20%;
+  background-color:#ffffff;
+  border-radius: 30px  0px  0px 0px;
   overflow: hidden;
+  color: black;
+  border-bottom: none;
 }
 
 .contenedor1-barra-busqueda{
    width: 100%;
   height: 30%;
   margin-bottom: 2%;
+    color: black;
+
 }
 
 .contenedor1-lateral-izquierdo{
    width: 70%;
   height: 70%;
   float: left;
+    color: black;
+
 }
 
 
@@ -61,12 +67,14 @@ html, body {
   height: 70%;
   float: right;
   padding: 20px;
+    color: black;
+
 }
 
 
 
 .datos-cliente h5 {
-  color: white;
+  color: black;
   margin-left: 20px;
 
 }
@@ -77,11 +85,11 @@ html, body {
   top: 6%;
   left: 35%;
   width: 54.5%;
-  height: 19.5%;
+  height: 20%;
   background-color: #0077c0;
   color: white;
   font-weight: bold;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 30px  0px 0px;
   overflow: hidden;
  }
 
@@ -120,7 +128,7 @@ html, body {
 .datos-articulo, .botones-contenedor2, .boton-visualizador {
   display: inline-block;
   vertical-align: top; /* para alinearlos verticalmente en la parte superior */
-  
+
 }
 
 
@@ -158,24 +166,17 @@ html, body {
 
 /* Estilos para el tercer contenedor */
 #contenedor3 {
-  bottom: 5%;
+  bottom: 5.2%;
   left: 0.5%;
-  width: 24.2%;
+  width: 35.2%;
   height: 69%;
-  background-color: #0077c0;
-  border-radius: 10px 10px 10px 10px;
+  background-color: white;
+  border-radius: 0px 0px 0px 30px;
   padding: 0;
+  border-top: none;
 }
 
-#contenedor3 {
-  bottom: 5%;
-  left: 0.5%;
-  width: 34.2%;
-  height: 69%;
-  background-color: #0077c0;
-  border-radius: 10px 10px 10px 10px;
-  padding: 0;
-}
+
 
 contenedor-interior-crear-cliente{
   background-color: black;
@@ -200,7 +201,7 @@ contenedor-interior-crear-cliente{
   top: -25px;
   width: 100%;
   font-weight: bold;
-  background-color: #0077c0;
+  background-color: white;
 }
 
 
@@ -231,8 +232,8 @@ contenedor-interior-crear-cliente{
 
 .titulo-cesta p {
   margin: 0;
-  color: white;
-  background-color: #0077c0;
+  color: black;
+  background-color: white;
 }
 
 .botones-contenedor3 {
@@ -253,9 +254,9 @@ contenedor-interior-crear-cliente{
   width: 48%; /* Ajusta el ancho de los botones para que quepan dos por fila */
   height: 30px; /* Establece la altura deseada */
   margin-bottom: 10px; /* Agrega un espacio entre los botones */
-  border: 3px solid rgb(255, 255, 255); /* Establece el borde externo */
+  border: 3px solid rgb(0, 0, 0); /* Establece el borde externo */
   border-radius: 3px; /* Ajusta el borde redondeado */
-  background-color: #002244; /* Establece el color de fondo */
+  background-color: #0077c0; /* Establece el color de fondo */
   color: white; /* Establece el color del texto */
   font-size: 16px; /* Ajusta el tamaño del texto */
   padding: 5px; /* Ajusta el relleno */
@@ -274,13 +275,13 @@ p{
 
 /* Estilos para el cuarto contenedor */
 #contenedor4 {
-  bottom: 5%;
+  bottom: 5.2%;
   left: 35%;
   width: 54.5%;
   height: 69%;
   background-color: white;
   border: 5px solid #0077c0;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 30px 0px;
 
 }
 
@@ -306,7 +307,7 @@ p{
 
 #contenedor5 button{
   width: 100%;
-  height: 7.8%;
+  height: 9.5%;
   color: #fff;
    border-radius: 10px;
   padding: 10px;
@@ -863,6 +864,9 @@ flex-direction: column;
 .marco-interior{
   width: 100%;
   height: 100%;
+  background-color: #0077c0;
+  padding: 15px;
+
 }
 
 
@@ -906,7 +910,7 @@ flex-direction: column;
 
 .form-group label {
   width: 200px;
-  margin-left: 20px; 
+  margin-left: 20px;
   letter-spacing: 3px;
   font-size: large;
   font-weight: 600;
@@ -923,7 +927,7 @@ flex-direction: column;
   margin-left: 20px;
 }
 
- 
+
 
 .btn-crear-cliente{
   width: 60%;

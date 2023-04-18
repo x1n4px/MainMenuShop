@@ -1,7 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +28,13 @@ import { ChangePasswordAfterLoginComponent } from './pages/change-password-after
 import { ChangePassNoLoginComponent } from './pages/change-pass-no-login/change-pass-no-login.component';
 import { EditUserComponent } from './pages/admin/edit-user/edit-user.component';
 import { AlmacenComponent } from './pages/almacen/almacen.component';
+ import { RecuperarTicketComponent } from './pages/dialogs/recuperar-ticket/recuperar-ticket.component';
+import { ConsultarTicketComponent } from './pages/dialogs/consultar-ticket/consultar-ticket.component';
+import { DatosArticuloComponent } from './pages/dialogs/datos-articulo/datos-articulo.component';
+import { DatosClienteComponent } from './pages/dialogs/datos-cliente/datos-cliente.component';
+import { PagoComponent } from './pages/dialogs/pago/pago.component';
+import { CierreCajaComponent } from './pages/dialogs/cierre-caja/cierre-caja.component';
+import { RetiradaEfectivoComponent } from './pages/dialogs/retirada-efectivo/retirada-efectivo.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +49,14 @@ import { AlmacenComponent } from './pages/almacen/almacen.component';
     ChangePasswordAfterLoginComponent,
     ChangePassNoLoginComponent,
     EditUserComponent,
-    AlmacenComponent
+    AlmacenComponent,
+     RecuperarTicketComponent,
+    ConsultarTicketComponent,
+    DatosArticuloComponent,
+    DatosClienteComponent,
+    PagoComponent,
+    CierreCajaComponent,
+    RetiradaEfectivoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,9 +70,12 @@ import { AlmacenComponent } from './pages/almacen/almacen.component';
     MatSnackBarModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[UserDashboardComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Cliente } from "./Cliente";
 import { Producto  } from "./Producto";
 import { Productos } from "./ Productos";
+import { ValeCliente } from "./ValeCliente";
 
 export class Ticket {
   id!:number;
@@ -10,4 +11,5 @@ export class Ticket {
   productos!: Productos[];
   fecha!:string;
   hora!:string;
+  metodoPago!:string;
 }

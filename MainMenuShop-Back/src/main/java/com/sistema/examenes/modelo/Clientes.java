@@ -1,8 +1,10 @@
 package com.sistema.examenes.modelo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,4 +30,7 @@ public class Clientes {
     private String direccion;
     private String rol;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ValeCliente> valeClientes;
 }

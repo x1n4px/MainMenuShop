@@ -40,7 +40,7 @@
     <div id="contenedor1" class="contenedor">
       <div class="contenedor1-barra-busqueda">
         <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
-          <button class="btn-borrarArt"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
+          <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
          <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
         </form>
         <form *ngIf="clienteActual != null">
@@ -61,9 +61,9 @@
         </div>
       </div>
       <div class="contenedor1-lateral-derecho">
-        <button (click)="mostrarDatosCliente()" class="btn-page"><i class="fa fa-file"></i></button>
-        <button (click)="mostrarCrearCliente()" class="btn-page"><i class="fa fa-plus"></i></button>
-        <button (click)="mostrarModificarCliente()" class="btn-page"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button (click)="openDialogDatosCliente(false)" class="btn-page"><i class="fa-solid fa-file" style="color: #0077c0;"></i></button>
+        <button (click)="mostrarCrearCliente()" class="btn-page"><i class="fa fa-plus" style="color: #0077c0;"></i></button>
+        <button (click)="openDialogDatosCliente(true)" class="btn-page"><i class="fa-solid fa-pen-to-square" style="color: #0077c0;"></i></button>
       </div>
 
 
@@ -97,9 +97,9 @@
         <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
         </h5>
        </div>
-       
+
       <div class="boton-visualizador">
-        <button (click)="mostrarDatosArticulo()" class="btn-page"><i class="fa fa-file"></i></button>
+        <button (click)="openDialogDatosProducto()" class="btn-page"><i class="fa fa-file"></i></button>
         <button class="btn-page"><i class="fa fa-house" style="color: #ffffff;"></i></button>
       </div>
     </div>
@@ -109,8 +109,10 @@
         <div class="titulo-cesta">
           <p>Artículo</p>
           <p>Precio</p>
+
         </div>
         <div class="Objeto-cesta"  >
+          <hr>
         <table class="center">
           <tbody>
             <tr *ngFor="let resultadoCliente of resultadosCliente" (dblclick)="seleccionarCliente(resultadoCliente)">
@@ -129,10 +131,11 @@
           </tbody>
         </table>
         </div>
+        <hr>
       </div>
-
        <div class="botones-contenedor3">
-        <button class="botones-contenedor3-estilo" (click)="mostrarPanelCobro()" (click)="totalCesta()">Finalizar venta</button>
+
+        <button class="botones-contenedor3-estilo" (click)="openDialogPago()">Finalizar venta</button>
         <button class="botones-contenedor3-estilo" (click)="aparcarCesta()">Aparcar venta</button>
         <button class="botones-contenedor3-estilo">Hacer encargo</button>
         <button class="botones-contenedor3-estilo" (click)="vaciarCestaCompleta()">Cancelar</button>
@@ -169,9 +172,13 @@
     </div>
     <div id="contenedor5" class="contenedor">
       <button  (click) = "logout()" class="negro">Cambiar de usuario</button>
-       <button (click)="mostrarRecuperarTicket()" class="rojo">Recuperar Ticket</button>
+       <!--<button (click)="mostrarRecuperarTicket()" class="rojo">Recuperar Ticket</button>-->
+      <button class="rojo" (click)="openDialog()">Recuperar Ticket</button>
+
       <button (click)="mostrarDevolverTicket()" class="morado">Devolver ticket</button>
-      <button (click)="mostrarConsultarTicket()" class="rojo">Consultar Ticket</button>
+
+       <button class="rojo" (click)="openDialogConsultarTicket()">Consultar Ticket v2</button>
+
       <button class="azul">Retirada efectivo</button>
       <button (click)="mostrarCierreCaja()" class="gris">Cierre caja</button>
       <button class="verde">Contrato</button>
@@ -179,81 +186,15 @@
       <button onclick="window.open('/almacen', '_blank')" class="rojo">Almacén</button>
 
       <button class="gris">Sincro manual</button>
- 
+
     </div>
-     
-    <div id="pie-pagina" class="contenedor">
+
+    <div id="pie-pagina" class="contenedor" *ngIf="promociones " >
       <h3>Cupones y Promociones</h3>
     </div>
-<!--
-   <button (click)="ocultarPanelCobro()">X</button>
-  <h1 class="precio-final">{{total}}€</h1>
-              <input type="text" [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder="Introduzca articulo...">
-
--->
-    <div class="formulario-panel-cobro" [hidden]="!formularioPanelCobro">
-      <div class="formulario-panel-cobro-parte-alta">
-        <div class="formulario-panel-cobro-parte-alta-division1">
-          <button class="btn-cerraPanelCobro" (click)="ocultarPanelCobro()">X</button>
-        </div>
-        <div class="formulario-panel-cobro-parte-alta-division2">
-          <h2>Total: </h2>
-          <h2>Entregado:</h2>
-        </div>
-        <div class="formulario-panel-cobro-parte-alta-division3">
-          <div class="formulario-panel-cobro-parte-alta-division3-a">
-            <h3 *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'" class="formulario-panel-cobro-parte-alta-division3-a-h3">{{(total)}}€</h3>
-            <h3 *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'" class="formulario-panel-cobro-parte-alta-division3-a-h3">{{(total*0.8).toFixed(2)}}€</h3>
 
 
-          </div>
-          <div *ngIf="compraTarjeta == false" class="formulario-panel-cobro-parte-alta-division3-b">
-            <input  class="formulario-panel-cobro-parte-alta-division3-b-input" type="text"  [(ngModel)]="dineroEfectivo" name="dineroEfectivo" placeholder=" ">
 
-          </div>
-          <div *ngIf="compraTarjeta == true" class="formulario-panel-cobro-parte-alta-division3-b">
-            <h3 class="formulario-panel-cobro-parte-alta-division3-a-h3">{{total}}€</h3>
-
-          </div>
-        </div>
-      </div>
-      <div class="formulario-panel-cobro-parte-baja">
-
-         <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraEfectiva == false && compraTarjeta == false">
-          <button (click)="compraEfectiva = true" class="btn-lateral">Efectivo (F2)</button>
-          <button (click)="compraTarjeta = true" class="btn-lateral">Tarjeta (F3)</button>
-          <button class="btn-lateral">?</button>
-         </div>
-        <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraEfectiva == true">
-          <button (click)="terminarCompraEfectivo()" class="btn-lateral">Efectivo (F2)</button>
-          <button   class="btn-lateral-oscuro">Tarjeta (F3)</button>
-          <button class="btn-lateral-oscuro">?</button>
-         </div>
-
-        <div class="formulario-panel-cobro-parte-baja-izquierda" *ngIf="compraTarjeta == true">
-          <button   class="btn-lateral-oscuro">Efectivo (F2)</button>
-          <button (click)="terminarCompraTarjeta()" class="btn-lateral">Tarjeta (F3)</button>
-          <button class="btn-lateral-oscuro">?</button>
-         </div>
-        <div class="formulario-panel-cobro-parte-baja-derecha">
-         </div>
-      </div>
-      <div *ngIf="compraEfectiva==false && compraTarjeta==false" class="formulario-panel-cobro-parte-botones">
-        <button class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
-        <button class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
-        <button class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
-      </div>
-      <div *ngIf="compraEfectiva==true && compraTarjeta==false" class="formulario-panel-cobro-parte-botones">
-        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
-        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
-        <button (click)="ocultarPanelCobro()" class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
-      </div>
-      <div *ngIf="compraEfectiva==false && compraTarjeta==true" class="formulario-panel-cobro-parte-botones">
-        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar</button>
-        <button (click)="terminarCompraEfectivo()" class="formulario-panel-cobro-parte-botones-btn">Aceptar+Factura</button>
-        <button (click)="ocultarPanelCobro()" class="formulario-panel-cobro-parte-botones-btn">Cancelar</button>
-      </div>
-    </div>
 
     <div (click)="formularioDevolucionDineroEfectivo=false" class="formulario-Devolucion-Efectivo" [hidden]="!formularioDevolucionDineroEfectivo">
       <div class="formulario-devolucion-efectivo-centro">
@@ -272,171 +213,6 @@
       </div>
   </div>
 
-
-    <div class="formulario-mostrar-Ticket" [hidden]="!formularioConsultarTicket">
-      <div class="marco-interior">
-        <button (click)="ocultarConsultarTicket()">X</button>
-        <input type="text" placeholder="Introduzca número de ticket a consultar...">
-        <div class="espacio-interior" >
-          <table>
-            <thead>
-              <tr [hidden]="datosTicket">
-                <th>Referencia</th>
-                <th>Cliente</th>
-                <th>Vendedor</th>
-               
-                </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let ticket of ticketBD" >
-                <tr (dblclick)="seleccionarTicket(ticket)" [hidden]="datosTicket">
-                  <td>{{ticket.referencia}}</td>
-                  <td>{{ ticket.cliente.nombre }} {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</td>
-                  <td>{{ticket.vendedor}}</td>
-
-                 </tr>
-              </ng-container>
-            </tbody>
-          </table>
-          <div class="espacio-interior" [hidden]="!datosTicket">
-            <button (click)="ocultarDatosTicket()">X</button>
-            <p>Referencia: {{ticketActual.referencia}}</p>
-            <p>Vendedor: {{ticketActual.vendedor}}</p>
-            <p>Fecha: {{ticketActual.fecha}}</p>
-            <p>Hora: {{ticketActual.hora}}</p>
-            <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
-            <p>Productos:</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Referencia</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let prS of ticketActual.productos">
-                  <td>{{ prS.producto.referencia }}</td>
-                  <td>{{ prS.producto.nombre }}</td>
-                  <td>{{ prS.producto.precio }} €</td>
-                </tr>
-              </tbody>
-            </table>
-            
-             
-          </div>
-
-
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="formulario-mostrar-Ticket" [hidden]="!formularioRecuperarTicket">
-      <div class="marco-interior">
-        <button (click)="ocultarRecuperarTicket()">X</button>
-        <div class="espacio-interior">
-          <table>
-            <thead>
-              <tr>
-                <th>Cesta</th>
-                <th>Contenido</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cesta of conjuntoDeCestas" (dblclick)="recuperarTicket(cesta)">
-                <td>{{ cesta[0] }}</td>
-                <td>
-                  <ul>
-                    <li *ngFor="let elemento of cesta.slice(1)">{{ elemento.nombre }}</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="formulario-Datos-Articulo" [hidden]="!formularioDatosArticulo">
-      <div class="marco-interior">
-        <button (click)="ocultarDatosArticulo()">X</button>
-        <div class="espacio-interior"  *ngIf="productoActual != null">
-          <div class="form-group">
-            <label>Nombre:</label>
-            <input type="text" readonly [value]="productoActual.nombre">
-          </div>
-          <div class="form-group">
-           <label>Marca:</label>
-          <input type="text" readonly [value]="productoActual.marca">
-          </div>
-
-          <div class="form-group">
-           <label>Modulo:</label>
-           <input type="text" readonly [value]="productoActual.modulo">
-
-           </div>
-
-           <div class="form-group">
-
-          <label>Referencia:</label>
-          <input type="text" readonly [value]="productoActual.referencia">
-          </div>
-          <div class="form-group">
-
-           <label>Precio:</label>
-          <input type="text" readonly [value]="productoActual.precio">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="formulario-Datos-Cliente" [hidden]="!formularioDatosCliente">
-      <div class="marco-interior-DCliente">
-        <button (click)="ocultarDatosCliente()">X</button>
-        <div class="espacio-interior-DCliente" *ngIf="clienteActual != null">
-          <form class="datos-clientes-interno">
-            <label>
-              Nombre:
-              <input type="text" readonly [value]="clienteActual.nombre">
-            </label><br>
-            <label>
-              Apellido1:
-              <input type="text" readonly [value]="clienteActual.apellido1">
-            </label><br>
-            <label>
-              Apellido2:
-              <input type="text" readonly [value]="clienteActual.apellido2">
-            </label><br>
-            <label>
-              DNI:
-              <input type="text" readonly [value]="clienteActual.dni">
-            </label><br>
-            <label>
-              Código postal:
-              <input type="text" readonly [value]="clienteActual.codigoPostal">
-            </label><br>
-            <label>
-              Localidad:
-              <input type="text" readonly [value]="clienteActual.localidad">
-            </label><br>
-            <label>
-              Número de Telefono:
-              <input type="text" readonly [value]="clienteActual.numeroTelefono">
-            </label><br>
-            <label>
-              Número de móvil:
-              <input type="text" readonly [value]="clienteActual.numeroMovil">
-            </label>
-          </form>
-        </div>
-        
-      </div>
-    </div>
 
     <div class="formulario-Datos-Cliente" [hidden]="!formularioCrearcliente">
       <div class="marco-interior-crear-cliente">
@@ -485,31 +261,8 @@
             </div>
             <button type="submit" class="btn-crear-cliente">Crear cliente</button>
           </form>
-          
 
-         </div>
-          
-      </div>
-    </div>
 
-    <div class="formulario-Datos-Cliente" [hidden]="!formularioModificarcliente">
-      <div class="marco-interior-DCliente">
-        <button (click)="ocultarModificarCliente()">X</button>
-        <div class="espacio-interior-modificar-cliente" *ngIf="clienteActual != null" >
-          <form (ngSubmit)="guardarModificacionCliente()" class="datos-clientes-interno">
-           <input type="text" placeholder="Nombre" id="clienteNombre" name="clienteNombre"  [(ngModel)]="clienteActual.nombre">
-          <input type="text" placeholder="Apellido 1" id="apellido1" name="apellido1"  [(ngModel)]="clienteActual.apellido1">
-          <input type="text" placeholder="Apellido 2" id="apellido2" name="apellido2"  [(ngModel)]="clienteActual.apellido2">
-          <input type="text" placeholder="DNI" id="dni" name="dni"  [(ngModel)]="clienteActual.dni">
-          <input type="text" placeholder="Dirección" id="direccion" name="direccion"  [(ngModel)]="clienteActual.direccion">
-          <input type="text" placeholder="Código postal" id="codigoPostal" name="codigoPostal"  [(ngModel)]="clienteActual.codigoPostal">
-          <input type="text" placeholder="Localidad" id="localidad" name="localidad"  [(ngModel)]="clienteActual.localidad">
-          <input type="text" placeholder="Telefono" id="telefono" name="telefono"  [(ngModel)]="clienteActual.numeroTelefono">
-          <input type="text" placeholder="Móvil" id="movil" name="movil"  [(ngModel)]="clienteActual.numeroMovil">
-          <input type="text" placeholder="Correo Electrónico" id="email" name="email"  [(ngModel)]="clienteActual.email">
-          <button type="submit">Guardar</button>
-          <button>Cancelar</button>
-        </form>
          </div>
 
       </div>

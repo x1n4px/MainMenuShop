@@ -1,3 +1,5 @@
+import { ValeCliente } from "./ValeCliente";
+
 export class Cliente {
   id!:number;
   nombre!:string;
@@ -11,4 +13,6 @@ export class Cliente {
   numeroTelefono!:string;
   rol!:string;
   direccion!:string;
+  valecliente!: ValeCliente[];
+
  }

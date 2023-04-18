@@ -48,4 +48,5 @@ public class Ticket {
 
     private LocalTime hora;
 
+    private String metodoPago;
 }

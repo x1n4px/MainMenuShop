@@ -1,0 +1,249 @@
+
+.formulario-panel-cobro {
+  background-color: #ffffff;
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 60%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    border:5px solid #0077c0;
+    border-radius: 20px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+}
+
+.formulario-panel-cobro-cesta,
+.formulario-panel-cobro-pago {
+  display: inline-block;
+  vertical-align: top; /* opcional si deseas que estén alineados en la parte superior */
+}
+
+
+
+.formulario-panel-cobro-cesta{
+  border: #0077c0 3px solid;
+  border-right: none;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.2);
+
+ }
+
+ .formulario-panel-cobro-cesta-titulo h1{
+  text-align: center;
+  padding: 10px;
+ }
+
+ .formulario-panel-cobro-cesta-articulos{
+  background-color: white;
+  width: 95%;
+  height: 60%;
+  margin-left: 10px;
+  overflow: auto;
+  }
+
+  .formulario-panel-cobro-cesta-articulos-informacion{
+    width: 100%;
+    overflow: auto;
+  }
+
+  .form-group, .form-group-xl {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-size: large;
+
+  }
+
+  .form-group label, .form-group-xl {
+     margin-left: 20px;
+    letter-spacing: 3px;
+    font-size: x-large;
+    font-weight: 600;
+   }
+
+  .form-group input {
+    margin: 10px;
+    letter-spacing: 2px;
+    font-size: large;
+    font-weight: 400;
+    text-align: center;
+    border: none;
+   }
+
+  .form-group input {
+    flex: 1;
+    margin-left: 20px;
+   }
+
+   .form-group-xl input{
+    width: 80px;
+    margin: 10px;
+    letter-spacing: 2px;
+    font-size: xx-large;
+    font-weight: 600;
+    text-align: center;
+    }
+
+   .form-group-xl input {
+    flex: 1;
+    margin-left: 20px;
+   }
+
+.formulario-panel-cobro-pago{
+  border: #0077c0 3px solid;
+  border-left: none;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #0077c0;
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+ }
+
+ .formulario-panel-cobro-pago-botones{
+  width: 100%;
+  height: 10%;
+   display: flex;
+  justify-content: center;
+}
+
+.formulario-panel-cobro-pago-finalizacion{
+
+  width: 100%;
+  height: 10%;
+   display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.formulario-panel-pago-efectivo{
+  padding-top: 20px;
+  padding-left: 20px;
+ }
+.formulario-panel-pago-efectivo input{
+  width: 90%;
+  padding: 10px;
+ }
+
+ .formulario-panel-pago-efectivo label{
+  font-size: large;
+  color: white;
+ }
+
+ .formulario-panel-cobro-pago-botones button,
+ .formulario-panel-cobro-pago-finalizacion button{
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: white;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: black;
+  border-radius: 10px;
+  border: 4px solid black;
+  margin-left: 30px;
+}
+
+.formulario-panel-cobro-pago-botones button:active{
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+
+}
+
+.formulario-panel-cobro-pago-finalizacion button:active{
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.formulario-panel-cobro-pago-botones button.not-selected,
+.formulario-panel-cobro-pago-finalizacion button.not-selected{
+  background-color: #547081;
+  box-shadow: inset 24px 24px 48px #5c5c5c,
+  inset -24px -24px 48px #ffffff;
+
+}
+
+.formulario-panel-cobro-pago-botones button.selected,
+.formulario-panel-cobro-pago-finalizacion button.selected{
+  transform: scale(1.1);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+
+
+}
+
+.formulario-panel-cobro-pago-cliente{
+  width: 100%;
+  height: 60%;
+  padding: 20px;
+ }
+
+.formulario-panel-cobro-pago-cliente h3 {
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px #e1e5ee;
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+  width: 100%;
+}
+
+th {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+td {
+  padding: 1rem 2rem;
+}
+
+tr:nth-child(even) {
+  background-color:  white;
+}
+
+tr:hover {
+  background-color: white;
+}
+
+.odd-row {
+  background-color: white;
+}
+
+.even-row {
+  background-color: white;
+}
+
+form label {
+  display: block;
+   color: white;
+  font-size: large;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  }
+
+  .pasarela-pago{
+    width: 300px;
+    height: 50px;
+    background-color: grey;
+    border: white 2px solid;
+  }

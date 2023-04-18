@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Productos } from 'src/app/ Productos';
  import { Cliente } from 'src/app/Cliente';
 import {   Producto } from 'src/app/Producto';
 import { LoginService } from 'src/app/services/login.service';
  import { Ticket } from 'src/app/Ticket';
+import { ConsultarTicketComponent } from '../../dialogs/consultar-ticket/consultar-ticket.component';
+import { DatosArticuloComponent } from '../../dialogs/datos-articulo/datos-articulo.component';
+import { DatosClienteComponent } from '../../dialogs/datos-cliente/datos-cliente.component';
+import { PagoComponent } from '../../dialogs/pago/pago.component';
+import { RecuperarTicketComponent } from '../../dialogs/recuperar-ticket/recuperar-ticket.component';
 
 
 @Component({
@@ -15,23 +21,18 @@ import { LoginService } from 'src/app/services/login.service';
 export class UserDashboardComponent implements OnInit {
   usuarioActual: any;
   rolAsignado!: string;
-  constructor(private route: Router, private loginService:LoginService) { }
+  constructor(private route: Router, private loginService:LoginService, public dialog: MatDialog) { }
   isLoggedIn = false;
-  formularioConsultarTicket = false;
-  formularioDevolverTicket = false;
-  formularioRecuperarTicket = false;
-  formularioCierreCaja = false;
-  formularioDatosArticulo = false;
-  formularioDatosCliente = false;
-  formularioCrearcliente = false;
-  formularioModificarcliente = false;
-  formularioPanelCobro = false;
-  formularioDevolucionDineroEfectivo = false;
+   formularioDevolverTicket = false;
+   formularioCierreCaja = false;
+    formularioCrearcliente = false;
+    formularioDevolucionDineroEfectivo = false;
   formularioDevolucionDineroTarjeta = false;
   pagoEfectivo = false;
   compraEfectiva = false;
   compraTarjeta = false;
   datosTicket = false;
+  promociones: boolean = false;
 
   productos: Producto[] = [];
   clientes: Cliente[] = [];
@@ -62,12 +63,66 @@ export class UserDashboardComponent implements OnInit {
     this.loginService.getCurrentUser().subscribe(data => {
       this.usuarioActual = data;
     });
-      this.obtenerProductos();
+       this.obtenerProductos();
      this.obtenerClientes();
      this.fechaActual = new Date();
     this.horaActual = this.obtenerHoraActual();
     this.obtenerTodosTicket();
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(RecuperarTicketComponent, {data:{conjuntoDeCestas: this.conjuntoDeCestas}});
+     dialogRef.afterClosed().subscribe(result => {
+       this.recuperarTicket(result);
+    });
+  }
+
+  openDialogConsultarTicket(){
+    const dialogRef = this.dialog.open(ConsultarTicketComponent, {data:{ticketBD: this.ticketBD}});
+    console.log(this.ticketBD);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+   openDialogDatosCliente(edita: any){
+    const dialogRef = this.dialog.open(DatosClienteComponent, {data:{clienteActual: this.clienteActual, editable:edita}});
+    console.log(this.clienteActual);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.clienteActual = result;
+        console.log( this.clienteActual  );
+      } else {
+        console.log(`Diálogo cerrado sin cambios`);
+      }
+     });
+  }
+
+  openDialogDatosProducto( ){
+    const dialogRef = this.dialog.open(DatosArticuloComponent, {data:{productoActual: this.productoActual }});
+     dialogRef.afterClosed().subscribe(result => {
+
+     });
+  }
+
+  openDialogPago() {
+    const dialogRef = this.dialog.open(PagoComponent, {
+      data: {
+        clienteActual: this.clienteActual,
+        cesta: this.cesta
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.total = result.total;
+      const metodoPago = result.metodoPago;
+      if(metodoPago === 0){
+        this.terminarCompraEfectivo();
+      }else if(metodoPago === 1){
+        this.terminarCompraTarjeta();
+      }
+      console.log(this.total, metodoPago);
+    });
+  }
+
 
   obtenerHoraActual(): string {
     // Obtenemos la hora actual en formato HH:mm:ss
@@ -216,8 +271,7 @@ export class UserDashboardComponent implements OnInit {
     console.log(cesta);
     this.clienteActual = cesta[0];
     this.cesta = cesta.slice(1);
-    this.formularioRecuperarTicket = false;
-    const index = this.conjuntoDeCestas.indexOf(cesta);
+     const index = this.conjuntoDeCestas.indexOf(cesta);
     if (index > -1) {
       this.conjuntoDeCestas.splice(index, 1);
     }
@@ -231,32 +285,26 @@ export class UserDashboardComponent implements OnInit {
     this.clienteActual = [];
     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-    this.formularioPanelCobro = false;
-  }
-
+   }
+  metodoPago!:string;
   terminarCompraTarjeta(){
-    this.guardarTicket();
+    this.metodoPago = "tarjeta"
+    this.guardarTicket(this.metodoPago);
     this.cesta = [];
     this.clienteActual = [];
-    this.formularioDevolucionDineroTarjeta = true;
-    this.terminoBusqueda = '';
+     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-    this.formularioPanelCobro = false;
-    this.compraTarjeta = false;
-  }
+   }
 
   terminarCompraEfectivo(){
-    this.guardarTicket();
-    this.pagoEfectivo = true;
-    this.formularioDevolucionDineroEfectivo = true;
-    this.formularioPanelCobro = false;
+    this.metodoPago  = "efectivo";
+    this.guardarTicket(this.metodoPago);
     this.devolucionEfectivo();
     this.cesta = [];
     this.clienteActual = [];
     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-    this.compraEfectiva = false;
-  }
+   }
 
   borrarArticulo(){
     this.productoActual = null;
@@ -277,22 +325,13 @@ export class UserDashboardComponent implements OnInit {
     this.route.navigate(['']);
   }
 
-  mostrarConsultarTicket(){ this.formularioConsultarTicket = true;}
-  ocultarConsultarTicket(){this.formularioConsultarTicket = false; }
+
   mostrarDevolverTicket(){this.formularioDevolverTicket = true;}
   ocultarDevolverTicket(){this.formularioDevolverTicket = false;}
-  mostrarRecuperarTicket(){this.formularioRecuperarTicket = true; }
-  ocultarRecuperarTicket(){this.formularioRecuperarTicket = false;}
+
   mostrarCierreCaja(){this.formularioCierreCaja = true;}
   ocultarCierreCaja(){this.formularioCierreCaja=false;}
-  mostrarDatosArticulo(){this.formularioDatosArticulo = true;}
-  ocultarDatosArticulo(){this.formularioDatosArticulo = false;}
-  mostrarDatosCliente(){this.formularioDatosCliente = true;}
-  ocultarDatosCliente(){this.formularioDatosCliente = false;}
-  mostrarModificarCliente(){this.formularioModificarcliente = true;}
-  ocultarModificarCliente(){this.formularioModificarcliente = false;}
-  mostrarPanelCobro(){this.formularioPanelCobro = true;}
-  ocultarPanelCobro(){this.formularioPanelCobro = false; this.compraEfectiva = false; this.compraTarjeta = false;}
+
   mostrarDevolucionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = true;}
   ocultarDevolcionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = false;}
   mostrarCrearCliente(){this.formularioCrearcliente = true;}
@@ -319,7 +358,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  guardarTicket(): void {
+  guardarTicket(metodoPago: string): void {
     // Creamos el objeto ticket con la información del cliente, fecha, hora y cesta
     const tienda = {
       id: 3,
@@ -329,11 +368,12 @@ export class UserDashboardComponent implements OnInit {
 
     const ticket = {
       referencia: "E"+this.generarNumeros(),
-      cliente : this.clienteActual ? this.clienteActual : tienda,
+      cliente : this.clienteActual ,
       vendedor: this.usuarioActual.nombre+' '+this.usuarioActual.apellido.split(' ')[0].charAt(0)+'.'+this.usuarioActual.apellido.split(' ')[1].charAt(0),
       productos: this.cesta.map((producto) => ({ cantidad: 1, producto: producto })),
       fecha: this.fechaActual,
-      hora: this.horaActual
+      hora: this.horaActual,
+      metodoPago: metodoPago
     };
 
     // Agregamos el ticket al arreglo de tickets
@@ -342,7 +382,7 @@ export class UserDashboardComponent implements OnInit {
     // Limpiamos la cesta y el cliente actual para preparar para un nuevo ticket
     this.cesta = [];
     this.clienteActual = null;
-
+    this.metodoPago = "";
     // Mostramos los tickets almacenados en la consola
     console.log(this.tickets);
 
@@ -398,14 +438,14 @@ export class UserDashboardComponent implements OnInit {
       numeroTelefono: this.clienteActual.numeroTelefono,
       rol: this.clienteActual.rol,
       direccion: this.clienteActual.direccion,
+      valecliente:this.clienteActual.valecliente
     };
 
     console.log(cliente.id, cliente);
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
         console.log(response);
-        this.formularioModificarcliente = false;
-      },
+       },
       (error) => {
         console.log(error);
         // hacer algo en caso de error
