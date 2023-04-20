@@ -57,8 +57,6 @@ public class ProductoController {
 
     }
 
-   @Autowired
-   private ProductoRepository productoRepository;
 
 
     /*
@@ -81,9 +79,31 @@ public class ProductoController {
 
 */
 
+    /*
+     Peticion postman:
+    http://localhost:8080/buscar?nombre=piens
+    json:
+        [
+        {
+            "id": 5,
+            "referencia": "10000005",
+            "nombre": "Pienso para cachorros",
+            "marca": "Marca 2",
+            "variedad": "sabor cordero",
+            "modulo": "K1102",
+            "etapaVida": "puppy",
+            "precio": 12.0,
+            "peso": 20.0,
+            "estado": "no encargable",
+            "tipo": "comida",
+            "familia": "perro"
+        }
+    ]
+
+    */
     @GetMapping("buscar")
     public List<Productos> buscarPorNombre(@RequestParam("nombre") String nombre) {
-        return productoService.obtener(nombre);
+        return productoService.buscar(nombre);
     }
 
 

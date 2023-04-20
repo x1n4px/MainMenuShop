@@ -28,5 +28,6 @@ public class ProductoService {
     }
 
 
-    public List<Productos> obtener(String nombre){return productoRepository.findByNombreContaining(nombre);}
+    public List<Productos> buscar(String nombre){return productoRepository.findByNombreContainingIgnoreCase(nombre);
+    }
 }
