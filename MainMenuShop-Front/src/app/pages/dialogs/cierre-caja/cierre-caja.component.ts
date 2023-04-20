@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Productos } from 'src/app/ Productos';
+import { Producto } from 'src/app/Producto';
 @Component({
   selector: 'app-cierre-caja',
   templateUrl: './cierre-caja.component.html',
   styleUrls: ['./cierre-caja.component.css']
 })
-export class CierreCajaComponent implements OnInit {
+export class CierreCajaComponent  {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  usuarioActual:any;
+  opcion:number = 0;
+  constructor(
+    public dialogRef: MatDialogRef<CierreCajaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) {
+      this.usuarioActual = data.usuarioActual;
+      this.opcion = data.numero;
+    }
+  
 }

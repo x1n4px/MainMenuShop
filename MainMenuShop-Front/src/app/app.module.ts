@@ -35,6 +35,7 @@ import { DatosClienteComponent } from './pages/dialogs/datos-cliente/datos-clien
 import { PagoComponent } from './pages/dialogs/pago/pago.component';
 import { CierreCajaComponent } from './pages/dialogs/cierre-caja/cierre-caja.component';
 import { RetiradaEfectivoComponent } from './pages/dialogs/retirada-efectivo/retirada-efectivo.component';
+import { DevolucionDineroComponent } from './pages/dialogs/devolucion-dinero/devolucion-dinero.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RetiradaEfectivoComponent } from './pages/dialogs/retirada-efectivo/ret
     DatosClienteComponent,
     PagoComponent,
     CierreCajaComponent,
-    RetiradaEfectivoComponent
+    RetiradaEfectivoComponent,
+    DevolucionDineroComponent
   ],
   imports: [
     BrowserModule,

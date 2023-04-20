@@ -33,9 +33,9 @@ html, body {
 
 /* Estilos para el primer contenedor */
 #contenedor1 {
-  top: 6%;
+  top: 8%;
   left: 0.5%;
-  width: 35%;
+  width: 40%;
   height: 20%;
   background-color:#ffffff;
   border-radius: 30px  0px  0px 0px;
@@ -82,9 +82,9 @@ html, body {
 
 /* Estilos para el segundo contenedor */
 #contenedor2 {
-  top: 6%;
-  left: 35%;
-  width: 54.5%;
+  top: 8%;
+  left: 40%;
+  width: 59.5%;
   height: 20%;
   background-color: #0077c0;
   color: white;
@@ -166,10 +166,10 @@ html, body {
 
 /* Estilos para el tercer contenedor */
 #contenedor3 {
-  bottom: 5.2%;
+  bottom: 2.2%;
   left: 0.5%;
-  width: 35.2%;
-  height: 69%;
+  width: 40.2%;
+  height: 69.5%;
   background-color: white;
   border-radius: 0px 0px 0px 30px;
   padding: 0;
@@ -275,59 +275,14 @@ p{
 
 /* Estilos para el cuarto contenedor */
 #contenedor4 {
-  bottom: 5.2%;
-  left: 35%;
-  width: 54.5%;
-  height: 69%;
+  bottom: 2.2%;
+  left: 40%;
+  width: 59.5%;
+  height: 69.8%;
   background-color: white;
   border: 5px solid #0077c0;
   border-radius: 0px 0px 30px 0px;
 
-}
-
-.fondo-tabla{
-  background-color: white;
-  padding-top: 15px;
-  width: 97%;
-  height: 94%;
-  margin: 12px;
-  overflow: auto;
-}
-
-
-#contenedor5 {
-  top: 6%;
-  bottom: 0%;
-  right: 0.5%;
-  width: 9.5%;
-  height: 94%;
-  overflow: hidden;
-  background-color: white;
- }
-
-#contenedor5 button{
-  width: 100%;
-  height: 9.5%;
-  color: #fff;
-   border-radius: 10px;
-  padding: 10px;
-  margin-right: 10px;
-  flex-grow: 1;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 5px;
-  font-size: 18px;
- }
-
-.negro {
-  background-color: black;
-}
-.azul {
-  background-color: rgb(13, 17, 255);
-}
-
-.rojo {
-  background-color: rgb(148, 14, 14);
 }
 
 .btn-borrarArt {
@@ -342,21 +297,39 @@ p{
   border-radius: 10px;
   padding:10px;
  }
+ .btn-borrarArt-w {
+  position: relative;
+  background-color: white;
+  border: 3px solid #0077c0;
+    margin-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0077c0;
+   border-radius: 10px;
+  padding:10px;
+ }
 .btn-borrarArt:hover{
-  background-color: #4b0a0a;
+  background-color: white;
+  color: #0077c0;
+  border: 3px solid #0077c0;
 }
-.morado {
-  background-color: rgb(171, 0, 250);
+.btn-borrarArt-w:hover{
+  background-color: #0077c0;
+  color: white;
+  border: 3px solid #002244;
 }
-.gris {
-  background-color: rgb(95, 95, 95);
+
+.fondo-tabla{
+  background-color: white;
+  padding-top: 15px;
+  width: 97%;
+  height: 94%;
+  margin: 12px;
+  overflow: auto;
 }
-.amarillo {
-  background-color: rgb(250, 225, 0);
-}
-.verde {
-  background-color: rgb(112, 250, 0);
-}
+
+
+
 
 #contenedor6 {
   top:0%;

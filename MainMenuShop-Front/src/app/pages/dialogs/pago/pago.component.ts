@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Productos } from 'src/app/ Productos';
 import { Producto } from 'src/app/Producto';
+import { DevolucionDineroComponent } from '../devolucion-dinero/devolucion-dinero.component';
 
 @Component({
   selector: 'app-pago',
@@ -12,7 +13,7 @@ export class PagoComponent  {
 
   constructor(
     public dialogRef: MatDialogRef<PagoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog
   ) {
     this.clienteActual = data.clienteActual;
     this.cesta = data.cesta;
@@ -23,7 +24,7 @@ export class PagoComponent  {
 
   cesta: Producto[] = [];
   total!:number;
-  dineroEfectivo!:number;
+  dineroEfectivo:number = 0;
   clienteActual: any ;
   compraEfectiva = false;
   compraTarjeta = false;
@@ -46,6 +47,12 @@ export class PagoComponent  {
       metodoPago: this.metodoPago,
       clienteActual:this.clienteActual,
       cesta:this.cesta
+    });
+    const dialogRef = this.dialog.open(DevolucionDineroComponent, {
+      data: {
+        total:this.total,
+        dineroEfectivo:this.dineroEfectivo
+      }
     });
   }
 

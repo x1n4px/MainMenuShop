@@ -83,7 +83,7 @@ public class ProductoController {
 
     @GetMapping("buscar")
     public List<Productos> buscarPorNombre(@RequestParam("nombre") String nombre) {
-        return productoRepository.findByNombreContaining(nombre);
+        return productoService.obtener(nombre);
     }
 
 

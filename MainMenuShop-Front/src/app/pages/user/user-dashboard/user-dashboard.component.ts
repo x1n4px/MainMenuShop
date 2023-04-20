@@ -6,6 +6,7 @@ import { Productos } from 'src/app/ Productos';
 import {   Producto } from 'src/app/Producto';
 import { LoginService } from 'src/app/services/login.service';
  import { Ticket } from 'src/app/Ticket';
+import { CierreCajaComponent } from '../../dialogs/cierre-caja/cierre-caja.component';
 import { ConsultarTicketComponent } from '../../dialogs/consultar-ticket/consultar-ticket.component';
 import { DatosArticuloComponent } from '../../dialogs/datos-articulo/datos-articulo.component';
 import { DatosClienteComponent } from '../../dialogs/datos-cliente/datos-cliente.component';
@@ -122,6 +123,16 @@ export class UserDashboardComponent implements OnInit {
       console.log(this.total, metodoPago);
     });
   }
+
+  openDialogCierreCaja(n:number){
+    const dialogRef = this.dialog.open(CierreCajaComponent, {
+      data: {
+        usuarioActual:this.usuarioActual,
+        numero:n
+      }
+    });
+  }
+
 
 
   obtenerHoraActual(): string {

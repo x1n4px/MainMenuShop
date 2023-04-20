@@ -8,26 +8,37 @@
 <body>
 <nav class="navbar">
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a href="#" class="nav-link">Inicio</a>
+    <li class="nav-item"> 
+      <a (click)="logout()" href="#" class="nav-link">Salir</a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link"> {{usuarioActual.nombre}}</a>
+      <a class="nav-link"> {{usuarioActual.nombre}}</a>
     </li>
 
   </ul>
   <ul class="navbar-nav ml-auto">
+    <button class="textNavBtn" (click)="openDialog()">Recuperar Ticket</button>
+    <button class="textNavBtn" (click)="openDialogConsultarTicket()">Consultar Ticket</button>
+    <button class="textNavBtn" (click)="openDialogConsultarTicket()">Devolver Ticket</button>
+    <button class="textNavBtn" (click)="openDialogCierreCaja(1)">Cierre Caja</button>
+    <button class="textNavBtn" (click)="openDialogCierreCaja(2)">Retirar Efectivo</button>
+    <button class="textNavBtn">Contrato</button>
+    <button class="textNavBtn">Abrir Caja</button>
+    <button class="textNavBtn" onclick="window.open('/almacen', '_blank')">Almacen</button>   
+ 
+   </ul>
+  <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a href="#" class="textNavBtn">Pedido entrega en tienda</a>
+      <a  class="textNavBtn">Pedido entrega en tienda</a>
     </li>
     <li class="nav-item">
-      <a href="#" class="fas fa-undo"> </a>
+      <a   class="fas fa-undo"> </a>
     </li>
     <li class="nav-item">
-      <a href="#"  class="fas fa-chart-bar"> </a>
+      <a    class="fas fa-chart-bar"> </a>
     </li>
     <li class="nav-item">
-       <a href="#" class="fas fa-briefcase"> </a>
+       <a class="fas fa-briefcase"> </a>
     </li>
   </ul>
 </nav>
@@ -40,11 +51,11 @@
     <div id="contenedor1" class="contenedor">
       <div class="contenedor1-barra-busqueda">
         <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
-          <button class="btn-borrarArt"  (click)="borrarCliente()">X</button>
+          <button class="btn-borrarArt-w"  type="reset">X</button>
          <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
         </form>
         <form *ngIf="clienteActual != null">
-          <button class="btn-borrarArt"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
+          <button class="btn-borrarArt-w"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
           <input type="text" placeholder="{{clienteActual.nombre}}&nbsp;{{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}">
         </form>
        </div>
@@ -74,7 +85,7 @@
 
     <div id="contenedor2" class="contenedor">
       <form (ngSubmit)="buscar()" *ngIf="productoActual == null">
-        <button class="btn-borrarArt"  (click)="borrarArticulo()">X</button>
+        <button class="btn-borrarArt" type="reset" >X</button>
       <input type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="Introduzca articulo...">
     </form>
       <form *ngIf="productoActual != null">
@@ -170,24 +181,7 @@
 
     </div>
     </div>
-    <div id="contenedor5" class="contenedor">
-      <button  (click) = "logout()" class="negro">Cambiar de usuario</button>
-       <!--<button (click)="mostrarRecuperarTicket()" class="rojo">Recuperar Ticket</button>-->
-      <button class="rojo" (click)="openDialog()">Recuperar Ticket</button>
-
-      <button (click)="mostrarDevolverTicket()" class="morado">Devolver ticket</button>
-
-       <button class="rojo" (click)="openDialogConsultarTicket()">Consultar Ticket v2</button>
-
-      <button class="azul">Retirada efectivo</button>
-      <button (click)="mostrarCierreCaja()" class="gris">Cierre caja</button>
-      <button class="verde">Contrato</button>
-      <button class="gris">Abrir cajón (F8)</button>
-      <button onclick="window.open('/almacen', '_blank')" class="rojo">Almacén</button>
-
-      <button class="gris">Sincro manual</button>
-
-    </div>
+    
 
     <div id="pie-pagina" class="contenedor" *ngIf="promociones " >
       <h3>Cupones y Promociones</h3>
@@ -268,71 +262,10 @@
       </div>
     </div>
 
-    <div class="formulario-devolver-Ticket" [hidden]="!formularioDevolverTicket">
-      <div class="marco-interior-morado">
-        <button (click)="ocultarDevolverTicket()">X</button>
-        <input type="text" placeholder="Introduzca número de ticket a devolver...">
-        <div class="espacio-interior-morado">
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam facilis minima laboriosam repellendus corrupti corporis excepturi libero, vel dolorem sunt.</p>
-        </div>
-      </div>
-    </div>
+  
 
 
-    <div class="formulario-cierre-caja" [hidden]="!formularioCierreCaja">
-      <div class="marco-interior-gris">
-        <button (click)="ocultarCierreCaja()">X</button>
-        <div class="espacio-interior-gris">
-          <div class="money-form">
-            <div class="column">
-              <h2>Billetes</h2>
-              <form>
-                <label for="bill-100">100€:</label>
-                <input type="number" name="bill-100" id="bill-100" min="0" step="1">
-                <br>
-                <label>$50:</label>
-                <input type="number" name="bill-50" min="0" step="1">
-                <br>
-                <label>$20:</label>
-                <input type="number" name="bill-20" min="0" step="1">
-                <br>
-                <label>$10:</label>
-                <input type="number" name="bill-10" min="0" step="1">
-                <br>
-                <label>$5:</label>
-                <input type="number" name="bill-5" min="0" step="1">
-                <br>
-                <label>$1:</label>
-                <input type="number" name="bill-1" min="0" step="1">
-                <br>
-              </form>
-            </div>
-            <div class="column">
-              <h2>Monedas</h2>
-              <form>
-                <label>$0.50:</label>
-                <input type="number" name="coin-50" min="0" step="0.01">
-                <br>
-                <label>$0.25:</label>
-                <input type="number" name="coin-25" min="0" step="0.01">
-                <br>
-                <label>$0.10:</label>
-                <input type="number" name="coin-10" min="0" step="0.01">
-                <br>
-                <label>$0.05:</label>
-                <input type="number" name="coin-05" min="0" step="0.01">
-                <br>
-                <label>$0.01:</label>
-                <input type="number" name="coin-01" min="0" step="0.01">
-                <br>
-              </form>
-            </div>
-          </div>
-
-        </div>
-        <button>Siguiente</button>
-      </div>
-    </div>
+    
 
   </body>
 </html>
