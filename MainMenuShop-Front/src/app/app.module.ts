@@ -36,6 +36,7 @@ import { PagoComponent } from './pages/dialogs/pago/pago.component';
 import { CierreCajaComponent } from './pages/dialogs/cierre-caja/cierre-caja.component';
 import { RetiradaEfectivoComponent } from './pages/dialogs/retirada-efectivo/retirada-efectivo.component';
 import { DevolucionDineroComponent } from './pages/dialogs/devolucion-dinero/devolucion-dinero.component';
+import { AvisoClienteComponent } from './pages/dialogs/aviso-cliente/aviso-cliente.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DevolucionDineroComponent } from './pages/dialogs/devolucion-dinero/dev
     PagoComponent,
     CierreCajaComponent,
     RetiradaEfectivoComponent,
-    DevolucionDineroComponent
+    DevolucionDineroComponent,
+    AvisoClienteComponent
   ],
   imports: [
     BrowserModule,

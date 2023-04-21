@@ -1,12 +1,25 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+::main{
+  --primary-100:#0077B5;
+  --primary-200:#56a6e7;
+  --primary-300:#c3ffff;
+  --accent-100:#FFC107;
+  --accent-200:#916400;
+  --text-100:#333333;
+  --text-200:#5c5c5c;
+  --bg-100:#E6F2F5;
+  --bg-200:#dce8eb;
+  --bg-300:#b4bfc2;
 
+}
 
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #E6F2F5;
 }
 
 /* Estilos para los contenedores */
@@ -14,83 +27,230 @@ html, body {
   position: absolute;
   box-sizing: border-box;
   overflow: auto;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  padding: 0;
+   padding: 0;
   margin: 0;
 }
 
-
-
-#pie-pagina {
-  background-color: #333;
-  bottom: 0;
-  left: 0;
-  width: 89.5%;
-  height: 4.8%;
-  border: #333;
-  overflow: hidden;
+#contendor-grande {
+  width: 70%;
+  height: 100%;
+  margin-left: 30%;
 }
+
 
 /* Estilos para el primer contenedor */
 #contenedor1 {
-  top: 8%;
-  left: 0.5%;
-  width: 40%;
-  height: 20%;
-  background-color:#ffffff;
-  border-radius: 30px  0px  0px 0px;
+  top: 5%;
+   width: 20%;
+  height: 90%;
   overflow: hidden;
   color: black;
   border-bottom: none;
+  border-right: #5c5c5c 1px solid;
 }
 
+.contenedor-barras{
+  width: 100%;
+  display: flex;
+}
+
+
+
+ .icono-persona {
+   border: none;
+  margin-top: 30px;
+   width: 50px;
+  height: 50px;
+   font-size: 30px;
+
+ }
+
+
+
+
+
+ .btn-cambiar-A-Producto:active{
+  color: #dce8eb;
+ }
+
 .contenedor1-barra-busqueda{
-   width: 100%;
+   width: 80%;
   height: 30%;
   margin-bottom: 2%;
     color: black;
+    background-color: #dce8eb;
+   margin: 20px 20px 20px 40px;
+  border-radius: 30px;
+  border: 3px solid #333333;
+  display: flex;
+  align-items: center;
+ }
+
+.contenedor1-barra-busqueda-izquierdo{
+   width: 10%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+}
+
+.contenedor1-barra-busqueda-izquierdo i{
+  font-size: x-large;
+
+}
+.contenedor1-barra-busqueda-izquierdo button{
+  border: none;
+  background-color: transparent;
+}
+
+.contenedor1-barra-busqueda-centro{
+   width: 80%;
+  height: 100%;
+}
+
+.busqueda-centro-usuarios{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.contenedor1-barra-busqueda-derecha{
+   width: 10%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.contenedor1-barra-busqueda-derecha button{
+  border: none;
+  background-color: transparent;
+}
+
+.contenedor1-barra-busqueda-derecha i{
+  font-size: x-large;
 
 }
 
-.contenedor1-lateral-izquierdo{
-   width: 70%;
-  height: 70%;
-  float: left;
-    color: black;
+.contenedor1-partealta-datos{
+  width: 100%;
+  height: 20%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinea los botones verticalmente en el centro */
+  align-items: center; /* Centra los botones horizontalmente */
+ }
 
+.contenedor1-botones, .contenedor1-partebaja{
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+}
+
+.contenedor1-botones button, .contenedor1-partebaja button{
+  width: 60%;
+  height: 50px;
+  margin: 10px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  position: relative;
+ }
+
+
+
+
+
+.contenedor1-botones i, .contenedor1-partebaja i{
+  color: #5c5c5c;
+  background-color: #dce8eb;
+  width: 50px;
+  height: 50px;
+  font-size: x-large;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  left: 0;
+   border-radius: 10px;
+    margin-right: 10px;
+  animation: 0.3s delay linear;
+}
+
+
+.contenedor1-botones span, .contenedor1-partebaja span{
+  margin-left: 50px;
+  color: #b4bfc2;
+  font-weight: 600;
+  font-size: 16px;
+ }
+
+ .contenedor1-partebaja span, .contenedor1-partebaja span{
+  margin-left: 50px;
+  color: #b4bfc2;
+  font-weight: 600;
+  font-size: 16px;
+ }
+
+
+.contenedor1-botones-btn:active i, .contenedor1-botones-btn:hover i{
+  background-color: #0077B5;
+  color: #c3ffff;
+}
+
+
+.contenedor1-botones-btn:active span, .contenedor1-botones-btn:hover span{
+   color: #333333;
 }
 
 
 
-.contenedor1-lateral-derecho{
-   width: 30%;
-  height: 70%;
-  float: right;
-  padding: 20px;
-    color: black;
 
+
+.contenedor1-partebaja{
+  width: 100%;
+  height: 20%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinea los botones verticalmente en el centro */
+  align-items: center; /* Centra los botones horizontalmente */
 }
 
-
+.datos-cliente {
+  width: 40%;
+  height: 100%;
+}
 
 .datos-cliente h5 {
   color: black;
   margin-left: 20px;
-
-}
+ }
 
 
 /* Estilos para el segundo contenedor */
 #contenedor2 {
-  top: 8%;
-  left: 40%;
-  width: 59.5%;
+  top: 2%;
+  left: 22%;
+  width: 40%;
   height: 20%;
-  background-color: #0077c0;
-  color: white;
+  background: rgb(0,119,181);
+  background: linear-gradient(90deg, rgba(0,119,181,1) 0%, rgba(0,119,181,1) 14%, rgba(86,166,231,1) 100%);
   font-weight: bold;
-  border-radius: 0px 30px  0px 0px;
+  border-radius: 20px;
   overflow: hidden;
+  color: #c3ffff;
  }
 
  .datos-articulo{
@@ -104,9 +264,10 @@ html, body {
  }
 
 .h5-c1{
-  padding-top: 10px;
+  padding-top: 30px;
   font-size: 16px;
   font-weight: bold;
+
 }
 
 .h5-separado {
@@ -148,14 +309,13 @@ html, body {
   width: 45px;
   height: 39px;
   position: absolute;
-  top: 35%;
+  top: 55%;
   right: 6%;
   border: none;
-
 }
 
 .btn-page{
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
   color: rgb(255, 255, 255);
   font-size: x-large;
   top: 15%;
@@ -163,33 +323,47 @@ html, body {
  border: none;
 }
 
+.btn-page:active, .btn-page:hover{
+  color: #b4bfc2;
+}
+
 
 /* Estilos para el tercer contenedor */
 #contenedor3 {
-  bottom: 2.2%;
-  left: 0.5%;
-  width: 40.2%;
-  height: 69.5%;
-  background-color: white;
-  border-radius: 0px 0px 0px 30px;
+  bottom: 12%;
+  left: 22%;
+  width: 40%;
+  height: 65%;
+  background-color: #dce8eb;
+  border-radius: 20px;
   padding: 0;
   border-top: none;
+  overflow: hidden;
+}
+#contenedor3-A {
+  bottom: 12%;
+  left: 22%;
+  width: 40%;
+  height: 65%;
+  background-color: #dce8eb;
+  border-radius: 20px;
+  padding: 0;
+  border-top: none;
+  overflow: hidden;
+  border: 3px solid #FFC107;
+
 }
 
 
 
-contenedor-interior-crear-cliente{
-  background-color: black;
-  width: 100%;
-  height: 100%;
-}
 
 #cesta {
-  margin: 10px;
-  background-color: white;
-  width: 95%;
+  margin-left: 20px;
+  background-color: #dce8eb;
+  width: 90%;
   top: 3%;
-  height: 70%;
+  height: 92%;
+  border-radius: 20px;
   padding: 0;
   position: relative;
 }
@@ -201,7 +375,7 @@ contenedor-interior-crear-cliente{
   top: -25px;
   width: 100%;
   font-weight: bold;
-  background-color: white;
+  background-color: #dce8eb;
 }
 
 
@@ -233,39 +407,39 @@ contenedor-interior-crear-cliente{
 .titulo-cesta p {
   margin: 0;
   color: black;
-  background-color: white;
+  background-color: #dce8eb;
 }
 
-.botones-contenedor3 {
-  display: flex;
-  flex-wrap: wrap; /* Envuelve los elementos en varias líneas */
-  justify-content: space-between; /* Distribuye los elementos en el espacio restante de manera uniforme */
-  width: 90%; /* Ajusta el ancho de los elementos */
-  margin: 0 auto; /* Centra los elementos horizontalmente */
-  padding-top: 25px;
-}
-
-
-.botones-contenedor3-estilo:hover{
-  background-color: #4b0a0a;
-}
 
 .botones-contenedor3 button {
-  width: 48%; /* Ajusta el ancho de los botones para que quepan dos por fila */
-  height: 30px; /* Establece la altura deseada */
-  margin-bottom: 10px; /* Agrega un espacio entre los botones */
-  border: 3px solid rgb(0, 0, 0); /* Establece el borde externo */
-  border-radius: 3px; /* Ajusta el borde redondeado */
-  background-color: #0077c0; /* Establece el color de fondo */
-  color: white; /* Establece el color del texto */
-  font-size: 16px; /* Ajusta el tamaño del texto */
-  padding: 5px; /* Ajusta el relleno */
+
+  width: 45%; /* Ajusta el ancho de los botones para que quepan dos por fila */
+  height: 55px; /* Establece la altura deseada */
+   border: 3px solid rgb(0, 0, 0); /* Establece el borde externo */
+  border-radius: 20px; /* Ajusta el borde redondeado */
+  margin: 10px;
+  padding: 15px 25px;
+
+  background-color: #0077B5; /* Establece el color de fondo */
+  color: #E6F2F5; /* Establece el color del texto */
+  font-size: 18px; /* Ajusta el tamaño del texto */
   font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 9px #999;
 }
 
+
 .botones-contenedor3 button:hover{
-  background-color: #0077c0;
+  background-color: #56a6e7;
 }
+
+.botones-contenedor3 button:active{
+  background-color: #56a6e7;
+   box-shadow: 0 5px #666;
+  transform: translateY(4px);}
 
 
 p{
@@ -275,15 +449,57 @@ p{
 
 /* Estilos para el cuarto contenedor */
 #contenedor4 {
-  bottom: 2.2%;
-  left: 40%;
-  width: 59.5%;
+  bottom: 28%;
+  left: 63%;
+  width: 35%;
   height: 69.8%;
-  background-color: white;
-  border: 5px solid #0077c0;
-  border-radius: 0px 0px 30px 0px;
+  background-color: #dce8eb;
+  border-radius: 20px;
 
 }
+
+#contenedor5 {
+  bottom: 12%;
+  left: 63%;
+  width: 35%;
+  height: 15%;
+  background-color: #dce8eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#contenedor7 {
+  bottom: 1%;
+  left: 22%;
+  width: 76%;
+  height: 10%;
+  background-color: #dce8eb;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+ }
+.datos-cliente-label {
+  margin-left: 40px; /* Espacio entre las etiquetas y los valores */
+}
+
+.contenedor1-lateral-izquierdo{
+  width: 60%;
+  height: 100%;
+}
+
+.contenedor1-lateral-derecho{
+  width: 40%;
+  height: 100%;
+  align-items: center;
+  margin: 30px;
+  font-size: 40px;
+}
+
+
+.contenedor1-lateral-derecho a:active{
+ color: red;
+}
+
 
 .btn-borrarArt {
   position: relative;
@@ -320,15 +536,24 @@ p{
 }
 
 .fondo-tabla{
-  background-color: white;
+  background-color: #dce8eb;
   padding-top: 15px;
-  width: 97%;
-  height: 94%;
+  border-radius: 20px;
+  width: 95%;
+  height: 95%;
   margin: 12px;
   overflow: auto;
 }
 
-
+.fondo-tabla2{
+  background-color: #dce8eb;
+  padding-top: 15px;
+  border-radius: 20px;
+  width: 95%;
+  height: 95%;
+  margin: 12px;
+  overflow: hidden;
+}
 
 
 #contenedor6 {
@@ -1110,7 +1335,8 @@ table.center {
   width: 100%;
   text-align: left;
   margin: 0 auto;
-}
+  overflow: hidden;
+ }
 
 table {
   border-collapse: collapse;
@@ -1119,6 +1345,8 @@ table {
   text-align: left;
   overflow: hidden;
   width: 100%;
+  border-radius: 20px;
+
 }
 
 th {
@@ -1127,18 +1355,18 @@ th {
   letter-spacing: 0.1rem;
   font-size: 0.7rem;
   font-weight: 900;
-}
+ }
 
 td {
   padding: 1rem 2rem;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #E6F2F5;
 }
 
 tr:hover {
-  background-color: #e9ecef;
+  background-color: #b4bfc2;
 }
 
 .odd-row {
@@ -1149,9 +1377,7 @@ tr:hover {
   background-color: white;
 }
 
-.producto-gris {
-  background-color:#8DA399;
-}
+
 
 
 #pie-pagina h3 {

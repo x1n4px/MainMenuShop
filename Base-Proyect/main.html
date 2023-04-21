@@ -7,164 +7,21 @@
 
 </head>
 
-<nav class="navbar">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a href="#" class="nav-link">Inicio</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link"> {{current.user.nombre}}</a>
-    </li>
-  </ul>
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a href="#" class="textNavBtn">Pedido entrega en tienda</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="fas fa-undo"> </a>/home/in4p/git/Manage-Exams-Timetable/MS2-GestionHorarios
-    </li>
-    <li class="nav-item">
-      <a href="#"  class="fas fa-chart-bar"> </a>
-    </li>
-    <li class="nav-item">
-       <a href="#" class="fas fa-briefcase"> </a> 
-    </li>
-  </ul>
-</nav>
- 
+<body>
+
+  <div class="contenedor">
+    <div class="lateral-izquierdo">
+      <h1>Hue Brew</h1>
+    </div>
+    <div class="lateral-derecho">
+      <h1>dDpsof</h1>
+    </div>
+  </div>
 
 
-  
-    <div id="contenedor1" class="contenedor">
-       <input type="text" placeholder="Introduzca cliente...">
-       <button class="btn-lupa-c1"><i class="fa fa-search"></i></button>
 
-      <div class="datos-cliente">
-        <h5>Nombre: {{cliente.nombre}}</h5>
-        <h5>Apellidos: {{cliente.apellidos}}</h5>
-        <h5>Correo electrónico: {{cliente.email}}</h5>
-      </div>
-    </div>
-    <div id="contenedor2" class="contenedor">
-      <input type="text" placeholder="Introduzca articulo...">
-      <button class="btn-lupa"><i class="fa fa-search"></i></button>
-      <button class="btn-lupa-externa"><i class="fa fa-search"></i></button>
-      <div class="datos-articulo">
-        <h5  class="h5-separado">Precio: {{producto.precio}}</h5>
-        <h5  class="h5-separado">Lote: {{producto.lote}}</h5> 
-        <h5  class="h5-separado">Familia: {{producto.familia}}</h5>
-        <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
-        </h5>
-        <h5  class="h5-separado">Total</h5>
-      </div>
-      <div class="botones-contenedor2">
-        <button>Tarifas(F3)</button>
-        <button>Descto (F4)</button>
-        <button>Venta (F5)</button>
-      </div>
-      <div class="boton-visualizador">
-        <button class="btn-page"><i class="fa fa-file"></i></button>
-      </div>
-    </div>
-    <div id="contenedor3" class="contenedor">
-      <div id="cesta" class="contenedor-interior">
-        <div class="titulo-cesta">
-          <p>Artículo</p>
-          <p>Precio</p>
-        </div>
-        <br>
-        <div class="Objeto-cesta">
-          <p>{{producto.nombre}} </p>     
-          <p>{{producto.precio}}</p> 
-        </div>
-      </div>
-      <div class="botones-contenedor3">
-        <button>Finalizar venta</button>
-        <button>Aparcar venta</button>
-        <button>Hacer encargo</button>
-        <button>Hacer algo</button>
-        <button>Hacer algo</button>
-        <button>Hacer algo</button>
 
-      </div>
-    </div>
-    
-    </div>
-    
-    <div id="contenedor4" class="contenedor">
-      <div  id = "fondo-tabla" class="fondo-tabla">
-       <table>
-        <tr>
-          <td>
-            <h3>{{producto.nombre}}</h3>
-            <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3>{{producto.nombre}}</h3>
-            <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3>{{producto.nombre}}</h3>
-            <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-          </td>
-          </tr>
-          <tr>
-            <td>
-              <h3>{{producto.nombre}}</h3>
-              <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h3>{{producto.nombre}}</h3>
-              <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h3>{{producto.nombre}}</h3>
-              <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h3>{{producto.nombre}}</h3>
-              <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h3>{{producto.nombre}}</h3>
-              <p>{{producto.referencia}} · {{prodcuto.variedad}} · {{producto.tipo}} · {{producto.familia}}</p>
-            </td>
-          </tr>
-      </table>
-    </div>
-    </div>
-    <div id="contenedor5" class="contenedor">
-      <button class="negro">Cambiar de usuario</button>
-      <button class="azul">algo</button>
-      <button class="rojo">Recuperar Ticket</button>
-      <button class="morado">Devolver ticket</button>
-      <button class="rojo">Consultar Ticket</button>
-      <button class="azul">Retirada efectivo</button>
-      <button class="gris">Cierre caja</button>
-      <button class="verde">Contrato</button>
-      <button class="gris">Abrir cajón (F8)</button>
-      <button class="rojo">Almacen</button>
-      <button class="gris">Sincro manual</button>
-      <button class="amarillo">Salir</button>
-    </div>
-    <div id="contenedor6" class="contenedor">
-      <button >Minimizar</button>
-    </div>
-    <div id="pie-pagina" class="contenedor">
-    </div>
-  </body>
+</body>
 </html>
 
 

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Productos } from 'src/app/ Productos';
+import { Cliente } from 'src/app/Cliente';
 import { Producto } from 'src/app/Producto';
 
 @Component({
@@ -9,10 +10,14 @@ import { Producto } from 'src/app/Producto';
   styleUrls: ['./datos-cliente.component.css']
 })
 export class DatosClienteComponent {
-
+  nuevoCliente:Cliente = new Cliente;
   clienteActual: any;
-  editable!:boolean;
+  editable:any;
+  // 0 -> datos cliente
+  // 1 -> crear cliente
+  // 2 -> editar cliente
   boton:number = 0;
+  loginService: any;
   // 0 -> datos
   // 1 -> vales
   // 2 -> Tickets
@@ -30,5 +35,16 @@ export class DatosClienteComponent {
   onSubmit(): void {
     this.dialogRef.close(this.clienteActual);
 }
+
+
+terminarCompraEfectivo() {
+  if (this.editable === 3) {
+    console.log(this.nuevoCliente);
+    this.dialogRef.close({
+      nuevoCliente: this.nuevoCliente,
+    });
+  }
+}
+
 
 }

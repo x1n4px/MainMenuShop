@@ -2,13 +2,13 @@
 
   <div class="marco-interior-crear-cliente">
      <div class="espacio-interior-DCliente" >
-      <div class="botones">
+      <div class="botones" *ngIf="editable !== 1">
         <button (click)="boton = 0">Datos</button>
         <button (click)="boton = 1">vales</button>
         <button (click)="boton = 2">Tickets</button>
         <button (click)="boton = 3">Comentarios</button>
       </div>
-      <form class="datos-clientes-interno" *ngIf="clienteActual != null && boton === 0">
+      <form class="datos-clientes-interno" *ngIf="clienteActual != null && boton === 0 && editable === 0">
         <label class="form-group">
           Nombre:
           <input type="text" [readonly]="!editable" placeholder="Nombre" id="clienteNombre" name="clienteNombre"  [(ngModel)]="clienteActual.nombre">
@@ -54,7 +54,7 @@
           <button mat-raised-button color="primary" (click)="onSubmit()"  >Guardar cambios</button>
         </div>
       </form>
-      <div class="datos-clientes-interno" *ngIf="boton === 1">
+      <div class="datos-clientes-interno" *ngIf="boton === 1 && editable === 2">
         <p>Vales</p>
         <table>
           <thead>
@@ -79,6 +79,55 @@
         </table>
 
        </div>
+
+
+       <div class="datos-clientes-interno" *ngIf="editable === 1">
+        <form (submit)="terminarCompraEfectivo()"  class="datos-clientes-interno">
+          <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Primer apellido:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
+          </div>
+          <div class="form-group">
+            <label>Segundo apellido:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
+          </div>
+          <div class="form-group">
+            <label>Código postal:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
+          </div>
+          <div class="form-group">
+            <label>DNI:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Localidad:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
+          </div>
+          <div class="form-group">
+            <label>Número de móvil:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
+          </div>
+          <div class="form-group">
+            <label>Número de teléfono:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
+          </div>
+          <div class="form-group">
+            <label>Dirección:</label>
+            <input type="text" [(ngModel)]="nuevoCliente.direccion" name="direccion" required>
+          </div>
+          <button type="submit" class="btn-crear-cliente">Crear cliente</button>
+        </form>
+
+       </div>
+
 
 
       <div class="datos-clientes-interno" *ngIf="boton === 2">

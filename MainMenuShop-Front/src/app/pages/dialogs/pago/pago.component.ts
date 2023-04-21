@@ -34,7 +34,11 @@ export class PagoComponent  {
   totalCesta(){
     let sumaPrecios = 0;
     for(let i = 0; i < this.cesta.length; i++){
-      sumaPrecios += this.cesta[i].precio;
+      if(this.clienteActual.rol == 'EMPLEADO'){
+        sumaPrecios += (this.cesta[i].precio*0.8);
+      }else{
+        sumaPrecios += this.cesta[i].precio;
+      }
     }
     this.total = parseFloat(sumaPrecios.toFixed(2));
   }

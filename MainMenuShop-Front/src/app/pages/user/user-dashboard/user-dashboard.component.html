@@ -6,154 +6,146 @@
 
 </head>
 <body>
-<nav class="navbar">
-  <ul class="navbar-nav">
-    <li class="nav-item"> 
-      <a (click)="logout()" href="#" class="nav-link">Salir</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"> {{usuarioActual.nombre}}</a>
-    </li>
 
-  </ul>
-  <ul class="navbar-nav ml-auto">
-    <button class="textNavBtn" (click)="openDialog()">Recuperar Ticket</button>
-    <button class="textNavBtn" (click)="openDialogConsultarTicket()">Consultar Ticket</button>
-    <button class="textNavBtn" (click)="openDialogConsultarTicket()">Devolver Ticket</button>
-    <button class="textNavBtn" (click)="openDialogCierreCaja(1)">Cierre Caja</button>
-    <button class="textNavBtn" (click)="openDialogCierreCaja(2)">Retirar Efectivo</button>
-    <button class="textNavBtn">Contrato</button>
-    <button class="textNavBtn">Abrir Caja</button>
-    <button class="textNavBtn" onclick="window.open('/almacen', '_blank')">Almacen</button>   
- 
-   </ul>
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a  class="textNavBtn">Pedido entrega en tienda</a>
-    </li>
-    <li class="nav-item">
-      <a   class="fas fa-undo"> </a>
-    </li>
-    <li class="nav-item">
-      <a    class="fas fa-chart-bar"> </a>
-    </li>
-    <li class="nav-item">
-       <a class="fas fa-briefcase"> </a>
-    </li>
-  </ul>
-</nav>
 
-<!--
-
--->
 
 
     <div id="contenedor1" class="contenedor">
-      <div class="contenedor1-barra-busqueda">
-        <form (ngSubmit)="buscarCliente()" *ngIf="clienteActual == null">
-          <button class="btn-borrarArt-w"  type="reset">X</button>
-         <input type="text" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
-        </form>
-        <form *ngIf="clienteActual != null">
-          <button class="btn-borrarArt-w"  (click)="borrarCliente()"><i class="fa-solid fa-xmark"></i></button>
-          <input type="text" placeholder="{{clienteActual.nombre}}&nbsp;{{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}">
-        </form>
-       </div>
-      <div class="contenedor1-lateral-izquierdo">
-        <div class="datos-cliente" *ngIf="clienteActual != null">
-          <h5 class="h5-c1">DNI:  <small>{{clienteActual.dni}}</small></h5>
-          <h5 class="h5-c1">Telefono:  <small>{{clienteActual.numeroTelefono}}</small></h5>
-          <h5 class="h5-c1">Email: <small>{{clienteActual.email}}</small></h5>
-        </div>
-        <div class="datos-cliente" *ngIf="clienteActual == null">
-          <h5 class="h5-c1">DNI:   </h5>
-          <h5 class="h5-c1">Telefono:   </h5>
-          <h5 class="h5-c1">Email: </h5>
-        </div>
+      <div class="contenedor1-partealta-datos">
+        <h1>{{usuarioActual?.nombre}} {{usuarioActual?.apellido}}</h1>
+        <h1 *ngIf="usuarioActual?.rolAsignado === 'NORMAL'">Vendedor</h1>
       </div>
-      <div class="contenedor1-lateral-derecho">
-        <button (click)="openDialogDatosCliente(false)" class="btn-page"><i class="fa-solid fa-file" style="color: #0077c0;"></i></button>
-        <button (click)="mostrarCrearCliente()" class="btn-page"><i class="fa fa-plus" style="color: #0077c0;"></i></button>
-        <button (click)="openDialogDatosCliente(true)" class="btn-page"><i class="fa-solid fa-pen-to-square" style="color: #0077c0;"></i></button>
+      <hr>
+      <div class="contenedor1-botones">
+        <button class="contenedor1-botones-btn" (click)="openDialog()">
+            <i class="fas fa-ticket" ></i>
+           <span>Recuperar Ticket</span>
+        </button>
+        <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket()">
+          <i class="fas fa-search"  ></i>
+          <span> Consultar Ticket</span>
+        </button>
+        <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket()">
+          <i class="fas fa-undo la-lg" ></i>
+          <span>Devolver Ticket</span>
+        </button>
+        <button class="contenedor1-botones-btn" (click)="openDialogCierreCaja(1)">
+          <i class="fas fa-cash-register la-lg"></i>
+          <span>Cierre Caja</span>
+        </button>
+        <button class="contenedor1-botones-btn" (click)="openDialogCierreCaja(2)">
+          <i class="fas fa-money-bill-wave fa-lg"></i>
+          <span>Retirar Efectivo</span>
+        </button>
+        <button class="contenedor1-botones-btn"><i class="fa-solid fa-file-signature fa-lg" ></i>
+          <span>Contrato</span>
+        </button>
+        <button class="contenedor1-botones-btn"><i class="fa-sharp fa-solid fa-unlock fa-lg" ></i><span>Abrir Caja</span></button>
+        <button class="contenedor1-botones-btn" onclick="window.open('/almacen', '_blank')"><i class="fa-solid fa-store fa-lg"></i><span>Almacen</span></button>
       </div>
-
+      <hr>
+      <div class="contenedor1-partebaja">
+        <button class="contenedor1-botones-btn"  (click)="logout()" href="#"  >
+          <i class="fa-solid fa-right-to-bracket" > </i>
+          <span>Salir</span>
+        </button>
+      </div>
 
     </div>
 
 
 
-
+    <div id="contendor-grande" class="contendor">
     <div id="contenedor2" class="contenedor">
-      <form (ngSubmit)="buscar()" *ngIf="productoActual == null">
-        <button class="btn-borrarArt" type="reset" >X</button>
-      <input type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="Introduzca articulo...">
-    </form>
-      <form *ngIf="productoActual != null">
-        <button class="btn-borrarArt"  (click)="borrarArticulo()">X</button>
 
-        <input  type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="{{productoActual.nombre}}">
+     <div class="contenedor-barras">
+     <div class="contenedor1-barra-busqueda">
+      <div class="contenedor1-barra-busqueda-izquierdo">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="contenedor1-barra-busqueda-centro" *ngIf="!busqueda">
+        <form (ngSubmit)="buscarCliente()" >
+         <input class="busqueda-centro-usuarios" [(ngModel)]="terminoBusquedaCliente" name="terminoBusquedaCliente" placeholder="Introduzca cliente...">
+        </form>
+      </div>
 
-      </form>
-       <div class="datos-articulo" *ngIf="productoActual != null">
-        <h5  class="h5-separado">Precio: {{productoActual.precio}} </h5>
-        <h5  class="h5-separado">Lote:  {{productoActual.Lote}}</h5>
-        <h5  class="h5-separado">Familia:  {{productoActual.familia}}</h5>
-        <h5  class="h5-separado">Unidades <input class="unidades-articulo" [(ngModel)]="cantidadUnidades" type="number" min="1" max="99" value="1">
-        </h5>
-       </div>
-      <div class="datos-articulo" *ngIf="productoActual == null">
-        <h5  class="h5-separado">Precio:  </h5>
-        <h5  class="h5-separado">Lote:  </h5>
-        <h5  class="h5-separado">Familia:  </h5>
+      <div class="contenedor1-barra-busqueda-centro" *ngIf="busqueda">
+        <form (ngSubmit)="buscar()" *ngIf="productoActual == null">
+        <input class="busqueda-centro-usuarios" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" placeholder="Introduzca articulo...">
+        </form>
+     </div>
+
+      <div class="contenedor1-barra-busqueda-derecha">
+        <button ><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+    </div>
+
+    <div class="icono-persona" *ngIf="!busqueda">
+      <a class="btn-cambiar-A-Producto" (click)="cambiarBusqueda()"><i  class="fa-solid fa-user"></i></a>
+     </div>
+
+    <div class="icono-persona" *ngIf="busqueda">
+       <a class="btn-cambiar-A-Producto" (click)="cambiarBusqueda()"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+     </div>
+
+
+
+      <div class="datos-articulo"  >
         <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
         </h5>
        </div>
 
       <div class="boton-visualizador">
-        <button (click)="openDialogDatosProducto()" class="btn-page"><i class="fa fa-file"></i></button>
+        <button (click)="openDialogDatosProducto()" class="btn-page"><i class="fa-solid fa-barcode" style="color: #ffffff;"></i></button>
         <button class="btn-page"><i class="fa fa-house" style="color: #ffffff;"></i></button>
       </div>
     </div>
 
-    <div id="contenedor3" class="contenedor">
-      <div id="cesta" class="contenedor-interior">
-        <div class="titulo-cesta">
-          <p>Artículo</p>
-          <p>Precio</p>
+    <div id="contenedor3" class="contenedor"  >
 
-        </div>
+      <div id="cesta" class="contenedor-interior">
+        <h4>Cesta:</h4>
         <div class="Objeto-cesta"  >
-          <hr>
-        <table class="center">
-          <tbody>
-            <tr *ngFor="let resultadoCliente of resultadosCliente" (dblclick)="seleccionarCliente(resultadoCliente)">
-              <td><strong>{{resultadoCliente.nombre}} {{resultadoCliente.apellido1}} {{resultadoCliente.apellido2}} | {{resultadoCliente.dni}} || {{resultadoCliente.numeroMovil}} || {{resultadoCliente.localidad}}</strong>
-            </tr>
-          </tbody>
-        </table>
+
+
 
         <table>
           <tbody>
             <tr *ngFor="let producto of cesta" (dblclick)="eliminarDeCesta(producto)">
               <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
-              <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</span>
-                  <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</span>
+              <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</p>
+              <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</p>
             </tr>
           </tbody>
         </table>
         </div>
-        <hr>
       </div>
-       <div class="botones-contenedor3">
 
-        <button class="botones-contenedor3-estilo" (click)="openDialogPago()">Finalizar venta</button>
-        <button class="botones-contenedor3-estilo" (click)="aparcarCesta()">Aparcar venta</button>
-        <button class="botones-contenedor3-estilo">Hacer encargo</button>
-        <button class="botones-contenedor3-estilo" (click)="vaciarCestaCompleta()">Cancelar</button>
-        <button class="botones-contenedor3-estilo" >Hacer algo</button>
-        <button class="botones-contenedor3-estilo">Hacer algo</button>
+    </div>
 
+    <div id="contenedor3-A" class="contenedor" *ngIf="clienteActual?.rol === 'EMPLEADO'">
+
+      <div id="cesta" class="contenedor-interior">
+        <h4>Cesta:</h4>
+        <div class="Objeto-cesta"  >
+
+
+
+        <table>
+          <tbody>
+            <tr *ngFor="let producto of cesta" (dblclick)="eliminarDeCesta(producto)">
+              <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
+              <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</p>
+              <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</p>
+            </tr>
+          </tbody>
+        </table>
+        </div>
       </div>
+
     </div>
 
 
@@ -176,36 +168,52 @@
           </tbody>
         </table>
 
+        <table class="center">
+          <tbody>
+            <tr *ngFor="let resultadoCliente of resultadosCliente" (dblclick)="seleccionarCliente(resultadoCliente)">
+              <td><strong>{{resultadoCliente.nombre}} {{resultadoCliente.apellido1}} {{resultadoCliente.apellido2}} | {{resultadoCliente.dni}} || {{resultadoCliente.numeroMovil}} || {{resultadoCliente.localidad}}</strong>
+            </tr>
+          </tbody>
+        </table>
 
 
-
-    </div>
-    </div>
-    
-
-    <div id="pie-pagina" class="contenedor" *ngIf="promociones " >
-      <h3>Cupones y Promociones</h3>
-    </div>
-
-
-
-
-    <div (click)="formularioDevolucionDineroEfectivo=false" class="formulario-Devolucion-Efectivo" [hidden]="!formularioDevolucionDineroEfectivo">
-      <div class="formulario-devolucion-efectivo-centro">
-        <p>Efectivo a devolver: <br>
-
-          {{DineroDevolver}} €</p>
-       </div>
-
-
-    </div>
-
-    <div (click)="formularioDevolucionDineroTarjeta=false" class="formulario-Devolucion-Tarjeta" [hidden]="!formularioDevolucionDineroTarjeta">
-      <div class="formulario-devolucion-tarjeta-centro">
-
-        <p >Recuerda no dar dinero en efectivo</p>
       </div>
+    </div>
+
+    <div id="contenedor5" class="contenedor">
+
+        <div class="botones-contenedor3">
+          <button (click)="openDialogPago()">Finalizar venta</button>
+          <button   (click)="aparcarCesta()">Aparcar venta</button>
+          <button  >Hacer encargo</button>
+          <button   (click)="vaciarCestaCompleta()">Cancelar</button>
+
+        </div>
+
+    </div>
+
+    <div id="contenedor7" class="contenedor">
+      <div class="contenedor1-lateral-izquierdo">
+        <div class="datos-cliente" *ngIf="clienteActual != null">
+          <h5 class="h5-c1">
+            <span class="datos-cliente-label">DNI:</span> {{clienteActual.dni}}
+            <span class="datos-cliente-label">Teléfono:</span> {{clienteActual.numeroTelefono}}
+            <span class="datos-cliente-label">Email:</span> {{clienteActual.email}}
+          </h5>
+        </div>
+
+      </div>
+      <div class="contenedor1-lateral-derecho">
+        <a class="btn-datos-usuario" (click)="openDialogDatosCliente(0)"  ><i class="fa-solid fa-file" style="color: #0077B5;" ></i></a>
+        <a class="btn-datos-usuario"  (click)="openDialogDatosCliente(1)"  ><i class="fa fa-plus"  style="color: #0077B5;"></i></a>
+        <a class="btn-datos-usuario" (click)="openDialogDatosCliente(2)" ><i class="fa-solid fa-pen-to-square"  style="color: #0077B5;"></i></a>
+      </div>
+    </div>
+
   </div>
+
+
+
 
 
     <div class="formulario-Datos-Cliente" [hidden]="!formularioCrearcliente">
@@ -262,10 +270,10 @@
       </div>
     </div>
 
-  
 
 
-    
+
+
 
   </body>
 </html>
