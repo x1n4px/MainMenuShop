@@ -5,9 +5,7 @@ import com.sistema.examenes.repositorios.ClientesRepository;
 import com.sistema.examenes.repositorios.ProductoRepository;
 import com.sistema.examenes.repositorios.TicketProductoRepository;
 import com.sistema.examenes.repositorios.TicketRepository;
-import com.sistema.examenes.servicios.ClientesService;
-import com.sistema.examenes.servicios.ProductoService;
-import com.sistema.examenes.servicios.TicketService;
+import com.sistema.examenes.servicios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.CacheControl;
@@ -33,6 +31,13 @@ public class ProductoController {
     private ClientesRepository clientesRepository;
     @Autowired
     private ClientesService clientesService;
+
+    @Autowired
+    private TiendaService tiendaService;
+    @Autowired
+    private AlmacenService almacenService;
+
+
     @GetMapping("producto/{id}")
     public ResponseEntity<Optional<Productos>> obtenerProductoPorId(@PathVariable Long id){
         Optional<Productos> productos = productoService.obtenerProductoPorId(id);
@@ -57,6 +62,15 @@ public class ProductoController {
 
     }
 
+    @GetMapping("/tienda/todos")
+    public List<Tienda> obtenerTiendas(){
+        return tiendaService.obtenerTiendas();
+    }
+
+    @GetMapping("/almacen/todos")
+    public List<Almacen> obtenerAlmacen(){
+        return almacenService.obtenerAlmacen();
+    }
 
 
     /*

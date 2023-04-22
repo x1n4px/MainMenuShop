@@ -1,5 +1,6 @@
 package com.sistema.examenes.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +37,10 @@ public class Usuario implements UserDetails {
     private String rolAsignado;
 
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tienda_id")
+    @JsonBackReference
+    private Tienda tienda;
 
     @Override
     public boolean isAccountNonExpired() {return true;}
