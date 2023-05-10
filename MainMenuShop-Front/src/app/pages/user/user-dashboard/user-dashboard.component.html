@@ -37,12 +37,9 @@
           <i class="fas fa-money-bill-wave fa-lg"></i>
           <span>Retirar Efectivo</span>
         </button>
-        <button class="contenedor1-botones-btn"><i class="fa-solid fa-file-signature fa-lg" ></i>
-          <span>Contrato</span>
-        </button>
+         
         <button class="contenedor1-botones-btn"><i class="fa-sharp fa-solid fa-unlock fa-lg" ></i><span>Abrir Caja</span></button>
-        <button class="contenedor1-botones-btn" onclick="window.open('/almacen', '_blank')"><i class="fa-solid fa-store fa-lg"></i><span>Almacen</span></button>
-      </div>
+       </div>
       <hr>
       <div class="contenedor1-partebaja">
         <button class="contenedor1-botones-btn"  (click)="logout()" href="#"  >
@@ -94,7 +91,7 @@
 
 
       <div class="datos-articulo"  >
-        <h5  class="h5-separado">Unidades <input class="unidades-articulo" type="number" min="1" max="99">
+        <h5  class="h5-separado">Unidades <input [(ngModel)]="cantidadUnidades" class="unidades-articulo" type="number" min="1" max="99">
         </h5>
        </div>
 
@@ -107,8 +104,7 @@
     <div id="contenedor3" class="contenedor"  >
 
       <div id="cesta" class="contenedor-interior">
-        <h4>Cesta:</h4>
-        <div class="Objeto-cesta"  >
+         <div class="Objeto-cesta"  >
 
 
 
@@ -213,63 +209,7 @@
   </div>
 
 
-
-
-
-    <div class="formulario-Datos-Cliente" [hidden]="!formularioCrearcliente">
-      <div class="marco-interior-crear-cliente">
-        <button (click)="ocultarCrearCliente()">X</button>
-        <div class="espacio-interior-DCliente">
-          <form (submit)="crearCliente()" class="datos-clientes-interno">
-            <div class="form-group">
-              <label>Nombre:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-              <label>Primer apellido:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.apellido1" name="apellido1" required>
-            </div>
-            <div class="form-group">
-              <label>Segundo apellido:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.apellido2" name="apellido2" required>
-            </div>
-            <div class="form-group">
-              <label>Código postal:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.codigoPostal" name="codigoPostal" required>
-            </div>
-            <div class="form-group">
-              <label>DNI:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.dni" name="dni" required>
-            </div>
-            <div class="form-group">
-              <label>Email:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label>Localidad:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.localidad" name="localidad" required>
-            </div>
-            <div class="form-group">
-              <label>Número de móvil:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.numeroMovil" name="numeroMovil" required>
-            </div>
-            <div class="form-group">
-              <label>Número de teléfono:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.numeroTelefono" name="numeroTelefono" required>
-            </div>
-            <div class="form-group">
-              <label>Dirección:</label>
-              <input type="text" [(ngModel)]="nuevoCliente.direccion" name="direccion" required>
-            </div>
-            <button type="submit" class="btn-crear-cliente">Crear cliente</button>
-          </form>
-
-
-         </div>
-
-      </div>
-    </div>
-
+ 
 
 
 

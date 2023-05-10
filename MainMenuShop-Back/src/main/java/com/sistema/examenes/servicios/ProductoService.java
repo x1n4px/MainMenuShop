@@ -1,8 +1,12 @@
 package com.sistema.examenes.servicios;
 
+import com.sistema.examenes.modelo.Clientes;
 import com.sistema.examenes.modelo.Productos;
+import com.sistema.examenes.modelo.Ticket;
 import com.sistema.examenes.modelo.Usuario;
+import com.sistema.examenes.repositorios.ClientesRepository;
 import com.sistema.examenes.repositorios.ProductoRepository;
+import com.sistema.examenes.repositorios.TicketRepository;
 import com.sistema.examenes.repositorios.UsuarioRepository;
 import com.sistema.examenes.servicios.exceptions.EntidadNoEncontradaException;
 import lombok.var;
@@ -18,6 +22,10 @@ import java.util.Optional;
 public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
+    @Autowired
+    private ClientesRepository clientesRepository;
+    @Autowired
+    private TicketRepository ticketRepository;
 
     public List<Productos> obtenerProductos(){
         return productoRepository.findAll();
@@ -29,5 +37,10 @@ public class ProductoService {
 
 
     public List<Productos> buscar(String nombre){return productoRepository.findByNombreContainingIgnoreCase(nombre);
+    }
+    public List<Clientes> buscarCliente(String nombre){return clientesRepository.findByNombreContainingIgnoreCase(nombre);
+    }
+
+    public List<Ticket> buscarTicket(String referencia){return ticketRepository.findByReferencia(referencia);
     }
 }

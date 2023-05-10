@@ -122,14 +122,25 @@ export class LoginService {
   }
 
   buscarProducto(busqueda: string) {
-    const url = `http://localhost:8080/producto/buscar?q=${busqueda}`;
+    const url = `http://localhost:8080/buscar?nombre=${busqueda}`;
     console.log('URL de búsqueda:', url);
 
     return this.http.get<Producto[]>(url);
   }
 
+  buscarCliente(busqueda: string) {
+    const url = `http://localhost:8080/buscarCliente?nombre=${busqueda}`;
+    console.log('URL de búsqueda:', url);
 
+    return this.http.get<Cliente[]>(url);
+  }
 
+  buscarTicket(busqueda: string) {
+    const url = `http://localhost:8080/buscarTicket?referencia=${busqueda}`;
+    console.log('URL de búsqueda:', url);
+
+    return this.http.get<Ticket[]>(url);
+  }
 
   enviarTicket(ticket: any): Observable<any> {
     return this.http.post<any>('http://localhost:8080/ticket', ticket);

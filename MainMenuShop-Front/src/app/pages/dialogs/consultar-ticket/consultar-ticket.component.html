@@ -1,6 +1,8 @@
  <div class="formulario-mostrar-Ticket" >
   <div class="marco-interior">
-     <input type="text" placeholder="Introduzca número de ticket a consultar...">
+    <form (ngSubmit)="buscarTicket()" >
+     <input type="text" placeholder="Introduzca número de ticket a consultar..." [(ngModel)]="refTicket" name="refTicket">
+    </form>
     <div class="espacio-interior" >
       <a class="btn-volver" [hidden]="this.consultarTicket !== true"  (click)="this.consultarTicket = false">X</a>
 
@@ -13,8 +15,19 @@
 
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="!buscar">
           <ng-container *ngFor="let ticket of ticketBD" >
+            <tr (dblclick)="seleccionarTicket(ticket)"  >
+              <td>{{ticket.referencia}}</td>
+              <td>{{ ticket.cliente?.nombre }} {{ticket.cliente?.apellido1}} {{ticket.cliente?.apellido2}}</td>
+              <td>{{ticket.vendedor}}</td>
+
+             </tr>
+          </ng-container>
+        </tbody>
+
+        <tbody *ngIf="buscar">
+          <ng-container *ngFor="let ticket of ticketBusqueda" >
             <tr (dblclick)="seleccionarTicket(ticket)"  >
               <td>{{ticket.referencia}}</td>
               <td>{{ ticket.cliente?.nombre }} {{ticket.cliente?.apellido1}} {{ticket.cliente?.apellido2}}</td>

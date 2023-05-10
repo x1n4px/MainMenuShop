@@ -120,6 +120,15 @@ public class ProductoController {
         return productoService.buscar(nombre);
     }
 
+    @GetMapping("buscarCliente")
+    public List<Clientes> buscarClientePorNombre(@RequestParam("nombre") String nombre) {
+        return productoService.buscarCliente(nombre);
+    }
+
+    @GetMapping("buscarTicket")
+    public List<Ticket> buscarTicketPorNombre(@RequestParam("referencia") String referencia) {
+        return productoService.buscarTicket(referencia);
+    }
 
     @Autowired
     private TicketRepository ticketRepository;

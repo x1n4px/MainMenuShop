@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Productos } from 'src/app/ Productos';
- import { Cliente } from 'src/app/Cliente';
-import {   Producto } from 'src/app/Producto';
+import { Cliente } from 'src/app/Cliente';
+import { Producto } from 'src/app/Producto';
 import { LoginService } from 'src/app/services/login.service';
- import { Ticket } from 'src/app/Ticket';
+import { Ticket } from 'src/app/Ticket';
 import { AvisoClienteComponent } from '../../dialogs/aviso-cliente/aviso-cliente.component';
 import { CierreCajaComponent } from '../../dialogs/cierre-caja/cierre-caja.component';
 import { ConsultarTicketComponent } from '../../dialogs/consultar-ticket/consultar-ticket.component';
@@ -13,6 +13,7 @@ import { DatosArticuloComponent } from '../../dialogs/datos-articulo/datos-artic
 import { DatosClienteComponent } from '../../dialogs/datos-cliente/datos-cliente.component';
 import { PagoComponent } from '../../dialogs/pago/pago.component';
 import { RecuperarTicketComponent } from '../../dialogs/recuperar-ticket/recuperar-ticket.component';
+import { debounceTime } from 'rxjs';
 
 
 @Component({
@@ -23,18 +24,22 @@ import { RecuperarTicketComponent } from '../../dialogs/recuperar-ticket/recuper
 export class UserDashboardComponent implements OnInit {
   usuarioActual: any;
   rolAsignado!: string;
-  constructor(private route: Router, private loginService:LoginService, public dialog: MatDialog) { }
+  constructor(private route: Router, private loginService: LoginService, public dialog: MatDialog) { }
   isLoggedIn = false;
-   formularioDevolverTicket = false;
-   formularioCierreCaja = false;
-    formularioCrearcliente = false;
-    formularioDevolucionDineroEfectivo = false;
-  formularioDevolucionDineroTarjeta = false;
-  pagoEfectivo = false;
-  compraEfectiva = false;
-  compraTarjeta = false;
-  datosTicket = false;
-  promociones: boolean = false;
+
+
+  /*
+  conjuntoObjetos: any = {
+     valor1: 'Objeto 1' ,
+     valor2: 'Objeto 2' ,
+     valor3: 'Objeto 3' ,
+    // Agrega más objetos según sea necesario
+  };*/
+//  metodoPago!: string;
+  metodoPago: any = {
+    tarjeta: 'tarjeta',
+    efectivo: 'efectivo'
+  }
 
   productos: Producto[] = [];
   clientes: Cliente[] = [];
@@ -52,13 +57,10 @@ export class UserDashboardComponent implements OnInit {
   resultadosCliente!: any[];
 
   productoActual: any;
-  clienteActual: any ;
+  clienteActual: any;
   ticketActual: Ticket = new Ticket();
 
-  inputCliente!:any;
-  fechaActual!: Date;
-  horaActual!: string;
-  busqueda:boolean = false;
+  busqueda: boolean = false;
 
   nombre: any;
 
@@ -67,35 +69,32 @@ export class UserDashboardComponent implements OnInit {
     this.loginService.getCurrentUser().subscribe(data => {
       this.usuarioActual = data;
     });
-       this.obtenerProductos();
-     this.obtenerClientes();
-     this.fechaActual = new Date();
-    this.horaActual = this.obtenerHoraActual();
-    this.obtenerTodosTicket();
+
+
   }
 
-  cambiarBusqueda(){
-    this.busqueda =!this.busqueda;
+  cambiarBusqueda() {
+    this.busqueda = !this.busqueda;
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(RecuperarTicketComponent, {data:{conjuntoDeCestas: this.conjuntoDeCestas}});
-     dialogRef.afterClosed().subscribe(result => {
-       this.recuperarTicket(result);
+    const dialogRef = this.dialog.open(RecuperarTicketComponent, { data: { conjuntoDeCestas: this.conjuntoDeCestas } });
+    dialogRef.afterClosed().subscribe(result => {
+      this.recuperarTicket(result);
     });
   }
 
-  openDialogConsultarTicket(){
-    const dialogRef = this.dialog.open(ConsultarTicketComponent, {data:{ticketBD: this.ticketBD}});
+  openDialogConsultarTicket() {
+    const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: {} });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
-   openDialogDatosCliente(edita: any){
-    const dialogRef = this.dialog.open(DatosClienteComponent, {data:{clienteActual: this.clienteActual, editable:edita}});
-    if(edita == 1){
+  openDialogDatosCliente(edita: any) {
+    const dialogRef = this.dialog.open(DatosClienteComponent, { data: { clienteActual: this.clienteActual, editable: edita } });
+    if (edita == 1) {
       dialogRef.afterClosed().subscribe(result => {
-        this.nuevoCliente=result.nuevoCliente;
+        this.nuevoCliente = result.nuevoCliente;
         this.crearCliente();
       });
     }
@@ -105,22 +104,22 @@ export class UserDashboardComponent implements OnInit {
 
 
 
-  openDialogAvisoCliente( ){
-    const dialogRef = this.dialog.open(AvisoClienteComponent, {data:{clienteActual: this.clienteActual }});
-     dialogRef.afterClosed().subscribe(result => {
+  openDialogAvisoCliente() {
+    const dialogRef = this.dialog.open(AvisoClienteComponent, { data: { clienteActual: this.clienteActual } });
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
 
       } else {
         console.log(`Diálogo cerrado sin cambios`);
       }
-     });
+    });
   }
 
-  openDialogDatosProducto( ){
-    const dialogRef = this.dialog.open(DatosArticuloComponent, {data:{productoActual: this.productoActual }});
-     dialogRef.afterClosed().subscribe(result => {
+  openDialogDatosProducto() {
+    const dialogRef = this.dialog.open(DatosArticuloComponent, { data: { productoActual: this.productoActual } });
+    dialogRef.afterClosed().subscribe(result => {
 
-     });
+    });
   }
 
   openDialogPago() {
@@ -133,19 +132,19 @@ export class UserDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.total = result.total;
       const metodoPago = result.metodoPago;
-      if(metodoPago === 0){
+      if (metodoPago === 0) {
         this.terminarCompraEfectivo();
-      }else if(metodoPago === 1){
+      } else if (metodoPago === 1) {
         this.terminarCompraTarjeta();
       }
     });
   }
 
-  openDialogCierreCaja(n:number){
+  openDialogCierreCaja(n: number) {
     const dialogRef = this.dialog.open(CierreCajaComponent, {
       data: {
-        usuarioActual:this.usuarioActual,
-        numero:n
+        usuarioActual: this.usuarioActual,
+        numero: n
       }
     });
   }
@@ -161,80 +160,54 @@ export class UserDashboardComponent implements OnInit {
     return `${horas}:${minutos}:${segundos}`;
   }
 
-  private obtenerProductos(){
-    this.loginService.obtenerTodosLosProductos().subscribe(
-      (productos: Producto[]) => {
-        this.productos = productos;
-      },
-      (error) => {
-        console.log(error);
-      }
+ 
+ 
 
-    );
-  }
 
-  private obtenerClientes(){
-    this.loginService.obtenerTodosLosClientes().subscribe(
-      (clientes: Cliente[]) => {
-        this.clientes = clientes;
-      },
-      (error) => {
-        console.log(error);
-      }
-
-    );
-  }
-
-  obtenerTodosTicket(){
-       this.loginService.obtenerTodosLosTicket().subscribe(
-        (ticketBD: Ticket[]) => {
-          this.ticketBD = ticketBD;
-        },
-        (error) => {
-          console.log(error);
-        }
-
-      );
-
-  }
 
 
 
 
   buscar() {
-
-    if (this.terminoBusqueda && this.terminoBusqueda.trim()) {
-      const termino = this.terminoBusqueda.toLowerCase();
-      this.resultados = this.productos.filter(producto => {
-        const nombreD = producto.nombre.toLowerCase();
-        const referencia = producto.referencia.toLowerCase();
-        return nombreD.includes(termino) || referencia.includes(termino);
-      });
-    } else {
-      this.resultados = [];
-    }
-
     /*
+        if (this.terminoBusqueda && this.terminoBusqueda.trim()) {
+          const termino = this.terminoBusqueda.toLowerCase();
+          this.resultados = this.productos.filter(producto => {
+            const nombreD = producto.nombre.toLowerCase();
+            const referencia = producto.referencia.toLowerCase();
+            return nombreD.includes(termino) || referencia.includes(termino);
+          });
+        } else {
+          this.resultados = [];
+        }*/
+
+
     this.loginService.buscarProducto(this.terminoBusqueda)
-    .pipe(debounceTime(500)) // espera 500 ms antes de enviar la solicitud
-    .subscribe(productos => {
-      this.productos = productos;
-    }, error => {
-      console.error(error);
-    });*/
+      .subscribe(productos => {
+        this.resultados = productos;
+      }, error => {
+        this.resultados = [];
+      });
   }
 
-  buscarCliente(){
-    if (this.terminoBusquedaCliente && this.terminoBusquedaCliente.trim()) {
+  buscarCliente() {
+    /*if (this.terminoBusquedaCliente && this.terminoBusquedaCliente.trim()) {
       const termino = this.terminoBusquedaCliente.toLowerCase();
       this.resultadosCliente = this.clientes.filter(cliente => {
         const nombreC = cliente.nombre.toLowerCase();
         const id = cliente.id;
-        return nombreC.includes(termino)   ;
+        return nombreC.includes(termino);
       });
     } else {
       this.resultadosCliente = [];
-    }
+    }*/
+
+    this.loginService.buscarCliente(this.terminoBusquedaCliente)
+      .subscribe(clientes => {
+        this.resultadosCliente = clientes;
+      }, (error) => {
+        this.resultadosCliente = [];
+      })
   }
 
 
@@ -245,35 +218,36 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusqueda = '';
   }
 
-  seleccionarCliente(resultado:any){
+  seleccionarCliente(resultado: any) {
     this.clienteActual = resultado;
-    if(this.clienteActual.rol === 'EMPLEADO'){
+    if (this.clienteActual.rol === 'EMPLEADO') {
       this.openDialogAvisoCliente();
     }
+    this.cambiarBusqueda();
     this.resultadosCliente = [];
     this.terminoBusquedaCliente = '';
   }
 
-  nombreTicketSeleccionado!:string;
-  productosTicketSeleccionado!:Productos;
-  productoProductos!:Producto[];
+  nombreTicketSeleccionado!: string;
+  productosTicketSeleccionado!: Productos;
+  productoProductos!: Producto[];
 
-  seleccionarTicket(ticketX:any){
+  seleccionarTicket(ticketX: any) {
     this.ticketActual = ticketX;
 
     this.nombreTicketSeleccionado = ticketX.cliente.nombre + ' ' + ticketX.cliente.apellido1 + ' ' + ticketX.cliente.apellido2;
     this.productosTicketSeleccionado = ticketX.productos;
 
-     this.mostrarDatosTicket();
   }
 
 
 
-  aniadircesta(resultado: any ) {
+  aniadircesta(resultado: any) {
 
     for (let i = 0; i < this.cantidadUnidades; i++) {
       this.cesta.push(resultado);
     }
+    this.cantidadUnidades = 1;
     this.resultados = [];
     this.productoActual = null;
   }
@@ -286,7 +260,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   aparcarCesta() {
-    const nombreCesta = this.clienteActual ;
+    const nombreCesta = this.clienteActual;
     const cestaConNombre = [nombreCesta, ...this.cesta];
     this.conjuntoDeCestas.push(cestaConNombre);
     this.cesta = [];
@@ -300,7 +274,7 @@ export class UserDashboardComponent implements OnInit {
 
     this.clienteActual = cesta[0];
     this.cesta = cesta.slice(1);
-     const index = this.conjuntoDeCestas.indexOf(cesta);
+    const index = this.conjuntoDeCestas.indexOf(cesta);
     if (index > -1) {
       this.conjuntoDeCestas.splice(index, 1);
     }
@@ -309,79 +283,64 @@ export class UserDashboardComponent implements OnInit {
 
 
 
-  vaciarCestaCompleta(){
+  vaciarCestaCompleta() {
     this.cesta = [];
     this.clienteActual = [];
     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-   }
-  metodoPago!:string;
-  terminarCompraTarjeta(){
-    this.metodoPago = "tarjeta"
-    this.guardarTicket(this.metodoPago);
+  }
+  terminarCompraTarjeta() {
+     this.guardarTicket(this.metodoPago.tarjeta);
     this.cesta = [];
     this.clienteActual = [];
-     this.terminoBusqueda = '';
+    this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-   }
+  }
 
-  terminarCompraEfectivo(){
-    this.metodoPago  = "efectivo";
-    this.guardarTicket(this.metodoPago);
+  terminarCompraEfectivo() {
+     this.guardarTicket(this.metodoPago.efectivo);
     this.devolucionEfectivo();
     this.cesta = [];
     this.clienteActual = [];
     this.terminoBusqueda = '';
     this.terminoBusquedaCliente = '';
-   }
+  }
 
-  borrarArticulo(){
+  borrarArticulo() {
     this.productoActual = null;
   }
 
-  borrarCliente(){this.clienteActual = null;}
+  borrarCliente() { this.clienteActual = null; }
 
 
-  funcionParaAdmin(){
+  funcionParaAdmin() {
     this.route.navigate(['admin']);
 
   }
 
 
-  public logout(){
+  public logout() {
     this.loginService.logout();
     this.isLoggedIn = false;
     this.route.navigate(['']);
   }
 
 
-  mostrarDevolverTicket(){this.formularioDevolverTicket = true;}
-  ocultarDevolverTicket(){this.formularioDevolverTicket = false;}
 
-  mostrarCierreCaja(){this.formularioCierreCaja = true;}
-  ocultarCierreCaja(){this.formularioCierreCaja=false;}
-
-  mostrarDevolucionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = true;}
-  ocultarDevolcionDineroEfectivo(){this.formularioDevolucionDineroEfectivo = false;}
-  mostrarCrearCliente(){this.formularioCrearcliente = true;}
-  ocultarCrearCliente(){this.formularioCrearcliente = false;}
-  mostrarDatosTicket(){this.datosTicket = true;}
-  ocultarDatosTicket(){this.datosTicket = false;}
-
-  total!:number;
-  dineroEfectivo!:number;
-  totalCesta(){
+  total!: number;
+  dineroEfectivo!: number;
+  totalCesta() {
     let sumaPrecios = 0;
-    for(let i = 0; i < this.cesta.length; i++){
+    for (let i = 0; i < this.cesta.length; i++) {
       sumaPrecios += this.cesta[i].precio;
     }
     this.total = parseFloat(sumaPrecios.toFixed(2));
   }
 
-  DineroDevolver!:number;
-  devolucionEfectivo(){
+  DineroDevolver!: number;
+  devolucionEfectivo() {
     let diferencia = 0;
-    diferencia =  this.dineroEfectivo - this.total;
+    diferencia = this.dineroEfectivo - this.total;
     this.DineroDevolver = parseFloat(diferencia.toFixed(2));
     this.dineroEfectivo = 0;
   }
@@ -396,12 +355,12 @@ export class UserDashboardComponent implements OnInit {
     }
 
     const ticket = {
-      referencia: "E"+this.generarNumeros(),
-      cliente : this.clienteActual ,
-      vendedor: this.usuarioActual.nombre+' '+this.usuarioActual.apellido.split(' ')[0].charAt(0)+'.'+this.usuarioActual.apellido.split(' ')[1].charAt(0),
+      referencia: "E" + this.generarNumeros(),
+      cliente: this.clienteActual,
+      vendedor: this.usuarioActual.nombre + ' ' + this.usuarioActual.apellido.split(' ')[0].charAt(0) + '.' + this.usuarioActual.apellido.split(' ')[1].charAt(0),
       productos: this.cesta.map((producto) => ({ cantidad: 1, producto: producto })),
-      fecha: this.fechaActual,
-      hora: this.horaActual,
+      fecha: new Date(),
+      hora: this.obtenerHoraActual(),
       metodoPago: metodoPago
     };
 
@@ -415,7 +374,7 @@ export class UserDashboardComponent implements OnInit {
     // Mostramos los tickets almacenados en la consola
 
 
-     this.loginService.enviarTicket(ticket).subscribe(
+    this.loginService.enviarTicket(ticket).subscribe(
       respuesta => {
         console.log('Ticket enviado al backend');
         console.log(respuesta);
@@ -432,7 +391,7 @@ export class UserDashboardComponent implements OnInit {
 
   // obtén el último valor generado del almacenamiento local o inicializa a 0 si no existe
   contador: number = parseInt(localStorage.getItem('ultimo_valor_generado') || '0');
-   generarNumeros(): string {
+  generarNumeros(): string {
     this.contador++;
     const numero = `111111${this.contador.toString().padStart(6, '0')}`;
     // guarda el último valor generado en el almacenamiento local
@@ -444,7 +403,7 @@ export class UserDashboardComponent implements OnInit {
 
 
 
-   calcularImporteTotal(cesta: any[]): number {
+  calcularImporteTotal(cesta: any[]): number {
     let total = 0;
     for (const producto of cesta) {
       total += producto.precio;
@@ -467,12 +426,12 @@ export class UserDashboardComponent implements OnInit {
       numeroTelefono: this.clienteActual.numeroTelefono,
       rol: this.clienteActual.rol,
       direccion: this.clienteActual.direccion,
-      valecliente:this.clienteActual.valecliente
+      valecliente: this.clienteActual.valecliente
     };
 
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
-       },
+      },
       (error) => {
         console.log(error);
         // hacer algo en caso de error
@@ -480,12 +439,11 @@ export class UserDashboardComponent implements OnInit {
     );
   }
 
-  nuevoCliente:Cliente = new Cliente;
+  nuevoCliente: Cliente = new Cliente;
   crearCliente() {
     this.loginService.crearCliente(this.nuevoCliente).subscribe(
       data => {
         alert('Cliente creado correctamente');
-        this.formularioCrearcliente = false;
       },
       error => {
         console.log(error);

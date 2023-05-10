@@ -1,6 +1,6 @@
 
 .formulario-panel-cobro {
-  background-color: #ffffff;
+  background-color: #0077c0;
   position: fixed;
     top: 45%;
     left: 50%;
@@ -24,8 +24,7 @@
 
 
 .formulario-panel-cobro-cesta{
-  border: #0077c0 3px solid;
-  border-right: none;
+   border-right: none;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   background-color: white;

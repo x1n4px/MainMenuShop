@@ -1,29 +1,26 @@
 <html>
 
 <body>
-<div class = "div-externo">
-  <div class = "contenedor">
-    <div class="lateral-izquierdo">
-      <button class="btn-lateral">Cierre final</button>
-      <button class="btn-lateral">?</button>
-      <button  class="btn-lateral">Almacén</button>
-      <button id="btn-form" form="login" type = "submit" class="btn-lateral">TPV</button>
-    </div>
-    <div class="central"></div>
-    <div class="lateral-derecho">
-      <div class="lateral-derecho-contenedor">
-          <form (ngSubmit) = "formSubmit()" id="login">
-
-              <input type="text" [(ngModel)] = "loginData.username" name = "username" required  matInput placeholder="Digite su nombre de usuario">
-
-              <input type="password" [(ngModel)] = "loginData.password" name = "password" required  type="password" matInput placeholder="Digite su contraseña">
-
-          </form>
-
+  <div class="div-externo">
+    <div class="contenedor">
+      <form class="login-form" (ngSubmit)="formSubmit()">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="loginData.username" name="username" required matInput
+            placeholder="Digite su nombre de usuario"><br>
         </div>
-      </div>
 
+        <div class="form-group">
+          <input type="password" [(ngModel)]="loginData.password" name="password" required type="password" matInput
+            placeholder="Digite su contraseña">
+        </div>
+
+        <button type="submit" class="login-button">Acceder</button>
+      </form>
+
+
+
+
+    </div>
   </div>
-</div>
 
 </body>
