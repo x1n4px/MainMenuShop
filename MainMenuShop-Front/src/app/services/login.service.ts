@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Producto } from '../Producto';
 import { Cliente } from '../Cliente';
 import { Ticket } from '../Ticket';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,6 @@ export class LoginService {
   private eURL = "http://localhost:8080/eliminarUsuario";
   private rURL = "http://localhost:8080/recover-password";
   private rqURL = "http://localhost:8080/requestNewPassword";
-  private gUURL = "http://localhost:8080/user";
 
 
 
@@ -27,47 +27,48 @@ export class LoginService {
 
   //generamos el token
   public generateToken(loginData:any){
-    return this.http.post(`${baserUrl}/generate-token`,loginData);
+    return this.http.post(environment.baseURI + `/generate-token`,loginData);
+
   }
 
   public getCurrentUser(){
-    return this.http.get(`${baserUrl}/user/actual`);
+    return this.http.get(environment.baseURI + `/user/actual`);
   }
 
   public getAllUser(){
-    return this.http.get<User[]>(`${baserUrl}/user/todos`);
+    return this.http.get<User[]>(environment.baseURI + `/user/todos`);
   }
 
   eliminarUsuario(id:number): Observable<Object>{
-    return this.http.delete(`${baserUrl}/user/eliminarUsuario/${id}`);  }
+    return this.http.delete(environment.baseURI + `/user/eliminarUsuario/${id}`);  }
 
 
   changePassword(email: string, currentPassword: string, newPassword: string): Observable<any>{
     const body = {email, currentPassword, newPassword};
-    return this.http.post<any>("http://localhost:8080/user/perfil/cambiarClave", body);
+    return this.http.post<any>(environment.baseURI + `/user/perfil/cambiarClave`, body);
   }
 
   obtenerUsuarioPorId(id:number):Observable<User>{
-    return this.http.get<User>(`${this.gUURL}/${id}`);
+    return this.http.get<User>(environment.baseURI + `/user/${id}`);
   }
 
   actualizarUsuario(id:number, usuario:User) : Observable<Object>{
-    return this.http.put(`${this.gUURL}/${id}`, usuario);
+    return this.http.put(environment.baseURI + `user/${id}`, usuario);
   }
 
   public obtenerTodosLosProductos(){
-    return this.http.get<Producto[]>(`http://localhost:8080/producto/todos`);
+    return this.http.get<Producto[]>(environment.baseURI + `/producto/todos`);
 
   }
 
   public obtenerTodosLosClientes(){
-    return this.http.get<Cliente[]>(`http://localhost:8080/cliente/todos`);
+    return this.http.get<Cliente[]>(environment.baseURI + `/cliente/todos`);
 
   }
 
 
   public obtenerTodosLosTicket(){
-    return this.http.get<Ticket[]>(`http://localhost:8080/ticket/todos`);
+    return this.http.get<Ticket[]>(environment.baseURI + `/ticket/todos`);
 
   }
 
@@ -118,39 +119,31 @@ export class LoginService {
   }
 
   getUserDetails() {
-    return this.http.get("http://localhost:8080/profile");
+    return this.http.get(environment.baseURI + "/profile");
   }
 
   buscarProducto(busqueda: string) {
-    const url = `http://localhost:8080/buscar?nombre=${busqueda}`;
-    console.log('URL de búsqueda:', url);
-
-    return this.http.get<Producto[]>(url);
+    return this.http.get<Producto[]>(environment.baseURI + `/buscar?nombre=${busqueda}`);
   }
 
   buscarCliente(busqueda: string) {
-    const url = `http://localhost:8080/buscarCliente?nombre=${busqueda}`;
-    console.log('URL de búsqueda:', url);
 
-    return this.http.get<Cliente[]>(url);
+    return this.http.get<Cliente[]>(environment.baseURI + `/buscarCliente?nombre=${busqueda}`);
   }
 
   buscarTicket(busqueda: string) {
-    const url = `http://localhost:8080/buscarTicket?referencia=${busqueda}`;
-    console.log('URL de búsqueda:', url);
-
-    return this.http.get<Ticket[]>(url);
+    return this.http.get<Ticket[]>(environment.baseURI + `/buscarTicket?referencia=${busqueda}`);
   }
 
   enviarTicket(ticket: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/ticket', ticket);
+    return this.http.post<any>(environment.baseURI + `/ticket`, ticket);
   }
 
   actualizarCliente(id:number, cliente:Cliente):Observable<Object>{
-    return this.http.put(`http://localhost:8080/cliente/${id}`, cliente);
+    return this.http.put(environment.baseURI + `/cliente/${id}`, cliente);
   }
 
   crearCliente(cliente: Cliente): Observable<any> {
-    return this.http.post(`http://localhost:8080/cliente/`, cliente);
+    return this.http.post(environment.baseURI + `/cliente/`, cliente);
   }
 }
