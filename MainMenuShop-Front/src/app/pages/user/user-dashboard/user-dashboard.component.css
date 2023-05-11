@@ -374,6 +374,7 @@ html, body {
   border-radius: 20px;
   padding: 0;
   position: relative;
+
 }
 
 .titulo-cesta {
@@ -393,7 +394,9 @@ html, body {
   height: 95%;
   width: 100%;
   overflow: auto;
-  padding-top: 20px;
+  opacity: 0.9;
+  background-color: transparent;
+  scrollbar-color: red;
  }
  .Objeto-cesta-c{
   justify-content: space-between;
@@ -1401,3 +1404,17 @@ tr:hover {
   letter-spacing: 5px;
 }
 
+ ::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+ ::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+ ::-webkit-scrollbar-thumb {
+  background-color: transparent;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid #0077c0;  /* creates padding around scroll thumb */
+  background-color: #0077c0;
+}
