@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import baserUrl from './helper';
-import { map } from 'rxjs';
-import { User } from '../User';
-import { Observable } from 'rxjs';
-import { Producto } from '../Producto';
-import { Cliente } from '../Cliente';
-import { Ticket } from '../Ticket';
-import { environment } from 'src/environments/environment';
+ import { Observable } from 'rxjs';
+ import { Cliente } from '../class/Cliente';
+ import { environment } from 'src/environments/environment';
+import { User } from '../class/User';
+import { Producto } from '../class/Producto';
+import { Ticket } from '../class/Ticket';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Productos } from 'src/app/ Productos';
-import { Producto } from 'src/app/Producto';
-@Component({
+  @Component({
   selector: 'app-cierre-caja',
   templateUrl: './cierre-caja.component.html',
   styleUrls: ['./cierre-caja.component.css']
@@ -18,5 +16,5 @@ export class CierreCajaComponent  {
       this.usuarioActual = data.usuarioActual;
       this.opcion = data.numero;
     }
-  
+
 }

@@ -1,0 +1,31 @@
+<main>
+  <div class="componente">
+    <header>
+      <input id="numeroSecundario" [(ngModel)]="operacionCompleta">
+      <input type="text" [(ngModel)]="resultado">
+    </header>
+    <div class="cuerpo">
+
+      <div class="trozo"><button (click)="asignarValor('7')">7</button></div>
+      <div class="trozo"><button (click)="asignarValor('8')">8</button></div>
+      <div class="trozo"><button (click)="asignarValor('9')">9</button></div>
+      <div id="trozo-oscuro" class="trozo" (click)="asignarValor('/')"><button>/</button></div>
+      <div class="trozo"><button (click)="asignarValor('4')">4</button></div>
+      <div class="trozo"><button (click)="asignarValor('5')">5</button></div>
+      <div class="trozo"><button (click)="asignarValor('6')">6</button></div>
+      <div id="trozo-oscuro" class="trozo" (click)="asignarValor('*')"><button>x</button></div>
+      <div class="trozo"><button (click)="asignarValor('1')">1</button></div>
+      <div class="trozo"><button (click)="asignarValor('2')">2</button></div>
+      <div class="trozo"><button (click)="asignarValor('3')">3</button></div>
+      <div id="trozo-oscuro" class="trozo"><button (click)="asignarValor('-')">-</button></div>
+      <div class="trozo"><button (click)="asignarValor(0)">0</button></div>
+      <div id="trozo-oscuro" class="trozo"><button (click)="asignarValor('.')">.</button></div>
+      <div id="trozo-oscuro" class="trozo" (click)="porcentaje = true;"><button>%</button></div>
+      <div id="trozo-oscuro" class="trozo" (click)="asignarValor('+')"><button>+</button></div>
+    </div>
+    <div class="calcular">
+      <button class="btn-calcular" (click)="asignarValor('=')">Obtener resultado</button>
+      <button class="btn-calcular" (dblclick)="limpiarCompleto()" (click)="limpiar()">Limpiar</button>
+    </div>
+  </div>
+</main>

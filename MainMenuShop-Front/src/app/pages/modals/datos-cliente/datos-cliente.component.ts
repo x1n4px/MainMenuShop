@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Productos } from 'src/app/ Productos';
-import { Cliente } from 'src/app/Cliente';
-import { Producto } from 'src/app/Producto';
+ import { Cliente } from 'src/app/class/Cliente';
 
 @Component({
   selector: 'app-datos-cliente',

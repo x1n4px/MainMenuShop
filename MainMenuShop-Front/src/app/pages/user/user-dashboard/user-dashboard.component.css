@@ -251,6 +251,7 @@ html, body {
   border-radius: 20px;
   overflow: hidden;
   color: #c3ffff;
+
  }
 
  .datos-articulo{
@@ -260,8 +261,14 @@ html, body {
   width: 70%;
   height: 50%;
   display: inline-block;
+  }
 
- }
+  .datos-articulo input {
+    width: 50px;
+    font-size: x-large;
+    text-align: center;
+    border-radius: 10px;
+    }
 
 .h5-c1{
   padding-top: 30px;
@@ -339,6 +346,7 @@ html, body {
   padding: 0;
   border-top: none;
   overflow: hidden;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
 }
 #contenedor3-A {
   bottom: 12%;
@@ -359,8 +367,8 @@ html, body {
 
 #cesta {
   margin-left: 20px;
-  background-color: #dce8eb;
-  width: 90%;
+  background-color: transparent;
+  width: 95%;
   top: 3%;
   height: 92%;
   border-radius: 20px;
@@ -413,11 +421,12 @@ html, body {
 
 .botones-contenedor3 button {
 
-  width: 45%; /* Ajusta el ancho de los botones para que quepan dos por fila */
+  width: 40%; /* Ajusta el ancho de los botones para que quepan dos por fila */
   height: 55px; /* Establece la altura deseada */
    border: 3px solid rgb(0, 0, 0); /* Establece el borde externo */
   border-radius: 20px; /* Ajusta el borde redondeado */
-  margin: 10px;
+  margin-top: 12px;
+  margin-inline: 30px;
   padding: 15px 25px;
 
   background-color: #0077B5; /* Establece el color de fondo */
@@ -428,7 +437,7 @@ html, body {
   text-align: center;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 5px #999;
 }
 
 
@@ -455,7 +464,7 @@ p{
   height: 69.8%;
   background-color: #dce8eb;
   border-radius: 20px;
-
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
 }
 
 #contenedor5 {
@@ -466,6 +475,7 @@ p{
   background-color: #dce8eb;
   border-radius: 20px;
   overflow: hidden;
+
 }
 
 #contenedor7 {
@@ -477,6 +487,7 @@ p{
   border-radius: 20px;
   overflow: hidden;
   display: flex;
+
  }
 .datos-cliente-label {
   margin-left: 40px; /* Espacio entre las etiquetas y los valores */
@@ -536,7 +547,7 @@ p{
 }
 
 .fondo-tabla{
-  background-color: #dce8eb;
+  background-color: transparent;
   padding-top: 15px;
   border-radius: 20px;
   width: 95%;
@@ -1389,3 +1400,4 @@ tr:hover {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 5px;
 }
+

@@ -1,0 +1,107 @@
+
+
+main {
+  width: 400px;
+  height: 650px;
+}
+
+.componente {
+
+}
+
+header {
+  padding: 15px;
+  border: solid 5px #0077B5;
+  ;
+  border-radius: 15px;
+  height: 150px;
+  margin-bottom: 20px;
+  text-align: right;
+
+}
+
+header input {
+  font-size: 30px;
+  width: 100%;
+  height: 48%;
+  text-align: right;
+  outline: none;
+  border: none;
+}
+
+#numeroSecundario{
+font-size: 18px;
+}
+
+.cuerpo {
+  padding: 4px;
+  border: solid 3px black;
+  border-radius: 15px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Crea 4 columnas iguales */
+  grid-template-rows: repeat(4, 1fr);
+  /* Crea 4 filas iguales */
+  gap: 5px;
+  /* Espacio entre los trozos */
+  background-color: #0077B5;
+}
+
+.trozo {
+  background-color: #b4bfc2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+.trozo button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+
+  font-size: large;
+  font-weight: 600;
+  border-radius: 15px;
+
+}
+
+.trozo button:hover {
+  background-color: #FFC107;
+}
+
+.trozo button:active {
+  background-color: #FFC107;
+}
+
+#trozo-oscuro {
+  background-color: #5c5c5c;
+}
+
+.calcular {
+  border-radius: 15px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.btn-calcular {
+  width: 48%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  border-radius: 15px;
+  border: solid 3px black;
+  margin-right: 5px;
+  font-size: large;
+  font-weight: 600;
+   background-color: #b4bfc2;
+}
+
+.btn-calcular:hover {
+  background-color: orange;
+}

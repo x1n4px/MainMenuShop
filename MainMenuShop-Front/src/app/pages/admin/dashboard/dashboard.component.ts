@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { User } from 'src/app/User';
+import { User } from 'src/app/class/User';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   activarConfirmacionEliminacion() {
     this.confirmacionEliminacion = true;
   }
-  
+
   alternarTabla(): void {
     this.mostrarTabla = !this.mostrarTabla;
   }

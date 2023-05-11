@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Productos } from 'src/app/ Productos';
-import { Producto } from 'src/app/Producto';
+ import { Producto } from 'src/app/class/Producto';
 import { DevolucionDineroComponent } from '../devolucion-dinero/devolucion-dinero.component';
 
 @Component({

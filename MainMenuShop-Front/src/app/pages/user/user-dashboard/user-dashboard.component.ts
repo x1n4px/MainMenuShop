@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Productos } from 'src/app/ Productos';
-import { Cliente } from 'src/app/Cliente';
-import { Producto } from 'src/app/Producto';
+ import { Cliente } from 'src/app/class/Cliente';
+import { Producto } from 'src/app/class/Producto';
 import { LoginService } from 'src/app/services/login.service';
-import { Ticket } from 'src/app/Ticket';
-import { AvisoClienteComponent } from '../../dialogs/aviso-cliente/aviso-cliente.component';
-import { CierreCajaComponent } from '../../dialogs/cierre-caja/cierre-caja.component';
-import { ConsultarTicketComponent } from '../../dialogs/consultar-ticket/consultar-ticket.component';
-import { DatosArticuloComponent } from '../../dialogs/datos-articulo/datos-articulo.component';
-import { DatosClienteComponent } from '../../dialogs/datos-cliente/datos-cliente.component';
-import { PagoComponent } from '../../dialogs/pago/pago.component';
-import { RecuperarTicketComponent } from '../../dialogs/recuperar-ticket/recuperar-ticket.component';
+import { Ticket } from 'src/app/class/Ticket';
+import { AvisoClienteComponent } from '../../modals/aviso-cliente/aviso-cliente.component';
+import { CierreCajaComponent } from '../../modals/cierre-caja/cierre-caja.component';
+import { ConsultarTicketComponent } from '../../modals/consultar-ticket/consultar-ticket.component';
+import { DatosArticuloComponent } from '../../modals/datos-articulo/datos-articulo.component';
+import { DatosClienteComponent } from '../../modals/datos-cliente/datos-cliente.component';
+import { PagoComponent } from '../../modals/pago/pago.component';
+import { RecuperarTicketComponent } from '../../modals/recuperar-ticket/recuperar-ticket.component';
 import { debounceTime } from 'rxjs';
+import { Productos } from 'src/app/class/ Productos';
+import { CalculadoraComponent } from '../../modals/calculadora/calculadora.component';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class UserDashboardComponent implements OnInit {
   rolAsignado!: string;
   constructor(private route: Router, private loginService: LoginService, public dialog: MatDialog) { }
   isLoggedIn = false;
-
+  subtotal: number  = 0;
 
   /*
   conjuntoObjetos: any = {
@@ -84,6 +85,13 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
+  openCalculator() {
+    const dialogRef = this.dialog.open(CalculadoraComponent, { data: {  } });
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
   openDialogConsultarTicket() {
     const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: {} });
     dialogRef.afterClosed().subscribe(result => {
@@ -138,6 +146,7 @@ export class UserDashboardComponent implements OnInit {
         this.terminarCompraTarjeta();
       }
     });
+    this.subtotal = 0;
   }
 
   openDialogCierreCaja(n: number) {
@@ -160,8 +169,8 @@ export class UserDashboardComponent implements OnInit {
     return `${horas}:${minutos}:${segundos}`;
   }
 
- 
- 
+
+
 
 
 
@@ -246,10 +255,18 @@ export class UserDashboardComponent implements OnInit {
 
     for (let i = 0; i < this.cantidadUnidades; i++) {
       this.cesta.push(resultado);
+      this.calcularSubtotal();
     }
     this.cantidadUnidades = 1;
     this.resultados = [];
     this.productoActual = null;
+  }
+
+  calcularSubtotal() {
+    this.subtotal = 0;
+    for(let i = 0; i < this.cesta.length; i++) {
+      this.subtotal += this.cesta[i].precio;
+    }
   }
 
   eliminarDeCesta(producto: Producto) {

@@ -1,7 +1,5 @@
-import { Cliente } from "./Cliente";
-import { Producto  } from "./Producto";
 import { Productos } from "./ Productos";
-import { ValeCliente } from "./ValeCliente";
+import { Cliente } from "./Cliente";
 
 export class Ticket {
   id!:number;

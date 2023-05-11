@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Productos } from 'src/app/ Productos';
-import { Producto } from 'src/app/Producto';
-@Component({
+  @Component({
   selector: 'app-devolucion-dinero',
   templateUrl: './devolucion-dinero.component.html',
   styleUrls: ['./devolucion-dinero.component.css']
