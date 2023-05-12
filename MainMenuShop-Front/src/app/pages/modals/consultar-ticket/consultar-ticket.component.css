@@ -1,13 +1,12 @@
 .formulario-mostrar-Ticket {
-  background-color: #0077c0;
-  position: fixed;
+  background-color: #E6F2F5;
+   position: fixed;
     top: 45%;
     left: 50%;
     width: 70%;
     height: 80%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 5px;
+     border-radius: 5px;
     padding: 5px;
     z-index: 1000;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
@@ -18,14 +17,14 @@
   width: 100%;
   height: 100%;
   padding: 30px;
-}
+  background-color: #E6F2F5;
+ }
 
 .marco-interior input {
   width: 100%;
   height: 6%;
-  border: 4px solid #0077c0;
-  border-radius: 10px;
-  padding: auto;
+   border-radius: 10px;
+  padding: 10px;
   padding-left: 10px;
   font-weight: 600;
   font-size: 18px;
@@ -33,9 +32,9 @@
 }
 
 .espacio-interior {
-  background-color: #ffffff;
-  border: 4px solid #0077c0;
-  border-radius: 10xp;
+
+  border: 3px solid #0077B5;
+  border-radius: 20px;
   margin-top: 20px;
   width: 100%;
   height: 90%;
@@ -44,16 +43,32 @@
   z-index: 1;
 }
 
+.espacio-interior-interno {
+
+   border-radius: 20px;
+  margin-top: 20px;
+  width: 100%;
+  height: 90%;
+  padding: 20px;
+  overflow: auto;
+  z-index: 1;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
 
 
 table {
   border-collapse: collapse;
-  box-shadow: 0 5px 10px #e1e5ee;
-  background-color: white;
+   background-color: white;
   text-align: left;
   overflow: hidden;
   width: 100%;
-  border: #0077c0 3px solid;
+  border-radius: 20px;
+
 }
 
 th {
@@ -62,18 +77,26 @@ th {
   letter-spacing: 0.1rem;
   font-size: 0.7rem;
   font-weight: 900;
-}
+ }
 
 td {
   padding: 1rem 2rem;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #E6F2F5;
 }
 
 tr:hover {
-  background-color: #e9ecef;
+  background-color: #56a6e7;
+}
+
+.odd-row {
+  background-color: #f2f2f2;
+}
+
+.even-row {
+  background-color: white;
 }
 
 .odd-row {
@@ -85,16 +108,12 @@ tr:hover {
 }
 
 .btn-volver{
-  background-color: #0077c0;
-  border: 3px solid #002244;
-  color: white;
+  color: #0077c0;
   padding: 10px;
   width: auto;
-    font-weight: 600;
-   cursor: pointer;
-  outline: none;
+  font-size: x-large;
+  font-weight: 600;
   transition: 0.2s all;
-  border-radius: 25%;
 }
 
 .btn-volver:active{
@@ -105,4 +124,24 @@ tr:hover {
 
 .btn-volver2{
 border: #002244 2px solid;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+ ::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+ ::-webkit-scrollbar-thumb {
+  background-color: transparent;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid #0077c0;  /* creates padding around scroll thumb */
+  background-color: white;
+}
+.check-mark {
+  color: green;
+  font-size: 16px;
 }

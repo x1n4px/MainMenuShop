@@ -421,37 +421,28 @@ html, body {
   background-color: #dce8eb;
 }
 
+.botones-contenedor3 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 
 .botones-contenedor3 button {
-
-  width: 40%; /* Ajusta el ancho de los botones para que quepan dos por fila */
-  height: 55px; /* Establece la altura deseada */
-   border: 3px solid rgb(0, 0, 0); /* Establece el borde externo */
-  border-radius: 20px; /* Ajusta el borde redondeado */
-  margin-top: 12px;
-  margin-inline: 30px;
-  padding: 15px 25px;
-
-  background-color: #0077B5; /* Establece el color de fondo */
-  color: #E6F2F5; /* Establece el color del texto */
-  font-size: 18px; /* Ajusta el tamaño del texto */
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  box-shadow: 0 5px #999;
+  flex-basis: calc(50% - 10px);
+  margin: 5px;
+  padding: 18px;
+  border-radius: 20px;
+  background-color: #0077B5;
+  font-size: large;
+  color: white;
+  font-weight: 400;
+  border: 2px solid black;
 }
 
-
-.botones-contenedor3 button:hover{
-  background-color: #56a6e7;
-}
-
-.botones-contenedor3 button:active{
-  background-color: #56a6e7;
-   box-shadow: 0 5px #666;
-  transform: translateY(4px);}
+.botones-contenedor3 button:hover, .botones-contenedor3 button:active {
+  transform: scale(0.95);
+ }
 
 
 p{

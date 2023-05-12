@@ -23,11 +23,11 @@
         <i class="fas fa-ticket"></i>
         <span>Recuperar Ticket</span>
       </button>
-      <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket()">
+      <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket(0)">
         <i class="fas fa-search"></i>
         <span> Consultar Ticket</span>
       </button>
-      <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket()">
+      <button class="contenedor1-botones-btn" (click)="openDialogConsultarTicket(1)">
         <i class="fas fa-undo la-lg"></i>
         <span>Devolver Ticket</span>
       </button>
@@ -220,6 +220,7 @@
             style="color: #0077B5;"></i></a>
         <a class="btn-datos-usuario" (click)="openDialogDatosCliente(2)"><i class="fa-solid fa-pen-to-square"
             style="color: #0077B5;"></i></a>
+        <a class="btn-datos-usuario" ><i class="fa-solid fa-user-xmark" style="color: #0077B5;"></i></a>
       </div>
     </div>
 

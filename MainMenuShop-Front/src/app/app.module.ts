@@ -49,7 +49,7 @@ import { AvisoClienteComponent } from './pages/modals/aviso-cliente/aviso-client
     DevolucionDineroComponent,
     AvisoClienteComponent,
      CalculadoraComponent,
-  ],
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

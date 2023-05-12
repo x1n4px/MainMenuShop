@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
- import { Cliente } from 'src/app/class/Cliente';
+import { Cliente } from 'src/app/class/Cliente';
 import { Producto } from 'src/app/class/Producto';
 import { LoginService } from 'src/app/services/login.service';
 import { Ticket } from 'src/app/class/Ticket';
@@ -27,7 +27,7 @@ export class UserDashboardComponent implements OnInit {
   rolAsignado!: string;
   constructor(private route: Router, private loginService: LoginService, public dialog: MatDialog) { }
   isLoggedIn = false;
-  subtotal: number  = 0;
+  subtotal: number = 0;
 
   /*
   conjuntoObjetos: any = {
@@ -36,7 +36,7 @@ export class UserDashboardComponent implements OnInit {
      valor3: 'Objeto 3' ,
     // Agrega más objetos según sea necesario
   };*/
-//  metodoPago!: string;
+  //  metodoPago!: string;
   metodoPago: any = {
     tarjeta: 'tarjeta',
     efectivo: 'efectivo'
@@ -64,6 +64,7 @@ export class UserDashboardComponent implements OnInit {
   busqueda: boolean = false;
 
   nombre: any;
+  devuelve: any;
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
@@ -86,18 +87,30 @@ export class UserDashboardComponent implements OnInit {
   }
 
   openCalculator() {
-    const dialogRef = this.dialog.open(CalculadoraComponent, { data: {  } });
+    const dialogRef = this.dialog.open(CalculadoraComponent, { data: {} });
     dialogRef.afterClosed().subscribe(result => {
 
     });
   }
 
-  openDialogConsultarTicket() {
-    const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: {} });
+  openDialogConsultarTicket(devuelve: any) {
+    const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: { devolucion: devuelve } });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      const metodoPago = result.metodoPago;
+      this.clienteActual = result.clienteActual;
+      this.cesta = result.cesta;
+      this.devuelve = true;
+      this.terminarCompraEfectivo();
+
+    });
   }
+
+
   openDialogDatosCliente(edita: any) {
     const dialogRef = this.dialog.open(DatosClienteComponent, { data: { clienteActual: this.clienteActual, editable: edita } });
     if (edita == 1) {
@@ -264,7 +277,7 @@ export class UserDashboardComponent implements OnInit {
 
   calcularSubtotal() {
     this.subtotal = 0;
-    for(let i = 0; i < this.cesta.length; i++) {
+    for (let i = 0; i < this.cesta.length; i++) {
       this.subtotal += this.cesta[i].precio;
     }
   }
@@ -307,7 +320,7 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusquedaCliente = '';
   }
   terminarCompraTarjeta() {
-     this.guardarTicket(this.metodoPago.tarjeta);
+    this.guardarTicket(this.metodoPago.tarjeta);
     this.cesta = [];
     this.clienteActual = [];
     this.terminoBusqueda = '';
@@ -315,7 +328,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   terminarCompraEfectivo() {
-     this.guardarTicket(this.metodoPago.efectivo);
+    this.guardarTicket(this.metodoPago.efectivo);
     this.devolucionEfectivo();
     this.cesta = [];
     this.clienteActual = [];
@@ -370,9 +383,15 @@ export class UserDashboardComponent implements OnInit {
       nombre: "tienda",
       apellido1: "Mijas"
     }
+    let referencia;
+    if (!this.devuelve) {
+      referencia = "E" + this.generarNumeros();
+    } else {
+      referencia = "D" + this.generarNumeros();
+    }
 
     const ticket = {
-      referencia: "E" + this.generarNumeros(),
+      referencia: referencia,
       cliente: this.clienteActual,
       vendedor: this.usuarioActual.nombre + ' ' + this.usuarioActual.apellido.split(' ')[0].charAt(0) + '.' + this.usuarioActual.apellido.split(' ')[1].charAt(0),
       productos: this.cesta.map((producto) => ({ cantidad: 1, producto: producto })),
@@ -380,7 +399,7 @@ export class UserDashboardComponent implements OnInit {
       hora: this.obtenerHoraActual(),
       metodoPago: metodoPago
     };
-
+    console.log("Ticket: " + ticket.referencia);
     // Agregamos el ticket al arreglo de tickets
     this.tickets.push(ticket);
 

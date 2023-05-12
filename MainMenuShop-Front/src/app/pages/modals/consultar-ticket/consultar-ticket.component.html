@@ -1,50 +1,55 @@
- <div class="formulario-mostrar-Ticket" >
+<div class="formulario-mostrar-Ticket">
   <div class="marco-interior">
-    <form (ngSubmit)="buscarTicket()" >
-     <input type="text" placeholder="Introduzca número de ticket a consultar..." [(ngModel)]="refTicket" name="refTicket">
+    <form (ngSubmit)="buscarTicket()">
+      <input type="text" placeholder="Introduzca número de ticket a consultar..." [(ngModel)]="refTicket"
+        name="refTicket">
     </form>
-    <div class="espacio-interior" >
-      <a class="btn-volver" [hidden]="this.consultarTicket !== true"  (click)="this.consultarTicket = false">X</a>
+    <div class="espacio-interior">
+      <a class="btn-volver"  *ngIf="this.consultarTicket" (click)="botonVolver()"><i class="fa fa-chevron-left"  ></i></a>
 
-      <table [hidden]="this.consultarTicket === true">
+      <table [hidden]="this.consultarTicket">
         <thead>
-          <tr  >
+          <tr>
             <th>Referencia</th>
             <th>Cliente</th>
             <th>Vendedor</th>
 
-            </tr>
+          </tr>
         </thead>
         <tbody *ngIf="!buscar">
-          <ng-container *ngFor="let ticket of ticketBD" >
-            <tr (dblclick)="seleccionarTicket(ticket)"  >
+          <ng-container *ngFor="let ticket of ticketBD">
+            <tr (dblclick)="seleccionarTicket(ticket)">
               <td>{{ticket.referencia}}</td>
               <td>{{ ticket.cliente?.nombre }} {{ticket.cliente?.apellido1}} {{ticket.cliente?.apellido2}}</td>
               <td>{{ticket.vendedor}}</td>
-
-             </tr>
+            </tr>
           </ng-container>
         </tbody>
 
         <tbody *ngIf="buscar">
-          <ng-container *ngFor="let ticket of ticketBusqueda" >
-            <tr (dblclick)="seleccionarTicket(ticket)"  >
+          <ng-container *ngFor="let ticket of ticketBusqueda">
+            <tr (dblclick)="seleccionarTicket(ticket)">
               <td>{{ticket.referencia}}</td>
               <td>{{ ticket.cliente?.nombre }} {{ticket.cliente?.apellido1}} {{ticket.cliente?.apellido2}}</td>
               <td>{{ticket.vendedor}}</td>
 
-             </tr>
+            </tr>
           </ng-container>
         </tbody>
       </table>
-      <div class="espacio-interior"  [hidden]="this.consultarTicket !== true">
-         <p>Referencia: {{ticketActual.referencia}}</p>
-        <p>Vendedor: {{ticketActual.vendedor}}</p>
-        <p>Fecha: {{ticketActual.fecha}}</p>
-        <p>Hora: {{ticketActual.hora}}</p>
-        <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
-        <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
-        <p>Productos:</p>
+      <div class="espacio-interior-interno" *ngIf="this.consultarTicket && !devolucion">
+
+        <div class="grid-container">
+          <p>Referencia: {{ticketActual.referencia}}</p>
+          <p>Vendedor: {{ticketActual.vendedor}}</p>
+          <p>Fecha: {{ticketActual.fecha}}</p>
+          <p>Hora: {{ticketActual.hora}}</p>
+          <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
+          <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
+        </div>
+        <br>
+        <h3>Productos:</h3>
+
         <table>
           <thead>
             <tr>
@@ -66,7 +71,47 @@
 
 
       </div>
+      <div class="espacio-interior-interno" *ngIf="this.consultarTicket&& devolucion">
 
+        <div class="grid-container">
+          <p>Referencia: {{ticketActual.referencia}}</p>
+          <p>Vendedor: {{ticketActual.vendedor}}</p>
+          <p>Fecha: {{ticketActual.fecha}}</p>
+          <p>Hora: {{ticketActual.hora}}</p>
+          <p>Cliente: {{this.nombreTicketSeleccionado}}</p>
+          <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
+          <p>Devolucion</p>
+        </div>
+        <br>
+        <h3>Productos:</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+              <th>Referencia</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prS of ticketActualDevolucion.productos">
+              <td>{{prS.cantidad}}</td>
+              <td>{{ prS.producto.referencia }}</td>
+              <td>{{ prS.producto.nombre }}</td>
+              <td>{{ prS.producto.precio }} €</td>
+              <td>
+
+                <button *ngIf="!prS.devolucion" (click)="devolverProducto(prS)">Añadir</button>
+                <button *ngIf="prS.devolucion" (click)="retirarProducto(prS)">Retirar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="finalizarDevolucion()">Finalizar</button>
+
+
+      </div>
 
 
     </div>
