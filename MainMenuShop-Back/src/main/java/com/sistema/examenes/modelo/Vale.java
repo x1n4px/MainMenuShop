@@ -26,4 +26,7 @@ public class Vale {
 
     private double cantidad;
     private String condicion;
+    private Date fechaUso;
+    private Boolean utilizado;
+    private String ticketReferencia;
 }

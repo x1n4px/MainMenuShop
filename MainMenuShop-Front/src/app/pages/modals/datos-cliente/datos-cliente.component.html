@@ -54,7 +54,7 @@
           <button mat-raised-button color="primary" (click)="onSubmit()"  >Guardar cambios</button>
         </div>
       </form>
-      <div class="datos-clientes-interno" *ngIf="boton === 1 && editable === 2">
+      <div class="datos-clientes-interno" *ngIf="boton === 1 ">
         <p>Vales</p>
         <table>
           <thead>
@@ -63,6 +63,9 @@
               <th>Fecha de inicio</th>
               <th>Fecha de expiración</th>
               <th>Cantidad</th>
+              <th>Fecha uso</th>
+              <th>Ticket</th>
+              <th>Utilizado</th>
             </tr>
           </thead>
           <tbody>
@@ -71,8 +74,10 @@
                 <td>{{ valecliente.referencia }}</td>
                 <td>{{ valecliente.vale.fechaInicio | date }}</td>
                 <td>{{ valecliente.vale.fechaExpiracion | date }}</td>
-
                 <td>{{ valecliente.vale.cantidad }}</td>
+                <td>{{valecliente.vale.fechaUso | date}}</td>
+                <td>{{valecliente.vale.ticketReferencia}}</td>
+                <td>{{valecliente.vale.utilizado}}</td>
               </tr>
             </ng-container>
           </tbody>

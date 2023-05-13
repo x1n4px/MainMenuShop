@@ -50,30 +50,9 @@ export class ConsultarTicketComponent implements OnInit {
 
 
   seleccionarTicket(Ticket: Ticket) {
-    const productosCopiados: TProductos[] = [];
     this.ticketActual = Ticket;
-    this.nombreTicketSeleccionado = Ticket.cliente.nombre + ' ' + Ticket.cliente.apellido1 + ' ' + Ticket.cliente.apellido2;
     this.consultarTicket = true;
-
-    this.ticketActualDevolucion.cliente = Ticket.cliente;
-    this.ticketActualDevolucion.fecha = Ticket.fecha;
-    this.ticketActualDevolucion.hora = Ticket.hora;
-    this.ticketActualDevolucion.id = Ticket.id;
-    this.ticketActualDevolucion.metodoPago = Ticket.metodoPago;
-
-    for (const producto of Ticket.productos) {
-      const productoCopiado: TProductos = {
-        id: producto.id,
-        producto: producto.producto,
-        cantidad: producto.cantidad,
-        devolucion: false
-      }
-      productosCopiados.push(productoCopiado);
-
-    }
-
-    this.ticketActualDevolucion.productos = productosCopiados;
-    console.log(this.ticketActualDevolucion);
+    console.log(this.ticketActual);
   }
 
   obtenerTodosTicket() {
@@ -101,7 +80,6 @@ export class ConsultarTicketComponent implements OnInit {
 
   devolverProducto(producto: any) {
     this.cestaDevolucion.push(producto);
-    this.actualizarTicket(producto);
     console.log(this.cestaDevolucion);
   }
 
@@ -109,10 +87,9 @@ export class ConsultarTicketComponent implements OnInit {
     const indice = this.cestaDevolucion.indexOf(producto);
     if (indice !== -1) {
       this.cestaDevolucion.splice(indice, 1);
-      this.actualizarTicket(producto);
     }
 
-   }
+  }
 
 
 
@@ -121,14 +98,8 @@ export class ConsultarTicketComponent implements OnInit {
 
   }
 
-  actualizarTicket(producto: any): any {
-    for (const producto of this.ticketActualDevolucion.productos) {
-      if (producto.id === producto.producto.id) {
-        producto.devolucion = !producto.devolucion;
-        break;
-      }
-    }
-  }
+
+
 
 
 
@@ -139,10 +110,11 @@ export class ConsultarTicketComponent implements OnInit {
 
 
   finalizarDevolucion() {
-     this.dialogRef.close({
-       metodoPago: this.ticketActualDevolucion.metodoPago,
-      clienteActual:this.ticketActualDevolucion.cliente,
-      cesta:this.cestaDevolucion
+    this.dialogRef.close({
+      devolucion: true,
+      metodoPago: this.ticketActual.metodoPago,
+      clienteActual: this.ticketActual.cliente,
+      cesta: this.cestaDevolucion
     });
 
   }

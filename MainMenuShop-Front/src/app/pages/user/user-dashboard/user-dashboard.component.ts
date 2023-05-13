@@ -37,10 +37,7 @@ export class UserDashboardComponent implements OnInit {
     // Agrega más objetos según sea necesario
   };*/
   //  metodoPago!: string;
-  metodoPago: any = {
-    tarjeta: 'tarjeta',
-    efectivo: 'efectivo'
-  }
+  metodoPago: any ;
 
   productos: Producto[] = [];
   clientes: Cliente[] = [];
@@ -95,17 +92,23 @@ export class UserDashboardComponent implements OnInit {
 
   openDialogConsultarTicket(devuelve: any) {
     const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: { devolucion: devuelve } });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result?.devolucion  ) {
+        this.metodoPago = result.metodoPago;
+        this.clienteActual = result.clienteActual;
+        this.cesta = result.cesta;
+        this.devuelve = true;
+        console.log(result.metodoPago);
+          if(this.metodoPago === 'tarjeta'){
+          this.terminarCompraTarjeta();
+         }else{
+          this.terminarCompraEfectivo();
+         }
 
-      const metodoPago = result.metodoPago;
-      this.clienteActual = result.clienteActual;
-      this.cesta = result.cesta;
-      this.devuelve = true;
-      this.terminarCompraEfectivo();
+
+      }
 
     });
   }
@@ -227,6 +230,7 @@ export class UserDashboardComponent implements OnInit {
     this.loginService.buscarCliente(this.terminoBusquedaCliente)
       .subscribe(clientes => {
         this.resultadosCliente = clientes;
+        console.log(this.resultadosCliente);
       }, (error) => {
         this.resultadosCliente = [];
       })
@@ -320,20 +324,16 @@ export class UserDashboardComponent implements OnInit {
     this.terminoBusquedaCliente = '';
   }
   terminarCompraTarjeta() {
-    this.guardarTicket(this.metodoPago.tarjeta);
-    this.cesta = [];
-    this.clienteActual = [];
-    this.terminoBusqueda = '';
-    this.terminoBusquedaCliente = '';
+    this.guardarTicket('Tarjeta');
+
   }
 
   terminarCompraEfectivo() {
-    this.guardarTicket(this.metodoPago.efectivo);
-    this.devolucionEfectivo();
-    this.cesta = [];
-    this.clienteActual = [];
-    this.terminoBusqueda = '';
-    this.terminoBusquedaCliente = '';
+    this.guardarTicket('Efectivo');
+    if(!this.devuelve){
+      this.devolucionEfectivo();
+    }
+
   }
 
   borrarArticulo() {
@@ -388,6 +388,7 @@ export class UserDashboardComponent implements OnInit {
       referencia = "E" + this.generarNumeros();
     } else {
       referencia = "D" + this.generarNumeros();
+      this.devuelve = false;
     }
 
     const ticket = {
@@ -399,7 +400,7 @@ export class UserDashboardComponent implements OnInit {
       hora: this.obtenerHoraActual(),
       metodoPago: metodoPago
     };
-    console.log("Ticket: " + ticket.referencia);
+    console.log(ticket.referencia, ticket.cliente ,ticket.productos, ticket.vendedor, ticket.fecha, ticket.hora, ticket.metodoPago);
     // Agregamos el ticket al arreglo de tickets
     this.tickets.push(ticket);
 
@@ -413,11 +414,9 @@ export class UserDashboardComponent implements OnInit {
     this.loginService.enviarTicket(ticket).subscribe(
       respuesta => {
         console.log('Ticket enviado al backend');
-        console.log(respuesta);
       },
       error => {
         console.error('Error al enviar el ticket al backend');
-        console.error(error);
       }
     );
 

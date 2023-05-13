@@ -4,4 +4,7 @@ export class Vale {
   fechaExpiracion!:Date;
   cantidad!:number;
   condicion!:string;
+  fechaUso!:Date;
+  ticketReferencia!:String;
+  utilizado!:boolean;
 }

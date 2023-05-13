@@ -14,7 +14,7 @@
 
   <div id="contenedor1" class="contenedor">
     <div class="contenedor1-partealta-datos">
-      <h1>{{usuarioActual?.nombre}} {{usuarioActual?.apellido}}</h1>
+      <h1>{{usuarioActual?.nombre}}, <br> {{usuarioActual?.apellido}}</h1>
       <h1 *ngIf="usuarioActual?.rolAsignado === 'NORMAL'">Vendedor</h1>
     </div>
     <hr>

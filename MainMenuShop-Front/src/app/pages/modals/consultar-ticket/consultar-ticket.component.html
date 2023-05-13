@@ -95,15 +95,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let prS of ticketActualDevolucion.productos">
+            <tr *ngFor="let prS of ticketActual.productos">
               <td>{{prS.cantidad}}</td>
               <td>{{ prS.producto.referencia }}</td>
               <td>{{ prS.producto.nombre }}</td>
               <td>{{ prS.producto.precio }} €</td>
               <td>
 
-                <button *ngIf="!prS.devolucion" (click)="devolverProducto(prS)">Añadir</button>
-                <button *ngIf="prS.devolucion" (click)="retirarProducto(prS)">Retirar</button>
+                <button (click)="devolverProducto(prS.producto)">Añadir</button>
+                <button  (click)="retirarProducto(prS)">Retirar</button>
               </td>
             </tr>
           </tbody>

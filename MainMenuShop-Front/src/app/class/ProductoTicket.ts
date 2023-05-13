@@ -15,8 +15,6 @@ export class ProductoTicket {
 
 
 export class TProductos {
-  id!:number;
-  producto!: Producto;
+   producto!: Producto;
   cantidad!:number;
-  devolucion:boolean = false;
-}
+ }
