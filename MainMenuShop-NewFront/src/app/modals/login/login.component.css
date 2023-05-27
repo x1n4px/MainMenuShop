@@ -1,0 +1,62 @@
+.formulario-Datos-Cliente {
+  background-color: #0077c0;
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 250px;
+    transform: translate(-50%, -50%);
+    background-color: #454545;
+    border-radius: 20px;
+
+    z-index: 1000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+}
+
+.info-interna{
+   font-size: large;
+  text-align: center;
+  border: 5px solid #FFA500;
+  background-color: #454545;
+  border-radius: 15px;
+  height: 92%;
+  margin: 5px;
+  }
+   .btn-login{
+    padding: 10px;
+     width: 50%;
+    font-size: large;
+    border: 3px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #FFA500;
+    color: #FFA500;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 9px #999;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #e0e0e0;
+    text-shadow: 2px 2px 2px #1E1E1E;
+  }
+
+  .btn-login:hover {
+   background-color: #454545;
+
+  }
+
+  .btn-login:active {
+    background-color: #454545;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  button {
+
+  }

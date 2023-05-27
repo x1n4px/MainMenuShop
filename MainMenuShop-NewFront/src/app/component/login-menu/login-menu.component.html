@@ -1,0 +1,71 @@
+<body>
+  <div id="contenedorPadre">
+    <div id="contenedorHijo" [ngClass]="{'bordered':isBordered}">
+      <header>
+        <h3>{{!olvidada ? 'Inicio de Sesión' : 'Recuperar Contraseña'}}</h3>
+      </header><br>
+
+      <div class="formulario" [hidden]="olvidada">
+        <form (ngSubmit)="formSubmit()" #loginForm="ngForm">
+
+          <h2 class="errores" *ngIf="accion === '401L'">Credenciales incorrectos!</h2>
+
+
+          <div class="bloque">
+            <label class="form-group">
+              Email:<br>
+              <input class="input-login" [(ngModel)]="loginData.email" name="username" required>
+              <p
+                *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                El correo electrónico es obligatorio.</p>
+            </label>
+          </div>
+
+
+          <div class="bloque">
+            <label class="form-group">
+              Password:<br>
+              <input class="input-login" [(ngModel)]="loginData.password" name="password" required type="password"
+                required >
+
+              <p
+                *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                La contraseña es obligatoria.</p>
+            </label>
+          </div>
+
+
+
+          <div class="botones-centrados">
+            <button class="btn-login" type="submit">Iniciar sesión</button>
+            <button class="btn-login" type="reset">Limpiar</button><br>
+            <a class="btn-reset" (click)="olvidada = true;error=false; isBordered = false;">Olvidó su contraseña?</a>
+          </div>
+        </form>
+
+      </div>
+      <div class="formulario" [hidden]="!olvidada">
+
+
+
+        <br>
+        <div class="bloque2">
+          <p style="color: red;" *ngIf="error" class="errores">Email no existente!</p>
+
+          <form (ngSubmit)="formSubmitReset()">
+            <label class="form-group">Email:<br>
+              <input class="input-login" [(ngModel)]="emailP" name="email" required matInput>
+            </label>
+
+            <div class="botones-centrados-reset">
+
+              <button class="btn-login" type="submit">Modificar Contraseña</button>
+              <button class="btn-login" (click)="olvidada = false;error=false;">Iniciar Sesión</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>

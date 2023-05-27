@@ -1,0 +1,9 @@
+<div class="formulario-Datos-Cliente"  >
+  <div class="info-interna">
+    <p *ngIf="token != null">Inicio de sesión correcto!</p><br>
+    <button *ngIf="token != null" class="btn-login" (click)="cerrarSesion()">Cerrar Sesión</button>
+    <p>Estado de la Sesión: </p>
+    <h2 style="color: green;" *ngIf="token != null">SESION INICIADA</h2>
+    <h2 style="color:red" *ngIf="token == null">SESION CONCLUIDA</h2>
+   </div>
+</div>

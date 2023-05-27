@@ -1,0 +1,102 @@
+-------------------------------------------------------------------------------
+Test set: com.ms1.gestionUsuarios.GestionUsuariosApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 55, Failures: 14, Errors: 6, Skipped: 0, Time elapsed: 11.658 s <<< FAILURE! - in com.ms1.gestionUsuarios.GestionUsuariosApplicationTests
+eliminarMateria  Time elapsed: 0.183 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$BorrarSlotConcreto.eliminarMateria(GestionUsuariosApplicationTests.java:1153)
+
+obtenerUnaPrueba  Time elapsed: 0.074 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: com.ms1.gestionUsuarios.dto.HorarioDTO["horaInicio"])
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarSlotConcreto.obtenerUnaPrueba(GestionUsuariosApplicationTests.java:1075)
+
+obtenerMateriaNoExistente  Time elapsed: 0.071 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarSlotConcreto.obtenerMateriaNoExistente(GestionUsuariosApplicationTests.java:1109)
+
+obtenerUnaMateria  Time elapsed: 0.139 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$SlotConcreta.obtenerUnaMateria(GestionUsuariosApplicationTests.java:1040)
+
+obtenerTodasLasMaterias  Time elapsed: 0.139 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<400>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearSlot.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:1014)
+
+obtenerTodasLasPruebas  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$slotSlot.obtenerTodasLasPruebas(GestionUsuariosApplicationTests.java:968)
+
+eliminarMateria  Time elapsed: 0.07 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$BorrarPruebaConcreta.eliminarMateria(GestionUsuariosApplicationTests.java:892)
+
+eliminarMateriaNoExistente  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$BorrarPruebaConcreta.eliminarMateriaNoExistente(GestionUsuariosApplicationTests.java:933)
+
+obtenerUnaPrueba  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarPruebaConcreta.obtenerUnaPrueba(GestionUsuariosApplicationTests.java:803)
+
+obtenerMateriaNoExistente  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarPruebaConcreta.obtenerMateriaNoExistente(GestionUsuariosApplicationTests.java:848)
+
+obtenerUnaMateriaNoExistente  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$pruebaConcreta.obtenerUnaMateriaNoExistente(GestionUsuariosApplicationTests.java:769)
+
+obtenerUnaMateria  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$pruebaConcreta.obtenerUnaMateria(GestionUsuariosApplicationTests.java:728)
+
+obtenerTodasLasMaterias  Time elapsed: 0.068 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearPrueba.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:679)
+
+obtenerTodasLasPruebas  Time elapsed: 0.071 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$pruebaPrueba.obtenerTodasLasPruebas(GestionUsuariosApplicationTests.java:631)
+
+eliminarMateriaNoExistente  Time elapsed: 0.135 s  <<< ERROR!
+jakarta.servlet.ServletException: Request processing failed: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$BorrarMateriaConcreta.eliminarMateriaNoExistente(GestionUsuariosApplicationTests.java:608)
+Caused by: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$BorrarMateriaConcreta.eliminarMateriaNoExistente(GestionUsuariosApplicationTests.java:608)
+
+obtenerUnaMateria  Time elapsed: 0.138 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<404>
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarMateriaConcreto.obtenerUnaMateria(GestionUsuariosApplicationTests.java:534)
+
+obtenerMateriaNoExistente  Time elapsed: 0.131 s  <<< ERROR!
+java.lang.IllegalArgumentException: 'name' must not be empty
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$ModificarMateriaConcreto.obtenerMateriaNoExistente(GestionUsuariosApplicationTests.java:564)
+
+obtenerUnaMateriaNoExistente  Time elapsed: 0.134 s  <<< ERROR!
+jakarta.servlet.ServletException: Request processing failed: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$materiaConcreto.obtenerUnaMateriaNoExistente(GestionUsuariosApplicationTests.java:513)
+Caused by: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$materiaConcreto.obtenerUnaMateriaNoExistente(GestionUsuariosApplicationTests.java:513)
+
+obtenerUnaMateria  Time elapsed: 0.134 s  <<< ERROR!
+jakarta.servlet.ServletException: Request processing failed: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$materiaConcreto.obtenerUnaMateria(GestionUsuariosApplicationTests.java:492)
+Caused by: com.ms1.gestionUsuarios.exceptios.EntidadNoEncontradaException
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$materiaConcreto.obtenerUnaMateria(GestionUsuariosApplicationTests.java:492)
+
+obtenerTodasLasMaterias  Time elapsed: 0.142 s  <<< ERROR!
+jakarta.servlet.ServletException: 
+Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["PUBLIC.UK_J128YVC8MSY1T08OBY50O299O_INDEX_5 ON PUBLIC.MATERIA(NOMBRE NULLS FIRST) VALUES ( /* 2 */ 'matematicas' )"; SQL statement:
+insert into materia (id, eliminada, nombre) values (default, ?, ?) [23505-214]]
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearMaterias.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:463)
+Caused by: org.springframework.dao.DataIntegrityViolationException: 
+could not execute statement; SQL [n/a]; constraint ["PUBLIC.UK_J128YVC8MSY1T08OBY50O299O_INDEX_5 ON PUBLIC.MATERIA(NOMBRE NULLS FIRST) VALUES ( /* 2 */ 'matematicas' )"; SQL statement:
+insert into materia (id, eliminada, nombre) values (default, ?, ?) [23505-214]]
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearMaterias.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:463)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearMaterias.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:463)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: 
+Unique index or primary key violation: "PUBLIC.UK_J128YVC8MSY1T08OBY50O299O_INDEX_5 ON PUBLIC.MATERIA(NOMBRE NULLS FIRST) VALUES ( /* 2 */ 'matematicas' )"; SQL statement:
+insert into materia (id, eliminada, nombre) values (default, ?, ?) [23505-214]
+	at com.ms1.gestionUsuarios.GestionUsuariosApplicationTests$CrearMaterias.obtenerTodasLasMaterias(GestionUsuariosApplicationTests.java:463)
+

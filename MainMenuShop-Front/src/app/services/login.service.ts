@@ -25,7 +25,8 @@ export class LoginService {
 
   //generamos el token
   public generateToken(loginData:any){
-    return this.http.post(environment.baseURI + `/generate-token`,loginData);
+    console.log(loginData);
+    return this.http.post(`http://localhost:8080/login`,loginData);
 
   }
 

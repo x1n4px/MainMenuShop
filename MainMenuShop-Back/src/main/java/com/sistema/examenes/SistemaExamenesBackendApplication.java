@@ -18,31 +18,6 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*try{
-			Usuario usuario = new Usuario();
-
-			usuario.setNombre("Alex");
-			usuario.setApellido("Soto");
-			usuario.setUsername("alex");
-			usuario.setPassword("12345");
-			usuario.setEmail("alex@gmail.com");
-			usuario.setTelefono("988212020");
-			usuario.setPerfil("foto.png");
-
-			Rol rol = new Rol();
-			rol.setRolId(2L);
-			rol.setRolNombre("NORMAL");
-
-			Set<UsuarioRol> usuariosRoles = new HashSet<>();
-			UsuarioRol usuarioRol = new UsuarioRol();
-			usuarioRol.setRol(rol);
-			usuarioRol.setUsuario(usuario);
-			usuariosRoles.add(usuarioRol);
-
-			Usuario usuarioGuardado = usuarioService.guardarUsuario(usuario,usuariosRoles);
-			System.out.println(usuarioGuardado.getUsername());
-		}catch (UsuarioFoundException exception){
-			exception.printStackTrace();
-		}*/
+		
 	}
 }
