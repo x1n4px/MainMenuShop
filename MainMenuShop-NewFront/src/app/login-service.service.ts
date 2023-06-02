@@ -116,7 +116,7 @@ export class LoginServiceService {
     return this.http.post<any>(`http://localhost:8080/ticket`, ticket, { headers });
   }
 
-  actualizarCliente(id: number, cliente: Cliente): Observable<Object> {
+  actualizarCliente(id: any, cliente: Cliente): Observable<Object> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put(`http://localhost:8080/cliente/${id}`, cliente, { headers });

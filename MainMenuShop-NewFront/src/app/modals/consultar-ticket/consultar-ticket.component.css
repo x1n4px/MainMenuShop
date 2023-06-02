@@ -15,6 +15,7 @@
   padding: 16px;
   background-color: white;
   justify-content: center;
+
 }
 
 
@@ -37,6 +38,7 @@
    overflow: auto;
   z-index: 1;
   border: 2px solid black;
+
 }
 
 .espacio-interior-interno {

@@ -112,7 +112,8 @@ export class ConsultarTicketComponent implements OnInit{
       devolucion: true,
       metodoPago: this.ticketActual.metodoPago,
       clienteActual: this.ticketActual.cliente,
-      cesta: this.cestaDevolucion
+      cesta: this.cestaDevolucion,
+      numeroTicket: this.ticketActual.referencia
     });
 
   }

@@ -89,6 +89,7 @@ export class MenuPrincipalComponent {
     });
   }
 
+  referenciaDevolucion:string = "";
   openDialogConsultarTicket(devuelve: any) {
     const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: { devolucion: devuelve } });
 
@@ -99,6 +100,8 @@ export class MenuPrincipalComponent {
         this.clienteActual = result.clienteActual;
         this.cesta = result.cesta;
         this.devuelve = true;
+        this.referenciaDevolucion = result.numeroTicket;
+        console.log(this.referenciaDevolucion);
         console.log(result.metodoPago);
           if(this.metodoPago === 'tarjeta'){
           this.terminarCompraTarjeta();
@@ -386,8 +389,8 @@ export class MenuPrincipalComponent {
     if (!this.devuelve) {
       referencia = "E" + this.generarNumeros();
     } else {
-      referencia = "D" + this.generarNumeros();
-      this.devuelve = false;
+      referencia = this.referenciaDevolucion.replace('E', 'D');
+       this.devuelve = false;
     }
     const ticket = {
       referencia: referencia,
@@ -398,8 +401,10 @@ export class MenuPrincipalComponent {
       hora: this.obtenerHoraActual(),
       metodoPago: metodoPago
     };
+    console.log(this.clienteActual.puntos);
      // Agregamos el ticket al arreglo de tickets
     this.clienteActual.puntos = this.clienteActual.puntos + (this.total/100);
+    console.log(this.clienteActual.puntos);
 
     this.tickets.push(ticket);
 
@@ -456,9 +461,10 @@ export class MenuPrincipalComponent {
       valecliente: this.clienteActual.valecliente,
       puntos: this.clienteActual.puntos
     };
-
+    console.log(cliente.puntos);
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
+        console.log(response);
       },
       (error) => {
         console.log(error);

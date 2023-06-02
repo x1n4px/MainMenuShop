@@ -65,6 +65,14 @@
       </form>
 
       <hr>
+      <div class="puntos" *ngIf="this.clienteActual != null">
+        <div class="puntos-disponibles">
+          <p>Puntos disponibles: {{this.clienteActual?.puntos}} ({{this.clienteActual?.puntos}}€)</p>
+        </div>
+        <div class="gastar-puntos">
+          Aplicar? <input type="checkbox">
+        </div>
+      </div>
     </div>
     <div class="formulario-panel-cobro-pago-finalizacion">
       <button (click)="terminarCompraEfectivo()">Aceptar</button>
