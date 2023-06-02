@@ -27,7 +27,7 @@ export class LoginMenuComponent implements OnInit {
 
   constructor(public loginService: LoginServiceService, private route: Router, public dialog: MatDialog, private snack: MatSnackBar) { }
   ngOnInit(): void {
-    console.log(this.accion);
+
   }
 
   openDialog() {
@@ -45,9 +45,12 @@ export class LoginMenuComponent implements OnInit {
     this.loginService.generateToken(this.loginData).subscribe(
       (data: any) => {
         this.error = false;
-        console.log(data.token)
-        this.loginService.loginUser(data.token);
+
+        this.loginService.loginUser(data.token, this.loginData.email);
+
         this.token = data.token;
+
+
         this.openDialog();
         this.isBordered = false;
       },

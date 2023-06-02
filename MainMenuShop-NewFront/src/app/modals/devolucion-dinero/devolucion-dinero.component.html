@@ -1,1 +1,16 @@
-<p>devolucion-dinero works!</p>
+<div   class="formulario-Devolucion-Efectivo" *ngIf="dineroEfectivo !== 0">
+  <div class="formulario-devolucion-efectivo-centro">
+    <p>Efectivo a devolver: <br>
+
+      {{(dineroEfectivo-total).toFixed(2)}} €</p>
+   </div>
+
+
+</div>
+
+<div  class="formulario-Devolucion-Tarjeta" *ngIf="dineroEfectivo === 0">
+  <div class="formulario-devolucion-tarjeta-centro">
+
+    <p >Recuerda no dar dinero en efectivo</p>
+  </div>
+</div>

@@ -16,5 +16,5 @@ export class Cliente {
   rol!:string;
   direccion!:string;
   valecliente!: ValeCliente[];
-
+  puntos!: number;
  }

@@ -22,10 +22,11 @@ import { CalculadoraComponent } from '../../modals/calculadora/calculadora.compo
   styleUrls: ['./menu-principal.component.css']
 })
 export class MenuPrincipalComponent {
+  constructor(private route: Router, private loginService: LoginServiceService, public dialog: MatDialog) { }
+
 
   usuarioActual: any;
   rolAsignado!: string;
-  constructor(private route: Router, private loginService: LoginServiceService, public dialog: MatDialog) { }
   isLoggedIn = false;
   subtotal: number = 0;
 
@@ -64,9 +65,10 @@ export class MenuPrincipalComponent {
   devuelve: any;
 
   ngOnInit(): void {
-
-
-
+    this.loginService.getCurrentUser().subscribe(data => {
+      this.usuarioActual = data;
+      console.log(this.usuarioActual);
+    })
   }
 
   cambiarBusqueda() {
@@ -387,38 +389,32 @@ export class MenuPrincipalComponent {
       referencia = "D" + this.generarNumeros();
       this.devuelve = false;
     }
-
     const ticket = {
       referencia: referencia,
       cliente: this.clienteActual,
-      vendedor: this.usuarioActual.nombre + ' ' + this.usuarioActual.apellido.split(' ')[0].charAt(0) + '.' + this.usuarioActual.apellido.split(' ')[1].charAt(0),
+      vendedor: this.usuarioActual.nombre + ' ' + this.usuarioActual.apellido1 + '.' + this.usuarioActual.apellido2,
       productos: this.cesta.map((producto) => ({ cantidad: 1, producto: producto })),
       fecha: new Date(),
       hora: this.obtenerHoraActual(),
       metodoPago: metodoPago
     };
-    console.log(ticket.referencia, ticket.cliente ,ticket.productos, ticket.vendedor, ticket.fecha, ticket.hora, ticket.metodoPago);
-    // Agregamos el ticket al arreglo de tickets
+     // Agregamos el ticket al arreglo de tickets
+    this.clienteActual.puntos = this.clienteActual.puntos + (this.total/100);
+
     this.tickets.push(ticket);
-
-    // Limpiamos la cesta y el cliente actual para preparar para un nuevo ticket
-    this.cesta = [];
-    this.clienteActual = null;
-    this.metodoPago = "";
-    // Mostramos los tickets almacenados en la consola
-
 
     this.loginService.enviarTicket(ticket).subscribe(
       respuesta => {
-        console.log('Ticket enviado al backend');
+
       },
       error => {
         console.error('Error al enviar el ticket al backend');
       }
     );
-
-
-
+    this.guardarModificacionCliente();
+    this.clienteActual = null;
+    this.cesta = [];
+    this.metodoPago = "";
   }
 
   // obtén el último valor generado del almacenamiento local o inicializa a 0 si no existe
@@ -430,7 +426,6 @@ export class MenuPrincipalComponent {
     localStorage.setItem('ultimo_valor_generado', this.contador.toString());
     return numero;
   }
-
 
 
 
@@ -458,7 +453,8 @@ export class MenuPrincipalComponent {
       numeroTelefono: this.clienteActual.numeroTelefono,
       rol: this.clienteActual.rol,
       direccion: this.clienteActual.direccion,
-      valecliente: this.clienteActual.valecliente
+      valecliente: this.clienteActual.valecliente,
+      puntos: this.clienteActual.puntos
     };
 
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
@@ -473,6 +469,7 @@ export class MenuPrincipalComponent {
 
   nuevoCliente: Cliente = new Cliente;
   crearCliente() {
+    console.log(this.nuevoCliente);
     this.loginService.crearCliente(this.nuevoCliente).subscribe(
       data => {
         alert('Cliente creado correctamente');

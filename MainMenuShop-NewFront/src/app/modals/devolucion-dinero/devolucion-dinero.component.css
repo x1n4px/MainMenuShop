@@ -1,0 +1,69 @@
+
+.formulario-Devolucion-Efectivo{
+  background-color:  white;
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    border:5px solid  #0077c0;
+    border-radius: 30px;
+    padding: 10px 10px 10px 10px;
+     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-devolucion-efectivo-centro{
+  border: #0077c0 solid 5px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+   text-align: center;
+   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.formulario-devolucion-efectivo-centro p{
+  font-size: xx-large;
+  font-weight: bold;
+  font-family:  'Times New Roman', Times, serif;
+  line-height: 50px;
+  margin-top: 10px;
+}
+
+
+.formulario-Devolucion-Tarjeta{
+  background-color: white;
+  position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+     border-radius: 30px;
+    padding: 10px 10px 10px 10px;
+     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-devolucion-tarjeta-centro{
+   background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+   text-align: center;
+   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+
+}
+
+.formulario-devolucion-tarjeta-centro p{
+  font-size: xx-large;
+  font-weight: bold;
+  font-family:  'Times New Roman', Times, serif;
+  line-height: 30px;
+}

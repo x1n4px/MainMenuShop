@@ -1,1 +1,56 @@
-<p>cierre-caja works!</p>
+<div class="formulario-cierre-caja"  >
+  <div class="marco-interior-gris">
+     <div class="espacio-interior-gris" *ngIf="opcion === 1">
+      <div class="money-form">
+        <div class="column">
+          <h2>Billetes</h2>
+          <form>
+            <label for="bill-100">100€:</label>
+            <input type="number" name="bill-100" id="bill-100" min="0" step="1">
+            <br>
+            <label>$50:</label>
+            <input type="number" name="bill-50" min="0" step="1">
+            <br>
+            <label>$20:</label>
+            <input type="number" name="bill-20" min="0" step="1">
+            <br>
+            <label>$10:</label>
+            <input type="number" name="bill-10" min="0" step="1">
+            <br>
+            <label>$5:</label>
+            <input type="number" name="bill-5" min="0" step="1">
+            <br>
+            <label>$1:</label>
+            <input type="number" name="bill-1" min="0" step="1">
+            <br>
+          </form>
+        </div>
+        <div class="column">
+          <h2>Monedas</h2>
+          <form>
+            <label>$0.50:</label>
+            <input type="number" name="coin-50" min="0" step="0.01">
+            <br>
+            <label>$0.25:</label>
+            <input type="number" name="coin-25" min="0" step="0.01">
+            <br>
+            <label>$0.10:</label>
+            <input type="number" name="coin-10" min="0" step="0.01">
+            <br>
+            <label>$0.05:</label>
+            <input type="number" name="coin-05" min="0" step="0.01">
+            <br>
+            <label>$0.01:</label>
+            <input type="number" name="coin-01" min="0" step="0.01">
+            <br>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="espacio-interior-gris" *ngIf="opcion === 2">
+      <h1>Sacar Pasta</h1>
+    </div>
+    <button>Siguiente</button>
+  </div>
+</div>

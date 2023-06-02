@@ -95,4 +95,8 @@ public class LoginController {
 	}
 
 
+	@GetMapping("/{email}")
+	public Usuario getUsuarioByEmail(@PathVariable String email) {
+		return (Usuario)usuarioRepository.findByUsername(email).get();
+	}
 }

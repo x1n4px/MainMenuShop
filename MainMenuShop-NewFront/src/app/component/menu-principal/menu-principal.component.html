@@ -100,9 +100,9 @@
 
 
       <div class="datos-articulo">
-        <h5 class="h5-separado">Unidades <input [(ngModel)]="cantidadUnidades" class="unidades-articulo" type="number"
+        <h3 class="h5-separado">Unidades <input [(ngModel)]="cantidadUnidades" class="unidades-articulo" type="number"
             min="1" max="99">
-        </h5>
+        </h3>
       </div>
 
       <div class="boton-visualizador">
@@ -203,14 +203,25 @@
     <div id="contenedor7" class="contenedor">
       <div class="contenedor1-lateral-izquierdo">
         <div class="datos-cliente" *ngIf="clienteActual != null">
-          <h5 class="h5-c1">
-            <span class="datos-cliente-label">DNI:</span> {{clienteActual.dni}}
-            <span class="datos-cliente-label">Teléfono:</span> {{clienteActual.numeroTelefono}}
-            <span class="datos-cliente-label">Email:</span> {{clienteActual.email}}
-          </h5>
+         <table class="tablew">
+          <tr>
+            <td>DNI: {{ clienteActual.dni }}</td>
+            <td>Teléfono: {{ clienteActual.numeroTelefono }}</td>
+          </tr>
+          <tr>
+            <td>Email: {{ clienteActual.email }}</td>
+            <td>Puntos: {{ clienteActual.puntos }}</td>
+          </tr>
+         </table>
+
+
         </div>
 
+
+
       </div>
+
+
       <div class="contenedor1-lateral-derecho">
         <a class="btn-datos-usuario" (click)="openDialogDatosCliente(0)"><i class="fa-solid fa-file"
             style="color: #0077B5;"></i></a>
@@ -218,7 +229,7 @@
             style="color: #0077B5;"></i></a>
         <a class="btn-datos-usuario" (click)="openDialogDatosCliente(2)"><i class="fa-solid fa-pen-to-square"
             style="color: #0077B5;"></i></a>
-        <a class="btn-datos-usuario" ><i class="fa-solid fa-user-xmark" style="color: #0077B5;"></i></a>
+        <a class="btn-datos-usuario"><i class="fa-solid fa-user-xmark" style="color: #0077B5;"></i></a>
       </div>
     </div>
 

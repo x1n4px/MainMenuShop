@@ -14,7 +14,7 @@
   background-color: #2d2d2d;
   z-index: -1;
   overflow: hidden;
-}
+ }
 
 #contenedorHijo {
   position: absolute;

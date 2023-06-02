@@ -1,1 +1,74 @@
-<p>pago works!</p>
+<div class="formulario-panel-cobro"  >
+  <div class="formulario-panel-cobro-cesta">
+    <div class="formulario-panel-cobro-cesta-titulo">
+      <h1>Cesta</h1>
+      <hr>
+    </div>
+    <div class="formulario-panel-cobro-cesta-articulos">
+      <table>
+        <tbody>
+          <tr *ngFor="let producto of cesta"  >
+            <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
+            <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</span>
+                <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</span>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+    <hr>
+    <div class="formulario-panel-cobro-cesta-articulos-informacion">
+
+      <label class="form-group">
+        Descuentos:
+        <input type="text"  placeholder="IVA" id="IVA" name="IVA"  value="0€">
+      </label>
+      <label class="form-group-xl">
+        Total:
+        <input  type="text"  placeholder="TOTAL" id="TOTAL" name="TOTAL" value="{{total}}€">
+      </label><br>
+    </div>
+  </div>
+  <div class="formulario-panel-cobro-pago">
+    <div class="formulario-panel-cobro-pago-botones">
+      <button [ngClass]="selected === 'efectivo' ? 'selected' : (selected === 'tarjeta' ? 'not-selected' : 'no-selected')" (click)="select('efectivo');this.metodoPago=0;">Efectivo</button>
+      <button [ngClass]="selected === 'tarjeta' ? 'selected' : (selected === 'efectivo' ? 'not-selected' : 'no-selected')" (click)="select('tarjeta');this.metodoPago = 1;">Tarjeta</button>
+
+
+
+
+    </div>
+    <div class="formulario-panel-pago-efectivo" *ngIf="metodoPago == 0">
+
+      <label  for="efectivo">Introduce efectivo:</label><br>
+      <input   type="number" id="cantidad" name="cantidad" [(ngModel)]="dineroEfectivo"><br>
+
+    </div>
+
+    <div class="formulario-panel-pago-efectivo" *ngIf="metodoPago == 1">
+
+      <label  for="efectivo">Iniciando pasarela de pago:</label><br>
+      <div class="pasarela-pago">
+        <p>Estableciendo conexion</p>
+      </div>
+    </div>
+    <div class="formulario-panel-cobro-pago-cliente">
+      <hr>
+      <form>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="{{clienteActual.nombre + ' ' +clienteActual.apellido1 + ' ' + clienteActual.apellido2}}"><br>
+
+        <label for="apellido">Correo Electrónico:</label><br>
+        <input type="text" id="apellido" name="apellido" value="{{clienteActual.email}}"><br>
+
+      </form>
+
+      <hr>
+    </div>
+    <div class="formulario-panel-cobro-pago-finalizacion">
+      <button (click)="terminarCompraEfectivo()">Aceptar</button>
+      <button>Cancelar</button>
+    </div>
+  </div>
+</div>
