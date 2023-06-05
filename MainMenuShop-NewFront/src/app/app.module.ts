@@ -22,6 +22,7 @@ import { DevolucionDineroComponent } from './modals/devolucion-dinero/devolucion
 import { PagoComponent } from './modals/pago/pago.component';
 import { RecuperarTicketComponent } from './modals/recuperar-ticket/recuperar-ticket.component';
 import { RetiradaEfectivoComponent } from './modals/retirada-efectivo/retirada-efectivo.component';
+import { ImporteDiaComponent } from './modals/importe-dia/importe-dia.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RetiradaEfectivoComponent } from './modals/retirada-efectivo/retirada-e
     DevolucionDineroComponent,
     PagoComponent,
     RecuperarTicketComponent,
-    RetiradaEfectivoComponent
+    RetiradaEfectivoComponent,
+    ImporteDiaComponent
   ],
   imports: [
     BrowserModule,

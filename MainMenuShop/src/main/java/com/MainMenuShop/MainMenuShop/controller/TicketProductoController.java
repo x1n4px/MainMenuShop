@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +55,12 @@ public class TicketProductoController {
         return ticketService.buscarTicket(referencia);
     }
 
+    @GetMapping("buscarTicketCliente/{id}")
+    public List<Ticket> buscarTicketCliente(@PathVariable Long id) {
+        return ticketService.buscarTicketCliente(id);
+    }
+
+
 
     @PostMapping("/ticket")
     public ResponseEntity<Ticket> guardarTicket(@RequestBody Ticket ticket) {
@@ -93,6 +101,12 @@ public class TicketProductoController {
         productoRepository.save(productos);
     }
 
+
+    @GetMapping("/tickets/importeTotalDia")
+    public Double obtenerImporteTotalDia() {
+        // Implementa la lógica para obtener la suma de importeTotal de los tickets del día actual
+        return ticketService.sumarImporteTotalPorFechaActual();
+    }
 
 
 }

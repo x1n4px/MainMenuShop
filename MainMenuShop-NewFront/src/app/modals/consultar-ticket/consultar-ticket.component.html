@@ -1,14 +1,14 @@
 <div class="formulario-mostrar-Ticket">
   <div class="marco-interior">
 
-       <form (ngSubmit)="buscarTicket()">
+    <form (ngSubmit)="buscarTicket()">
       <input type="text" placeholder="Introduzca número de ticket a consultar..." [(ngModel)]="refTicket"
         name="refTicket">
     </form>
 
 
     <div class="espacio-interior">
-      <a class="btn-volver"  *ngIf="this.consultarTicket" (click)="botonVolver()"><i class="fa fa-chevron-left"  ></i></a>
+      <a class="btn-volver" *ngIf="this.consultarTicket" (click)="botonVolver()"><i class="fa fa-chevron-left"></i></a>
 
       <table [hidden]="this.consultarTicket">
         <thead>
@@ -24,7 +24,8 @@
             <tr (dblclick)="seleccionarTicket(ticket)">
               <td>{{ticket.referencia}}</td>
               <td>
-                <ng-container *ngIf="ticket.cliente && ticket.cliente.nombre">{{ ticket.cliente.nombre }}, {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</ng-container>
+                <ng-container *ngIf="ticket.cliente && ticket.cliente.nombre">{{ ticket.cliente.nombre }},
+                  {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</ng-container>
 
               </td>
 
@@ -38,9 +39,11 @@
             <tr (dblclick)="seleccionarTicket(ticket)">
               <td>{{ticket.referencia}}</td>
               <td>
-                <ng-container *ngIf="ticket.cliente && ticket.cliente.nombre">{{ ticket.cliente.nombre }}, {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</ng-container>
+                <ng-container *ngIf="ticket.cliente && ticket.cliente.nombre">{{ ticket.cliente.nombre }},
+                  {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</ng-container>
 
-              </td>              <td>{{ticket.vendedor}}</td>
+              </td>
+              <td>{{ticket.vendedor}}</td>
 
             </tr>
           </ng-container>
@@ -52,9 +55,10 @@
           <p>Referencia: {{ticketActual.referencia}}</p>
           <p>Vendedor: {{ticketActual.vendedor}}</p>
           <p>Fecha: {{ticketActual.fecha}}</p>
-          <p>Cliente: {{ticketActual.cliente.nombre}}, {{ticketActual.cliente.apellido1}} {{ticketActual.cliente.apellido2}}</p>
+          <p>Cliente: {{ticketActual.cliente.nombre}}, {{ticketActual.cliente.apellido1}}
+            {{ticketActual.cliente.apellido2}}</p>
           <p>Hora: {{ticketActual.hora}}</p>
-           <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
+          <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
         </div>
         <br>
         <h3>Productos:</h3>
@@ -88,7 +92,8 @@
           <p>Vendedor: {{ticketActual.vendedor}}</p>
           <p>Fecha: {{ticketActual.fecha}}</p>
           <p>Hora: {{ticketActual.hora}}</p>
-          <p>Cliente: {{ticketActual.cliente.nombre}}, {{ticketActual.cliente.apellido1}} {{ticketActual.cliente.apellido2}}</p>
+          <p>Cliente: {{ticketActual.cliente.nombre}}, {{ticketActual.cliente.apellido1}}
+            {{ticketActual.cliente.apellido2}}</p>
           <p>Metodo de pago: {{this.ticketActual.metodoPago}}</p>
           <p>Devolucion</p>
         </div>
@@ -113,7 +118,7 @@
               <td>
 
                 <button (click)="devolverProducto(prS.producto)">Añadir</button>
-                <button  (click)="retirarProducto(prS)">Retirar</button>
+                <button (click)="retirarProducto(prS)">Retirar</button>
               </td>
             </tr>
           </tbody>

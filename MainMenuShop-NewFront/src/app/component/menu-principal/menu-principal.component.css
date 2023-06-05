@@ -463,6 +463,14 @@ p{
   background-color: transparent;
 
  }
+
+.datos-cliente {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+
 .datos-cliente-label {
   margin-left: 40px; /* Espacio entre las etiquetas y los valores */
 }
@@ -477,15 +485,21 @@ p{
   }
 
 table.tablew {
-  width: 580px;
+  width: 100%;
+  height: 50%;
+  border-collapse: collapse;
+  border-spacing: 0;
   background-color: transparent;
-  border: none;
 }
 
 table.tablew{
   border-collapse: separate;
   border-spacing: 2px;
  }
+
+ table.tablew td, table.tablew th {
+  background-color: transparent;
+}
 
 table.tablew tr:nth-child(even) {
   background-color: transparent;

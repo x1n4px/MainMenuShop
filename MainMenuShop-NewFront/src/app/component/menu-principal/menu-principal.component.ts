@@ -15,6 +15,7 @@ import { RecuperarTicketComponent } from '../../modals/recuperar-ticket/recupera
 import { debounceTime } from 'rxjs';
 import { Productos } from 'src/app/class/productos';
 import { CalculadoraComponent } from '../../modals/calculadora/calculadora.component';
+import { ImporteDiaComponent } from 'src/app/modals/importe-dia/importe-dia.component';
 
 @Component({
   selector: 'app-menu-principal',
@@ -67,7 +68,6 @@ export class MenuPrincipalComponent {
   ngOnInit(): void {
     this.loginService.getCurrentUser().subscribe(data => {
       this.usuarioActual = data;
-      console.log(this.usuarioActual);
     })
   }
 
@@ -80,6 +80,11 @@ export class MenuPrincipalComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.recuperarTicket(result);
     });
+  }
+
+  openDialogContarDinero() {
+    const dialogRef = this.dialog.open(ImporteDiaComponent, { });
+
   }
 
   openCalculator() {
@@ -232,7 +237,6 @@ export class MenuPrincipalComponent {
     this.loginService.buscarCliente(this.terminoBusquedaCliente)
       .subscribe(clientes => {
         this.resultadosCliente = clientes;
-        console.log(this.resultadosCliente);
       }, (error) => {
         this.resultadosCliente = [];
       })
@@ -399,9 +403,9 @@ export class MenuPrincipalComponent {
       productos: this.cesta.map((producto) => ({ cantidad: 1, producto: producto })),
       fecha: new Date(),
       hora: this.obtenerHoraActual(),
-      metodoPago: metodoPago
+      metodoPago: metodoPago,
+      importeTotal: this.total
     };
-    console.log(this.clienteActual.puntos);
      // Agregamos el ticket al arreglo de tickets
     this.clienteActual.puntos = this.clienteActual.puntos + (this.total/100);
     console.log(this.clienteActual.puntos);

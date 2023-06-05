@@ -1,10 +1,12 @@
 package com.MainMenuShop.MainMenuShop.service;
 
+import com.MainMenuShop.MainMenuShop.entities.Clientes;
 import com.MainMenuShop.MainMenuShop.entities.Ticket;
 import com.MainMenuShop.MainMenuShop.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +30,16 @@ public class TicketService {
 
     public List<Ticket> buscarTicket(String referencia){
         return ticketRepository.findByReferenciaContainingIgnoreCase(referencia);
+    }
+
+
+    public List<Ticket> buscarTicketCliente(Long id) {
+        return ticketRepository.findByClienteId(id);
+    }
+
+
+    public Double sumarImporteTotalPorFechaActual() {
+        LocalDate fechaActual = LocalDate.now();
+        return ticketRepository.sumarImporteTotalPorFecha(fechaActual);
     }
 }

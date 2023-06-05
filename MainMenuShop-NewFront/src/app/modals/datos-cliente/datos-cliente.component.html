@@ -1,58 +1,67 @@
-<div class="formulario-Datos-Cliente"  >
+<div class="formulario-Datos-Cliente">
 
   <div class="marco-interior-crear-cliente">
-     <div class="espacio-interior-DCliente" >
+    <div class="espacio-interior-DCliente">
       <header class="botones" *ngIf="editable !== 1">
         <a [class.selected]="boton === 0" (click)="boton = 0">Datos</a>
         <a [class.selected]="boton === 1" (click)="boton = 1">vales</a>
-        <a [class.selected]="boton === 2" (click)="boton = 2">Tickets</a>
-        <a [class.selected]="boton === 3" (click)="boton = 3">Comentarios</a>
+        <a [class.selected]="boton === 2" (click)="boton = 2; obtenerTickets()">Tickets</a>
       </header>
 
       <form class="datos-clientes-interno" *ngIf="clienteActual != null && boton === 0 && editable === 0">
         <label class="form-group">
           Nombre:
-          <input type="text" [readonly]="!editable" placeholder="Nombre" id="clienteNombre" name="clienteNombre"  [(ngModel)]="clienteActual.nombre">
+          <input type="text" [readonly]="!editable" placeholder="Nombre" id="clienteNombre" name="clienteNombre"
+            [(ngModel)]="clienteActual.nombre">
         </label><br>
         <label class="form-group">
           Apellido1:
-          <input type="text" [readonly]="!editable" placeholder="Apellido 1" id="apellido1" name="apellido1"  [(ngModel)]="clienteActual.apellido1">
+          <input type="text" [readonly]="!editable" placeholder="Apellido 1" id="apellido1" name="apellido1"
+            [(ngModel)]="clienteActual.apellido1">
         </label><br>
         <label class="form-group">
           Apellido2:
-          <input type="text" [readonly]="!editable" placeholder="Apellido 2" id="apellido2" name="apellido2"  [(ngModel)]="clienteActual.apellido2">
+          <input type="text" [readonly]="!editable" placeholder="Apellido 2" id="apellido2" name="apellido2"
+            [(ngModel)]="clienteActual.apellido2">
         </label><br>
         <label class="form-group">
           DNI:
-          <input type="text" [readonly]="!editable" placeholder="DNI" id="dni" name="dni"  [(ngModel)]="clienteActual.dni">
+          <input type="text" [readonly]="!editable" placeholder="DNI" id="dni" name="dni"
+            [(ngModel)]="clienteActual.dni">
         </label><br>
         <label class="form-group">
           Dirección:
-          <input type="text" [readonly]="!editable" placeholder="Dirección" id="direccion" name="direccion"  [(ngModel)]="clienteActual.direccion">
+          <input type="text" [readonly]="!editable" placeholder="Dirección" id="direccion" name="direccion"
+            [(ngModel)]="clienteActual.direccion">
         </label><br>
         <label class="form-group">
           Código postal:
-          <input type="text" [readonly]="!editable" placeholder="Código postal" id="codigoPostal" name="codigoPostal"  [(ngModel)]="clienteActual.codigoPostal">
+          <input type="text" [readonly]="!editable" placeholder="Código postal" id="codigoPostal" name="codigoPostal"
+            [(ngModel)]="clienteActual.codigoPostal">
         </label><br>
         <label class="form-group">
           Localidad:
-          <input type="text" [readonly]="!editable" placeholder="Localidad" id="localidad" name="localidad"  [(ngModel)]="clienteActual.localidad">
+          <input type="text" [readonly]="!editable" placeholder="Localidad" id="localidad" name="localidad"
+            [(ngModel)]="clienteActual.localidad">
         </label><br>
         <label class="form-group">
           Número de Telefono:
-          <input type="text" [readonly]="!editable" placeholder="Telefono" id="telefono" name="telefono"  [(ngModel)]="clienteActual.numeroTelefono">
+          <input type="text" [readonly]="!editable" placeholder="Telefono" id="telefono" name="telefono"
+            [(ngModel)]="clienteActual.numeroTelefono">
         </label><br>
         <label class="form-group">
           Número de móvil:
-          <input type="text" [readonly]="!editable" placeholder="Móvil" id="movil" name="movil"  [(ngModel)]="clienteActual.numeroMovil">
+          <input type="text" [readonly]="!editable" placeholder="Móvil" id="movil" name="movil"
+            [(ngModel)]="clienteActual.numeroMovil">
         </label><br>
         <label class="form-group">
           Correo Electrónico:
-          <input type="text" [readonly]="!editable" placeholder="Correo Electrónico" id="email" name="email"  [(ngModel)]="clienteActual.email">
+          <input type="text" [readonly]="!editable" placeholder="Correo Electrónico" id="email" name="email"
+            [(ngModel)]="clienteActual.email">
 
         </label>
         <div [hidden]="!editable">
-          <button mat-raised-button color="primary" (click)="onSubmit()"  >Guardar cambios</button>
+          <button mat-raised-button color="primary" (click)="onSubmit()">Guardar cambios</button>
         </div>
       </form>
       <div class="datos-clientes-interno" *ngIf="boton === 1 ">
@@ -71,7 +80,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let valecliente of clienteActual.valeClientes">
-              <tr  >
+              <tr>
                 <td>{{ valecliente.referencia }}</td>
                 <td>{{ valecliente.vale.fechaInicio | date }}</td>
                 <td>{{ valecliente.vale.fechaExpiracion | date }}</td>
@@ -84,11 +93,11 @@
           </tbody>
         </table>
 
-       </div>
+      </div>
 
 
-       <div class="datos-clientes-interno" *ngIf="editable === 1">
-        <form (submit)="terminarCompraEfectivo()"  class="datos-clientes-interno">
+      <div class="datos-clientes-interno" *ngIf="editable === 1">
+        <form (submit)="terminarCompraEfectivo()" class="datos-clientes-interno">
           <div class="form-group">
             <label>Nombre:</label>
             <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" required>
@@ -132,17 +141,44 @@
           <button type="submit" class="btn-crear-cliente">Crear cliente</button>
         </form>
 
-       </div>
+      </div>
 
 
 
       <div class="datos-clientes-interno" *ngIf="boton === 2">
-        <p>Tickets</p>
+        <div class="div">
+
+
+          <table>
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>Cliente</th>
+                <th>Vendedor</th>
+
+              </tr>
+            </thead>
+
+            <ng-container *ngFor="let ticket of tickets">
+              <tr>
+                <td>{{ticket.referencia}}</td>
+                <td>
+                  <ng-container *ngIf="ticket.cliente && ticket.cliente.nombre">{{ ticket.cliente.nombre }},
+                    {{ticket.cliente.apellido1}} {{ticket.cliente.apellido2}}</ng-container>
+
+                </td>
+
+                <td>{{ticket.vendedor}}</td>
+              </tr>
+            </ng-container>
+
+
+
+          </table>
+        </div>
       </div>
 
-      <div class="datos-clientes-interno" *ngIf="boton === 3">
-        <p>Comentarios</p>
-      </div>
+
 
     </div>
 

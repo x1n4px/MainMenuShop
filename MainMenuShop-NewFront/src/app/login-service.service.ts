@@ -87,6 +87,11 @@ export class LoginServiceService {
 
   }
 
+   obtenerImporteDia(): Observable<number> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<number>('http://localhost:8080/tickets/importeTotalDia', { headers });
+  }
 
   getUserDetails() {
     return this.http.get("http://localhost:8080/profile");
@@ -108,6 +113,12 @@ export class LoginServiceService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Ticket[]>(`http://localhost:8080/buscarTicket?referencia=${busqueda}`, { headers });
+  }
+
+  buscarTicketCliente(id: number) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Ticket[]>(`http://localhost:8080/buscarTicketCliente/${id}`, { headers });
   }
 
   enviarTicket(ticket: any): Observable<any> {
