@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +40,9 @@ public class TicketService {
     }
 
 
-    public Double sumarImporteTotalPorFechaActual() {
-        LocalDate fechaActual = LocalDate.now();
-        return ticketRepository.sumarImporteTotalPorFecha(fechaActual);
+    public List<Ticket> buscarTicketFecha(LocalDate fecha) {
+        Date fechaConvertida = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        return ticketRepository.findByFecha(fechaConvertida);
     }
 }

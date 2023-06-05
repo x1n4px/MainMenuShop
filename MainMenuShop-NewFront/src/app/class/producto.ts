@@ -7,7 +7,8 @@ export class Producto {
   modulo!:string;
   nombre!:string;
   peso!:number;
-  precio!:number
+  precioNeto!:number;
+  ivaAsociado!:number;
   referencia!:string;
   variedad!:number;
   estado!:string;

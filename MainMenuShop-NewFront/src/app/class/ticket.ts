@@ -10,5 +10,6 @@ export class Ticket {
   fecha!:string;
   hora!:string;
   metodoPago!:string;
+  importeBase!:number;
   importeTotal!:number;
 }

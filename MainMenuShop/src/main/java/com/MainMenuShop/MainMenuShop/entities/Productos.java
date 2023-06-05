@@ -29,7 +29,9 @@ public class Productos {
 
     private String etapaVida; //Etapa de vida de la mascota (en caso de perro/gato, puppy o adulto)
 
-    private double precio; //Precio del producto
+    private double precioNeto; //Precio del producto
+    private double ivaAsociado;
+
     private double peso; //Peso del producto
 
     private String estado; //Encargable o no encargable

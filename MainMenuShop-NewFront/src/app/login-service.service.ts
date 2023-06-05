@@ -87,11 +87,6 @@ export class LoginServiceService {
 
   }
 
-   obtenerImporteDia(): Observable<number> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>('http://localhost:8080/tickets/importeTotalDia', { headers });
-  }
 
   getUserDetails() {
     return this.http.get("http://localhost:8080/profile");
@@ -113,6 +108,21 @@ export class LoginServiceService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Ticket[]>(`http://localhost:8080/buscarTicket?referencia=${busqueda}`, { headers });
+  }
+
+
+  obtenerImporteDia() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2); // Agrega un cero inicial si es necesario
+    const día = ("0" + fechaActual.getDate()).slice(-2); // Agrega un cero inicial si es necesario
+
+    const fechaActualFormateada = `${año}-${mes}-${día}`;
+    console.log(fechaActualFormateada);
+
+    return this.http.get<Ticket[]>(`http://localhost:8080/importeTotalDia?fecha=${año}-${mes}-${día}`, { headers });
   }
 
   buscarTicketCliente(id: number) {

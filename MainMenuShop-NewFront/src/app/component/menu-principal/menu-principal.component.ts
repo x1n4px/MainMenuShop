@@ -163,6 +163,7 @@ export class MenuPrincipalComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.total = result.total;
       const metodoPago = result.metodoPago;
+      this.ivaAplicado = result.ivaAplicado;
       if (metodoPago === 0) {
         this.terminarCompraEfectivo();
       } else if (metodoPago === 1) {
@@ -275,7 +276,7 @@ export class MenuPrincipalComponent {
 
 
   aniadircesta(resultado: any) {
-
+    console.log(resultado);
     for (let i = 0; i < this.cantidadUnidades; i++) {
       this.cesta.push(resultado);
       this.calcularSubtotal();
@@ -288,7 +289,8 @@ export class MenuPrincipalComponent {
   calcularSubtotal() {
     this.subtotal = 0;
     for (let i = 0; i < this.cesta.length; i++) {
-      this.subtotal += this.cesta[i].precio;
+      this.subtotal += (this.cesta[i].precioNeto + this.cesta[i].precioNeto*(this.cesta[i].ivaAsociado/100));
+      console.log(this.subtotal);
     }
   }
 
@@ -365,12 +367,18 @@ export class MenuPrincipalComponent {
 
   total!: number;
   dineroEfectivo!: number;
+  ivaAplicado!: number;
+  sumaPrecios!: number;
   totalCesta() {
-    let sumaPrecios = 0;
+
     for (let i = 0; i < this.cesta.length; i++) {
-      sumaPrecios += this.cesta[i].precio;
+      this.sumaPrecios += this.cesta[i].precioNeto;
+      this.ivaAplicado += (this.cesta[i].precioNeto * this.cesta[i].ivaAsociado/100);
     }
-    this.total = parseFloat(sumaPrecios.toFixed(2));
+    this.total = parseFloat(this.sumaPrecios.toFixed(2)+this.ivaAplicado.toFixed(2));
+    console.log(this.sumaPrecios);
+    console.log(this.ivaAplicado);
+    console.log(this.total);
   }
 
   DineroDevolver!: number;
@@ -396,6 +404,7 @@ export class MenuPrincipalComponent {
       referencia = this.referenciaDevolucion.replace('E', 'D');
        this.devuelve = false;
     }
+    let importeBase = this.total - this.ivaAplicado;
     const ticket = {
       referencia: referencia,
       cliente: this.clienteActual,
@@ -404,11 +413,11 @@ export class MenuPrincipalComponent {
       fecha: new Date(),
       hora: this.obtenerHoraActual(),
       metodoPago: metodoPago,
-      importeTotal: this.total
+      importeTotal: this.total,
+      importeBase: (this.total - this.ivaAplicado).toFixed(2)
     };
      // Agregamos el ticket al arreglo de tickets
     this.clienteActual.puntos = this.clienteActual.puntos + (this.total/100);
-    console.log(this.clienteActual.puntos);
 
     this.tickets.push(ticket);
 
@@ -465,7 +474,6 @@ export class MenuPrincipalComponent {
       valecliente: this.clienteActual.valecliente,
       puntos: this.clienteActual.puntos
     };
-    console.log(cliente.puntos);
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
         console.log(response);

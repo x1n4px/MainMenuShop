@@ -77,7 +77,7 @@
               <td>{{prS.cantidad}}</td>
               <td>{{ prS.producto.referencia }}</td>
               <td>{{ prS.producto.nombre }}</td>
-              <td>{{ prS.producto.precio }} €</td>
+              <td>{{ prS.producto.precioNeto }} €</td>
             </tr>
           </tbody>
         </table>
@@ -114,7 +114,7 @@
               <td>{{prS.cantidad}}</td>
               <td>{{ prS.producto.referencia }}</td>
               <td>{{ prS.producto.nombre }}</td>
-              <td>{{ prS.producto.precio }} €</td>
+              <td>{{ prS.producto.precioNeto }} €</td>
               <td>
 
                 <button (click)="devolverProducto(prS.producto)">Añadir</button>

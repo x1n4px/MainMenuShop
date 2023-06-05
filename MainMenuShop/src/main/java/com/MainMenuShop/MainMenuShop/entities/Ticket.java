@@ -40,5 +40,6 @@ public class Ticket {
 
     private String metodoPago;
 
+    private double importeBase;
     private double importeTotal;
 }

@@ -119,8 +119,8 @@
             <tbody>
               <tr *ngFor="let producto of cesta" (dblclick)="eliminarDeCesta(producto)">
                 <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
-                <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</p>
-                <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</p>
+                <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precioNeto * 0.8).toFixed(2)}}€</p>
+                <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{(producto.precioNeto + producto.precioNeto*(producto.ivaAsociado/100)).toFixed(2)}}€</p>
               </tr>
             </tbody>
           </table>
@@ -141,8 +141,8 @@
             <tbody>
               <tr *ngFor="let producto of cesta" (dblclick)="eliminarDeCesta(producto)">
                 <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
-                <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</p>
-                <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</p>
+                <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precioNeto * 0.8).toFixed(2)}}€</p>
+                <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{(producto.precioNeto + producto.precioNeto*(producto.ivaAsociado/100)).toFixed(2)}}€</p>
               </tr>
             </tbody>
           </table>
@@ -162,9 +162,9 @@
                 (dblclick)="aniadircesta(resultado)" (click)="seleccionarProducto(resultado)">
                 <td>
                   <strong>{{resultado.nombre}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(resultado.precio *
+                  <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(resultado.precioNeto *
                     0.8).toFixed(2)}}€</span>
-                  <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{resultado.precio}}€</span>
+                  <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{(resultado.precioNeto + resultado.precioNeto*(resultado.ivaAsociado/100)).toFixed(2)}}€</span>
                   <br>
                   <small>{{resultado.referencia}} · {{resultado.familia}} · {{resultado.tipo}} · {{resultado.marca}} ·
                     {{resultado.estado}}</small>

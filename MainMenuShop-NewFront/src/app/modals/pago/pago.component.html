@@ -9,8 +9,8 @@
         <tbody>
           <tr *ngFor="let producto of cesta"  >
             <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
-            <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precio * 0.8).toFixed(2)}}€</span>
-                <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precio}}€</span>
+            <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precioNeto * 0.8).toFixed(2)}}€</span>
+                <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precioNeto}}€</span>
           </tr>
 
         </tbody>
@@ -23,6 +23,10 @@
       <label class="form-group">
         Descuentos:
         <input type="text"  placeholder="IVA" id="IVA" name="IVA"  value="0€">
+      </label>
+      <label class="form-group">
+        IVA:
+        <input type="text"  placeholder="IVA" id="IVA" name="IVA"  value="{{ivaAplicado}}€">
       </label>
       <label class="form-group-xl">
         Total:

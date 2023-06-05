@@ -9,11 +9,14 @@ import com.MainMenuShop.MainMenuShop.repositories.TicketRepository;
 import com.MainMenuShop.MainMenuShop.service.ProductosService;
 import com.MainMenuShop.MainMenuShop.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +57,13 @@ public class TicketProductoController {
     public List<Ticket> buscarTicketPorNombre(@RequestParam("referencia") String referencia) {
         return ticketService.buscarTicket(referencia);
     }
+
+    @GetMapping("importeTotalDia")
+    public List<Ticket> obtenerImporteTotalDia(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+        return ticketService.buscarTicketFecha(fecha);
+    }
+
+
 
     @GetMapping("buscarTicketCliente/{id}")
     public List<Ticket> buscarTicketCliente(@PathVariable Long id) {
@@ -102,11 +112,6 @@ public class TicketProductoController {
     }
 
 
-    @GetMapping("/tickets/importeTotalDia")
-    public Double obtenerImporteTotalDia() {
-        // Implementa la lógica para obtener la suma de importeTotal de los tickets del día actual
-        return ticketService.sumarImporteTotalPorFechaActual();
-    }
 
 
 }

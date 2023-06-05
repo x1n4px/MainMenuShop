@@ -19,6 +19,7 @@ export class ImporteDiaComponent implements OnInit {
 
   tickets: Ticket[] = [];
   importe:number = 0;
+  importeNeto:number = 0;
 
   ngOnInit(): void {
      this.calcular();
@@ -28,14 +29,22 @@ export class ImporteDiaComponent implements OnInit {
 
   calcular() {
      this.loginService.obtenerImporteDia().subscribe(
-      importe => {
-        this.importe = importe;
-        console.log(this.tickets);
+      tickets => {
+        this.tickets = tickets;
+        this.calcularTotal();
       },
       error => {
         console.log("Error al obtener el importe:", error);
       }
     );
+  }
+
+  calcularTotal() {
+    for (let i = 0; i < this.tickets.length; i++) {
+      this.importe += this.tickets[i].importeTotal;
+      this.importeNeto += this.tickets[i].importeBase;
+    }
+    this.importeNeto = this.importe - this.importeNeto;
   }
 
 }
