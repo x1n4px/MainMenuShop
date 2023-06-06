@@ -16,6 +16,9 @@ import { debounceTime } from 'rxjs';
 import { Productos } from 'src/app/class/productos';
 import { CalculadoraComponent } from '../../modals/calculadora/calculadora.component';
 import { ImporteDiaComponent } from 'src/app/modals/importe-dia/importe-dia.component';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
 
 @Component({
   selector: 'app-menu-principal',
@@ -39,7 +42,7 @@ export class MenuPrincipalComponent {
     // Agrega más objetos según sea necesario
   };*/
   //  metodoPago!: string;
-  metodoPago: any ;
+  metodoPago: any;
 
   productos: Producto[] = [];
   clientes: Cliente[] = [];
@@ -83,7 +86,7 @@ export class MenuPrincipalComponent {
   }
 
   openDialogContarDinero() {
-    const dialogRef = this.dialog.open(ImporteDiaComponent, { });
+    const dialogRef = this.dialog.open(ImporteDiaComponent, {});
 
   }
 
@@ -94,13 +97,13 @@ export class MenuPrincipalComponent {
     });
   }
 
-  referenciaDevolucion:string = "";
+  referenciaDevolucion: string = "";
   openDialogConsultarTicket(devuelve: any) {
     const dialogRef = this.dialog.open(ConsultarTicketComponent, { data: { devolucion: devuelve } });
 
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result?.devolucion  ) {
+      if (result?.devolucion) {
         this.metodoPago = result.metodoPago;
         this.clienteActual = result.clienteActual;
         this.cesta = result.cesta;
@@ -108,11 +111,11 @@ export class MenuPrincipalComponent {
         this.referenciaDevolucion = result.numeroTicket;
         console.log(this.referenciaDevolucion);
         console.log(result.metodoPago);
-          if(this.metodoPago === 'tarjeta'){
+        if (this.metodoPago === 'tarjeta') {
           this.terminarCompraTarjeta();
-         }else{
+        } else {
           this.terminarCompraEfectivo();
-         }
+        }
 
 
       }
@@ -289,9 +292,10 @@ export class MenuPrincipalComponent {
   calcularSubtotal() {
     this.subtotal = 0;
     for (let i = 0; i < this.cesta.length; i++) {
-      this.subtotal += (this.cesta[i].precioNeto + this.cesta[i].precioNeto*(this.cesta[i].ivaAsociado/100));
+      this.subtotal += (this.cesta[i].precioNeto + this.cesta[i].precioNeto * (this.cesta[i].ivaAsociado / 100));
       console.log(this.subtotal);
     }
+
   }
 
   eliminarDeCesta(producto: Producto) {
@@ -338,7 +342,7 @@ export class MenuPrincipalComponent {
 
   terminarCompraEfectivo() {
     this.guardarTicket('Efectivo');
-    if(!this.devuelve){
+    if (!this.devuelve) {
       this.devolucionEfectivo();
     }
 
@@ -373,9 +377,9 @@ export class MenuPrincipalComponent {
 
     for (let i = 0; i < this.cesta.length; i++) {
       this.sumaPrecios += this.cesta[i].precioNeto;
-      this.ivaAplicado += (this.cesta[i].precioNeto * this.cesta[i].ivaAsociado/100);
+      this.ivaAplicado += (this.cesta[i].precioNeto * this.cesta[i].ivaAsociado / 100);
     }
-    this.total = parseFloat(this.sumaPrecios.toFixed(2)+this.ivaAplicado.toFixed(2));
+    this.total = parseFloat(this.sumaPrecios.toFixed(2) + this.ivaAplicado.toFixed(2));
     console.log(this.sumaPrecios);
     console.log(this.ivaAplicado);
     console.log(this.total);
@@ -389,7 +393,7 @@ export class MenuPrincipalComponent {
     this.dineroEfectivo = 0;
   }
 
-
+  puntosClienteActualizado: number = 0;
   guardarTicket(metodoPago: string): void {
     // Creamos el objeto ticket con la información del cliente, fecha, hora y cesta
     const tienda = {
@@ -402,7 +406,7 @@ export class MenuPrincipalComponent {
       referencia = "E" + this.generarNumeros();
     } else {
       referencia = this.referenciaDevolucion.replace('E', 'D');
-       this.devuelve = false;
+      this.devuelve = false;
     }
     let importeBase = this.total - this.ivaAplicado;
     const ticket = {
@@ -416,8 +420,8 @@ export class MenuPrincipalComponent {
       importeTotal: this.total,
       importeBase: (this.total - this.ivaAplicado).toFixed(2)
     };
-     // Agregamos el ticket al arreglo de tickets
-    this.clienteActual.puntos = this.clienteActual.puntos + (this.total/100);
+    // Agregamos el ticket al arreglo de tickets
+    this.puntosClienteActualizado = this.clienteActual.puntos + (this.total / 100);
 
     this.tickets.push(ticket);
 
@@ -429,10 +433,12 @@ export class MenuPrincipalComponent {
         console.error('Error al enviar el ticket al backend');
       }
     );
-    this.guardarModificacionCliente();
+    this.actualizarPuntosCliente();
+
     this.clienteActual = null;
     this.cesta = [];
     this.metodoPago = "";
+    this.busqueda = false;
   }
 
   // obtén el último valor generado del almacenamiento local o inicializa a 0 si no existe
@@ -457,6 +463,20 @@ export class MenuPrincipalComponent {
     return parseFloat(total.toFixed(2));
   }
 
+  actualizarPuntosCliente(){
+    this.loginService.actualizarPuntosCliente(this.clienteActual.id, this.puntosClienteActualizado).subscribe(
+      (response) => {
+        console.log(response);
+        this.puntosClienteActualizado = 0;
+      },
+      (error) => {
+        console.log(error);
+        // hacer algo en caso de error
+      }
+    );
+
+  }
+
   guardarModificacionCliente() {
     const cliente: Cliente = {
       id: this.clienteActual.id,
@@ -472,7 +492,7 @@ export class MenuPrincipalComponent {
       rol: this.clienteActual.rol,
       direccion: this.clienteActual.direccion,
       valecliente: this.clienteActual.valecliente,
-      puntos: this.clienteActual.puntos
+      puntos: this.puntosClienteActualizado
     };
     this.loginService.actualizarCliente(cliente.id, cliente).subscribe(
       (response) => {
@@ -496,6 +516,31 @@ export class MenuPrincipalComponent {
         console.log(error);
         alert('Ha ocurrido un error al crear el cliente');
       });
+  }
+
+  generatePDF() {
+    const documentDefinition = {
+      content: [
+        { text: 'Tienda XYZ', style: 'header' },
+        { text: `Fecha: ${new Date().toLocaleDateString()}`, style: 'subheader' },
+        { text: `Hora: ${this.obtenerHoraActual()}`, style: 'subheader' },
+        { text: `Vendedor: ${this.usuarioActual.nombre}`, style: 'subheader' },
+        { text: 'Productos', style: 'subheader' },
+        {
+          ul: this.cesta.map((producto) =>
+            `${producto.nombre} - ${producto.precioNeto}`
+          )
+        },
+        { text: `Importe Total: ${this.total}`, style: 'subheader' },
+        { text: `IVA: ${(this.total - this.ivaAplicado).toFixed(2)}`, style: 'subheader' },
+        { text: `Método de Pago: ${this.metodoPago}`, style: 'subheader' }
+      ]
+    };
+
+
+
+    const pdf = pdfMake.createPdf(documentDefinition);
+    pdf.open(); // Abre el PDF en una nueva pestaña del navegador
   }
 
 }

@@ -48,7 +48,19 @@ public class ClienteController {
             return ResponseEntity.notFound().build();
         }
         cliente.setId(id);
-        clientesService.modificarCliente(cliente);
+        clientesService.modificarCliente(optionalCliente.get(), cliente);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/cliente/puntos/{id}")
+    public ResponseEntity<?> modificarPuntosCliente(@PathVariable Long id, @RequestBody double puntos) {
+        Optional<Clientes> optionalCliente = clientesRepository.findById(id);
+        if(!optionalCliente.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        Clientes cliente = optionalCliente.get();
+        cliente.setPuntos(puntos);
+        clientesRepository.save(cliente);
         return ResponseEntity.ok().build();
     }
 }

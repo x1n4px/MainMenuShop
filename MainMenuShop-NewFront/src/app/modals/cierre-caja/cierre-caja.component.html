@@ -1,56 +1,79 @@
-<div class="formulario-cierre-caja"  >
+<div class="formulario-cierre-caja" *ngIf="opcion === 1">
   <div class="marco-interior-gris">
-     <div class="espacio-interior-gris" *ngIf="opcion === 1">
-      <div class="money-form">
-        <div class="column">
-          <h2>Billetes</h2>
-          <form>
+    <div class="espacio-interior-gris" >
+      <div class="money-form" *ngIf="paso === 0">
+        <form (submit)="contabilizacion()">
+          <div class="column">
+            <h2>Billetes</h2>
+            <label for="bill-500">500€:</label>
+            <input type="number" name="bill-500" id="bill-500" min="0" step="1" [(ngModel)]="efectivo.billete500">
+            <br>
+            <label for="bill-200">200€:</label>
+            <input type="number" name="bill-200" id="bill-200" min="0" step="1" [(ngModel)]="efectivo.billete200">
+            <br>
             <label for="bill-100">100€:</label>
-            <input type="number" name="bill-100" id="bill-100" min="0" step="1">
+            <input type="number" name="bill-100" id="bill-100" min="0" step="1" [(ngModel)]="efectivo.billete100">
             <br>
-            <label>$50:</label>
-            <input type="number" name="bill-50" min="0" step="1">
+            <label>&nbsp; 50€:</label>
+            <input type="number" name="bill-50" min="0" step="1" [(ngModel)]="efectivo.billete50">
             <br>
-            <label>$20:</label>
-            <input type="number" name="bill-20" min="0" step="1">
+            <label>&nbsp; 20€:</label>
+            <input type="number" name="bill-20" min="0" step="1" [(ngModel)]="efectivo.billete20">
             <br>
-            <label>$10:</label>
-            <input type="number" name="bill-10" min="0" step="1">
+            <label>&nbsp; 10€:</label>
+            <input type="number" name="bill-10" min="0" step="1" [(ngModel)]="efectivo.billete10">
             <br>
-            <label>$5:</label>
-            <input type="number" name="bill-5" min="0" step="1">
+            <label>&nbsp;&nbsp; 5€:</label>
+            <input type="number" name="bill-5" min="0" step="1" [(ngModel)]="efectivo.billete5">
+          </div>
+          <div class="column">
+            <h2>Monedas</h2>
+            <label>&nbsp;&nbsp; 2€:</label>
+            <input type="number" name="bill-2" min="0" step="1" [(ngModel)]="efectivo.moneda2">
             <br>
-            <label>$1:</label>
-            <input type="number" name="bill-1" min="0" step="1">
+            <label>&nbsp;&nbsp; 1€:</label>
+            <input type="number" name="bill-1" min="0" step="1" [(ngModel)]="efectivo.moneda1">
             <br>
-          </form>
-        </div>
-        <div class="column">
-          <h2>Monedas</h2>
-          <form>
             <label>$0.50:</label>
-            <input type="number" name="coin-50" min="0" step="0.01">
+            <input type="number" name="coin-50" min="0" step="1" [(ngModel)]="efectivo.moneda50">
             <br>
             <label>$0.25:</label>
-            <input type="number" name="coin-25" min="0" step="0.01">
+            <input type="number" name="coin-25" min="0" step="1" [(ngModel)]="efectivo.moneda20">
             <br>
             <label>$0.10:</label>
-            <input type="number" name="coin-10" min="0" step="0.01">
+            <input type="number" name="coin-10" min="0" step="1" [(ngModel)]="efectivo.moneda10">
             <br>
             <label>$0.05:</label>
-            <input type="number" name="coin-05" min="0" step="0.01">
+            <input type="number" name="coin-05" min="0" step="1" [(ngModel)]="efectivo.moneda05">
+            <br>
+            <label>$0.02:</label>
+            <input type="number" name="coin-02" min="0" step="1" [(ngModel)]="efectivo.moneda02">
             <br>
             <label>$0.01:</label>
-            <input type="number" name="coin-01" min="0" step="0.01">
-            <br>
-          </form>
-        </div>
+            <input type="number" name="coin-01" min="0" step="1" [(ngModel)]="efectivo.moneda01">
+          </div>
+          <button type="submit">Siguiente</button>
+        </form>
       </div>
+      <div class="importe_final" *ngIf="paso === 1">
+        <p>Importe total: {{suma.toFixed(2)}}€</p>
+      </div>
+    </div>
 
+  </div>
+</div>
+
+<div class="formulario-cierre-caja2" *ngIf="opcion === 2">
+  <div class="marco-interior-gris">
+    <div class="espacio-interior-gris2" >
+      <div class="formularioSacar">
+        <form (submit)="retiradaDinero()">
+          <label class="retiradaL">Dinero a retirar:</label>
+          <input type="number">
+          <button type="submit">Siguiente</button>
+
+        </form>
+      </div>
     </div>
-    <div class="espacio-interior-gris" *ngIf="opcion === 2">
-      <h1>Sacar Pasta</h1>
-    </div>
-    <button>Siguiente</button>
   </div>
 </div>

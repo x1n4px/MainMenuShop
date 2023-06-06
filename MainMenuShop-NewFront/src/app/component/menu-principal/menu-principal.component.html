@@ -126,7 +126,7 @@
           </table>
         </div>
       </div>
-      <h1 style="margin-left: 30px;" *ngIf="cesta.length > 0">Subtotal: {{subtotal}} €</h1>
+      <h1 style="margin-left: 30px;" *ngIf="cesta.length > 0">Subtotal: {{subtotal.toFixed(2)}} €</h1>
 
     </div>
 
@@ -206,7 +206,7 @@
          <table class="tablew">
           <tr>
             <td>DNI: {{ clienteActual.dni }}</td>
-            <td>Teléfono: {{ clienteActual.numeroTelefono }}</td>
+            <td>Nombre: {{ clienteActual.nombre }}, {{clienteActual.apellido1}}&nbsp;{{clienteActual.apellido2}}</td>
           </tr>
           <tr>
             <td>Email: {{ clienteActual.email }}</td>
@@ -229,8 +229,8 @@
             style="color: #0077B5;"></i></a>
         <a class="btn-datos-usuario" (click)="openDialogDatosCliente(2)"><i class="fa-solid fa-pen-to-square"
             style="color: #0077B5;"></i></a>
-        <a class="btn-datos-usuario" (click)="clienteActual = null"><i class="fa-solid fa-user-xmark" style="color: #0077B5;"></i></a>
-        <a  class="btn-datos-usuario" (click)="openDialogContarDinero()"><i class="fa-regular fa-wallet" style="color: #0077B5;"></i></a>
+        <a class="btn-datos-usuario" (click)="clienteActual = null; busqueda = false"><i class="fa-solid fa-user-xmark" style="color: #0077B5;"></i></a>
+        <a  class="btn-datos-usuario" (click)="openDialogContarDinero()"><i class="fa fa-wallet" style="color: #0077B5;"></i></a>
        </div>
     </div>
 

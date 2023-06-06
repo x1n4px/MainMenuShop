@@ -143,6 +143,12 @@ export class LoginServiceService {
     return this.http.put(`http://localhost:8080/cliente/${id}`, cliente, { headers });
   }
 
+  actualizarPuntosCliente(id: any, puntos:number): Observable<Object> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(`http://localhost:8080/cliente/puntos/${id}`, puntos, { headers });
+  }
+
   crearCliente(cliente: Cliente): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

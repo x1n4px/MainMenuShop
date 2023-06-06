@@ -9,8 +9,8 @@
         <tbody>
           <tr *ngFor="let producto of cesta"  >
             <td>[{{producto.referencia}}]&nbsp;{{producto.nombre}}</td>
-            <span *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precioNeto * 0.8).toFixed(2)}}€</span>
-                <span *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precioNeto}}€</span>
+            <p *ngIf="clienteActual && clienteActual.rol === 'EMPLEADO'">{{(producto.precioNeto * 0.8).toFixed(2)}}€</p>
+                <p *ngIf="!clienteActual || clienteActual.rol !== 'EMPLEADO'">{{producto.precioNeto}}€</p>
           </tr>
 
         </tbody>

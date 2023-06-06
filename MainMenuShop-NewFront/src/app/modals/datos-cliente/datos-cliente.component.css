@@ -2,7 +2,7 @@
    position: fixed;
   top: 49%;
   left: 50%;
-  width: 60%;
+  width: 65%;
   height: 75%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 1);
@@ -55,8 +55,7 @@
 }
 
 .datos-clientes-interno {
-  margin: 20px;
-  font-size: 16px;
+   font-size: 16px;
   letter-spacing: 2px;
   overflow: auto;
   background-color: white;
@@ -85,6 +84,8 @@
   text-decoration: underline;
   text-decoration-color: #0077B5;
   text-decoration-thickness: 3px;
+  color: #0077B5;
+  font-size: xx-large;
 }
 
 
