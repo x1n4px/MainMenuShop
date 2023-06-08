@@ -1,0 +1,111 @@
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;
+  overflow: hidden;
+}
+
+.app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+}
+
+header {
+  display: flex;
+  align-items: center;
+
+}
+
+header p {
+  font-size: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+.compraTelefono, .compraWhatsapp {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(160, 160, 160);
+  width: 240px;
+  padding: 5px 10px;
+  background-color: rgb(241, 241, 241);
+  margin-left: 10px;
+
+}
+
+.icon {
+  margin-right: 10px;
+  padding: 5px 7px;
+   /* Estilos adicionales para el icono */
+}
+
+.ImagenFlotante {
+
+  background-color: yellow;
+  border: 2px solid yellow;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+ }
+
+ .informacionWeb {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background-color: rgb(241, 241, 241);
+
+}
+
+.informacionWebInfo {
+  margin-right: 30px;
+  margin-left: 50px;
+
+  display: flex;
+  align-items: center;
+  width: 240px;
+  padding: 5px 10px;
+  background-color: rgb(241, 241, 241);
+}
+
+.informacionWebInfo:last-child {
+  margin-right: 0;
+}
+
+.informacionWebInfo .icon {
+  margin-right: 5px;
+}
+
+.row {
+  margin: 0;
+}
+
+.divsForA{
+  margin: 50px 20px 50px 20px;
+}
+
+.divsForA a {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.ofertasMultiples{
+  height: 200px;
+  background-color: yellow;
+  margin: 50px 0px 50px 0px;
+
+}
