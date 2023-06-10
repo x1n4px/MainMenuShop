@@ -7,6 +7,11 @@ import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { PerroComponent } from './component/familia/perro/perro.component';
 import { GatoComponent } from './component/familia/gato/gato.component';
+import { BusquedaTiendaComponent } from './otros/busqueda-tienda/busqueda-tienda.component';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
+import { LoginComponent } from './usuario/login/login.component';
+import { CestaComponent } from './usuario/cesta/cesta.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +19,12 @@ import { GatoComponent } from './component/familia/gato/gato.component';
     HomeComponent,
     NavbarComponent,
     PerroComponent,
-    GatoComponent
+    GatoComponent,
+    BusquedaTiendaComponent,
+    PerfilComponent,
+    LoginComponent,
+    CestaComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
