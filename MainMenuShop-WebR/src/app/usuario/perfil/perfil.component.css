@@ -1,0 +1,62 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.contenedorInterior {
+  width: 70%;
+  height: auto;
+   padding: 10px;
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten y salten a la siguiente línea */
+  gap: 10px; /* Espacio entre los cuadrados */
+}
+
+
+.square {
+  flex: 1 0 auto; /* Permite que los cuadrados se ajusten al espacio disponible */
+
+  text-align: center;
+  box-sizing: border-box; /* Incluye el padding en el ancho total del cuadrado */
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.square > h1 {
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+  padding: 10px 20px;
+}
+
+#square1 {
+  width: 500px;
+  height: 500px;
+ }
+
+#square2 {
+  width: 450px;
+  height: 400px;
+ }
+
+#square3 {
+  width: 300px;
+  height: 300px;
+ }
+
+#square4 {
+  width: 600px;
+  height: 400px;
+ }
+
+/* Media query para pantallas móviles */
+@media (max-width: 767px) {
+  .square {
+    flex-basis: 100%; /* Ocupa el 100% del espacio disponible en una sola columna */
+  }
+
+  .contenedorInterior{
+    width: 90%;
+   }
+}

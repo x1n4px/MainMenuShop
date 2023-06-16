@@ -2,27 +2,26 @@ html,
 body {
   margin: 0 !important;
   padding: 0 !important;
-  height: 100%;
-  overflow: hidden;
-}
-
-.app-root {
-  height: 100%;
   display: flex;
-  flex-direction: column;
-}
+  justify-content: center;
+  align-items: center;
+ }
+
+
+
 
 .contenedor-principal {
+  width: 80%;
   flex: 1;
   display: flex;
   flex-direction: column;
-
-}
+ }
 
 header {
   display: flex;
   align-items: center;
-
+  justify-content: right;
+  margin-right: 50px;
 }
 
 header p {
@@ -30,13 +29,12 @@ header p {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 600;
   margin-right: auto;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 
 .compraTelefono,
 .compraWhatsapp {
   display: flex;
-  align-items: center;
   border: 1px solid rgb(160, 160, 160);
   width: 240px;
   padding: 5px 10px;
@@ -52,7 +50,7 @@ header p {
 }
 
 .ImagenFlotante {
- 
+
   width: 100%;
   height: auto;
   margin-bottom: 30px;
@@ -92,16 +90,14 @@ header p {
   margin: 0;
 }
 
+
 .divsForA {
-  margin: 50px 20px 50px 20px;
+  padding: 30px 30px;
 }
 
-.divsForA a:hover {
-  text-decoration: underline;
- } 
 
 .divsForA a {
-  text-decoration: none;
+    text-decoration: none;
   color: inherit;
   transition: background-color 0.3s;
   font-size: large;
@@ -109,29 +105,57 @@ header p {
   font-weight: bold;
 }
 
-.ofertasMultiples {
-   display: flex;
-  justify-content: space-between;
-  padding: 0 50px ;
-   margin: 0 150px;
-   padding-bottom: 50px;
+.divsForA a:hover {
+  text-decoration: underline;
 }
- 
+
+.ofertasMultiples {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10px;
+  margin: 10px;
+  padding-bottom: 50px;
+
+}
 
 .ofertasMultiples a {
-  display: block;
-  width: 400px;
-  height: 400px;
-  background-color: #f0f0f0;
+  flex: block;
   text-align: center;
   text-decoration: none;
+  margin-bottom: 20px;
 }
 
-.ofertasMultiples a img {
-  max-width: 100%;
-  max-height: 100%;
+.ofertasMultiples img {
+  max-width: 400px;
+  max-height: 400px;
+  }
+
+@media screen and (min-width: 768px) {
+  .ofertasMultiples a {
+    flex: 0 0 calc(33.33% - 40px);
+    margin-right: 0px;
+    margin-bottom: 0;
+  }
+
+
 }
 
+
+@media screen and (max-width: 767px) {
+  .divsForA a{
+    margin-left: 10px;
+
+  }
+
+  .contenedor-principal > header > p {
+    font-size: large;
+  }
+
+  .compraTelefono, .compraWhatsapp {
+    display: none;
+  }
+}
 
 
 
@@ -140,10 +164,10 @@ Carrusel
 */
 .slide {
   position: relative;
-   margin-top: 26px;
+  margin-top: 26px;
   align-items: center;
   align-content: center;
- }
+}
 
 .slide-inner {
   position: relative;
@@ -234,6 +258,7 @@ Carrusel
   cursor: pointer;
   display: block;
   font-size: 35px;
+  z-index: 1;
 }
 
 .slide-circulo:hover {
@@ -255,7 +280,7 @@ Carrusel
   font-size: 27px;
   color: rgba(255, 255, 255, 1);
   font-family: 'Open Sans', sans-serif;
-  z-index: 9999;
+  z-index: 1;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
     -1px 0px 2px rgba(255, 255, 255, 0);
 }

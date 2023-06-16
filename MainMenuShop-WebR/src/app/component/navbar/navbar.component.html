@@ -1,122 +1,52 @@
-<nav class="navbar">
-  <div class="navbar-row">
-    <div class="logo">
-      <img routerLink="" src="./assets/logo.png" style="width: 100%;height: auto;" alt="Logo">
-    </div>
-    <a routerLink="busquedaTienda" class="buscaTienda">
-      <div class="text">
-        <div class="row" style="font-size: 12px">ENCUENTRA </div>
-        <div class="row" style="font-size: 12px">TU TIENDA</div>
-      </div>
-      <div class="icon">
-        <img style="width: 40px;" src="./assets/map.png" alt="telefone">
+<nav>
+  <div class="nav">
+    <input type="checkbox" id="nav-check" #navCheck>
 
-      </div>
-    </a>
-    <div class="search">
-      <input type="text" placeholder="Busca tus marcas y productos favoritos">
-      <img src="./assets/lupa.png" alt="lupa">
+    <div class="nav-title">
+      <a class="logoGrande" routerLink=""><img src="./assets/logoGrande.webp" alt="logo" style="width: 200px;"></a>
     </div>
-    <div class="profile-icon">
-      <a routerLink="perfil"><img src="./assets/perfil.png" alt="Descripción del SVG"> </a>
 
+    <div class="nav-btn" id="menuHamburguer">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
     </div>
-    <div class="cart-icon">
-      <a href="cesta">      <img src="./assets/cesta.png" alt="Descripción del SVG">
+    <div class="nav-links">
+
+      <a (click)="irA('perro')">Perro</a>
+      <a (click)="irA('gato')">Gato</a>
+      <a routerLink="pajaros">Pájaros</a>
+      <a routerLink="roedores">Roedores</a>
+      <a routerLink="reptiles">Reptiles</a>
+      <a routerLink="acuariofilia">Acuariofilia</a>
+      <a routerLink="login" class="btn"><mat-icon>person</mat-icon>
+        <span>Iniciar
+          sesión/Registrarte</span></a>
+      <a routerLink="cesta" class="btn" (mouseenter)="mostrarCesta()"
+        (mouseleave)="mostrarCesta()"><mat-icon>shopping_cart</mat-icon>
+        <span>Cesta</span>
+        <div class="container" *ngIf="cesta.length !== 0">
+          <div class="tarjeta" [hidden]="!mostrar">
+            <div class="tarjeta-cesta">
+            <ul *ngFor="let dato of cesta">
+              <li>{{dato.titulo}} - {{dato.precio}}</li>
+            </ul>
+          </div>
+            <hr>
+            <p>Subtotal: {{precioCesta.toFixed(2)}} €</p>
+          </div>
+        </div>
       </a>
     </div>
-  </div>
-  <div class="navbar-row">
-    <div class="navbar-links">
-      <ul>
-        <li><a class="navCab" routerLink="/perro">Perro</a>
-          <ul>
-            <li><a href="/perro">Alimentación seca</a></li>
-            <li><a href="/perro">Alimentación húmeda</a></li>
-            <li><a href="/perro">Suplementos</a></li>
-            <li><a href="/perro">Alimentación Veterinaria</a></li>
-            <li><a href="/perro">Antiparasitarios</a></li>
-            <li><a href="/perro">Higiene</a></li>
-            <li><a href="/perro">Camas</a></li>
-            <li><a href="/perro">Correas, arnés y collares</a></li>
-            <li><a href="/perro">Casetas, jaulas</a></li>
-            <li><a href="/perro">Transportines</a></li>
 
-          </ul>
-        </li>
-
-        <li><a class="navCab" routerLink="/gato">Gato</a>
-          <ul>
-            <li><a href="/perro">Alimentación seca</a></li>
-            <li><a href="/perro">Alimentación húmeda</a></li>
-            <li><a href="/perro">Suplementos</a></li>
-            <li><a href="/perro">Alimentación Veterinaria</a></li>
-            <li><a href="/perro">Antiparasitarios</a></li>
-            <li><a href="/perro">Higiene</a></li>
-            <li><a href="/perro">Camas</a></li>
-            <li><a href="/perro">Correas, arnés y collares</a></li>
-            <li><a href="/perro">Casetas, jaulas</a></li>
-            <li><a href="/perro">Transportines</a></li>
-          </ul>
-        </li>
-        <li><a class="navCab" routerLink="">Conejos y Roedores</a>
-          <ul>
-            <li><a href="">Alimentación</a></li>
-            <li><a href="">Snacks</a></li>
-            <li><a href="">Juguetes</a></li>
-            <li><a href="">Jaulas</a></li>
-            <li><a href="">Higiene y limpieza</a></li>
-            <li><a href="">Antiparasitarios</a></li>
-          </ul>
-
-        </li>
-        <li><a class="navCab" href="">Peces</a>
-          <ul>
-            <li><a href="">Alimentación</a></li>
-            <li><a href="">Químicos</a></li>
-            <li><a href=""></a>Sólidos</li>
-            <li><a href=""></a>Plantas naturales</li>
-            <li><a href=""></a>Acuarios</li>
-            <li><a href="">Limpiezas</a></li>
-            <li><a href="">Mantenimiento del agua</a></li>
-            <li><a href="">Medicamentos</a></li>
-            <li><a href="">Decoración</a></li>
-          </ul>
-
-        </li>
-        <li><a class="navCab" href="">Reptiles</a>
-          <ul>
-            <li><a href="">Alimentación</a></li>
-            <li><a href="">Sólidos</a></li>
-            <li><a href="">Plantas artificiales</a></li>
-            <li><a href=""></a>Decoración</li>
-            <li><a href=""></a>Terrarios</li>
-            <li><a href=""></a>Tortugueras</li>
-          </ul>
-
-        </li>
-        <li><a class="navCab" href="">Pájaros</a>
-          <ul>
-            <li><a href="">Alimentación</a></li>
-            <li><a href="">Snacks</a></li>
-            <li><a href="">Complementos</a></li>
-            <li><a href="">Higuiene</a></li>
-            <li><a href="">Antiparasitarios</a></li>
-            <li><a href="">Accesorios</a></li>
-            <li><a href="">Jaulas</a></li>
-          </ul>
-        </li>
-        <li><a class="navCab" href="">Verano <img src="./assets/soleado.png" alt="soleado" width="20px"></a>
-
-        </li>
-        <li><a class="navCab" href="">Servicios</a>
-          <ul>
-            <li><a href="">Mundo belleza</a></li>
-            <li><a href="">Clínica veterinaria</a></li>
-            <li><a href="">Blog</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="buscardorMovil ">
+      <input type="text" placeholder="Busca tus marcas y productos favoritos">
+      <mat-icon>search</mat-icon>
     </div>
   </div>
+
+
+
 </nav>

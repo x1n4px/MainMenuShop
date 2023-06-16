@@ -1,1 +1,58 @@
-<p>login works!</p>
+<div class="contenedorExterior" [ngStyle]="{'height': alturaContenedor}">
+  <div class="contenedorInterior">
+    <div class="buttons">
+
+      <button id="registerButton" (click)="cambiarEstado(1)"
+        [ngClass]="{'pulsado': botonLoginPulsado}">Registrar</button>
+      <button id="loginButton" (click)="cambiarEstado(0)" [ngClass]="{'pulsado': botonRegisterPulsado}">Iniciar
+        Sesión</button>
+    </div>
+    <div class="contenedorForm" *ngIf="botonLoginPulsado">
+      <p>Bienvenid@ de nuevo!</p>
+      <form id="loginForm" class="login-form active-form">
+        <label for="">
+          <input type="text" placeholder="Email" required><br>
+        </label>
+        <label for="">
+          <input type="password" placeholder="Contraseña" required><br>
+        </label>
+        <div class="contenedorInformacion">
+          <div class="contenedorInformacionLabel">
+            <label>Recuerdame
+              <input type="checkbox">
+            </label>
+          </div>
+          <div class="contenedorInformacionRecordar">
+            <a>¿Has olvidado la contraseña?</a><br>
+          </div>
+
+        </div>
+
+        <button class="btnIniciarSesion" type="submit" (click)="perfil()">Iniciar Sesión</button>
+      </form>
+    </div>
+    <div class="contenedorForm" *ngIf="botonRegisterPulsado">
+      <form id="registerForm" class="register-form">
+        <input type="text" placeholder="Nombre" required><br>
+        <input type="text" placeholder="Apellidos" required><br>
+        <input type="text" placeholder="Telefono" required><br>
+        <input type="email" placeholder="Email" required><br>
+        <input type="email" placeholder="Confirmar Email" required><br>
+        <input type="password" placeholder="Contraseña" required><br>
+        <input type="password" placeholder="Confirmar Contraseña" required><br>
+
+        <label>Por favor, añádeme a la lista de correo.
+          <input type="checkbox">
+        </label>
+
+
+        <label>Acepto la política de privacidad <a routerLink="">Ver política de privacidad</a>
+          <input type="checkbox">
+        </label>
+
+        <button class="btnIniciarSesion" type="submit" (click)="perfil()">Crear Cuenta</button>
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { BusquedaTiendaComponent } from './otros/busqueda-tienda/busqueda-tienda
 import { CestaComponent } from './usuario/cesta/cesta.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { LoginComponent } from './usuario/login/login.component';
+import { ProductoComponent } from './component/familia/producto/producto.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'gato', component: GatoComponent },
   { path: 'busquedaTienda', component: BusquedaTiendaComponent },
   { path: 'cesta', component: CestaComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'cuenta/perfil', component: PerfilComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'producto/:titulo', component: ProductoComponent, pathMatch:'full'}
 
 ];
 

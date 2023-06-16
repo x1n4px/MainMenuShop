@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="btnCerrar">
+    <button *ngIf="this.seleccionados.length === 0" (click)="closeModalBusqueda()"><mat-icon>close</mat-icon>
+    </button>
+    <button id="aplicar" *ngIf="this.seleccionados.length !== 0" (click)="closeModalBusqueda()">Aplicar</button>
+
+  </div>
+  <div class="selector">
+
+    <div class="lista">
+      <div class="item" *ngFor="let item of items" [class.expandido]="item.expandido">
+        <h3 (click)="expandirItem(item)">{{ item.titulo }}</h3>
+        <ul *ngIf="item.expandido">
+          <ol *ngFor="let dato of item.datos">
+            <label class="material-checkbox">
+              <input type="checkbox" [checked]="estaSeleccionado(dato)" (change)="marcarElemento(dato)">
+              <span class="checkmark"></span>
+              {{ dato }}
+            </label>
+          </ol>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

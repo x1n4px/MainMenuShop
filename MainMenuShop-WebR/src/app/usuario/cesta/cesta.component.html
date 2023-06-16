@@ -1,1 +1,26 @@
-<p>cesta works!</p>
+<div class="contenedor">
+  <div class="contenedorInterior">
+
+    <div class="cesta">
+      <h1>Mi cesta:</h1>
+      <ul>
+        <li *ngFor="let dato of cesta">
+          <h3>{{ dato.titulo }}</h3>
+          <div class="datos">
+            <img [src]="dato.imagen" alt="Imagen del producto">
+            <p>Precio: {{ dato.precio }}</p>
+            <mat-icon (click)="eliminarArticulo(dato)">delete</mat-icon>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <div class="pago">
+      <h1>Total compra: {{precioCesta.toFixed(2)}} €</h1>
+      <label>Descuento:<br>
+        <input class="inputDest" type="text" placeholder="Introduce el cupón">
+      </label>
+      <button (click)="modalPago()">Proceder al pago</button>
+    </div>
+  </div>
+</div>

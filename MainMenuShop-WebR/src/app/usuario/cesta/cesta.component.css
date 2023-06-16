@@ -1,0 +1,114 @@
+.contenedor {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+ }
+
+.contenedorInterior {
+  padding: 20px;
+
+  width: 70%;
+  min-height: 400px;
+  display: flex;
+
+}
+
+
+.cesta {
+  width: 70%;
+   border: 1px solid #008bf8;
+  min-height: 400px;
+  margin-right: 20px;
+}
+
+.cesta h1 {
+  padding: 20px;
+}
+
+
+
+.datos {
+  display: flex;
+  align-items: center;
+}
+
+.datos img {
+  width: 120px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.datos mat-icon {
+  margin-left: 50px;
+}
+
+.pago {
+  width: 25%;
+  border: 1px solid #008bf8;
+  min-height: 100px;
+  max-height: 500px;
+}
+
+.pago h1 {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.pago label {
+  padding: 30px;
+  font-size: 18px;
+}
+
+.inputDest {
+  margin: 0 30px;
+  padding: 10px;
+  width: 80%;
+}
+
+.pago button {
+   margin: 50px;
+  padding: 20px 40px;
+  width: 70%;
+  border-radius: 5px;
+  border: 3px solid #008bf8;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: large;
+  animation: .5s all linear;
+}
+
+.pago button:hover {
+  background-color: #008bf8;
+  color: whitesmoke;
+}
+
+ul {
+  list-style: none;
+}
+
+
+li {
+  padding: 15px 30px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  width: 90%;
+}
+
+
+@media screen and (max-width: 600px) {
+  .contenedorInterior {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cesta {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .pago {
+    width: 100%;
+  }
+}

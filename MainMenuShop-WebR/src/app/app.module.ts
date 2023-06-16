@@ -12,8 +12,15 @@ import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { CestaComponent } from './usuario/cesta/cesta.component';
 import { FooterComponent } from './footer/footer.component';
-
-@NgModule({
+import { FormsModule } from '@angular/forms';
+import { BusquedaArticulosComponent } from './component/modal/busqueda-articulos/busqueda-articulos.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { ProductoComponent } from './component/familia/producto/producto.component';
+import { PantallaPagoComponent } from './component/modal/pantalla-pago/pantalla-pago.component';
+  @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
@@ -24,11 +31,19 @@ import { FooterComponent } from './footer/footer.component';
     PerfilComponent,
     LoginComponent,
     CestaComponent,
-    FooterComponent
-  ],
+    FooterComponent,
+    BusquedaArticulosComponent,
+    ProductoComponent,
+    PantallaPagoComponent
+   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

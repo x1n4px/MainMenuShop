@@ -1,0 +1,17 @@
+.contenedor {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.contenedorInterior {
+  width: 80%;
+  min-height: 400px;
+  border: 1px solid #3d3d3d;
+}
+
+.contenedorInterior h1 {
+  padding: 50px;
+}
