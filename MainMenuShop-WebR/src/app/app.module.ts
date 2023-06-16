@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductoComponent } from './component/familia/producto/producto.component';
+import { HttpClientModule } from '@angular/common/http';
    @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ProductoComponent } from './component/familia/producto/producto.compone
     MatDialogModule,
     MatSnackBarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

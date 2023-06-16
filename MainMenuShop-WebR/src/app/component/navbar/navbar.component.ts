@@ -6,6 +6,7 @@ import { BusquedaArticulosComponent } from '../modal/busqueda-articulos/busqueda
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon'
+import { ProductosService } from 'src/app/service/productos.service';
 
 
 
@@ -16,7 +17,14 @@ import {MatIconModule} from '@angular/material/icon'
 })
 export class NavbarComponent {
   cesta:any[];
-  constructor(private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
+  resultados!: any[];
+  terminoBusqueda!: string;
+  mostrarResultados: boolean = false;
+
+
+
+
+  constructor(private productooService: ProductosService, private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
     this.cesta = this.sharedService.obtenercesta();
   }
 
@@ -53,4 +61,18 @@ export class NavbarComponent {
   }
 
 
+  buscar() {
+    this.productooService.buscarProducto(this.terminoBusqueda)
+      .subscribe(productos => {
+        this.resultados = productos;
+        console.log(this.resultados);
+      }, error => {
+        this.resultados = [];
+      });
+  }
+
+
+  seleccionarResultado(dato:any) {
+    this.router.navigate(['perro']);
+  }
 }

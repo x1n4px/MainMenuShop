@@ -21,19 +21,19 @@
       <a routerLink="roedores">Roedores</a>
       <a routerLink="reptiles">Reptiles</a>
       <a routerLink="acuariofilia">Acuariofilia</a>
-      <a  (click)="irA('login')" class="btn"><mat-icon>person</mat-icon>
+      <a (click)="irA('login')" class="btn"><mat-icon>person</mat-icon>
         <span>Iniciar
           sesión/Registrarte</span></a>
-      <a (click)="irA('cesta')"  class="btn" (mouseenter)="mostrarCesta()"
+      <a (click)="irA('cesta')" class="btn" (mouseenter)="mostrarCesta()"
         (mouseleave)="mostrarCesta()"><mat-icon>shopping_cart</mat-icon>
         <span>Cesta</span>
         <div class="container" *ngIf="cesta.length !== 0">
           <div class="tarjeta" [hidden]="!mostrar">
             <div class="tarjeta-cesta">
-            <ul *ngFor="let dato of cesta">
-              <li>{{dato.titulo}} - {{dato.precio}}</li>
-            </ul>
-          </div>
+              <ul *ngFor="let dato of cesta">
+                <li>{{dato.titulo}} - {{dato.precio}}</li>
+              </ul>
+            </div>
             <hr>
             <p>Subtotal: {{precioCesta.toFixed(2)}} €</p>
           </div>
@@ -41,10 +41,22 @@
       </a>
     </div>
 
-    <div class="buscardorMovil ">
-      <input type="text" placeholder="Busca tus marcas y productos favoritos">
-      <mat-icon>search</mat-icon>
+    <div class="buscardorMovil">
+      <form (ngSubmit)="buscar()">
+        <input [(ngModel)]="terminoBusqueda" name="terminoBusqueda" type="text"
+          placeholder="Busca tus marcas y productos favoritos" (input)="mostrarResultados = true"
+          (blur)="mostrarResultados = false">
+
+        <mat-icon>search</mat-icon>
+      </form>
+
+      <ul class="resultados-busqueda" [class.visible]="mostrarResultados">
+        <li *ngFor="let resultado of resultados">
+          <a (click)="seleccionarResultado(resultado)">{{ resultado.nombre }}</a>
+        </li>
+      </ul>
     </div>
+
   </div>
 
 

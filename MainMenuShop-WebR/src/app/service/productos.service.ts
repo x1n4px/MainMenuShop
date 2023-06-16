@@ -1,3 +1,5 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+ import { Producto } from '../class/producto';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +7,16 @@ import { Injectable } from '@angular/core';
 })
 export class ProductosService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+
+  obtenerTodosLosProductos() {
+    return this.http.get<Producto[]>(`http://localhost:8080/producto/todos`);
+  }
+
+  buscarProducto(busqueda: string) {
+
+    return this.http.get<Producto[]>(`http://localhost:8080/buscar?nombre=${busqueda}`);
+  }
+
 }

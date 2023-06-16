@@ -148,12 +148,49 @@ ul li {
 }
 
 
+.resultados-busqueda {
+  position: absolute;
+  top: calc(10%);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+  z-index: 99999;
+  animation: 0.3s linear infinite;
+}
 
-@media (max-width: 1620px) {
+.resultados-busqueda.visible {
+  display: block;
+}
+
+
+.buscardorMovil ul li:hover {
+  background-color: #3b589867;
+   font-weight: 700;
+}
+
+
+
+
+@media (max-width: 1920px) {
   .nav {
     width: 100%;
   }
 
+  .resultados-busqueda {
+    position: absolute;
+
+    top: calc(18%);
+    transform: translateX(0%);
+    left: 0%;
+    width: 70%;
+    z-index: 999999;
+  }
 
   .nav>.nav-links {
     display: none;
@@ -260,5 +297,19 @@ ul li {
     display: none;
   }
 
+
+}
+
+
+@media screen and (max-width: 720px) {
+  .resultados-busqueda {
+    position: absolute;
+
+    top: calc(18%);
+    transform: translateX(0%);
+    left: 0%;
+    width: 100%;
+    z-index: 999999;
+  }
 
 }
