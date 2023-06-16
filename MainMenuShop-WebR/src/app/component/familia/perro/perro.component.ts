@@ -229,6 +229,10 @@ export class PerroComponent implements OnInit {
       }
       return false;
     });
+
+    if(this.seleccionados.length === 0){
+      this.datosFiltradosResV = this.datos;
+    }
   }
 
 

@@ -3,10 +3,10 @@
     <h1>Perros</h1>
     <div class="contenedorExterior">
       <div id="selectorInicialCabecera" class="selectorInicial">
-        <img src="../../../../assets/sacoPiensoPerro/saco1.webp">
-        <img src="../../../../assets/sacoPiensoPerro/saco1.webp">
-        <img src="../../../../assets/sacoPiensoPerro/saco1.webp">
-        <img src="../../../../assets/sacoPiensoPerro/saco1.webp">
+        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
+        <img src="./assets/sacoPiensoPerro/Acana/acanaPacificAdult.webp">
+        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
+        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
 
       </div>
     </div>
@@ -152,6 +152,13 @@
               </button>
 
             </div>
+
+          </div>
+          <div class="sinProductos" *ngIf="this.datosFiltradosResV.length === 0">
+            <p>Lo sentimos! no hay productos que cumplan con tus búsquedas <br><br>
+            Aunque seguro que hay algo que te puede gustar!</p>
+            <img src="./assets/perroLLoron.webp" style="width: 200px;">
+
           </div>
         </div>
 

@@ -110,20 +110,19 @@ header p {
 }
 
 .ofertasMultiples {
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 10px;
-  margin: 10px;
-  padding-bottom: 50px;
-
-}
+   padding-bottom: 50px;
+ }
 
 .ofertasMultiples a {
   flex: block;
   text-align: center;
   text-decoration: none;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .ofertasMultiples img {
@@ -143,9 +142,12 @@ header p {
 
 
 @media screen and (max-width: 767px) {
+
+
+
   .divsForA a{
     margin-left: 10px;
-
+    width: 100%;
   }
 
   .contenedor-principal > header > p {

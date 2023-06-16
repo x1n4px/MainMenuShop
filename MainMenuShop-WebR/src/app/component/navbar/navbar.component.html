@@ -21,10 +21,10 @@
       <a routerLink="roedores">Roedores</a>
       <a routerLink="reptiles">Reptiles</a>
       <a routerLink="acuariofilia">Acuariofilia</a>
-      <a routerLink="login" class="btn"><mat-icon>person</mat-icon>
+      <a  (click)="irA('login')" class="btn"><mat-icon>person</mat-icon>
         <span>Iniciar
           sesión/Registrarte</span></a>
-      <a routerLink="cesta" class="btn" (mouseenter)="mostrarCesta()"
+      <a (click)="irA('cesta')"  class="btn" (mouseenter)="mostrarCesta()"
         (mouseleave)="mostrarCesta()"><mat-icon>shopping_cart</mat-icon>
         <span>Cesta</span>
         <div class="container" *ngIf="cesta.length !== 0">

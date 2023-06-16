@@ -91,3 +91,15 @@ input {
   text-align: right;
 
 }
+
+
+@media screen and (max-width: 767px) {
+  .contenedorExterior {
+    width: 100%;
+   }
+
+  .contenedorInterior {
+    width: 100%;
+    margin-top: 50px;
+  }
+}

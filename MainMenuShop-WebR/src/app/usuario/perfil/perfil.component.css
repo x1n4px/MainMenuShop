@@ -20,7 +20,7 @@
 
   text-align: center;
   box-sizing: border-box; /* Incluye el padding en el ancho total del cuadrado */
-  border: 3px solid black;
+  border: 3px solid #0077B5;
   border-radius: 5px;
 }
 
@@ -28,6 +28,7 @@
   text-align: left;
   border-bottom: 1px solid lightgray;
   padding: 10px 20px;
+  color: #014569;
 }
 
 #square1 {

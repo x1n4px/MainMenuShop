@@ -19,8 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductoComponent } from './component/familia/producto/producto.component';
-import { PantallaPagoComponent } from './component/modal/pantalla-pago/pantalla-pago.component';
-  @NgModule({
+   @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
@@ -33,9 +32,8 @@ import { PantallaPagoComponent } from './component/modal/pantalla-pago/pantalla-
     CestaComponent,
     FooterComponent,
     BusquedaArticulosComponent,
-    ProductoComponent,
-    PantallaPagoComponent
-   ],
+    ProductoComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

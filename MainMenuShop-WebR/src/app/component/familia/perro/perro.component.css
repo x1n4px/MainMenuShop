@@ -21,12 +21,10 @@
 }
 
 .selectorInicial {
-  height: auto;
-
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
-
-  margin-bottom: 50px;
+   margin-bottom: 50px;
 }
 
 #selectorInicialOfertas {
@@ -34,7 +32,9 @@
 }
 
 .selectorInicial img {
-  width: calc(20%)
+  width: calc(20%);
+  height: auto;
+
 }
 
 .categoriasDestacadas {
@@ -55,6 +55,12 @@
 }
 
 
+
+.sinProductos p {
+  text-align: center;
+  padding: 50px 0;
+  font-size: x-large;
+}
 
 .categoriasDestacadasCategoriasIndividuales {
   display: flex;
@@ -495,8 +501,8 @@ Carrusel
   display: inline-block;
   max-width: 100px;
   height: 120px;
-   overflow: hidden;
-   padding: 10px 20px;
+  overflow: hidden;
+  padding: 10px 20px;
   margin-left: 10px;
 }
 

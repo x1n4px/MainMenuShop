@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { PantallaPagoComponent } from 'src/app/component/modal/pantalla-pago/pantalla-pago.component';
 import { SharedServiceService } from 'src/app/service/shared-service.service';
 
 @Component({
@@ -37,11 +36,6 @@ export class CestaComponent {
   }
 
   modalPago() {
-    const dialogRef = this.dialog.open(PantallaPagoComponent, { data: { cesta: this.cesta, cliente: this.cliente } });
-    dialogRef.afterClosed().subscribe(result => {
 
-
-
-    });
   }
 }
