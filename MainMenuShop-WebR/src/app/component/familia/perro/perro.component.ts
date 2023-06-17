@@ -221,6 +221,7 @@ export class PerroComponent implements OnInit {
   }
 
   openModalFiltrar() {
+    console.log(this.seleccionados);
     const dialogRef = this.dialog.open(BusquedaArticulosComponent, { data: { seleccionados: this.seleccionados } });
     dialogRef.afterClosed().subscribe(result => {
       this.selecciones = result.selecciones;
