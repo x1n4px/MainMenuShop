@@ -1,5 +1,6 @@
 package com.MainMenuShop.MainMenuShop.controller;
 
+import com.MainMenuShop.MainMenuShop.dto.ProductosOnlineDTO;
 import com.MainMenuShop.MainMenuShop.entities.Productos;
 import com.MainMenuShop.MainMenuShop.entities.Ticket;
 import com.MainMenuShop.MainMenuShop.entities.TicketProducto;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -43,15 +45,39 @@ public class TicketProductoController {
     }
 
     @GetMapping("/producto/todos")
-    public List<Productos> obtenerProductos() {
-        return productoService.obtenerProductos();
-
+    public List<?> obtenerProductos( @RequestParam("cantidad") Integer cantidad) {
+        List<Productos> productos = productoService.obtenerProductos();
+        if(cantidad == 0){
+            return productos;
+        }else if (cantidad == 1){
+            List<ProductosOnlineDTO> productosDTOList = new ArrayList<>();
+            for (Productos producto: productos) {
+                ProductosOnlineDTO productoDTO = ProductosOnlineDTO.fromProducto(producto);
+                productosDTOList.add(productoDTO);
+            }
+            return productosDTOList;
+        }
+        return null;
     }
 
     @GetMapping("buscar")
-    public List<Productos> buscarPorNombre(@RequestParam("nombre") String nombre) {
-        return productoService.buscar(nombre);
+    public List<?> buscarPorNombre(@RequestParam("nombre") String nombre,
+                                           @RequestParam("cantidad") Integer cantidad) {
+        List<Productos> productos =  productoService.buscar(nombre);
+        if(cantidad == 0){
+            return productos;
+        }else if (cantidad == 1){
+            List<ProductosOnlineDTO> productosDTOList = new ArrayList<>();
+            for (Productos producto: productos) {
+                ProductosOnlineDTO productoDTO = ProductosOnlineDTO.fromProducto(producto);
+                productosDTOList.add(productoDTO);
+            }
+            return productosDTOList;
+        }
+         return null;
     }
+
+
 
     @GetMapping("buscarTicket")
     public List<Ticket> buscarTicketPorNombre(@RequestParam("referencia") String referencia) {

@@ -1,5 +1,6 @@
 package com.MainMenuShop.MainMenuShop.service;
 
+import com.MainMenuShop.MainMenuShop.dto.ProductosOnlineDTO;
 import com.MainMenuShop.MainMenuShop.entities.Productos;
 import com.MainMenuShop.MainMenuShop.repositories.ProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ public class ProductosService {
     @Autowired
     private ProductosRepository productoRepository;
 
-    public List<Productos> buscar(String nombre){return productoRepository.findByNombreContainingIgnoreCase(nombre);
+    public List<Productos> buscar(String nombre){
+        return productoRepository.findByNombreContainingIgnoreCase(nombre);
     }
+
+
 
     public List<Productos> obtenerProductos(){
         return productoRepository.findAll();

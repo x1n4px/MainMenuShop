@@ -31,7 +31,7 @@ public class SecurityConfig {
 		.csrf().disable()
 				// dont authenticate this particular request
 		        .authorizeHttpRequests()
-		        .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "buscar")
+		        .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "buscar", "buscarDTO", "producto/{id}")
 		        .permitAll()
 //		        .requestMatchers(HttpMethod.GET, "/ejemplo1").hasAnyRole("ROLE_RESPONSABLE_AULA","ROLE_VIGILANTE_AULA", "RESPONSABLE_AULA","VIGILANTE_AULA")
 //		        .requestMatchers(HttpMethod.GET, "/ejemplo2").hasAnyRole("CORRECTOR")		        
