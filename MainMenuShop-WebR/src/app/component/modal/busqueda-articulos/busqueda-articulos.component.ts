@@ -26,7 +26,7 @@ export class BusquedaArticulosComponent {
       expandido: false
     },
     {
-      titulo: 'CATEGORÍA',
+      titulo: 'categoría',
       datos: ['Pienso', 'Dietas veterinarias', 'Juguetes', 'Comida húmeda', 'Snacks', 'Antiparasitarios', 'Camas', 'Transportines y viajes', 'Arneses,correas,...', 'Ropa', 'Higiene y Salud', 'Casetas, jaulas y Hogar', 'Gateras y Redes', 'Comederos y Bebederos', 'Juguetes', 'Cuidado del pelo', 'Complementos', 'Adiestramiento y Agilidad', 'Decoración y Accesorios'],
       expandido: false
     },
@@ -86,22 +86,61 @@ export class BusquedaArticulosComponent {
   }
 
 
-  estaSeleccionado(dato: any): boolean {
-    return this.seleccionados.includes(dato);
-  }
+
+
+
+
+  selecciones: any[] = this.items.map(item => ({
+    titulo: item.titulo,
+    datos: []
+  }));
+
+
 
   marcarElemento(dato: any) {
+    const titulo = this.items.find(item => item.datos.includes(dato))?.titulo;
 
-    if (this.estaSeleccionado(dato)) {
-      this.seleccionados = this.seleccionados.filter((elem) => elem !== dato);
-    } else {
-      this.seleccionados.push(dato);
+    if (titulo) {
+      const seleccionEncontrada = this.selecciones.find(seleccion => seleccion.titulo === titulo);
+
+      if (seleccionEncontrada) {
+        const index = seleccionEncontrada.datos.indexOf(dato);
+
+        if (index > -1) {
+          seleccionEncontrada.datos.splice(index, 1);
+        } else {
+          seleccionEncontrada.datos.push(dato);
+        }
+      }
     }
   }
 
+  estaSeleccionado(dato: any): boolean {
+    const titulo = this.items.find(item => item.datos.includes(dato))?.titulo;
+
+    if (titulo) {
+      const seleccionEncontrada = this.selecciones.find(seleccion => seleccion.titulo === titulo);
+
+      if (seleccionEncontrada) {
+        return seleccionEncontrada.datos.includes(dato);
+      }
+    }
+
+    return false;
+  }
+
+
+    eliminarElementosVacios( ) {
+    const resultado = this.selecciones.filter(item => item.datos.length > 0);
+    return resultado;
+  }
+
+
 
   closeModalBusqueda() {
-    this.dialogRef.close({ seleccionados: this.seleccionados });
+    this.selecciones = this.eliminarElementosVacios();
+    console.log(this.selecciones);
+    this.dialogRef.close({ selecciones: this.selecciones });
   }
 
 

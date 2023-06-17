@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'cesta', component: CestaComponent },
   { path: 'cuenta/perfil', component: PerfilComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'producto/:titulo', component: ProductoComponent, pathMatch:'full'}
+  { path: 'producto/:id/:titulo', component: ProductoComponent, pathMatch:'full'}
 
 ];
 

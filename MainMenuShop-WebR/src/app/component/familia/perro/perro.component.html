@@ -3,13 +3,14 @@
     <h1>Perros</h1>
     <div class="contenedorExterior">
       <div id="selectorInicialCabecera" class="selectorInicial">
-        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
-        <img src="./assets/sacoPiensoPerro/Acana/acanaPacificAdult.webp">
-        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
-        <img src="./assets/sacoPiensoPerro/Acana/acanaFitAdult.webp">
-
+        <ul class="iterador">
+          <li *ngFor="let imagen of datosCompletos.slice(0, 4)" style="display: inline;">
+            <img [src]="imagen.imagen" alt="imagen.nombre" style="display: inline;">
+          </li>
+        </ul>
       </div>
     </div>
+
     <div class="categoriasDestacadas">
       <h2>Categorías destacadas</h2>
       <div class="categoriasDestacadasCategoriasIndividuales">
@@ -91,20 +92,6 @@
 
       <h2>Sus marcas favoritas:</h2>
       <div class="categoriasDestacadasCategoriasIndividualesMarcas">
-        <!-- <a (click)="marcarElemento('True Origins')" [class.seleccionado]="estaSeleccionado('True Origins')">True
-          Origins</a>
-        <a (click)="marcarElemento('Nath')" [class.seleccionado]="estaSeleccionado('Nath')">Nath</a>
-        <a (click)="marcarElemento('Milord')" [class.seleccionado]="estaSeleccionado('Milord')">Milord</a>
-        <a (click)="marcarElemento('Royal canin')" [class.seleccionado]="estaSeleccionado('Royal canin')">Royal
-          canin</a>
-        <a (click)="marcarElemento('Hill\'s')" [class.seleccionado]="estaSeleccionado('Hill\'s')">Hill's</a>
-        <a (click)="marcarElemento('Advance')" [class.seleccionado]="estaSeleccionado('Advance')">Advance</a>
-        <a (click)="marcarElemento('Dogxtreme')" [class.seleccionado]="estaSeleccionado('Dogxtreme')">Dogxtreme</a>
-        <a (click)="marcarElemento('Acana')" [class.seleccionado]="estaSeleccionado('Acana')">Acana</a>
-        <a (click)="marcarElemento('Seresto')" [class.seleccionado]="estaSeleccionado('Seresto')">Seresto</a>
-        <a (click)="marcarElemento('Taste of the wild')"
-          [class.seleccionado]="estaSeleccionado('Taste of the wild')">Taste of the wild</a>
-        <a (click)="marcarElemento('Tk-Pet')" [class.seleccionado]="estaSeleccionado('Tk-Pet')">Tk-Pet</a> -->
         <a (click)="marcarElemento('Acana')"><img src="./assets/logoImagenes/acana-logo.webp"></a>
         <a><img src="./assets/logoImagenes/advanceLogo.webp"></a>
         <a><img src="./assets/logoImagenes/HillsLogo.webp"></a>
@@ -114,18 +101,12 @@
         <a><img src="./assets/logoImagenes/tasteOfWildLogo.webp"></a>
         <a><img src="./assets/logoImagenes/TkPetLogo.webp"></a>
         <a><img src="./assets/logoImagenes/TrueOriginsLogo.webp"></a>
-
-
-
-
-
       </div>
-
     </div>
 
     <div class="categorias" [ngStyle]="{'height': alturaContenedor + 'px'}">
       <div class="btn-filtrar-container">
-        <button id="eliminar" class="btn-filtrar" *ngIf="seleccionados.length !== 0" (click)="limpiarFiltros()">Eliminar
+        <button id="eliminar" class="btn-filtrar" *ngIf="selecciones.length !== 0" (click)="limpiarFiltros()">Eliminar
           Filtros</button>
         <button class="btn-filtrar" (click)="openModalFiltrar()">Filtrar</button>
       </div>
@@ -135,15 +116,15 @@
           <div class="muestrario">
             <div class="card" *ngFor="let dato of datosFiltradosResV.slice(0, cantidadMostrada)">
               <!-- <a [routerLink]="['/', 'perro', 'producto', dato.titulo]"> -->
-              <a (click)="verDetallesProducto(dato)">
+              <a (dblclick)="verDetallesProducto(dato)">
                 <div class="card-details">
                   <div class="card-details-img">
                     <img [src]="dato.imagen" alt="Imagen">
 
                   </div>
                   <div class="card-details-text">
-                    <h3>{{ dato.titulo }}</h3>
-                    <p>{{dato.precio}}</p>
+                    <h3>{{ dato.nombre }} - {{dato.peso}} KG</h3>
+                    <p>{{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€ ({{((dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100))/dato.peso).toFixed(2)}}€/KG)</p>
                   </div>
 
                 </div>
@@ -156,7 +137,7 @@
           </div>
           <div class="sinProductos" *ngIf="this.datosFiltradosResV.length === 0">
             <p>Lo sentimos! no hay productos que cumplan con tus búsquedas <br><br>
-            Aunque seguro que hay algo que te puede gustar!</p>
+              Aunque seguro que hay algo que te puede gustar!</p>
             <img src="./assets/perroLLoron.webp" style="width: 200px;">
 
           </div>

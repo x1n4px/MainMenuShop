@@ -24,21 +24,24 @@
       <a (click)="irA('login')" class="btn"><mat-icon>person</mat-icon>
         <span>Iniciar
           sesión/Registrarte</span></a>
-      <a (click)="irA('cesta')" class="btn" (mouseenter)="mostrarCesta()"
-        (mouseleave)="mostrarCesta()"><mat-icon>shopping_cart</mat-icon>
+      <a (click)="irA('cesta')" class="btn" (mouseenter)="mostrarCesta()" (mouseleave)="mostrarCesta()">
+        <mat-icon class="cart-icon">shopping_cart</mat-icon>
         <span>Cesta</span>
         <div class="container" *ngIf="cesta.length !== 0">
           <div class="tarjeta" [hidden]="!mostrar">
             <div class="tarjeta-cesta">
               <ul *ngFor="let dato of cesta">
-                <li>{{dato.titulo}} - {{dato.precio}}</li>
+                <li>{{dato.nombre}} - {{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}} €</li>
               </ul>
             </div>
             <hr>
             <p>Subtotal: {{precioCesta.toFixed(2)}} €</p>
           </div>
         </div>
+        <div class="circle" *ngIf="cesta.length !== 0">{{ cesta.length }}</div>
       </a>
+
+
     </div>
 
     <div class="buscardorMovil">

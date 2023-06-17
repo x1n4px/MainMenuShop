@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 200px;
- }
+}
 
 .contenedorInterior {
   padding: 20px;
@@ -17,8 +17,7 @@
 
 
 .cesta {
-  width: 70%;
-   border: 1px solid #008bf8;
+  width: 60%;
   min-height: 400px;
   margin-right: 20px;
 }
@@ -26,7 +25,6 @@
 .cesta h1 {
   padding: 20px;
 }
-
 
 
 .datos {
@@ -45,43 +43,97 @@
 }
 
 .pago {
-  width: 25%;
   border: 1px solid #008bf8;
-  min-height: 100px;
-  max-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
+  border-radius: 5px;
 }
 
-.pago h1 {
-  padding-top: 10px;
-  text-align: center;
+.pago h3 {
+  font-weight: 500;
+  font-size: large;
+  letter-spacing: 1px;
 }
 
-.pago label {
-  padding: 30px;
-  font-size: 18px;
+.cupon {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgray;
+
+}
+
+.cupon label {
+  font-size: large;
+  font-weight: 500;
+}
+
+.cupon-cont {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 10px;
 }
 
 .inputDest {
-  margin: 0 30px;
-  padding: 10px;
-  width: 80%;
+  margin-top: 10px;
+  width: 50%;
+  padding: 15px 15px;
+  margin-right: 20px;
+  font-size: 1.2em;
 }
 
-.pago button {
-   margin: 50px;
-  padding: 20px 40px;
-  width: 70%;
+.btnCupon {
+  padding: 10px 35px;
   border-radius: 5px;
   border: 3px solid #008bf8;
-  background-color: transparent;
-  font-weight: 700;
+  color: #008bf8;
   font-size: large;
-  animation: .5s all linear;
+  background-color: transparent;
+  animation: 0.5s ease;
 }
 
-.pago button:hover {
+.btnCupon:hover {
   background-color: #008bf8;
-  color: whitesmoke;
+  color: white;
+}
+
+.resumen-pedido {
+  width: 100%;
+  max-width: 100%;
+}
+
+.resumen-pedido p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.btnPago {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  padding: 20px 70px;
+  background-color: #008bf8;
+  color: white;
+  font-size: x-large;
+  border: none;
+  cursor: pointer;
+}
+
+.btnPago:hover {
+  transform: scale(0.95);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 ul {
@@ -94,21 +146,58 @@ li {
   margin-bottom: 10px;
   text-decoration: none;
   width: 90%;
+  border: 1px solid #008bf8;
+  border-radius: 5px;
 }
 
 
 @media screen and (max-width: 600px) {
+  .contenedor {
+    width: 100%;
+  }
+
   .contenedorInterior {
     flex-direction: column;
+    margin: 0;
+    padding: 10px;
     width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
   }
 
   .cesta {
-    width: 100%;
+    width: auto;
     margin-bottom: 10px;
   }
 
+  li {
+    width: auto;
+  }
+
   .pago {
+    width: auto;
+  }
+
+  .resumen-pedido {
+    width: 80%;
+  }
+
+
+  .cupon-cont {
+    width: auto;
+
+  }
+
+  .inputDest {
+
+    margin: 0;
+    margin-top: 10px;
+    width: 90%;
+  }
+
+  .btnCupon {
+    margin-top: 10px;
     width: 100%;
   }
 }

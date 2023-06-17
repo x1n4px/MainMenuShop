@@ -1,5 +1,27 @@
 <div class="contenedor">
   <div class="contenedorInterior">
-    <h1>{{tituloProducto}}</h1>
+    <div class="titulo">
+      <h1>{{nombre}} </h1>
+    </div>
+    <div class="contenidoDescriptivo">
+      <div class="imagen">
+      <img [src]="imagen" alt="Imagen">
+      </div>
+      <div class="seleccionador">
+        <div class="seleccionadorInterno">
+          <p>cantidad: {{producto.peso}} KG</p>
+
+          <p>{{categoria}} {{producto.nutricion}} perros {{producto.etapaVida}} con sabor a {{producto.sabores}}  </p>
+          <p>Precio: {{(producto.precioNeto + producto.precioNeto*(producto.ivaAsociado/100)).toFixed(2)}}€</p>
+          <button class="btnAniadir" (click)="aniadirCesta()">Añadir a la cesta</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="informacionAux">
+      <div [innerHTML]="contenido"></div>
+
+
+
   </div>
 </div>

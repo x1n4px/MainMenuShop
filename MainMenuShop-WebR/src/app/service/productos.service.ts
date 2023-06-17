@@ -11,12 +11,17 @@ export class ProductosService {
 
 
   obtenerTodosLosProductos() {
-    return this.http.get<Producto[]>(`http://localhost:8080/producto/todos`);
+    return this.http.get<Producto[]>(`http://localhost:8080/producto/todos?cantidad=1`);
   }
 
   buscarProducto(busqueda: string) {
 
     return this.http.get<Producto[]>(`http://localhost:8080/buscar?nombre=${busqueda}`);
   }
+
+  obtenerProductoPorId(id: number) {
+    return this.http.get<Producto>('http://localhost:8080/producto/'+ id );
+  }
+
 
 }

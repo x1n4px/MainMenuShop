@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PerroComponent } from '../familia/perro/perro.component';
 import { SharedServiceService } from 'src/app/service/shared-service.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { ProductosService } from 'src/app/service/productos.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   cesta:any[];
   resultados!: any[];
   terminoBusqueda!: string;
@@ -26,6 +26,11 @@ export class NavbarComponent {
 
   constructor(private productooService: ProductosService, private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
     this.cesta = this.sharedService.obtenercesta();
+
+  }
+
+  ngOnInit(): void {
+
   }
 
 
@@ -47,7 +52,7 @@ export class NavbarComponent {
   calcularCesta() {
     this.precioCesta = 0;
     for ( let i = 0; i < this.cesta.length; i++) {
-      this.precioCesta += parseFloat(this.cesta[i].precio);
+      this.precioCesta += (this.cesta[i].precioNeto)+(this.cesta[i].precioNeto * (this.cesta[i].ivaAsociado/100));
     }
   }
 

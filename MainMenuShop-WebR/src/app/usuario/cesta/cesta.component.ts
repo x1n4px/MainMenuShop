@@ -15,6 +15,7 @@ export class CestaComponent {
     this.calcularCesta();
   }
 
+  ajusteTotal: number = 0;
 
   cesta:any[] = [];
   precioCesta:number = 0;
@@ -22,17 +23,20 @@ export class CestaComponent {
   calcularCesta() {
     this.precioCesta = 0;
     for ( let i = 0; i < this.cesta.length; i++) {
-      this.precioCesta += parseFloat(this.cesta[i].precio);
+      this.precioCesta += (this.cesta[i].precioNeto + (this.cesta[i].precioNeto*(this.cesta[i].ivaAsociado/100)));
     }
+    this.ajusteTotal = this.precioCesta < 49 ? 4.99 : 0;
+
   }
 
 
   eliminarArticulo(dato:any){
     const indice = this.cesta.indexOf(dato);
     if (indice !== -1) {
-      this.cesta.splice(indice, 1);
+       this.sharedService.quitarElementoDeCesta(indice);
     }
-    this.calcularCesta();
+
+     this.calcularCesta();
   }
 
   modalPago() {
