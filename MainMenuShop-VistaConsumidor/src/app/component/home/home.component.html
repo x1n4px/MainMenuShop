@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pricipal</title>
+</head>
+
+<body>
+  <div class="contenedor-principal">
+    <header>
+       <div class="compraTelefono">
+        <div class="icon">
+          <mat-icon style="width: 20px;"> phone</mat-icon>
+
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 12px;font-weight: 600;">COMPRA POR TELEFONO</div>
+          <div class="row">000000000</div>
+        </div>
+      </div>
+      <div class="compraWhatsapp">
+        <div class="icon">
+
+          <img style="width: 20px;" src="./assets/wasap.webp" alt="telefone">
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 12px;font-weight: 600;">COMPRA POR WHATSAPP</div>
+          <div class="row">000000000</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="ImagenFlotante">
+      <div class="slide">
+        <div class="slide-inner">
+          <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden=""
+            checked="checked">
+          <div class="slide-item">
+            <img src="./assets/cabecera/perro/cabecera1.webp">
+          </div>
+          <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
+          <div class="slide-item">
+            <img src="./assets/cabecera/gato/cabecera2.webp">
+          </div>
+          <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
+          <div class="slide-item">
+            <img src="./assets/cabecera/perro/cabecera2.webp">
+          </div>
+          <label for="slide-3" class="slide-control prev control-1">‹</label>
+          <label for="slide-2" class="slide-control next control-1">›</label>
+          <label for="slide-1" class="slide-control prev control-2">‹</label>
+          <label for="slide-3" class="slide-control next control-2">›</label>
+          <label for="slide-2" class="slide-control prev control-3">‹</label>
+          <label for="slide-1" class="slide-control next control-3">›</label>
+          <ol class="slide-indicador">
+            <li>
+              <label for="slide-1" class="slide-circulo">•</label>
+            </li>
+            <li>
+              <label for="slide-2" class="slide-circulo">•</label>
+            </li>
+            <li>
+              <label for="slide-3" class="slide-circulo">•</label>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="informacionWeb">
+      <div class="informacionWebInfo">
+        <div class="icon">
+          <img style="width: 40px;" src="./assets/pagoS.webp" alt="telefone">
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 16px">PAGO</div>
+          <div class="row" style="font-weight: 600;">100% Seguro</div>
+        </div>
+      </div>
+      <div class="informacionWebInfo">
+        <div class="icon">
+          <img style="width: 40px;" src="./assets/fastTime.webp" alt="telefone">
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 16px">Entrega en</div>
+          <div class="row" style="font-weight: 600;">24/48h</div>
+        </div>
+      </div>
+      <div class="informacionWebInfo">
+        <div class="icon">
+          <img style="width: 40px;" src="./assets/ClickCollect.webp" alt="telefone">
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 16px">Click & Collect</div>
+          <div class="row" style="font-weight: 600;">gratis y con regalo</div>
+        </div>
+      </div>
+      <div class="informacionWebInfo">
+        <div class="icon">
+          <img style="width: 40px;" src="./assets/caja.webp" alt="telefone">
+
+        </div>
+        <div class="text">
+          <div class="row" style="font-size: 16px">Envíos <strong>gratis</strong></div>
+          <div class="row">a partir de <strong>49€</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divsForA">
+      <a routerLink="perro">La mejor alimentación de perro > </a>
+    </div>
+
+    <div class="ofertasMultiples">
+      <a router="perro">
+        <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Acana/acanaFitAdult.webp" alt="Oferta 1">
+      </a>
+      <a href="#">
+        <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Acana/acanaPuppyRecipe.webp" alt="Oferta 2">
+      </a>
+      <a href="#">
+        <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Acana/acanaPacificAdult.webp" alt="Oferta 3">
+      </a>
+    </div>
+
+
+    <div class="divsForA">
+      <a routerLink="Gato">La mejor alimentación de gato > </a>
+    </div>
+
+    <div class="ofertasMultiples">
+      <a router="gato">
+        <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Acana/acanaBountifulPienso.webp" alt="Oferta 1">
+      </a>
+      <a href="#">
+        <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Applaws/applaws_adult_grain_free_pollo.webp" alt="Oferta 2">
+      </a>
+      <a href="#">
+        <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Acana/comida_gatos_acana_wild_prairie.webp" alt="Oferta 3">
+      </a>
+    </div>
+
+
+
+  </div>
+</body>
+
+</html>

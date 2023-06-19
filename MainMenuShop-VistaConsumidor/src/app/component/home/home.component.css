@@ -1,0 +1,289 @@
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+
+
+
+.contenedor-principal {
+  width: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+ }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 50px;
+}
+
+header p {
+  font-size: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  margin-right: auto;
+  margin-left: 50px;
+}
+
+.compraTelefono,
+.compraWhatsapp {
+  display: flex;
+  border: 1px solid rgb(160, 160, 160);
+  width: 240px;
+  padding: 5px 10px;
+  background-color: rgb(241, 241, 241);
+  margin-left: 10px;
+
+}
+
+.icon {
+  margin-right: 10px;
+  padding: 5px 7px;
+  /* Estilos adicionales para el icono */
+}
+
+.ImagenFlotante {
+
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.informacionWeb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+
+}
+
+.informacionWebInfo {
+  margin-right: 30px;
+  margin-left: 50px;
+
+  display: flex;
+  align-items: center;
+  width: 240px;
+  padding: 5px 10px;
+  background-color: rgb(241, 241, 241);
+}
+
+.informacionWebInfo:last-child {
+  margin-right: 0;
+}
+
+.informacionWebInfo .icon {
+  margin-right: 5px;
+}
+
+.row {
+  margin: 0;
+}
+
+
+.divsForA {
+  padding: 30px 30px;
+}
+
+
+.divsForA a {
+    text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.divsForA a:hover {
+  text-decoration: underline;
+}
+
+.ofertasMultiples {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+   padding-bottom: 50px;
+ }
+
+.ofertasMultiples a {
+  flex: block;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.ofertasMultiples img {
+  max-width: 400px;
+  max-height: 400px;
+  }
+
+@media screen and (min-width: 768px) {
+  .ofertasMultiples a {
+    flex: 0 0 calc(33.33% - 40px);
+    margin-right: 0px;
+    margin-bottom: 0;
+  }
+
+
+}
+
+
+@media screen and (max-width: 767px) {
+
+
+
+  .divsForA a{
+    margin-left: 10px;
+    width: 100%;
+  }
+
+  .contenedor-principal > header > p {
+    font-size: large;
+  }
+
+  .compraTelefono, .compraWhatsapp {
+    display: none;
+  }
+}
+
+
+
+/*
+Carrusel
+*/
+.slide {
+  position: relative;
+  margin-top: 26px;
+  align-items: center;
+  align-content: center;
+}
+
+.slide-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: calc(300px + 3em);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-open:checked+.slide-item {
+  position: static;
+  opacity: 100;
+}
+
+.slide-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+}
+
+.slide-item img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.slide-control {
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 40px;
+  line-height: 35px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  cursor: pointer;
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 40px;
+  z-index: 10;
+}
+
+.slide-control.prev {
+  left: 2%;
+}
+
+.slide-control.next {
+  right: 2%;
+}
+
+.slide-control:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #aaaaaa;
+}
+
+#slide-1:checked~.control-1,
+#slide-2:checked~.control-2,
+#slide-3:checked~.control-3 {
+  display: block;
+}
+
+.slide-indicador {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.slide-indicador li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slide-circulo {
+  color: #828282;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+  z-index: 1;
+}
+
+.slide-circulo:hover {
+  color: #aaaaaa;
+}
+
+#slide-1:checked~.control-1~.slide-indicador li:nth-child(1) .slide-circulo,
+#slide-2:checked~.control-2~.slide-indicador li:nth-child(2) .slide-circulo,
+#slide-3:checked~.control-3~.slide-indicador li:nth-child(3) .slide-circulo {
+  color: #428bca;
+}
+
+#titulo {
+  width: 100%;
+  position: absolute;
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 27px;
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Open Sans', sans-serif;
+  z-index: 1;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
+    -1px 0px 2px rgba(255, 255, 255, 0);
+}

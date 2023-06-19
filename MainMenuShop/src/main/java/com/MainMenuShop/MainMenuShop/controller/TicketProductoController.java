@@ -38,29 +38,36 @@ public class TicketProductoController {
     @Autowired
     private TicketProductoRepository ticketProductoRepository;
 
-    @GetMapping("producto/{id}")
+    @GetMapping("/producto/{id}")
     public ResponseEntity<Optional<Productos>> obtenerProductoPorId(@PathVariable Long id){
         Optional<Productos> productos = productoService.obtenerProductoPorId(id);
         return ResponseEntity.ok(productos);
     }
 
     @GetMapping("/producto/todos")
-    public List<?> obtenerProductos( @RequestParam("cantidad") Integer cantidad) {
-        List<Productos> productos = productoService.obtenerProductos();
+    public List<?> obtenerProductos( @RequestParam("cantidad") Integer cantidad,@RequestParam("familia") String familia ) {
+        List<Productos> productos = productoService.obtenerProductos(familia);
         if(cantidad == 0){
             return productos;
-        }else if (cantidad == 1){
+        }else if (cantidad >= 1){
             List<ProductosOnlineDTO> productosDTOList = new ArrayList<>();
             for (Productos producto: productos) {
                 ProductosOnlineDTO productoDTO = ProductosOnlineDTO.fromProducto(producto);
                 productosDTOList.add(productoDTO);
             }
-            return productosDTOList;
+            if(productosDTOList.size() < cantidad) {
+                return productosDTOList;
+            }else{
+                List<ProductosOnlineDTO> productoSub = productosDTOList.subList(0, (cantidad+1));
+                return productoSub;
+            }
+
         }
         return null;
     }
 
-    @GetMapping("buscar")
+
+    @GetMapping("/buscar")
     public List<?> buscarPorNombre(@RequestParam("nombre") String nombre,
                                            @RequestParam("cantidad") Integer cantidad) {
         List<Productos> productos =  productoService.buscar(nombre);
@@ -79,7 +86,7 @@ public class TicketProductoController {
 
 
 
-    @GetMapping("buscarTicket")
+    @GetMapping("/buscarTicket")
     public List<Ticket> buscarTicketPorNombre(@RequestParam("referencia") String referencia) {
         return ticketService.buscarTicket(referencia);
     }

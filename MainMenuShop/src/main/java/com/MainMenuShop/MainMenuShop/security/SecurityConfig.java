@@ -19,8 +19,8 @@ public class SecurityConfig {
 	private JwtRequestFilter jwtRequestFilter;	
 
 	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;	
-		
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -31,12 +31,8 @@ public class SecurityConfig {
 		.csrf().disable()
 				// dont authenticate this particular request
 		        .authorizeHttpRequests()
-		        .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "buscar", "buscarDTO", "producto/{id}")
+		        .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "/buscar", "/buscarDTO", "/producto/{id}", "/productoFiltrado")
 		        .permitAll()
-//		        .requestMatchers(HttpMethod.GET, "/ejemplo1").hasAnyRole("ROLE_RESPONSABLE_AULA","ROLE_VIGILANTE_AULA", "RESPONSABLE_AULA","VIGILANTE_AULA")
-//		        .requestMatchers(HttpMethod.GET, "/ejemplo2").hasAnyRole("CORRECTOR")		        
-//		        .requestMatchers("/login")
-//		        .anonymous()
 		        .anyRequest()
 		        .authenticated()
 		        .and()
@@ -46,7 +42,7 @@ public class SecurityConfig {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		// Add a filter to validate the tokens with every request
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);		
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 

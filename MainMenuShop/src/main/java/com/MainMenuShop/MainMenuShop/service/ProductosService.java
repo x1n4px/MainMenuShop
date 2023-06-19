@@ -21,12 +21,14 @@ public class ProductosService {
 
 
 
-    public List<Productos> obtenerProductos(){
-        return productoRepository.findAll();
+    public List<Productos> obtenerProductos(String familia){
+        //return productoRepository.findAll();
+        return productoRepository.findByFamilia(familia);
     }
 
     public Optional<Productos> obtenerProductoPorId(Long id){
         return productoRepository.findById(id);
     }
+
 
 }
