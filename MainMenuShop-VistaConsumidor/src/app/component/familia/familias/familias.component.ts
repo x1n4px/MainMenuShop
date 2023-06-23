@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductosService } from 'src/app/service/productos.service';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { ProductoFComponent } from '../../modal/producto-f/producto-f.component';
+import { FinderComponent } from '../../modal/finder/finder.component';
 
 @Component({
   selector: 'app-familias',
@@ -30,8 +32,8 @@ export class FamiliasComponent implements OnInit, OnDestroy {
   datosCompletos: Producto[] = [];
 
   cantidadMostrada: number = 6;
-  cantidadPorCargar = 4;
-  alturaContenedor = 1300;
+  cantidadPorCargar = 3;
+  alturaContenedor = 1400;
   seleccionados: any[] = [];
   selecciones: any[] = [];
   datosFiltradosResV: Producto[] = [];
@@ -39,7 +41,7 @@ export class FamiliasComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.router.events
+     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
         takeUntil(this.unsubscribe$)
@@ -65,14 +67,14 @@ export class FamiliasComponent implements OnInit, OnDestroy {
       const uri = this.router.url;
       const partes = uri.split('/');
       const segmentoDeseado = partes[partes.length - 1];
-      console.log(segmentoDeseado);
 
       this.familia = segmentoDeseado;
       this.obtenerProductos(this.cantidadMostrada);
-      console.log(this.familia);
-    }
+     }
 
   }
+
+
 
   ngOnDestroy(): void {
     this.unsubscribe$.next(null);
@@ -82,13 +84,11 @@ export class FamiliasComponent implements OnInit, OnDestroy {
 
   obtenerProductos(cantidadMostrada: number) {
     this.familiaAnterior = this.familia;
-    console.log(this.cantidadMostrada);
-    this.productoService.obtenerTodosLosProductos(cantidadMostrada, this.familia).subscribe(
+     this.productoService.obtenerTodosLosProductos(cantidadMostrada, this.familia).subscribe(
       (productos: Producto[]) => {
         this.datosCompletos = productos;
         this.datosFiltradosResV = productos;
-        console.log(this.datosFiltradosResV);
-      }, (error) => {
+       }, (error) => {
         this.datosCompletos = [];
         this.datosFiltradosResV = [];
       }
@@ -134,12 +134,11 @@ export class FamiliasComponent implements OnInit, OnDestroy {
   calcularAlturaContenedor(): void {
     const cantidadTarjetas = Math.min(this.cantidadMostrada, this.datosCompletos.length);
     const cantidadFilas = Math.ceil(cantidadTarjetas / 3);
-    this.alturaContenedor = cantidadFilas * 500;
+    this.alturaContenedor = cantidadFilas * 550;
   }
 
   openModalFiltrar() {
-    console.log(this.seleccionados);
-    const dialogRef = this.dialog.open(BusquedaArticulosComponent, { data: { seleccionados: this.seleccionados } });
+     const dialogRef = this.dialog.open(BusquedaArticulosComponent, { data: { seleccionados: this.seleccionados } });
     dialogRef.afterClosed().subscribe(result => {
       this.selecciones = result.selecciones;
 
@@ -150,10 +149,16 @@ export class FamiliasComponent implements OnInit, OnDestroy {
   }
 
 
+  filtrarRapido(busqueda: String) {
+    this.productoService.obtenerFiltradoRapido(this.familia, busqueda).subscribe(result => {
+      this.datosFiltradosResV = result;
+      console.log(this.datosFiltradosResV);
+    });
+  }
+
 
   datosFiltradosRes() {
-    console.log(this.datosCompletos);
-    this.datosFiltradosResV = this.datosCompletos.filter(item => {
+     this.datosFiltradosResV = this.datosCompletos.filter(item => {
       return this.selecciones.every(seleccion => {
         const titulo = seleccion.titulo.toLowerCase();
         const datos = seleccion.datos.map((dato: string) => dato.toLowerCase());
@@ -172,10 +177,8 @@ export class FamiliasComponent implements OnInit, OnDestroy {
     this.sharedService.aniadirProductoCesta(producto);
   }
 
-  verDetallesProducto(dato: any) {
-    const tituloProducto = dato.nombre;
-    const id = dato.id;
-    this.router.navigate(['producto/', id, tituloProducto]);
+  verDetallesProducto(dato: Producto) {
+    const dialogRef = this.dialog.open(ProductoFComponent, { data: { product: dato } });
   }
 
   limpiar() {
@@ -183,4 +186,18 @@ export class FamiliasComponent implements OnInit, OnDestroy {
     this.alturaContenedor = 1300;
     this.limpiarFiltros();
   }
+
+  showFinder:boolean = true;
+  openFinder() {
+    this.showFinder = false;
+    const dialogRef = this.dialog.open(FinderComponent, { data: { } });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.listaProductosBusqueda.length > 0) {
+
+      this.datosFiltradosResV = result.listaProductosBusqueda;
+      }
+    })
+  }
+
+
 }

@@ -13,38 +13,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
-public class SecurityConfig {	
-	
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;	
+public class SecurityConfig {
 
-	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-		// We don't need CSRF for this example
-		http
-		.cors()
-		.and()
-		.csrf().disable()
-				// dont authenticate this particular request
-		        .authorizeHttpRequests()
-		        .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "/buscar", "/buscarDTO", "/producto/{id}", "/productoFiltrado")
-		        .permitAll()
-		        .anyRequest()
-		        .authenticated()
-		        .and()
-				// make sure we use stateless session; session won't be used to
-				// store user's state.
-				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		// Add a filter to validate the tokens with every request
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-		return http.build();
-	}
+        // We don't need CSRF for this example
+        http
+                .cors()
+                .and()
+                .csrf().disable()
+                // dont authenticate this particular request
+                .authorizeHttpRequests()
+                .requestMatchers("/register", "/login", "/passwordreset", "/producto/todos", "/buscar", "/buscarDTO", "/producto/{id}", "/productoFiltrado", "/productos/Filtrados/CategoriaFamilia")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                // make sure we use stateless session; session won't be used to
+                // store user's state.
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Add a filter to validate the tokens with every request
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
 
 
 }

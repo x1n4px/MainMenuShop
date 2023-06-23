@@ -29,11 +29,11 @@ public class Usuario {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	 
+
 	public enum Role{
-		RESPONSABLE_AULA,
-		VIGILANTE_AULA,
-		RESPONSABLE_SEDE,
+		RESPONSABLE,
+		VENDEDOR,
+		CLIENTE,
 		CORRECTOR,
 		VICERRECTORADO
 	}
@@ -42,5 +42,14 @@ public class Usuario {
 	@ElementCollection(fetch = FetchType.EAGER) @Enumerated(EnumType.STRING)
 	private Set<Role> roles = new HashSet<Role>();
 	
+	@OneToOne
+	private Clientes clientes;
 
+
+	public void setCliente(Clientes cliente) {
+		this.nombre = cliente.getNombre();
+		this.apellido1 = cliente.getApellido1();
+		this.apellido2 = cliente.getApellido2();
+		this.username = cliente.getEmail();
+	}
 }

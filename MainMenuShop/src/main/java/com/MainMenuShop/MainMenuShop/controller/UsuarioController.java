@@ -27,7 +27,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	@PreAuthorize("hasRole('VICERRECTORADO')  OR hasRole('RESPONSABLE_SEDE')")
+	@PreAuthorize("hasRole('VENDEDOR')  OR hasRole('VENDEDOR')")
 	@GetMapping({ "/usuarios" })
 	public List<UsuarioDTO> obtenerTodosLosUsuarios(UriComponentsBuilder uriBuilder){
 		var usuarios = usuarioService.obtenerUsuarios();
@@ -47,16 +47,16 @@ public class UsuarioController {
     "roles":["VICERRECTORADO"]
 }
  */
-	@PreAuthorize("hasRole('VICERRECTORADO')  OR hasRole('RESPONSABLE_SEDE')")
+	@PreAuthorize("hasRole('VENDEDOR')  OR hasRole('GERENTE')")
 	@PostMapping({ "/usuarios" })
 	public ResponseEntity<URI> guardarUsuario(@RequestBody UsuarioDTO usuario, UriComponentsBuilder uriBuilder) throws Exception {
 
 		Usuario user = usuario.usuarioC();
-		Optional<Usuario> usuario1 = usuarioService.buscarUserNombre(usuario.getNombre());
+		/*Optional<Usuario> usuario1 = usuarioService.buscarUserNombre(usuario.getNombre());
 		if(usuario1.isPresent()){
 			throw new ResponseStatusException(HttpStatus.CONFLICT, "Usuario ya existente");
 
-		}
+		}*/
 		Integer id = usuarioService.aniadirUsuario(user);
 		URI location = usuarioUriBuilder(uriBuilder.build()).apply(id);
 
@@ -64,7 +64,7 @@ public class UsuarioController {
 
 	}
 
-	@PreAuthorize("hasRole('VICERRECTORADO')")
+	@PreAuthorize("hasRole('VENDEDOR')")
 	@GetMapping("/usuarios/{id}")
 	public UsuarioDTO obtenerUsuario(@PathVariable Integer id, UriComponentsBuilder uriBuilder) {
 		Optional<Usuario> usuario = usuarioService.obtenerUsuario(id);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    public dialog: MatDialog, private snack: MatSnackBar) { }
+    public dialog: MatDialog, private snack: MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-
+  go(route:string) {
+    this.router.navigate(['', route]);
+  }
 
 
 

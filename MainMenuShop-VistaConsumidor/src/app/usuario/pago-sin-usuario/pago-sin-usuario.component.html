@@ -1,0 +1,134 @@
+<div class="contenedor">
+  <div class="contenedorInterior">
+
+    <div class="cesta" *ngIf="lineaAvance === 0">
+      <h1 *ngIf="!this.User">Introduce Tus datos personales</h1>
+      <div class="metodosEnvio" *ngIf="!this.User">
+        <form action="">
+          <div class="form-row">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre">
+          </div>
+
+          <div class="form-row">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos">
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="text" id="email">
+          </div>
+
+          <div class="form-row">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion">
+          </div>
+
+          <div class="form-row">
+            <label for="codigoPostal">Código Postal</label>
+            <input type="text" id="codigoPostal">
+          </div>
+
+          <div class="form-row">
+            <label for="localidad">Localidad</label>
+            <input type="text" id="localidad">
+          </div>
+
+          <div class="form-row">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono">
+          </div>
+        </form>
+        <div class="btnLogin">
+          <a href="login">Iniciar Sesión</a>
+        </div>
+
+      </div>
+
+      <br>
+      <h1>Elige un método de envío</h1>
+      <div class="metodosEnvio">
+        <ul>
+          <li>
+            <input type="checkbox">
+            <mat-icon>home</mat-icon>
+            <span>Click & Collect</span>
+          </li>
+          <li>
+            <input type="checkbox">
+            <mat-icon> local_shipping</mat-icon>
+            <span  >Envío a domicilio</span>
+
+          </li>
+        </ul>
+      </div>
+      <div class="btnCon">
+        <button (click)="lineaAvance = 1">Continuar</button>
+        <a href="cesta">
+          < volver a la cesta</a>
+      </div>
+
+
+    </div>
+
+    <div class="cesta" *ngIf="lineaAvance === 1">
+
+      <h1>¿Como quieres pagar?</h1>
+      <div class="metodosEnvio">
+        <ul>
+          <li class="clickable-li">
+            <div class="left-content">
+              <input type="checkbox">
+              <span>Tarjeta Bancaria</span>
+            </div>
+            <div class="right-content">
+              <img src="./assets/icons/mastercard.png" alt="" style="width: 50px;">
+              <img src="./assets/icons/visa.png" alt="" style="width: 50px;">
+            </div>
+          </li>
+
+          <li class="clickable-li">
+            <div class="left-content">
+              <input type="checkbox">
+              <span>Paypal</span>
+            </div>
+            <div class="right-content">
+              <img src="./assets/icons/paypal.png" alt="" style="width: 60px;">
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="btnCon">
+        <button (click)="finalizarPedido()">pagar</button>
+        <a (click)="lineaAvance = 0">
+          < volver al menú anterior</a>
+      </div>
+
+
+    </div>
+    <div class="pago">
+      <div class="datosPago">
+        <h1>Resumen del pedido</h1>
+        <div class="pedido">
+          <details>
+            <summary>Ver detalles del pedido</summary>
+            <ul *ngFor="let producto of cesta">
+              <li>
+                <img [src]="producto.imagen" style="width: 100px;">
+                <span>{{producto.nombre}}</span>
+                <span>{{producto.precioNeto}}€</span>
+              </li>
+            </ul>
+          </details>
+        </div>
+        <div class="importe">
+          <h1>Total: {{subtotal.toFixed(2)}}€</h1>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

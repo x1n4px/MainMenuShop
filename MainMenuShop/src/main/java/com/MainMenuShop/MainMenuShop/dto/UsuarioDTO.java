@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
+import com.MainMenuShop.MainMenuShop.entities.Clientes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.MainMenuShop.MainMenuShop.entities.Usuario;
@@ -30,7 +31,7 @@ public class UsuarioDTO implements Serializable {
 	private String apellido1;
 	private String apellido2;
  	private Set<Usuario.Role> roles = new HashSet<Usuario.Role>();
-
+	private Clientes clientes;
 
 
 	public static UsuarioDTO fromProducto(Usuario usuario,
@@ -44,6 +45,7 @@ public class UsuarioDTO implements Serializable {
 		dto.setNombre(usuario.getNombre());
 		dto.setApellido1(usuario.getApellido1());
 		dto.setApellido2(usuario.getApellido2());
+		dto.setClientes(usuario.getClientes());
 		return dto;
 	}
 
@@ -56,6 +58,7 @@ public class UsuarioDTO implements Serializable {
 		prod.setApellido1(apellido1);
 		prod.setApellido2(apellido2);
 		prod.setPassword(password);
+		prod.setCliente(clientes);
 		return prod;
 	}
 

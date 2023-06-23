@@ -3,8 +3,7 @@ package com.MainMenuShop.MainMenuShop.service;
 
 import com.MainMenuShop.MainMenuShop.dto.UsuarioDTO;
 import com.MainMenuShop.MainMenuShop.entities.Usuario;
-import com.MainMenuShop.MainMenuShop.exceptios.EntidadExistenteException;
-import com.MainMenuShop.MainMenuShop.exceptios.EntidadNoEncontradaException;
+import com.MainMenuShop.MainMenuShop.exceptions.EntidadNoEncontradaException;
 import com.MainMenuShop.MainMenuShop.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -52,9 +51,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public Optional<Usuario> buscarUserNombre(String nombre){return userRepo.findByNombre(nombre);}
 
 	public Integer aniadirUsuario(Usuario usuario) {
-		if (userRepo.existsByNombre(usuario.getNombre())) {
+		/*if (userRepo.existsByNombre(usuario.getNombre())) {
 			throw new EntidadExistenteException();
-		}
+		}*/
 		usuario.setPassword("0000");
  		userRepo.save(usuario);
 		return usuario.getId();

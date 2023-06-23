@@ -1,0 +1,114 @@
+<div class="modal">
+
+  <div id="stage1" class="stage" *ngIf="showStage1">
+    <img src="./assets/finderDog.webp">
+    <h1>Vamos a buscar lo que mejor se adapte a tu compañero!</h1>
+    <div class="buttonC">
+      <button (click)="change('stage1')">Continuar</button>
+    </div>
+  </div>
+
+  <div id="stage2" class="stage" *ngIf="showStage2">
+    <header id="perroB">
+
+      <img src="./assets/FinderDogPencil.webp" style="width: 200px;">
+      <h1>Selecciona la familia</h1>
+    </header>
+    <section class="categoriasDestacadas">
+      <a (click)="seleccionarFamilia('Perro')">Perro</a>
+      <a (click)="seleccionarFamilia('Gato')">Gato</a>
+      <a (click)="seleccionarFamilia('Pajaro')">Pajaros</a>
+      <a (click)="seleccionarFamilia('Roedor')">Roedores</a>
+      <a (click)="seleccionarFamilia('Reptil')">Reptiles</a>
+      <a (click)="seleccionarFamilia('Peces')">Peces</a>
+    </section>
+  </div>
+
+  <div class="stage" id="stage15" *ngIf="showStage15">
+    <header id="perroB">
+      <img src="./assets/FinderDogLupa.webp" style="width: 300px;">
+      <h1>Que edad tiene el pequeñin?</h1>
+    </header>
+    <section class="categoriasDestacadas">
+      <a (click)="seleccionarEdad('Bebe')">Bebe (0-2 meses)</a>
+      <a (click)="seleccionarEdad('Cachorro')">Cachorro (2-12meses)</a>
+      <a (click)="seleccionarEdad('Adulto')">Adulto >12 meses</a>
+      <a (click)="seleccionarEdad('Senior')">Senior >8 años</a>
+      <a (click)="seleccionarEdad('All')">Otros</a>
+    </section>
+  </div>
+
+
+
+
+
+  <div id="stage3" class="stage" *ngIf="showStage3">
+    <h1>¿Qué estás buscando?</h1>
+    <section class="categoriasDestacadas">
+      <a *ngFor="let opcion of opciones" (click)="seleccionarStage2(opcion)"
+        [style.display]="opcion.visible ? 'block' : 'none'">
+        {{ opcion.nombre }}
+      </a>
+    </section>
+
+  </div>
+
+  <div id="stage4" class="stage" *ngIf="showStage4">
+    <header>
+      <h1> ¿Cual es su sabor favorito?</h1>
+    </header>
+    <section class="categoriasDestacadas">
+      <a *ngFor="let opcion of selectorDeCategoria" (click)="filtradoGeneral(opcion, 'stage4')">
+        {{ opcion }}
+      </a>
+    </section>
+  </div>
+
+  <div class="stage" id="stage5" *ngIf="showStage5">
+    <header>
+      <h1 *ngIf="categoria === 'Pienso'">¿Tiene algún cuidado específico?</h1>
+      <h1 *ngIf="categoria === 'Dietas veterinarias'">¿Que patología tiene?</h1>
+    </header>
+    <section class="categoriasDestacadas">
+      <a *ngFor="let opcion of selectorDeCategoriaS5" (click)="filtradoGeneral(opcion, 'stage5')">
+        {{ opcion }}
+      </a>
+    </section>
+  </div>
+
+  <div class="stage" id="stage6" *ngIf="showStage6">
+    <header>
+      <h1>Selecciona tus marcas de preferencia</h1>
+    </header>
+    <div class="categoriasDestacadas">
+      <a *ngFor="let opcion of selectorDeCategoriaS6" (click)="filtradoGeneral(opcion, 'stage6')">
+        {{ opcion }}
+      </a>
+    </div>
+  </div>
+
+
+  <div class="stage" id="stage7" *ngIf="showStage7">
+    <div class="stage7">
+      <img src="./assets/finderDogGlassPencil.webp" style="width: 600px;">
+      <br>
+      <h1>
+        He encontrado {{productos.length}} posibles productos que
+        te
+        puedan interesar
+      </h1>
+      <h1 style="color:#008bf8; cursor: pointer;"><a (click)="verProductos()" *ngIf="productos.length > 0">Haz click para verlos!</a></h1>
+      <h1>GUAU!</h1>
+    </div>
+
+  </div>
+
+
+  <div class="mostrarP" *ngIf="!showStage7">
+    <a (click)="verProductos()" *ngIf="productos.length > 0">Tenemos {{productos.length}} <p>posibles productos que te
+        puedan
+        interesar. Haz <span style="color: #008bf8;cursor: pointer; ">Click</span> para verlos!</p>
+    </a>
+  </div>
+
+</div>

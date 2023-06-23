@@ -1,0 +1,124 @@
+.modal {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.buttonC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 20px 60px;
+  border: 3px solid gray;
+  background-color: transparent;
+  font: 400;
+  font-size: large;
+}
+
+@keyframes desvanecer {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+  }
+
+img {
+  width: 80%;
+  object-fit: cover;
+}
+
+
+.stage h1 {
+  text-align: center;
+  margin: 30px;
+}
+
+#stage2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  overflow: hidden;
+}
+#perroB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.categoriasDestacadas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+   width: 100%;
+  max-height: calc(100%);
+  height: auto;
+  overflow: auto;
+}
+
+.categoriasDestacadas a {
+  flex: 1 1 20%;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 50px 30px;
+  font-size: large;
+  font-weight: 400;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 3px solid black;
+  cursor: pointer;
+  animation: 0.5s ease-in-out normal;
+}
+
+.categoriasDestacadas a:hover {
+  border: #008bf8 3px solid;
+  color: #008bf8;
+}
+
+.mostrarP{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.mostrarP a {
+  font-size: x-large;
+}
+
+.stage7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.stage7 img {
+  width: 50%;
+}
+
+.stage7 a p{
+
+  font-size: xx-large;
+}

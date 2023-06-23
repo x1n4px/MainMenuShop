@@ -23,5 +23,8 @@ export class ProductosService {
     return this.http.get<Producto>('http://localhost:8080/producto/'+ id );
   }
 
+  obtenerFiltradoRapido(familia: String, categoria: String) {
+    return this.http.get<Producto[]>(`http://localhost:8080/productos/Filtrados/CategoriaFamilia?familia=`+familia+`&categoria=`+categoria);
+  }
 
 }

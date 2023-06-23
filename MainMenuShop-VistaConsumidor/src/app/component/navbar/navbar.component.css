@@ -24,22 +24,23 @@ nav {
 }
 
 .nav>.nav-links {
-  float: right;
+  display: flex;
+  justify-content: center;
   font-size: 18px;
   padding: 13px 0px 5px 10px;
   width: 80%;
 }
 
 .nav>.nav-links>a {
-  float: left;
-  padding: 15px 30px;
-  margin-right: 20px;
+   margin-right: 20px;
   text-decoration: none;
   color: #333333;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 600;
+  width: calc(20%);
+  padding: 20px 0px;
 }
 
 .nav>.nav-links>a>span {
@@ -109,6 +110,7 @@ mat-icon {
 
 .container {
   position: relative;
+  z-index: 9999;
 }
 
 
@@ -126,8 +128,28 @@ mat-icon {
   overflow: auto;
   font-size: 10px;
   border: 1px solid #3B5998;
-
+  z-index: 9999;
 }
+
+.tarjetalogin{
+  position: fixed;
+  top: 40px;
+  /* Ajusta la distancia desde la parte superior según tus necesidades */
+  right: 0px;
+  /* Ajusta la distancia desde la derecha según tus necesidades */
+  width: 150px;
+  height: auto;
+  background-color: white;
+  padding: 10px;
+  overflow: auto;
+  font-size: 10px;
+  border: 1px solid #3B5998;
+}
+
+.tarjetalogin a {
+  font-size: large;
+}
+
 
 .tarjeta-cesta {
   width: 99%;
@@ -160,7 +182,7 @@ ul li {
   border: 1px solid #ccc;
   padding: 10px;
   display: none;
-  z-index: 99999;
+  z-index: 10;
   animation: 0.3s linear infinite;
 }
 
@@ -177,7 +199,32 @@ ul li {
 
 
 
-@media (max-width: 1920px) {
+
+
+.btn {
+  position: relative;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  background-color: #428bca;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+@media (max-width: 1650px) {
   .nav {
     width: 100%;
   }
@@ -189,7 +236,7 @@ ul li {
     transform: translateX(0%);
     left: 0%;
     width: 70%;
-    z-index: 999999;
+    z-index: 10;
   }
 
   .nav>.nav-links {
@@ -201,7 +248,7 @@ ul li {
     position: absolute;
     right: 0px;
     top: 0px;
-    z-index: 9999;
+    z-index: 10;
   }
 
   .nav>.nav-btn>label {
@@ -236,7 +283,7 @@ ul li {
     width: 100%;
     transition: all 0.3s ease-in;
     background-color: #d2e7ff;
-    z-index: 9999;
+    z-index: 10;
     max-height: calc(65%);
   }
 
@@ -300,32 +347,6 @@ ul li {
 
 }
 
-.btn {
-  position: relative;
-}
-
-.cart-icon {
-  position: relative;
-}
-
-.circle {
-  position: absolute;
-  top: 20px;
-  right: -10px;
-  background-color: #428bca;
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-}
-
-
-
-
 @media screen and (max-width: 720px) {
   .resultados-busqueda {
     position: absolute;
@@ -334,7 +355,11 @@ ul li {
     transform: translateX(0%);
     left: 0%;
     width: 100%;
-    z-index: 999999;
+    z-index: 10;
+  }
+
+  .container, .circle, .containerlogin {
+    display: none;
   }
 
 }

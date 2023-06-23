@@ -17,4 +17,7 @@ export class Producto {
   categoría!: string;
   sabores!: string;
   descripcion!: string;
+  animated: boolean = false;
+  material!: string;
+  efectivoContra!: string;
 }

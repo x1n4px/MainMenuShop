@@ -18,10 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductoComponent } from './component/familia/producto/producto.component';
-import { HttpClientModule } from '@angular/common/http';
+ import { HttpClientModule } from '@angular/common/http';
  import { FamiliasComponent } from './component/familia/familias/familias.component';
-   @NgModule({
+import { PagoUsuarioComponent } from './usuario/pago-usuario/pago-usuario.component';
+import { PagoSinUsuarioComponent } from './usuario/pago-sin-usuario/pago-sin-usuario.component';
+import { ProductoFComponent } from './component/modal/producto-f/producto-f.component';
+import { FinderComponent } from './component/modal/finder/finder.component';
+      @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
@@ -34,9 +37,12 @@ import { HttpClientModule } from '@angular/common/http';
     CestaComponent,
     FooterComponent,
     BusquedaArticulosComponent,
-    ProductoComponent,
-     FamiliasComponent
-    ],
+      FamiliasComponent,
+     PagoSinUsuarioComponent,
+     PagoUsuarioComponent,
+     ProductoFComponent,
+     FinderComponent
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,

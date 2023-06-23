@@ -29,10 +29,11 @@ public class Clientes {
     private String numeroMovil;
     private String email;
     private String direccion;
-    private String rol;
-    private double puntos;
+     private double puntos;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<ValeCliente> valeClientes;
+
+
 }

@@ -14,5 +14,10 @@ public interface ProductosRepository extends JpaRepository<Productos, Long> {
     @Query(value = "SELECT * FROM productos WHERE upper(FAMILIA) = upper(:familia)", nativeQuery = true)
     List<Productos> findByFamilia(@Param("familia") String familia);
 
+    @Query(value = "SELECT * FROM PRODUCTOS WHERE UPPER(FAMILIA)=UPPER(:familia) AND UPPER(CATEGORÍA)=UPPER(:categoria)", nativeQuery = true)
+    List<Productos> filtradoRapido(String familia, String categoria);
 
- }
+
+
+   // List<Productos> findByMarcaAndFamiliaAndCategoria(String marca, String familia, String categoria);
+}

@@ -1,0 +1,13 @@
+.componente {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.componenteExterior {
+  width: 80%;
+  border: 1px solid blue;
+  min-height: 100px;
+  padding: 30px;
+}

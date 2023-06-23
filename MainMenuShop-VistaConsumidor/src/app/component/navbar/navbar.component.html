@@ -21,9 +21,19 @@
       <a (click)="go('roedores')">Roedores</a>
       <a (click)="go('reptiles')">Reptiles</a>
       <a (click)="go('acuariofilia')">Acuariofilia</a>
-      <a (click)="irA('login')" class="btn"><mat-icon>person</mat-icon>
+      <a (click)="irA('login')" class="btn" (mouseenter)="mostrarperfil()"
+        (mouseleave)="mostrarperfil()"><mat-icon>person</mat-icon>
         <span>Iniciar
-          sesión/Registrarte</span></a>
+          sesión/Registrarte</span>
+        <div class="containerlogin">
+          <div class="tarjetalogin" [hidden]="!mostrarlogin">
+            <div class="tarjetalogin">
+              <a (click)="cerrarsesion()">Cerra sesion</a>
+            </div>
+
+          </div>
+        </div>
+      </a>
       <a (click)="irA('cesta')" class="btn" (mouseenter)="mostrarCesta()" (mouseleave)="mostrarCesta()">
         <mat-icon class="cart-icon">shopping_cart</mat-icon>
         <span>Cesta</span>
@@ -52,12 +62,12 @@
 
         <mat-icon>search</mat-icon>
       </form>
+         <ul class="resultados-busqueda" [class.visible]="mostrarResultados" *ngIf="resultados.length > 0">
+          <li *ngFor="let resultado of resultados" (click)="verDetallesProducto(resultado)" >
+            <a >{{ resultado.nombre }}</a>
+          </li>
+        </ul>
 
-      <ul class="resultados-busqueda" [class.visible]="mostrarResultados">
-        <li *ngFor="let resultado of resultados">
-          <a (click)="seleccionarResultado(resultado)">{{ resultado.nombre }}</a>
-        </li>
-      </ul>
     </div>
 
   </div>

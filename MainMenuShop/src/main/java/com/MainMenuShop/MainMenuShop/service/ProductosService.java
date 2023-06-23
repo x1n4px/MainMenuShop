@@ -31,4 +31,11 @@ public class ProductosService {
     }
 
 
+    public List<Productos> filtradoRapido(String familia, String categoria) {
+        List<Productos> productos = productoRepository.filtradoRapido(familia, categoria);
+
+            return productos;
+
+
+     }
 }

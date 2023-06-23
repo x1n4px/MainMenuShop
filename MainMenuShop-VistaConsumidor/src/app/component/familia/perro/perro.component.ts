@@ -24,7 +24,7 @@ export class PerroComponent implements OnInit {
     },
     {
       titulo: 'CATEGORÍA',
-      datos: ['Pienso', 'Dietas veterinarias', 'Juguetes', 'Comida húmeda', 'Snacks', 'Antiparasitarios', 'Camas', 'Transportines y viajes', 'Arneses,correas,...', 'Ropa', 'Higiene y Salud', 'Casetas, jaulas y Hogar', 'Gateras y Redes', 'Comederos y Bebederos', 'Juguetes', 'Cuidado del pelo', 'Complementos', 'Adiestramiento y Agilidad', 'Decoración y Accesorios'],
+      datos: [   , , 'Camas', 'Transportines y viajes', 'Arneses,correas,...', 'Ropa', 'Higiene y Salud', 'Casetas, jaulas y Hogar', 'Gateras y Redes', 'Comederos y Bebederos', 'Juguetes', 'Cuidado del pelo', 'Complementos', 'Adiestramiento y Agilidad', 'Decoración y Accesorios'],
       expandido: false
     },
     {

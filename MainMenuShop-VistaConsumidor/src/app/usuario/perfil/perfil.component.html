@@ -1,16 +1,47 @@
 <div class="contenedor">
   <div class="contenedorInterior">
+
     <div id="square1" class="square">
-      <h1>Mis Datos</h1>
+      <div id="header" class="header">
+        <h1 class="title">Mis Datos</h1>
+        <a href="#" class="link"><img src="./assets/edit.png"></a>
+      </div>
+      <div class="informacion">
+        <h4>{{User?.nombre}}, {{User?.apellido1}} {{User?.apellido2}}</h4>
+        <h4>{{User?.clientes?.email}}</h4>
+      </div>
+
     </div>
     <div id="square2" class="square">
-      <h1>Métodos de Pago</h1>
+      <div id="header" class="header">
+        <h1 class="title">Métodos de Pago</h1>
+        <a href="#" class="link"><img src="./assets/edit.png"></a>
+      </div>
+      <div class="informacion">
+
+      </div>
+
     </div>
     <div id="square3" class="square">
-      <h1>Mis Direcciones</h1>
+      <div id="header" class="header">
+        <h1 class="title">Mis Direcciones</h1>
+        <a href="#" class="link"><img src="./assets/edit.png"></a>
+      </div>
+      <div class="informacion">
+        <h4>Dirección: {{User?.clientes?.direccion}}</h4>
+        <h4>Código postal: {{User?.clientes?.codigoPostal}}</h4>
+        <h4>Localidad: {{User?.clientes?.localidad}}</h4>
+      </div>
+
     </div>
     <div id="square4" class="square">
-      <h1>Mis Pedidos</h1>
+      <div id="header" class="header">
+        <h1 class="title">Mis Pedidos</h1>
+        <a href="#" class="link"><img src="./assets/edit.png"></a>
+      </div>
+      <div class="informacion">
+
+      </div>
     </div>
   </div>
 </div>

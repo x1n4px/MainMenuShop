@@ -7,14 +7,14 @@
       <button id="loginButton" (click)="cambiarEstado(0)" [ngClass]="{'pulsado': botonRegisterPulsado}">Iniciar
         Sesión</button>
     </div>
-    <div class="contenedorForm" *ngIf="botonLoginPulsado">
+    <div class="contenedorForm" *ngIf="botonLoginPulsado" >
       <p>Bienvenid@ de nuevo!</p>
-      <form id="loginForm" class="login-form active-form">
+      <form id="loginForm" class="login-form active-form" (ngSubmit)="formularioLogin()">
         <label for="">
-          <input type="text" placeholder="Email" required><br>
+          <input type="text" placeholder="Email" name="email" [(ngModel)]="userLogin.email" required><br>
         </label>
         <label for="">
-          <input type="password" placeholder="Contraseña" required><br>
+          <input type="password" placeholder="Contraseña" name="password" [(ngModel)]="userLogin.password" required><br>
         </label>
         <div class="contenedorInformacion">
           <div class="contenedorInformacionLabel">
@@ -28,11 +28,11 @@
 
         </div>
 
-        <button class="btnIniciarSesion" type="submit" (click)="perfil()">Iniciar Sesión</button>
+        <button class="btnIniciarSesion" type="submit" >Iniciar Sesión</button>
       </form>
     </div>
     <div class="contenedorForm" *ngIf="botonRegisterPulsado">
-      <form id="registerForm" class="register-form">
+      <form id="registerForm" class="register-form" (ngSubmit)="formularioRegister()">
         <input type="text" placeholder="Nombre" required><br>
         <input type="text" placeholder="Apellidos" required><br>
         <input type="text" placeholder="Telefono" required><br>

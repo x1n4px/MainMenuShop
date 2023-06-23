@@ -1,4 +1,4 @@
-package com.MainMenuShop.MainMenuShop.exceptios;
+package com.MainMenuShop.MainMenuShop.exceptions;
 
 public class EntidadNoEncontradaException extends RuntimeException{
 }

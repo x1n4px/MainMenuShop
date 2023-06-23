@@ -1,55 +1,8 @@
 <div class="contenedorBase">
   <div class="contenedor">
-     <div class="contenedorExterior">
-      <div id="selectorInicialCabecera" class="selectorInicial">
-        <ul class="iterador">
-          <li *ngFor="let imagen of datosCompletos.slice(0, 4)" style="display: inline;">
-            <img [src]="imagen.imagen" alt="imagen.nombre" style="display: inline;">
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="categoriasDestacadas">
-      <h2>Categorías destacadas</h2>
-      <div class="categoriasDestacadasCategoriasIndividuales">
-        <a (click)="marcarElemento('Pienso')" [class.seleccionado]="estaSeleccionado('Pienso')">Pienso</a>
-        <a (click)="marcarElemento('Comida húmeda')" [class.seleccionado]="estaSeleccionado('Comida húmeda')">Comida
-          húmeda</a>
-        <a (click)="marcarElemento('Snacks')" [class.seleccionado]="estaSeleccionado('Snacks')">Snacks</a>
-        <a (click)="marcarElemento('Dietas veterinarias')"
-          [class.seleccionado]="estaSeleccionado('Dietas veterinarias')">Dietas Veterinarias</a>
-        <a (click)="marcarElemento('Antiparasitarios')"
-          [class.seleccionado]="estaSeleccionado('Antiparasitarios')">Antiparasitos</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Camas')"
-          [class.seleccionado]="estaSeleccionado('Camas')">Camas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Casetas, jaulas y Hogar')"
-          [class.seleccionado]="estaSeleccionado('Casetas, jaulas y Hogar')">Casetas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Arneses,correas,...')"
-          [class.seleccionado]="estaSeleccionado('Arneses,correas,...')">Arneses y correas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Juguetes')"
-          [class.seleccionado]="estaSeleccionado('Juguetes')">Juguetes</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Comida húmeda')"
-          [class.seleccionado]="estaSeleccionado('Complementos')">Ropa</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Transportines y viajes')"
-          [class.seleccionado]="estaSeleccionado('Transportines y viajes')">Transportines y viaje</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Higiene y Salud')"
-          [class.seleccionado]="estaSeleccionado('Higiene y Salud')">Higiene</a>
-      </div>
-      <div id="telefoneCategoriasDestacadas" class="categoriasDestacadasCategoriasIndividuales">
-        <a>Ofertas %</a>
-        <a>Accesorios</a>
-        <a>Novedades</a>
-        <a>Viaje & Aire libre</a>
-        <a>Cachorro</a>
-        <a>Perro Mini</a>
-        <a>Packs ahorro</a>
-      </div>
-    </div>
-    <div class="ImagenFlotante">
+    <section class="ImagenFlotante">
 
       <div class="slide">
-        <h2>Top marcas con Top ofertas</h2><br>
 
         <div class="slide-inner">
           <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden=""
@@ -84,7 +37,8 @@
           </ol>
         </div>
       </div>
-    </div>
+    </section>
+
 
 
     <div id="categoriasDestacadasMarcas" class="categoriasDestacadas">
@@ -102,6 +56,41 @@
         <a><img src="./assets/logoImagenes/TrueOriginsLogo.webp"></a>
       </div>
     </div>
+
+    <section class="categoriasDestacadas">
+      <h2>Categorías destacadas</h2>
+      <div class="categoriasDestacadasCategoriasIndividuales">
+        <a (click)="filtrarRapido('Pienso')" (click)="marcarElemento('Pienso')"
+          [class.seleccionado]="estaSeleccionado('Pienso')">Pienso</a>
+        <a (click)="filtrarRapido('Humeda')" (click)="marcarElemento('Comida húmeda')" [class.seleccionado]="estaSeleccionado('Comida húmeda')">Comida
+          húmeda</a>
+        <a (click)="filtrarRapido('Snacks')" (click)="marcarElemento('Snacks')"
+        [class.seleccionado]="estaSeleccionado('Snacks')">Snacks</a>
+        <a (click)="marcarElemento('Dietas veterinarias')"
+          [class.seleccionado]="estaSeleccionado('Dietas veterinarias')">Dietas Veterinarias</a>
+        <a (click)="marcarElemento('Antiparasitarios')"
+          [class.seleccionado]="estaSeleccionado('Antiparasitarios')">Antiparasitos</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Camas')"
+          [class.seleccionado]="estaSeleccionado('Camas')">Camas</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Casetas, jaulas y Hogar')"
+          [class.seleccionado]="estaSeleccionado('Casetas, jaulas y Hogar')">Casetas</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Arneses,correas,...')"
+          [class.seleccionado]="estaSeleccionado('Arneses,correas,...')">Arneses y correas</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Juguetes')"
+          [class.seleccionado]="estaSeleccionado('Juguetes')">Juguetes</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Comida húmeda')"
+          [class.seleccionado]="estaSeleccionado('Complementos')">Ropa</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Transportines y viajes')"
+          [class.seleccionado]="estaSeleccionado('Transportines y viajes')">Transportines y viaje</a>
+        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Higiene y Salud')"
+          [class.seleccionado]="estaSeleccionado('Higiene y Salud')">Higiene</a>
+      </div>
+
+    </section>
+
+
+
+
 
     <div class="categorias" [ngStyle]="{'height': alturaContenedor + 'px'}">
       <div class="btn-filtrar-container">
@@ -123,7 +112,8 @@
                   </div>
                   <div class="card-details-text">
                     <h3>{{ dato.nombre }} - {{dato.peso}} KG</h3>
-                    <p>{{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€ ({{((dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100))/dato.peso).toFixed(2)}}€/KG)</p>
+                    <p>{{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€ ({{((dato.precioNeto +
+                      dato.precioNeto*(dato.ivaAsociado/100))/dato.peso).toFixed(2)}}€/KG)</p>
                   </div>
 
                 </div>
@@ -143,44 +133,15 @@
         </div>
 
         <div class="centrar-boton">
-          <button *ngIf="cantidadMostrada < datosCompletos.length && datosFiltradosResV.length > 6" (click)="cargarMas()">MÁS
+          <button *ngIf="cantidadMostrada < datosCompletos.length && datosFiltradosResV.length > 6"
+            (click)="cargarMas()">MÁS
             RESULTADOS</button>
         </div>
       </div>
     </div>
 
     <div class="textoBajo">
-      <p><strong>¿Estás buscando una tienda en línea donde comprar todo lo que necesita tu perro al mejor precio y sin
-          hacer colas?</strong> No lo dudes, nuestro sitio es el indicado. Disponemos de más de 1.000 productos para
-        perro entre los que puedes elegir el que mejor se adapta a las necesidades de tu amigo: pienso, accesorios,
-        artículos de salud e higiene...
-        <br><br>
-        <strong>LA MEJOR VARIEDAD DE COMIDA PARA TU PERRO</strong><br>
-        En nuestra sección de comida para perro encontrarás piensos de calidad de reconocidas marcas. Contamos con
-        diferentes fórmulas en función de la raza, la edad, el tamaño y la actividad física de tu can. También tenemos
-        dietas veterinarias para perros y un amplio surtido de pienso para cachorros. Además, disponemos de comida
-        húmeda para perro en distintos formatos: latas, tarrinas y pouches.
 
-        Los snacks y premios para perros son una excelente opción para educarlos y divertirlos. Tenemos distintos tipos,
-        incluyendo snacks dentales para la salud bucal y snacks funcionales para necesidades específicas como el control
-        de peso o la protección de las articulaciones.
-
-        Estamos seguros de que entre nuestra variedad de comida para perro y productos encontrarás lo que buscas.
-        <br><br>
-        <strong>SALUD E HIGIENE PARA TU PERRO</strong><br>
-        Si buscas artículos para cuidar y mantener a tu perro sano y limpio, puedes explorar nuestra sección de salud e
-        higiene canina. Encontrarás una amplia variedad de cepillos, champús, antiparasitarios, complementos vitamínicos
-        y tratamientos naturales para perros.
-        <br><br>
-        <strong>LOS MEJORES ACCESORIOS PARA TU PERRO</strong><br>
-        También contamos con accesorios para perro como juguetes, transportines, collares, correas, arneses, casetas,
-        bebederos, comederos, ropa y camas para perros. Tenemos todo lo necesario para que tu perro esté cómodo y feliz.
-
-        Y para hacerte la vida más fácil, ofrecemos envío gratuito para pedidos superiores a cierta cantidad. Además,
-        también puedes optar por recoger tu pedido en tu tienda más cercana.
-
-        ¡No esperes más y bríndale a tu perro todos los cuidados y mimos que se merece!
-      </p>
     </div>
 
 
@@ -189,4 +150,13 @@
   </div>
 
 
+</div>
+
+
+
+<div class="modal-container" *ngIf="showFinder">
+  <div class="modal" (click)="openFinder()">
+    <img  src="./assets/finderDog.webp">
+    <h1>No encuentras lo que buscas? Deja de Finder te ayude!</h1>
+  </div>
 </div>

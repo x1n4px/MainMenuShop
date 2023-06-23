@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Register } from 'src/app/class/Register';
+import { Login } from 'src/app/class/login';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,10 @@ export class LoginComponent {
   botonRegisterPulsado = false;
   esRegistro: boolean = true;
   alturaContenedor: string = '700px';
+  userLogin = new Login("", "");
+  userRegister = new Register("", "", "", "", "", "");
 
-  constructor(private route:Router) {
+  constructor(private route:Router, private usuario:UsuarioService) {
 
 
   }
@@ -39,4 +44,24 @@ export class LoginComponent {
   perfil() {
     this.route.navigate(['cuenta/perfil']);
   }
+
+
+  formularioLogin() {
+    this.usuario.login(this.userLogin).subscribe(
+      (data: any) => {
+        this.usuario.setToken(data.token, this.userLogin.email);
+         this.route.navigate(['cuenta/perfil']);
+
+
+      }, (error) => {
+        alert("Datos erroneos");
+      }
+    );
+  }
+
+  formularioRegister() {
+
+  }
+
+
 }

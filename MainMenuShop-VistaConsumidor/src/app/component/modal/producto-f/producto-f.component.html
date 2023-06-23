@@ -1,0 +1,37 @@
+<div class="contenedor">
+  <div class="contenedorInterior">
+    <div class="titulo">
+      <h1>{{nombre}} </h1>
+    </div>
+    <div class="contenidoDescriptivo">
+      <div class="imagen">
+        <img [src]="imagen" alt="Imagen">
+      </div>
+      <div class="seleccionador">
+        <div class="seleccionadorInterno">
+          <!-- <p>cantidad: {{producto.peso}} KG</p>
+
+          <p>{{categoria}} {{producto.nutricion}} perros {{producto.etapaVida}} con sabor a {{producto.sabores}}  </p>
+          <p>Precio: {{(producto.precioNeto + producto.precioNeto*(producto.ivaAsociado/100)).toFixed(2)}}€</p> -->
+          <!-- <button class="btnAniadir" (click)="aniadirCesta()">Añadir a la cesta</button> -->
+          <ul *ngFor="let product of productosSimilares"  [ngClass]="{ 'animated': product.animated }">
+            <li (click)="aniadirCesta(product)"  [ngClass]="{ 'animated': product.animated }">
+              <div class="product-info" *ngIf="!product.animated"   >
+                {{product.nombre}} {{product.peso}}KG - {{(product.precioNeto+(product.precioNeto*(product.ivaAsociado/100))).toFixed(2)}}€
+                <mat-icon>add_shopping_cart</mat-icon>
+              </div>
+              <div *ngIf="product.animated" class="add-to-cart-msg">Añadido a la cesta</div>
+
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="informacionAux">
+      <div [innerHTML]="contenido"></div>
+
+
+
+    </div>
+  </div>

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SharedServiceService } from 'src/app/service/shared-service.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-cesta',
@@ -10,7 +11,8 @@ import { SharedServiceService } from 'src/app/service/shared-service.service';
   styleUrls: ['./cesta.component.css']
 })
 export class CestaComponent {
-  constructor(private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
+  constructor(private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar,
+    private usuario:UsuarioService) {
     this.cesta = this.sharedService.obtenercesta();
     this.calcularCesta();
   }
@@ -39,7 +41,11 @@ export class CestaComponent {
      this.calcularCesta();
   }
 
-  modalPago() {
-
+  Pago() {
+     if(this.usuario.getToken() !== null) {
+      this.router.navigate(['cesta/pagoS'])
+    } else{
+      this.router.navigate(['cesta/pagoS'])
+    }
   }
 }

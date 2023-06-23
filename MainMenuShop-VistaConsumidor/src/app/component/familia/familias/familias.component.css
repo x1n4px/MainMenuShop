@@ -373,6 +373,7 @@
   width: 100%;
   height: auto;
   margin-bottom: 30px;
+  z-index: -1;
 }
 
 
@@ -523,6 +524,30 @@ Carrusel
 }
 
 
+.modal-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  }
+
+.modal {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+
+}
+
+.modal img {
+  width: 300px;
+}
+
+.modal h1 {
+  max-width: 300px;
+  text-align: center;
+}
+
 
 
 @media screen and (max-width: 767px) {
@@ -545,7 +570,9 @@ Carrusel
     margin-top: 100px;
   }
 
-
+  .modal-container {
+    display: none;
+  }
 
   .card {
     width: calc(100%);
@@ -586,3 +613,6 @@ Carrusel
      margin: 0;
   }
 }
+
+
+

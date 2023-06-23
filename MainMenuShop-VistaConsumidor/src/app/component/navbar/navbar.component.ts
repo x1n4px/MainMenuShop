@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { PerroComponent } from '../familia/perro/perro.component';
-import { SharedServiceService } from 'src/app/service/shared-service.service';
+ import { SharedServiceService } from 'src/app/service/shared-service.service';
 import { Router } from '@angular/router';
-import { BusquedaArticulosComponent } from '../modal/busqueda-articulos/busqueda-articulos.component';
-import { MatDialog } from '@angular/material/dialog';
+ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {MatIconModule} from '@angular/material/icon'
-import { ProductosService } from 'src/app/service/productos.service';
+ import { ProductosService } from 'src/app/service/productos.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import { ProductoFComponent } from '../modal/producto-f/producto-f.component';
+import { Producto } from 'src/app/class/producto';
 
 
 
@@ -17,14 +17,16 @@ import { ProductosService } from 'src/app/service/productos.service';
 })
 export class NavbarComponent implements OnInit{
   cesta:any[];
-  resultados!: any[];
+  resultados: any[] = [];
   terminoBusqueda!: string;
   mostrarResultados: boolean = false;
+  loginCheck: boolean = false;
 
 
 
-
-  constructor(private productooService: ProductosService, private sharedService: SharedServiceService, private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
+  constructor(private productooService: ProductosService, private sharedService: SharedServiceService, private router: Router,
+    public dialog: MatDialog, private snack: MatSnackBar,
+    private usuario: UsuarioService) {
     this.cesta = this.sharedService.obtenercesta();
 
   }
@@ -47,6 +49,11 @@ export class NavbarComponent implements OnInit{
   mostrarCesta(){
     this.mostrar = !this.mostrar;
     this.calcularCesta()
+  }
+  mostrarlogin: boolean = false;
+  mostrarperfil(){
+    this.mostrarlogin = !this.mostrarlogin;
+
   }
 
   calcularCesta() {
@@ -77,6 +84,12 @@ export class NavbarComponent implements OnInit{
   }
 
 
+  verDetallesProducto(dato: Producto) {
+    console.log(dato);
+    const dialogRef = this.dialog.open(ProductoFComponent, { data: { product: dato } });
+    this.resultados = [];
+  }
+
   seleccionarResultado(dato:any) {
     this.router.navigate(['perro']);
   }
@@ -84,5 +97,11 @@ export class NavbarComponent implements OnInit{
 
   go(route:string) {
     this.router.navigate(['', route]);
+  }
+
+
+  cerrarsesion() {
+    this.usuario.logout();
+    this.loginCheck = false;
   }
 }
