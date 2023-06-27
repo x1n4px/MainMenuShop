@@ -27,4 +27,7 @@ export class ProductosService {
     return this.http.get<Producto[]>(`http://localhost:8080/productos/Filtrados/CategoriaFamilia?familia=`+familia+`&categoria=`+categoria);
   }
 
+  guardar(producto: Producto) {
+    return this.http.post<Producto>(`http://localhost:8080/productos/guardar`, producto);
+  }
 }

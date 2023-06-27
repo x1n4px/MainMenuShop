@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventServiceService } from './event-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 export class SharedServiceService {
   @Output() marcarElementoEvent: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private evenService: EventServiceService) {
     this.recuperarCestaDelLocalStorage();
 
    }
@@ -19,7 +20,7 @@ export class SharedServiceService {
   aniadirProductoCesta(producto: any): void {
     this.cesta.push(producto);
     this.guardarCestaEnLocalStorage();
-
+    this.evenService.actualizarCesta();
    }
 
   obtenercesta() {

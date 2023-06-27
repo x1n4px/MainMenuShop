@@ -1,88 +1,37 @@
 <div class="contenedorBase">
   <div class="contenedor">
-    <section class="ImagenFlotante">
 
-      <div class="slide">
+    <section style="background-image: url('../../../');">
 
-        <div class="slide-inner">
-          <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden=""
-            checked="checked">
-          <div class="slide-item">
-            <img src="./assets/cabecera/{{familia}}/cabecera1.webp">
-          </div>
-          <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
-          <div class="slide-item">
-            <img src="./assets/cabecera/{{familia}}/cabecera2.webp">
-          </div>
-          <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
-          <div class="slide-item">
-            <img src="./assets/cabecera/{{familia}}/cabecera3.webp">
-          </div>
-          <label for="slide-3" class="slide-control prev control-1">‹</label>
-          <label for="slide-2" class="slide-control next control-1">›</label>
-          <label for="slide-1" class="slide-control prev control-2">‹</label>
-          <label for="slide-3" class="slide-control next control-2">›</label>
-          <label for="slide-2" class="slide-control prev control-3">‹</label>
-          <label for="slide-1" class="slide-control next control-3">›</label>
-          <ol class="slide-indicador">
-            <li>
-              <label for="slide-1" class="slide-circulo">•</label>
-            </li>
-            <li>
-              <label for="slide-2" class="slide-circulo">•</label>
-            </li>
-            <li>
-              <label for="slide-3" class="slide-circulo">•</label>
-            </li>
-          </ol>
-        </div>
-      </div>
     </section>
 
 
-
-    <div id="categoriasDestacadasMarcas" class="categoriasDestacadas">
-
-      <h2>Sus marcas favoritas:</h2>
-      <div class="categoriasDestacadasCategoriasIndividualesMarcas">
-        <a (click)="marcarElemento('Acana')"><img src="./assets/logoImagenes/acana-logo.webp"></a>
-        <a><img src="./assets/logoImagenes/advanceLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/HillsLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/nathLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/RoyalCaninLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/serestoLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/tasteOfWildLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/TkPetLogo.webp"></a>
-        <a><img src="./assets/logoImagenes/TrueOriginsLogo.webp"></a>
-      </div>
-    </div>
-
     <section class="categoriasDestacadas">
-      <h2>Categorías destacadas</h2>
-      <div class="categoriasDestacadasCategoriasIndividuales">
+
+       <div class="categoriasDestacadasCategoriasIndividuales">
+
         <a (click)="filtrarRapido('Pienso')" (click)="marcarElemento('Pienso')"
           [class.seleccionado]="estaSeleccionado('Pienso')">Pienso</a>
-        <a (click)="filtrarRapido('Humeda')" (click)="marcarElemento('Comida húmeda')" [class.seleccionado]="estaSeleccionado('Comida húmeda')">Comida
-          húmeda</a>
+        <a (click)="filtrarRapido('Humeda')" (click)="marcarElemento('Comida húmeda')"
+          [class.seleccionado]="estaSeleccionado('Comida húmeda')">Comida
+          húmeda </a>
         <a (click)="filtrarRapido('Snacks')" (click)="marcarElemento('Snacks')"
-        [class.seleccionado]="estaSeleccionado('Snacks')">Snacks</a>
-        <a (click)="marcarElemento('Dietas veterinarias')"
+          [class.seleccionado]="estaSeleccionado('Snacks')">Snacks</a>
+        <a (click)="filtrarRapido('Dietas veterinarias')" (click)="marcarElemento('Dietas veterinarias')"
           [class.seleccionado]="estaSeleccionado('Dietas veterinarias')">Dietas Veterinarias</a>
-        <a (click)="marcarElemento('Antiparasitarios')"
+        <a (click)="filtrarRapido('Antiparasitarios')" (click)="marcarElemento('Antiparasitarios')"
           [class.seleccionado]="estaSeleccionado('Antiparasitarios')">Antiparasitos</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Camas')"
+        <a (click)="filtrarRapido('Camas')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Camas')"
           [class.seleccionado]="estaSeleccionado('Camas')">Camas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Casetas, jaulas y Hogar')"
-          [class.seleccionado]="estaSeleccionado('Casetas, jaulas y Hogar')">Casetas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Arneses,correas,...')"
-          [class.seleccionado]="estaSeleccionado('Arneses,correas,...')">Arneses y correas</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Juguetes')"
+        <a (click)="filtrarRapido('Casetas, jaulas y Hogar')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Casetas, jaulas y Hogar')"
+          [class.seleccionado]="estaSeleccionado('Casetas, jaulas y Hogar')">Hogar</a>
+        <a (click)="filtrarRapido('Arneses,correas,...')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Arneses,correas,...')"
+          [class.seleccionado]="estaSeleccionado('Arneses,correas,...')">Paseo</a>
+        <a (click)="filtrarRapido('Juguetes')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Juguetes')"
           [class.seleccionado]="estaSeleccionado('Juguetes')">Juguetes</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Comida húmeda')"
-          [class.seleccionado]="estaSeleccionado('Complementos')">Ropa</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Transportines y viajes')"
-          [class.seleccionado]="estaSeleccionado('Transportines y viajes')">Transportines y viaje</a>
-        <a id="telefoneCategoriasDestacadas" (click)="marcarElemento('Higiene y Salud')"
+        <a (click)="filtrarRapido('Transportines y viajes')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Transportines y viajes')"
+          [class.seleccionado]="estaSeleccionado('Transportines y viajes')">Viaje</a>
+        <a (click)="filtrarRapido('Higiene y Salud')" id="telefoneCategoriasDestacadas" (click)="marcarElemento('Higiene y Salud')"
           [class.seleccionado]="estaSeleccionado('Higiene y Salud')">Higiene</a>
       </div>
 
@@ -93,11 +42,7 @@
 
 
     <div class="categorias" [ngStyle]="{'height': alturaContenedor + 'px'}">
-      <div class="btn-filtrar-container">
-        <button id="eliminar" class="btn-filtrar" *ngIf="selecciones.length !== 0" (click)="limpiarFiltros()">Eliminar
-          Filtros</button>
-        <button class="btn-filtrar" (click)="openModalFiltrar()">Filtrar</button>
-      </div>
+
       <div class="contenedor-muestrario">
 
         <div class="contenedor-interno">
@@ -107,13 +52,12 @@
               <a (dblclick)="verDetallesProducto(dato)">
                 <div class="card-details">
                   <div class="card-details-img">
-                    <img [src]="dato.imagen" alt="Imagen">
+                    <img [src]="dato.imagen" alt="Imagen" loading="lazy">
 
                   </div>
                   <div class="card-details-text">
-                    <h3>{{ dato.nombre }} - {{dato.peso}} KG</h3>
-                    <p>{{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€ ({{((dato.precioNeto +
-                      dato.precioNeto*(dato.ivaAsociado/100))/dato.peso).toFixed(2)}}€/KG)</p>
+                    <h3 style="padding: 10px;">{{ dato.nombre }} </h3>
+                    <h3>{{dato.peso}} KG : {{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€ </h3>
                   </div>
 
                 </div>
@@ -140,10 +84,6 @@
       </div>
     </div>
 
-    <div class="textoBajo">
-
-    </div>
-
 
 
 
@@ -155,8 +95,9 @@
 
 
 <div class="modal-container" *ngIf="showFinder">
+  <button class="btnCloseFinder" (click)="showFinder = false"><mat-icon>close</mat-icon></button>
   <div class="modal" (click)="openFinder()">
-    <img  src="./assets/finderDog.webp">
+    <img src="./assets/finderDog.webp">
     <h1>No encuentras lo que buscas? Deja de Finder te ayude!</h1>
   </div>
 </div>

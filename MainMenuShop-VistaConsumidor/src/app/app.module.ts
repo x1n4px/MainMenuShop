@@ -5,9 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { PerroComponent } from './component/familia/perro/perro.component';
-import { GatoComponent } from './component/familia/gato/gato.component';
-import { BusquedaTiendaComponent } from './otros/busqueda-tienda/busqueda-tienda.component';
+  import { BusquedaTiendaComponent } from './otros/busqueda-tienda/busqueda-tienda.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { CestaComponent } from './usuario/cesta/cesta.component';
@@ -24,14 +22,12 @@ import { PagoUsuarioComponent } from './usuario/pago-usuario/pago-usuario.compon
 import { PagoSinUsuarioComponent } from './usuario/pago-sin-usuario/pago-sin-usuario.component';
 import { ProductoFComponent } from './component/modal/producto-f/producto-f.component';
 import { FinderComponent } from './component/modal/finder/finder.component';
-      @NgModule({
+       @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    PerroComponent,
-    GatoComponent,
-    BusquedaTiendaComponent,
+     BusquedaTiendaComponent,
     PerfilComponent,
     LoginComponent,
     CestaComponent,
@@ -42,7 +38,7 @@ import { FinderComponent } from './component/modal/finder/finder.component';
      PagoUsuarioComponent,
      ProductoFComponent,
      FinderComponent
-     ],
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,

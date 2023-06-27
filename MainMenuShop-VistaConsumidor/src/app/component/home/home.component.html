@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pricipal</title>
-</head>
 
 <body>
-  <div class="contenedor-principal">
 
-    <section id="cabeceraPerro">
-      <img src="./assets/cabecera/perro/cabecera1.webp" alt="problema al cargar">
-    </section>
+  <div class="contenedor-principal">
+    <div class="contPricImagen">
+       <section id="cabeceraPerro">
+        <h1>Tu <span>{{ palabraActual }}</span>,</h1>
+        <h2>nuestra pasión</h2>
+       </section>
+
+    </div>
+
 
 
 
@@ -19,135 +17,65 @@
 
 
 
-      <section id="perro">
+      <div id="perro">
         <header class="divsForA">
-          <a routerLink="perro">PRODUCTOS RECOMENDADOS PARA TU PERRETE  </a>
+
+          <a routerLink="perro"><p>PRODUCTOS RECOMENDADOS PARA TU PERRETE </p> </a>
         </header>
 
         <div class="ofertasMultiples">
-          <div class="tarjeta">
-            <a router="gato">
+          <div class="tarjeta" *ngFor="let dato of datosP.slice(0, 4)">
+            <a (dblclick)="verDetallesProducto(dato)">
               <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Acana/acanaFitAdult.webp" alt="Oferta 1">
+                <img [src]="dato.imagen" alt="Oferta 1">
               </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a href="#">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Advance/advance_sensitive_medium_salmon.webp" alt="Oferta 2">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a router="gato">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Acana/acanaPuppyLargeBreed.webp" alt="Oferta 3">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a router="gato">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Perro/Pienso/Advance/advance_adult_medium.webp" alt="Oferta 3">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
+              <div class="contenido" style="padding: 10px;">
+                <h4>{{dato.nombre}}</h4>
+                <p>Precio: {{(dato.precioNeto + (dato.precioNeto*(dato.ivaAsociado/100))).toFixed(2)}}€</p>
               </div>
             </a>
           </div>
         </div>
+
 
         <div class="botonExtr">
-          <button (click)="go('Perro')">Cargar más</button>
+          <button class="cargarMas" (click)="go('Perro')">Cargar más</button>
         </div>
 
-      </section>
+      </div>
 
+      <section class="fotoGato">
 
-      <section id="cabeceraPerro">
-        <img src="./assets/cabecera/gato/cabecera3.webp" alt="problema al cargar">
       </section>
 
       <section id="gato">
         <div class="divsForA">
-          <a routerLink="Gato">PRODUCTOS RECOMENDADOS PARA TU MICHI</a>
+          <a routerLink="Gato"><p>PRODUCTOS RECOMENDADOS PARA TU MICHI</p></a>
         </div>
 
         <div class="ofertasMultiples">
-          <div class="tarjeta">
-            <a router="gato">
+          <div class="tarjeta" *ngFor="let dato of datosG.slice(0, 4)">
+            <a (dblclick)="verDetallesProducto(dato)">
               <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Acana/acanaPacificaPienso.webp" alt="Oferta 1">
+                <img [src]="dato.imagen" alt="Oferta 1">
               </div>
               <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a href="#">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Applaws/applaws_adult_grain_free_pollo.webp" alt="Oferta 2">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a router="gato">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Acana/comida_gatos_acana_wild_prairie.webp" alt="Oferta 3">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="tarjeta">
-            <a router="gato">
-              <div class="imagen">
-                <img routerLink="perro" src="./assets/Familias/Gato/Pienso/Acana/comida_gatos_acana_wild_prairie.webp" alt="Oferta 3">
-              </div>
-              <div class="contenido">
-                <h4>Nombre del producto</h4>
-                <p>Precio: $X</p>
+                <h4>{{dato.nombre}}</h4>
+                <p>Precio: {{(dato.precioNeto + (dato.precioNeto*(dato.ivaAsociado/100))).toFixed(2)}}€</p>
               </div>
             </a>
           </div>
         </div>
 
         <div class="botonExtr">
-          <button (click)="go('Gato')">Cargar más</button>
+          <button class="cargarMas" (click)="go('Gato')">Cargar más</button>
         </div>
       </section>
     </div>
 
 
+
+
   </div>
 </body>
 
-</html>

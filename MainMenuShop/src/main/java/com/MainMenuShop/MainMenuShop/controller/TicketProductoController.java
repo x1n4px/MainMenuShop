@@ -1,6 +1,7 @@
 package com.MainMenuShop.MainMenuShop.controller;
 
 import com.MainMenuShop.MainMenuShop.dto.ProductosOnlineDTO;
+import com.MainMenuShop.MainMenuShop.entities.Clientes;
 import com.MainMenuShop.MainMenuShop.entities.Productos;
 import com.MainMenuShop.MainMenuShop.entities.Ticket;
 import com.MainMenuShop.MainMenuShop.entities.TicketProducto;
@@ -65,6 +66,12 @@ public class TicketProductoController {
         }
         return null;
     }
+
+
+
+
+
+
 
     @GetMapping("/productos/Filtrados/CategoriaFamilia")
     public List<?> obtenerFiltradoRapido(@RequestParam("familia") String familia, @RequestParam("categoria") String categoria ) {

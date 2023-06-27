@@ -1,77 +1,132 @@
-<nav>
-  <div class="nav">
-    <input type="checkbox" id="nav-check" #navCheck>
-
-    <div class="nav-title">
-      <a class="logoGrande" routerLink=""><img src="./assets/logoGrande.webp" alt="logo" style="width: 200px;"></a>
+<nav class="navbar" [ngClass]="{'transparent': isHome}">
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <div class="hamburger-menu" (click)="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <a href=""><img class="logo" src="../../../assets/logoB.png" alt="Logo"></a>
     </div>
-
-    <div class="nav-btn" id="menuHamburguer">
-      <label for="nav-check">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-    </div>
-    <div class="nav-links">
-
-      <a (click)="go('perro')">Perro</a>
-      <a (click)="go('gato')">Gato</a>
-      <a (click)="go('pajaro')">Pájaros</a>
-      <a (click)="go('roedores')">Roedores</a>
-      <a (click)="go('reptiles')">Reptiles</a>
-      <a (click)="go('acuariofilia')">Acuariofilia</a>
-      <a (click)="irA('login')" class="btn" (mouseenter)="mostrarperfil()"
-        (mouseleave)="mostrarperfil()"><mat-icon>person</mat-icon>
-        <span>Iniciar
-          sesión/Registrarte</span>
-        <div class="containerlogin">
-          <div class="tarjetalogin" [hidden]="!mostrarlogin">
-            <div class="tarjetalogin">
-              <a (click)="cerrarsesion()">Cerra sesion</a>
-            </div>
-
-          </div>
+    <div class="navbar-right">
+      <div class="search-container">
+        <form (ngSubmit)="buscar()">
+          <input type="text" class="search-input" name="terminoBusqueda" placeholder="Buscar"
+            [(ngModel)]="terminoBusqueda">
+        </form>
+      </div>
+      <div class="icon-container">
+        <div class="profile-icon">
+          <mat-icon style="color: white; cursor: pointer;" (click)="irA('login')">person</mat-icon>
         </div>
-      </a>
-      <a (click)="irA('cesta')" class="btn" (mouseenter)="mostrarCesta()" (mouseleave)="mostrarCesta()">
-        <mat-icon class="cart-icon">shopping_cart</mat-icon>
-        <span>Cesta</span>
-        <div class="container" *ngIf="cesta.length !== 0">
-          <div class="tarjeta" [hidden]="!mostrar">
-            <div class="tarjeta-cesta">
-              <ul *ngFor="let dato of cesta">
-                <li>{{dato.nombre}} - {{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}} €</li>
-              </ul>
-            </div>
-            <hr>
-            <p>Subtotal: {{precioCesta.toFixed(2)}} €</p>
-          </div>
+        <div class="cart-icon">
+
+          <mat-icon class="buscador" (click)="selectItem(6); toggleMenu()"
+            style="color: white; width: 30px;cursor: pointer;">search</mat-icon>
+          <mat-icon id="icono-cesta" style="color: white; cursor: pointer;"
+            (click)="irA('cesta')">shopping_cart</mat-icon>
+
         </div>
-        <div class="circle" *ngIf="cesta.length !== 0">{{ cesta.length }}</div>
-      </a>
-
-
-    </div>
-
-    <div class="buscardorMovil">
-      <form (ngSubmit)="buscar()">
-        <input [(ngModel)]="terminoBusqueda" name="terminoBusqueda" type="text"
-          placeholder="Busca tus marcas y productos favoritos" (input)="mostrarResultados = true"
-          (blur)="mostrarResultados = false">
-
-        <mat-icon>search</mat-icon>
-      </form>
-         <ul class="resultados-busqueda" [class.visible]="mostrarResultados" *ngIf="resultados.length > 0">
-          <li *ngFor="let resultado of resultados" (click)="verDetallesProducto(resultado)" >
-            <a >{{ resultado.nombre }}</a>
-          </li>
-        </ul>
-
+      </div>
     </div>
 
   </div>
+  <div class="sidebar" [ngClass]="{'show': showMenu}">
+    <div class="sidebar-icon">
+      <mat-icon (click)="toggleMenu()">close</mat-icon>
+    </div>
+    <div class="sidebar-family">
+      <a (click)="selectItem(0)" [class.selected]="selectedIndex === 0">Perro</a>
+      <a (click)="selectItem(1)" [class.selected]="selectedIndex === 1">Gato</a>
+      <a (click)="selectItem(4)" [class.selected]="selectedIndex === 4">Roedores</a>
+      <a (click)="selectItem(5)" [class.selected]="selectedIndex === 5">Peces</a>
+      <a (click)="selectItem(3)" [class.selected]="selectedIndex === 3">Reptiles</a>
+      <a (click)="selectItem(2)" [class.selected]="selectedIndex === 2">Pajaros</a>
+    </div>
+    <div class="sidebar-info">
+      <div class="informacion" *ngIf="selectedIndex === 0">
+        <a (click)="go('perro')">Pienso</a>
+        <a (click)="go('perro')">Cómida húmeda</a>
+        <a (click)="go('perro')">Snacks</a>
+        <a (click)="go('perro')">Hogar</a>
+        <a (click)="go('perro')">Paseo</a>
+        <a (click)="go('perro')">Viajes</a>
+        <a (click)="go('perro')">Antiparasitario</a>
+      </div>
+
+      <div class="informacion" *ngIf="selectedIndex === 1">
+        <a (click)="go('gato')">Pienso</a>
+        <a (click)="go('gato')">Cómida húmeda</a>
+        <a (click)="go('gato')">Snacks</a>
+        <a (click)="go('gato')">Hogar</a>
+        <a (click)="go('gato')">Paseo</a>
+        <a (click)="go('gato')">Viajes</a>
+        <a (click)="go('gato')">Antiparasitario</a>
+      </div>
+
+      <div class="informacion" *ngIf="selectedIndex === 2">
+        <a (click)="go('pajaros')">Pienso</a>
+        <a (click)="go('pajaros')">Snacks</a>
+        <a (click)="go('pajaros')">Jaulas</a>
+        <a (click)="go('pajaros')">Accesorios</a>
+        <a (click)="go('pajaros')">Antiparasitario</a>
+      </div>
+
+      <div class="informacion" *ngIf="selectedIndex === 3">
+        <a (click)="go('reptiles')">Pienso</a>
+        <a (click)="go('reptiles')">Cómida Viva</a>
+        <a (click)="go('reptiles')">Snacks</a>
+        <a (click)="go('reptiles')">Accesorios</a>
+        <a (click)="go('reptiles')">Utensilios</a>
+        <a (click)="go('reptiles')">Terrarios</a>
+        <a (click)="go('reptiles')">Complementos</a>
+      </div>
+
+      <div class="informacion" *ngIf="selectedIndex === 4">
+        <a (click)="go('roedores')">Pienso</a>
+        <a (click)="go('roedores')">Snacks</a>
+        <a (click)="go('roedores')">Hogar</a>
+        <a (click)="go('roedores')">Paseo</a>
+        <a (click)="go('roedores')">Juguetes</a>
+        <a (click)="go('roedores')">Antiparasitario</a>
+        <a (click)="go('roedores')">Higuiene</a>
+      </div>
+
+      <div class="informacion" *ngIf="selectedIndex === 5">
+        <a (click)="go('acuariofilia')">Pienso</a>
+        <a (click)="go('acuariofilia')">Snacks</a>
+        <a (click)="go('acuariofilia')">Acuarios</a>
+        <a (click)="go('acuariofilia')">Plantas</a>
+        <a (click)="go('acuariofilia')">Quimica</a>
+        <a (click)="go('acuariofilia')">Sólidos</a>
+        <a (click)="go('acuariofilia')">Utensilios</a>
+        <a (click)="go('acuariofilia')">Medicamentos</a>
+
+      </div>
+      <div class="informacion" *ngIf="selectedIndex === 6">
+        <div class="searchMobile">
+          <form (ngSubmit)="buscar()">
+            <input type="text" class="search-input-mobile" name="terminoBusqueda" placeholder="Buscar"
+              [(ngModel)]="terminoBusqueda">
+          </form>
+        </div>
+        <ul>
+          <li *ngFor="let dato of resultados">
+            <a (click)="this.showMenu = false;verDetallesProducto(dato)">- {{dato.nombre}}</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="resultados" class="informacion" *ngIf="selectedIndex === 7">
+        <ul>
+          <li *ngFor="let dato of resultados">
+            <a (click)="this.showMenu = false;verDetallesProducto(dato)">- {{dato.nombre}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
 
-
+  </div>
 </nav>

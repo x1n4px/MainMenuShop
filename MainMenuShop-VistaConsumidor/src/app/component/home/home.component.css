@@ -6,38 +6,74 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
- }
 
+}
 
-
-#cabeceraPerro {
+section {
   width: 100%;
+  margin-bottom: 100px;
+}
+
+.contPricImagen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#cabeceraPerro,
+#cabeceraGato {
+  width: 100vw;
   min-height: 700px;
-  height: auto;
+  height: 100vh;
   position: relative;
+  background-image: url("../../../assets/Familias/Perro/fondos/hermoso-retrato-mascota-perro.webp");
+  background-size: cover;
+  background-position: top center;
+  /* Ajusta el espaciado a tu gusto */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-#cabeceraPerro img {
+#cabeceraPerro h1 {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 40%;
+  transform: translateY(-50%);
+  transform: translateX(10%);
+  color: #ffffff;
+  /* Color del texto */
+  font-size: 6vw;
+  /* Tamaño del texto */
+  font-weight: bold;
+  text-align: left;
 }
+
+#cabeceraPerro h2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  transform: translateX(17%);
+  color: #ffffff;
+  /* Color del texto */
+  font-size: 4vw;
+  /* Tamaño del texto */
+  font-weight: bold;
+  text-align: left;
+}
+
+
+
 
 .contenedor-principal {
   width: 100%;
- }
+}
 
 
 .contenedorInterior {
   justify-content: center;
   align-items: center;
- }
+}
 
 .icon {
-  margin-right: 10px;
   padding: 5px 7px;
   /* Estilos adicionales para el icono */
 }
@@ -83,14 +119,13 @@ body {
   margin: 0;
 }
 
-section {
-   margin-bottom: 150px;
-}
+
 
 
 
 .divsForA {
   text-align: center;
+
 }
 
 
@@ -98,14 +133,15 @@ section {
   text-decoration: none;
   color: inherit;
   transition: background-color 0.3s;
-  font-size: large;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 400;
-  letter-spacing: 2px;
-  word-spacing: 3px;
-  font-size: xx-large;
+
   margin-bottom: 50px;
 
+}
+
+.divsForA a p {
+  font-size: 30px;
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 
@@ -115,51 +151,55 @@ section {
 
 .ofertasMultiples {
   display: flex;
-  width: 100%;
- }
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
 .tarjeta {
+  flex-basis: calc(25% - 15px);
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 3px solid #333;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+ }
+
+
+
+.imagen {
+   width: 350px;
+  height: 350px;
+  display: flex;
   align-items: center;
-  margin-right: 10px;
-  width: 25%;
- }
+  justify-content: center;
 
- .tarjeta a {
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
- }
- .tarjeta a:hover {
-  border: 3px solid #428bca;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
 }
-
 
 .imagen img {
-  width: 400px; /* Ajusta el tamaño de la imagen según tus necesidades */
-  height: 400px; /* Ajusta el tamaño de la imagen según tus necesidades */
-  object-fit: cover;
-}
+  max-width: 100%;
+  max-height: 100%;
+ }
+
 
 .contenido {
   margin-top: 30px;
   text-align: center;
 }
 
+
+
 #perro {
   width: 80%;
   margin: 0 auto;
-}
+ }
 
-#perro .divsForA{
+#perro .divsForA {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-#perro .ofertasMultiples a {
-  margin: 0 10px;
-}
 
 .botonExtr {
   width: 100%;
@@ -170,28 +210,65 @@ section {
   margin-bottom: 50px;
 }
 
-
-.botonExtr button {
+.botonExtr button.cargarMas {
   padding: 20px 60px;
   align-items: center;
   justify-content: center;
   background-color: #333333;
   font-size: large;
-   color: white;
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
+
+.botonExtr button.cargarMas::after {
+  content: "Guau!";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #428bca;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.3s;
+}
+
+.botonExtr button.cargarMas:hover::after {
+  left: 0;
+}
+
+
+
 #gato {
   width: 80%;
   margin: 0 auto;
   margin-top: 100px;
 }
- #gato .divsForA {
+
+#gato .divsForA {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
- #gato .ofertasMultiples a {
+
+#gato .ofertasMultiples a {
   margin: 0 10px;
 }
+
+.fotoGato {
+  width: 100%;
+  min-height: 800px;
+  height: 100vh;
+  margin-bottom: 100px;
+   background-image: url('../../../assets/Familias/Gato/Fondo/pexels-cong-h-1404819.webp');
+  background-size: cover;
+  background-position: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+}
+
 
 
 
@@ -202,12 +279,65 @@ section {
     margin-bottom: 0;
   }
 
+  .ofertasMultiples {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
 }
 
 
 @media screen and (max-width: 767px) {
 
+
+  #cabeceraPerro,
+  #cabeceraGato {
+    width: 100vw;
+    min-height: 700px;
+    height: 100vh;
+    position: relative;
+    background-image: url("../../../assets/Familias/Perro/fondos/hermoso-retrato-mascota-perro-sentado.webp");
+    background-size: cover;
+    background-position: top center;
+    padding-left: 20px;
+    /* Ajusta el espaciado a tu gusto */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+
+  #cabeceraPerro img {
+    width: 100%;
+    height: auto;
+    image-resolution: inherit;
+    border-image-width: auto;
+  }
+
+
+  #cabeceraPerro h1 {
+    position: absolute;
+    top: 10%;
+    transform: translateY(-50%);
+    transform: translateX(10%);
+    color: #ffffff;
+    /* Color del texto */
+    font-size: 10vw;
+    /* Tamaño del texto */
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+  }
+
+  #cabeceraPerro h2 {
+    position: absolute;
+    top: 15%;
+    transform: translateY(-45%);
+    transform: translateX(17%);
+    color: #ffffff;
+    /* Color del texto */
+    font-size: 7vw;
+    /* Tamaño del texto */
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+  }
 
 
   .divsForA a {
@@ -225,130 +355,8 @@ section {
   }
 }
 
-
-
-/*
-Carrusel
-*/
-.slide {
-  position: relative;
-  margin-top: 26px;
-  align-items: center;
-  align-content: center;
-}
-
-.slide-inner {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: calc(300px + 3em);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide-open:checked+.slide-item {
-  position: static;
-  opacity: 100;
-}
-
-.slide-item {
-  position: absolute;
-  opacity: 0;
-  -webkit-transition: opacity 0.6s ease-out;
-  transition: opacity 0.6s ease-out;
-}
-
-.slide-item img {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
-.slide-control {
-  background: rgba(0, 0, 0, 0.28);
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  display: none;
-  font-size: 40px;
-  height: 40px;
-  line-height: 35px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  cursor: pointer;
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  text-align: center;
-  width: 40px;
-  z-index: 10;
-}
-
-.slide-control.prev {
-  left: 2%;
-}
-
-.slide-control.next {
-  right: 2%;
-}
-
-.slide-control:hover {
-  background: rgba(0, 0, 0, 0.8);
-  color: #aaaaaa;
-}
-
-#slide-1:checked~.control-1,
-#slide-2:checked~.control-2,
-#slide-3:checked~.control-3 {
-  display: block;
-}
-
-.slide-indicador {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-}
-
-.slide-indicador li {
-  display: inline-block;
-  margin: 0 5px;
-}
-
-.slide-circulo {
-  color: #828282;
-  cursor: pointer;
-  display: block;
-  font-size: 35px;
-  z-index: 1;
-}
-
-.slide-circulo:hover {
-  color: #aaaaaa;
-}
-
-#slide-1:checked~.control-1~.slide-indicador li:nth-child(1) .slide-circulo,
-#slide-2:checked~.control-2~.slide-indicador li:nth-child(2) .slide-circulo,
-#slide-3:checked~.control-3~.slide-indicador li:nth-child(3) .slide-circulo {
-  color: #428bca;
-}
-
-#titulo {
-  width: 100%;
-  position: absolute;
-  padding: 0px;
-  margin: 0px auto;
-  text-align: center;
-  font-size: 27px;
-  color: rgba(255, 255, 255, 1);
-  font-family: 'Open Sans', sans-serif;
-  z-index: 1;
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
-    -1px 0px 2px rgba(255, 255, 255, 0);
+@media (min-width: 992px) {
+  .ofertasMultiples {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

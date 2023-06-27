@@ -33,8 +33,8 @@ export class FamiliasComponent implements OnInit, OnDestroy {
 
   cantidadMostrada: number = 6;
   cantidadPorCargar = 3;
-  alturaContenedor = 1400;
-  seleccionados: any[] = [];
+  alturaContenedor = 1800;
+  seleccionados: any = '';
   selecciones: any[] = [];
   datosFiltradosResV: Producto[] = [];
 
@@ -119,12 +119,10 @@ export class FamiliasComponent implements OnInit, OnDestroy {
   marcarElemento(dato: any) {
 
     if (this.estaSeleccionado(dato)) {
-      this.seleccionados = this.seleccionados.filter((elem) => elem !== dato);
-      this.datosFiltradosRes();
-
+      this.seleccionados = '';
+       this.datosFiltradosResV = this.datosCompletos;
     } else {
-      this.seleccionados.push(dato);
-      this.datosFiltradosRes();
+     this.seleccionados = dato;
 
     }
   }
@@ -134,7 +132,7 @@ export class FamiliasComponent implements OnInit, OnDestroy {
   calcularAlturaContenedor(): void {
     const cantidadTarjetas = Math.min(this.cantidadMostrada, this.datosCompletos.length);
     const cantidadFilas = Math.ceil(cantidadTarjetas / 3);
-    this.alturaContenedor = cantidadFilas * 550;
+    this.alturaContenedor = cantidadFilas * 800;
   }
 
   openModalFiltrar() {
@@ -151,9 +149,9 @@ export class FamiliasComponent implements OnInit, OnDestroy {
 
   filtrarRapido(busqueda: String) {
     this.productoService.obtenerFiltradoRapido(this.familia, busqueda).subscribe(result => {
-      this.datosFiltradosResV = result;
-      console.log(this.datosFiltradosResV);
-    });
+      this.datosFiltradosResV = result.filter(result => result.familia === this.familia);
+
+     });
   }
 
 

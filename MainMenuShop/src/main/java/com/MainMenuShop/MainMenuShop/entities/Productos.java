@@ -37,7 +37,7 @@ public class Productos {
     private double ivaAsociado;
     private double peso; //Peso del producto
     private String imagen;
-    private String descripcion;
+     private String descripcion;
 
     private String estado; //Encargable o no encargable
 
